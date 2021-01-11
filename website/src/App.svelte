@@ -1,14 +1,15 @@
 <script>
-	import Home from './components/Home.svelte'
+	import Home from './components/Home.svelte';
+	import About from './components/About.svelte';
 
 </script>
 
 <main>
-	<div class="flex flex-col h-screen">
-		<div class="flex flex-1">
-			<nav class="flex-none justify-around text-white justify-between flex flex-col bg-gray-900">
-				<div class="px-4">
-					<ul class="mx-2" >
+	<div class="flex h-screen">
+		<div class="flex flex-1 flex-row">
+			<nav class="fixed flex min-h-full top-0 flex-none text-white justify-between bg-gray-900">
+				<div class="px-4 my-auto">
+					<ul class="mx-2"  >
 						<li>
 							<svg width="32" height="32" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
 						</li>
@@ -27,8 +28,9 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="flex-1 overflow-y-hidden">
-			<Home/>
+			<div class="block flex-1 h-full absolute top-0 right-0 bottom-0 left-20">
+				<Home/>
+				<About/>
 			</div>
 		</div>
 	</div>
@@ -36,7 +38,10 @@
 
 </main>
 
+
+
 <style global>
+
 	@import 'tailwindcss/base';
 
 	@import 'tailwindcss/components';
