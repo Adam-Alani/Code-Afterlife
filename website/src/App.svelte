@@ -1,11 +1,11 @@
 <script>
 	import Home from './components/Home.svelte';
 	import About from './components/About.svelte';
-
+	import DevLog from './components/DevLog.svelte';
 </script>
 
 <main>
-	<div class="flex h-screen">
+	<div class="flex h-screen ">
 		<div class="flex flex-1 flex-row">
 			<nav class="fixed flex min-h-full top-0 flex-none text-white justify-between bg-gray-900">
 				<div class="px-4 my-auto">
@@ -31,11 +31,10 @@
 			<div class="block flex-1 h-full absolute top-0 right-0 bottom-0 left-20">
 				<Home/>
 				<About/>
+				<DevLog/>
 			</div>
 		</div>
 	</div>
-
-
 </main>
 
 
@@ -47,6 +46,8 @@
 	@import 'tailwindcss/components';
 
 	@import 'tailwindcss/utilities';
+
+
 
 	::-webkit-scrollbar {
 		width: 7px;
