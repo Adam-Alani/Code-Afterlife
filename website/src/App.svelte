@@ -7,7 +7,7 @@
 <main>
 	<div class="flex h-screen ">
 		<div class="flex flex-1 flex-row">
-			<nav class="fixed flex min-h-full top-0 flex-none text-white justify-between bg-gray-900">
+			<nav class="fixed flex min-h-full z-20 top-0 flex-none text-white justify-between bg-gray-900">
 				<div class="px-4 my-auto">
 					<ul class="mx-2"  >
 						<li>
@@ -28,7 +28,7 @@
 					</ul>
 				</div>
 			</nav>
-			<div class="block flex-1 h-full absolute top-0 right-0 bottom-0 left-20">
+			<div class="block flex-grow absolute top-0 right-0 bottom-0 left-20">
 				<Home/>
 				<About/>
 				<DevLog/>

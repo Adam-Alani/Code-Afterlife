@@ -4,13 +4,13 @@
 
 
 <div class="relative ">
-    <div class="centered absolute flex  z-20 mx-0 my-auto left-1/2 right-0 ">
-       <div class="text-white mt-8 pt-8 justify-center flex flex-1 ">
+    <div class="centered absolute flex z-20 mx-0 my-auto left-1/2 right-0 ">
+       <div class="text-white mt-8 justify-center flex flex-1 ">
             <img src="images/Code to survive.png" class="absolute size justify-center align-middle  "/>
        </div>
     </div>
     <div class="centered absolute flex justify-center z-10 mx-0 my-auto left-1/2 right-0 w-full h-full ">
-        <div class="mt-16 pt-8 flex-grow " >
+        <div class="mt-16 flex-grow " >
             <AboutContent/>
         </div>
     </div>
