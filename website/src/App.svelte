@@ -2,6 +2,7 @@
 	import Home from './components/Home.svelte';
 	import About from './components/About.svelte';
 	import DevLog from './components/DevLog.svelte';
+	import Team from './components/Team.svelte'
 </script>
 
 <main>
@@ -32,6 +33,7 @@
 				<Home/>
 				<About/>
 				<DevLog/>
+				<Team/>
 			</div>
 		</div>
 	</div>
