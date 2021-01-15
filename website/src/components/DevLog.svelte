@@ -1,11 +1,11 @@
 <div class="relative flex flex-1 terminal ">
     <div class=" centered absolute flex  z-20 mx-0 my-auto left-1/2 right-0 ">
         <div class="text-white mt-8 justify-center flex flex-1 ">
-            <img src="images/log.png" class="absolute size justify-center align-middle  "/>
+            <img src="images/log.png" class="absolute size justify-center align-middle   "/>
         </div>
     </div>
     <div class=" z-10 mx-0 my-auto">
-        <div class="mt-28 mb-28 flex-grow text-white text-center " >
+        <div class="mt-28 mb-28 flex-grow text-white text-center  " >
             <div>
             <h1 class="text-xl underline text-green-500">Update Log . . . : 1/14/2021</h1>
                 <div class="mt-2 mx-16">

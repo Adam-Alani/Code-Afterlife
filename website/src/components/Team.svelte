@@ -10,23 +10,23 @@
 
         <div class="align-top inline-block text-center  px-8">
             <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 text-xl underline">Raphael</h1>
-            <span class="text-white">Text below the image</span>
+            <h1 class="mt-2 text-pink-500 big underline">Raphael</h1>
+            <span class="text-white med">He does this</span>
+        </div>
+        <div class="align-top inline-block text-center  px-8">
+            <img src="images/theo.png" class="image" />
+            <h1 class="mt-2 text-pink-500 big underline">Theo</h1>
+            <span class="text-white med">Him too</span>
+        </div>
+        <div class="align-top inline-block text-center  px-8">
+            <img src="images/adam.png" class="image" />
+            <h1 class="mt-2 text-pink-500 big underline">Adam</h1>
+            <span class="text-white med">Same here</span>
         </div>
         <div class="align-top inline-block text-center  px-8">
             <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 text-xl underline">Raphael</h1>
-            <span class="text-white">Text below the image</span>
-        </div>
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 text-xl underline">Raphael</h1>
-            <span class="text-white">Text below the image</span>
-        </div>
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 text-xl underline">Raphael</h1>
-            <span class="text-white">Text below the image</span>
+            <h1 class="mt-2 text-pink-500 big underline">Ivan</h1>
+            <span class="text-white med">Gros glandeur</span>
         </div>
     </div>
     </div>
@@ -48,6 +48,13 @@
         flex-wrap: wrap;
         margin:-10px;
     }
+
+    .big {
+        font-size: 3rem;
+    }
+    .med {
+        font-size: 1.5rem;
+    }
     .box>* {
         flex: 1 1 160px;
         margin: 10px;
@@ -60,7 +67,7 @@
         flex: 0 1 24%;
     }
     .terminal {
-        background-color: #101010;
+        background-color: #00d9ff;
         filter: drop-shadow(0 0 10px #DB2777);
     }
     .size {
