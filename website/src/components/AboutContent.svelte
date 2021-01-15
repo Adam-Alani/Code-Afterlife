@@ -5,7 +5,7 @@
 
 
 
-<div class="rounded-lg border-2 h-5/6 mx-10 border-pink-600 terminal border-gl text-white">
+<div class="flex flex-grow rounded-lg border-2 mx-10 border-pink-600 terminal border-gl text-white">
     <div class="mx-8 my-10">
     <p class="text-xl">In a lawless society, dominated by technology, face the big megacorps of the planet in the Cyb3r w4r. Will you Survive?</p>
     <h1 class="text-pink-500 underline text-xl">Features :</h1>
@@ -21,7 +21,6 @@
         </div>
     </div>
 </div>
-
 
 
 

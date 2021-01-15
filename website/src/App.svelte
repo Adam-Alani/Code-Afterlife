@@ -34,6 +34,9 @@
 				<About/>
 				<DevLog/>
 				<Team/>
+				<div class="flex justify-center terminal">
+				<button class="large green text-white rounded-lg my-4"><span class="mx-8">Download</span></button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -43,6 +46,17 @@
 
 <style global>
 
+	.large {
+		font-size: 3rem;
+	}
+	.green {
+		background-color: #00ff3f;
+	}
+
+	.terminal {
+		background-color: #101010;
+		filter: drop-shadow(0 0 10px #00ff3f);
+	}
 	@import 'tailwindcss/base';
 
 	@import 'tailwindcss/components';
