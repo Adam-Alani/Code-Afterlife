@@ -1,38 +1,33 @@
-<div class="h-screen terminal">
+<div class=" terminal">
     <div class="   flex  z-20 mx-0 my-auto left-1/2 right-0 ">
         <div class=" mt-8 justify-center flex flex-1 ">
             <img src="images/about.png" class=" size justify-around align-middle  "/>
         </div>
     </div>
-    <div class="flex justify-center">
-    <div class="wrapper items-center">
-    <div class="pt-8 box space-between justify-between">
+    <div class="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-4 py-12 mx-12  ">
 
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 big underline">Raphael</h1>
-            <span class="text-white med">He does this</span>
-        </div>
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/theo.png" class="image" />
-            <h1 class="mt-2 text-pink-500 big underline">Theo</h1>
-            <span class="text-white med">Him too</span>
-        </div>
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/adam.png" class="image" />
-            <h1 class="mt-2 text-pink-500 big underline">Adam</h1>
-            <span class="text-white med">Same here</span>
-        </div>
-        <div class="align-top inline-block text-center  px-8">
-            <img src="images/raph.png" class="image" />
-            <h1 class="mt-2 text-pink-500 big underline">Ivan</h1>
-            <span class="text-white med">Gros glandeur</span>
-        </div>
+                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
+                    <img src="images/raph.png" class="image" width="250px" height="auto" />
+                    <h1 class="mt-2 text-pink-500 big underline te">Raphael</h1>
+                    <span class="text-white med">He does this</span>
+                </div>
+                <div class="align-top inline-block text-center px-8  items-center justify-center px-8 flex flex-col">
+                    <img src="images/theo.png" class="image" width="250px" height="auto" />
+                    <h1 class="mt-2 text-pink-500 big underline">Theo</h1>
+                    <span class="text-white med">Him too</span>
+                </div>
+                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
+                    <img src="images/adam.png" class="image" width="250px" height="auto"/>
+                    <h1 class="mt-2 text-pink-500 big underline">Adam</h1>
+                    <span class="text-white med">Same here</span>
+                </div>
+                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
+                    <img src="images/raph.png" class="image" width="250px" height="auto"/>
+                    <h1 class="mt-2 text-pink-500 big underline">Ivan</h1>
+                    <span class="text-white med">Gros glandeur</span>
+                </div>
+            </div>
     </div>
-    </div>
-    </div>
-
-</div>
 
 
 
