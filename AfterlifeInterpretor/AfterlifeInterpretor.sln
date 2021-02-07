@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfterlifeInterpretor", "AfterlifeInterpretor\AfterlifeInterpretor.csproj", "{D6CE4D0C-2D59-4F36-AF92-7B9234E4A389}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6CE4D0C-2D59-4F36-AF92-7B9234E4A389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6CE4D0C-2D59-4F36-AF92-7B9234E4A389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6CE4D0C-2D59-4F36-AF92-7B9234E4A389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6CE4D0C-2D59-4F36-AF92-7B9234E4A389}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
