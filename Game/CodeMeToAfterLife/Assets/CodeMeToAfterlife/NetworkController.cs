@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
@@ -20,12 +20,13 @@ public class NetworkController : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
-    // Update is called once per frame
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Now connected to the " + PhotonNetwork.CloudRegion + " server !");
     }
+
+    // Update is called once per frame
     void Update()
     {
         
