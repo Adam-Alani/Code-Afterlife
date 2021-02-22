@@ -15,20 +15,19 @@ public class NetworkController : MonoBehaviourPunCallbacks
     
     
     // Start is called before the first frame update
+    /// <summary>
+    /// Connects the player to the servers
+    /// </summary>
     void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
     }
 
-
+    /// <summary>
+    /// Informs us when connected to a server
+    /// </summary>
     public override void OnConnectedToMaster()
     {
         Debug.Log("Now connected to the " + PhotonNetwork.CloudRegion + " server !");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

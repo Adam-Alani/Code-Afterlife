@@ -6,8 +6,12 @@ using Photon.Pun;
 
 public class QuickStartRoomController : MonoBehaviourPunCallbacks
 {
+    /// <summary>
+    /// Where the players will be moved for the first scene
+    /// </summary>
     public int multyplayerSceneIndex;
 
+    
     public override void OnEnable()
     {
         PhotonNetwork.AddCallbackTarget(this);
@@ -20,10 +24,13 @@ public class QuickStartRoomController : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Hoined Room");
+        Debug.Log("Joined Room");
         StartGame();
     }
 
+    /// <summary>
+    /// One
+    /// </summary>
     private void StartGame()
     {
         if (PhotonNetwork.IsMasterClient)
