@@ -22,6 +22,10 @@ public class QuickStartRoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.RemoveCallbackTarget(this);
     }
 
+    
+    /// <summary>
+    /// Calls start game ones a player has joined a room
+    /// </summary>
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined Room");
@@ -29,7 +33,7 @@ public class QuickStartRoomController : MonoBehaviourPunCallbacks
     }
 
     /// <summary>
-    /// One
+    /// Loads the scene when the masterClient connect (the one who created the room)
     /// </summary>
     private void StartGame()
     {
