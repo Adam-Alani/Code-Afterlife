@@ -91,73 +91,73 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11268}
-    - Class: 114
       Script: {instanceID: 11270}
     - Class: 114
       Script: {instanceID: 11272}
     - Class: 114
       Script: {instanceID: 11274}
     - Class: 114
-      Script: {instanceID: 11298}
+      Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11438}
+      Script: {instanceID: 11300}
     - Class: 114
-      Script: {instanceID: 11458}
+      Script: {instanceID: 11440}
     - Class: 114
-      Script: {instanceID: 11540}
+      Script: {instanceID: 11460}
     - Class: 114
-      Script: {instanceID: 11800}
+      Script: {instanceID: 11542}
     - Class: 114
-      Script: {instanceID: 12012}
+      Script: {instanceID: 11802}
     - Class: 114
-      Script: {instanceID: 12048}
+      Script: {instanceID: 12014}
     - Class: 114
-      Script: {instanceID: 12092}
+      Script: {instanceID: 12050}
     - Class: 114
-      Script: {instanceID: 12296}
+      Script: {instanceID: 12058}
     - Class: 114
-      Script: {instanceID: 12358}
+      Script: {instanceID: 12096}
     - Class: 114
-      Script: {instanceID: 12408}
+      Script: {instanceID: 12214}
     - Class: 114
-      Script: {instanceID: 12550}
+      Script: {instanceID: 12302}
     - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12364}
     - Class: 114
-      Script: {instanceID: 12706}
+      Script: {instanceID: 12414}
     - Class: 114
-      Script: {instanceID: 12714}
+      Script: {instanceID: 12556}
     - Class: 114
-      Script: {instanceID: 12764}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12782}
+      Script: {instanceID: 12712}
     - Class: 114
-      Script: {instanceID: 12936}
+      Script: {instanceID: 12720}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 12966}
+      Script: {instanceID: 12788}
     - Class: 114
-      Script: {instanceID: 13024}
+      Script: {instanceID: 12942}
     - Class: 114
-      Script: {instanceID: 13098}
+      Script: {instanceID: 12962}
     - Class: 114
-      Script: {instanceID: 13292}
+      Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 13424}
+      Script: {instanceID: 13030}
     - Class: 114
-      Script: {instanceID: 13470}
+      Script: {instanceID: 13104}
     - Class: 114
-      Script: {instanceID: 13556}
+      Script: {instanceID: 13302}
     - Class: 114
-      Script: {instanceID: 13568}
+      Script: {instanceID: 13434}
     - Class: 114
-      Script: {instanceID: 13588}
+      Script: {instanceID: 13480}
     - Class: 114
-      Script: {instanceID: 16216}
+      Script: {instanceID: 13566}
     - Class: 114
-      Script: {instanceID: 16222}
+      Script: {instanceID: 13578}
+    - Class: 114
+      Script: {instanceID: 13598}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -210,7 +210,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16228}
+      Script: {instanceID: 13132}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -712,6 +712,12 @@ ScriptsOnlyBuild:
     className: TMP_TextEventHandler
   - hash:
       serializedVersion: 2
+      Hash: 68b84ace2d78e7f1d49a34d56aaa86ff
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuickStartRoomController
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -764,6 +770,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomIsOpenToggle
+  - hash:
+      serializedVersion: 2
+      Hash: 6806e2047be037653aa5c2f8f4e8c2d2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuickStartLobbyController
   - hash:
       serializedVersion: 2
       Hash: 57d2b3ca58a430f7cf319bb757c1f0f5
@@ -1300,6 +1312,12 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: GameSetupController
+  - hash:
+      serializedVersion: 2
       Hash: 48804c7edfd2998cdab1bf456d8dbfd0
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -1358,6 +1376,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: VertexColorCycler
+  - hash:
+      serializedVersion: 2
+      Hash: 17d041ee89ae008a578d523a809c2da9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PixelShader
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1682,27 +1706,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 6806e2047be037653aa5c2f8f4e8c2d2
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: QuickStartLobbyController
-  - hash:
-      serializedVersion: 2
-      Hash: 68b84ace2d78e7f1d49a34d56aaa86ff
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: QuickStartRoomController
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: GameSetupController
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/Scene 1.unity
-  playerPath: "G:/Data Ivan/cours/\xE9pita/Prog/Projet S2/Game/Code-Afterlife/Game/CodeMeToAfterLife/pourquoi
-    je dois te donner un dossier/New Unity Project.exe"
+  playerPath: "G:/Data Ivan/cours/\xE9pita/Prog/Projet S2/Game/builds/New Unity Project.exe"
