@@ -1,4 +1,6 @@
 using System;
+using AfterlifeInterpretor.CodeAnalysis.Binding;
+using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis
 {
@@ -7,11 +9,11 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// Evaluates a given code
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
-    public sealed class Evaluator
+    internal sealed class Evaluator
     {
-        private readonly ExpressionSyntax _root;
+        private readonly BoundExpression _root;
 
-        public Evaluator(ExpressionSyntax root)
+        public Evaluator(BoundExpression root)
         {
             _root = root;
         }
@@ -21,25 +23,32 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return EvaluateExpression(_root);
         }
 
-        private int EvaluateExpression(ExpressionSyntax root)
+        private int EvaluateExpression(BoundExpression root)
         {
-            if (root is ParenthesisedExpression p)
-                return EvaluateExpression(p.Expression);
-            if (root is LiteralExpression n)
-                return (int)n.Token.Value;
-            if (root is BinaryExpression b)
+            if (root is BoundLiteral n)
+                return (int)n.Value;
+            if (root is BoundUnary u)
+            {
+                return u.OperatorKind switch
+                {
+                    BoundUnaryKind.Neg => -EvaluateExpression(u.Operand),
+                    BoundUnaryKind.Id => EvaluateExpression(u.Operand),
+                    _ => throw new Exception($"Unexpected unary operator {u.OperatorKind}")
+                };
+            }
+            if (root is BoundBinary b)
             {
                 int l = EvaluateExpression(b.Left);
                 int r = EvaluateExpression(b.Right);
 
-                return b.Token.Kind switch
+                return b.OperatorKind switch
                 {
-                    SyntaxKind.PlusToken   => l + r,
-                    SyntaxKind.MinusToken  => l - r,
-                    SyntaxKind.ModuloToken => l % r,
-                    SyntaxKind.SlashToken  => l / r,
-                    SyntaxKind.StarToken   => l * r,
-                    _                      => throw new Exception($"Unexpected binary operator {b.Token.Kind}")
+                    BoundBinaryKind.Add   => l + r,
+                    BoundBinaryKind.Sub  => l - r,
+                    BoundBinaryKind.Mod => l % r,
+                    BoundBinaryKind.Div  => l / r,
+                    BoundBinaryKind.Mul   => l * r,
+                    _                      => throw new Exception($"Unexpected binary operator {b.OperatorKind}")
                 };
             }
 

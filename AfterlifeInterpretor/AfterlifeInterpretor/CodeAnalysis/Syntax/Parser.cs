@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 
-namespace AfterlifeInterpretor.CodeAnalysis
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
     /// <summary>
     /// Parser class
@@ -60,23 +59,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _position++;
             return cur;
         }
-        
-        private static int GetPrecedence(SyntaxKind kind)
-        {
-            switch (kind)
-            {
-                case SyntaxKind.PlusToken:
-                case SyntaxKind.MinusToken:
-                    return 1;
-                case SyntaxKind.StarToken:
-                case SyntaxKind.SlashToken:
-                case SyntaxKind.ModuloToken:
-                    return 2;
-                default:
-                    return 0;
-            }
-        }
-        
+
         public SyntaxTree Parse()
         {
             return new SyntaxTree(Errors, ParseExpression(), Expect(SyntaxKind.EndToken));
@@ -97,13 +80,22 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private ExpressionSyntax ParseExpression(int parentPrecedence = 0)
         {
-            ExpressionSyntax left = PrimaryExpression();
-
+            ExpressionSyntax left;
+            int unaryPrecedence = Current.Kind.GetUnaryPrecedence();
+            if (unaryPrecedence != 0 && unaryPrecedence >= parentPrecedence)
+            {
+                left = new UnaryExpression(NextToken(), ParseExpression(unaryPrecedence));
+            }
+            else
+            {
+                left = PrimaryExpression();
+            }
+            
             bool doOperation;
             do
             {
                 doOperation = false;
-                int precedence = GetPrecedence(Current.Kind);
+                int precedence = Current.Kind.GetBinaryPrecedence();
                 if (precedence != 0 && precedence > parentPrecedence)
                 {
                     doOperation = true;

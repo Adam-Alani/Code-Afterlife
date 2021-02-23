@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace AfterlifeInterpretor.CodeAnalysis
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
     /// <summary>
     /// SyntaxNode class

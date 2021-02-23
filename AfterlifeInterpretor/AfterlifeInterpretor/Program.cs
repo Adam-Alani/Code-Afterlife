@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis;
+using AfterlifeInterpretor.CodeAnalysis.Binding;
+using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor
 {
@@ -18,11 +21,15 @@ namespace AfterlifeInterpretor
                 {
                     Parser parser = new Parser(prompt);
                     SyntaxTree tree = parser.Parse();
-                    if (tree.Errors.Any())
+                    Binder binder = new Binder();
+                    BoundExpression root = binder.BindExpression(tree.Root);
+
+                    string[] enumerable = tree.Errors.Concat(binder.Errors).ToArray();
+                    if (enumerable.Any())
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
 
-                        foreach (string error in tree.Errors)
+                        foreach (string error in enumerable)
                         {
                             Console.WriteLine(error);
                         }
@@ -31,7 +38,7 @@ namespace AfterlifeInterpretor
                     }
                     else
                     {
-                        Evaluator e = new Evaluator(tree.Root);
+                        Evaluator e = new Evaluator(root);
                         int r = e.Evaluate();
                         Console.WriteLine(r);
                     }

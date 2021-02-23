@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
     /// <summary>
     /// Syntax Kind enum
@@ -23,6 +23,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         // Expressions
         LiteralExpression,
         BinaryExpression,
-        ParenthesisedExpression
+        ParenthesisedExpression,
+        UnaryExpression
     }
 }
