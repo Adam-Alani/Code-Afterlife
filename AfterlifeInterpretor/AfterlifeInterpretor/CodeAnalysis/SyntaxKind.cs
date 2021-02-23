@@ -21,7 +21,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         EndToken,
         
         // Expressions
-        NumericExpression,
+        LiteralExpression,
         BinaryExpression,
         ParenthesisedExpression
     }

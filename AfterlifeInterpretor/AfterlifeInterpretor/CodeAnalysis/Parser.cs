@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace AfterlifeInterpretor.CodeAnalysis
@@ -24,7 +25,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             SyntaxToken tk;
             do
             {
-                tk = lex.NextToken();
+                tk = lex.Lex();
                 if (tk.Kind != SyntaxKind.SpaceToken && tk.Kind != SyntaxKind.ErrorToken)
                     tokens.Add(tk);
             } while (tk.Kind != SyntaxKind.EndToken);
@@ -59,13 +60,34 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _position++;
             return cur;
         }
-
+        
+        private static int GetPrecedence(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.PlusToken:
+                case SyntaxKind.MinusToken:
+                    return 1;
+                case SyntaxKind.StarToken:
+                case SyntaxKind.SlashToken:
+                case SyntaxKind.ModuloToken:
+                    return 2;
+                default:
+                    return 0;
+            }
+        }
+        
+        public SyntaxTree Parse()
+        {
+            return new SyntaxTree(Errors, ParseExpression(), Expect(SyntaxKind.EndToken));
+        }
+        
         private ExpressionSyntax PrimaryExpression()
         {
             if (Current.Kind == SyntaxKind.OParenToken)
             {
                 SyntaxToken open = NextToken();
-                ExpressionSyntax expr = Term();
+                ExpressionSyntax expr = ParseExpression();
                 SyntaxToken close = Expect(SyntaxKind.CParenToken);
 
                 return new ParenthesisedExpression(open, expr, close);
@@ -73,48 +95,25 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return new LiteralExpression(Expect(SyntaxKind.NumericToken));
         }
 
-        private ExpressionSyntax Factor()
+        private ExpressionSyntax ParseExpression(int parentPrecedence = 0)
         {
             ExpressionSyntax left = PrimaryExpression();
 
-            while (Current.Kind == SyntaxKind.StarToken || 
-                   Current.Kind == SyntaxKind.SlashToken || 
-                   Current.Kind == SyntaxKind.ModuloToken)
+            bool doOperation;
+            do
             {
-                left = new BinaryExpression(left, NextToken(), PrimaryExpression());
-            }
-
+                doOperation = false;
+                int precedence = GetPrecedence(Current.Kind);
+                if (precedence != 0 && precedence > parentPrecedence)
+                {
+                    doOperation = true;
+                    SyntaxToken operatorToken = NextToken();
+                    ExpressionSyntax right = ParseExpression(precedence);
+                    left = new BinaryExpression(left, operatorToken, right);
+                }
+            } while (doOperation);
+            
             return left;
-        }
-
-        private ExpressionSyntax Term()
-        {
-            ExpressionSyntax left = Factor();
-
-            while (Current.Kind == SyntaxKind.PlusToken || 
-                   Current.Kind == SyntaxKind.MinusToken)
-            {
-                left = new BinaryExpression(left, NextToken(), Factor());
-            }
-
-            return left;
-        }
-        
-        private ExpressionSyntax Expression()
-        {
-            ExpressionSyntax left = Term();
-
-            while (Current.Kind == SyntaxKind.PlusToken || Current.Kind == SyntaxKind.MinusToken)
-            {
-                left = new BinaryExpression(left, NextToken(), Term());
-            }
-
-            return left;
-        }
-
-        public SyntaxTree Parse()
-        {
-            return new SyntaxTree(Errors, Expression(), Expect(SyntaxKind.EndToken));
         }
     }
 }

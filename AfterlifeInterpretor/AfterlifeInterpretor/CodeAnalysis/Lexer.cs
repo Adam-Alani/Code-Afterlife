@@ -47,7 +47,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             };
         }
 
-        public SyntaxToken NextToken()
+        public SyntaxToken Lex()
         {
             if (char.IsDigit(Current))
             {

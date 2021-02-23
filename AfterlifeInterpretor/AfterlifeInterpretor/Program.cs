@@ -14,27 +14,28 @@ namespace AfterlifeInterpretor
             {
                 Console.Write("> ");
                 prompt = Console.ReadLine();
-                Parser parser = new Parser(prompt);
-                SyntaxTree tree = parser.Parse();
-
-                if (tree.Errors.Any())
+                if (prompt != "exit")
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-
-                    foreach (string error in tree.Errors)
+                    Parser parser = new Parser(prompt);
+                    SyntaxTree tree = parser.Parse();
+                    if (tree.Errors.Any())
                     {
-                        Console.WriteLine(error);
-                    }
-                    
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Evaluator e = new Evaluator(tree.Root);
-                    int r = e.Evaluate();
-                    Console.WriteLine(r);
-                }
+                        Console.ForegroundColor = ConsoleColor.Red;
 
+                        foreach (string error in tree.Errors)
+                        {
+                            Console.WriteLine(error);
+                        }
+                    
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Evaluator e = new Evaluator(tree.Root);
+                        int r = e.Evaluate();
+                        Console.WriteLine(r);
+                    }
+                }
             } while (prompt != "exit");
         }
     }

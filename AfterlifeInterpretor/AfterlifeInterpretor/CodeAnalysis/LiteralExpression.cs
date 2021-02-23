@@ -9,7 +9,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// </summary>
     public sealed class LiteralExpression : ExpressionSyntax
     {
-        public override SyntaxKind Kind => SyntaxKind.NumericExpression;
+        public override SyntaxKind Kind => SyntaxKind.LiteralExpression;
         public SyntaxToken Token { get; }
 
         public LiteralExpression(SyntaxToken token)
