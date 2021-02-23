@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 
-namespace AfterlifeInterpretor
+namespace AfterlifeInterpretor.CodeAnalysis
 {
     /// <summary>
     /// Parser class
+    /// Parses given code in order to create a syntax tree
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
-    public class Parser
+    internal sealed class Parser
     {
         private readonly SyntaxToken[] _tokens;
         private int _position;
@@ -61,13 +62,6 @@ namespace AfterlifeInterpretor
 
         private ExpressionSyntax PrimaryExpression()
         {
-            if (Current.Kind == SyntaxKind.PlusToken || Current.Kind == SyntaxKind.MinusToken)
-            {
-                SyntaxToken tk = new SyntaxToken(SyntaxKind.NumericToken, _position - 1, "0", 0);
-                NumericExpression n = new NumericExpression(tk);
-                return  new BinaryExpression(n, NextToken(), Term());
-            }
-            
             if (Current.Kind == SyntaxKind.OParenToken)
             {
                 SyntaxToken open = NextToken();
@@ -76,7 +70,7 @@ namespace AfterlifeInterpretor
 
                 return new ParenthesisedExpression(open, expr, close);
             }
-            return new NumericExpression(Expect(SyntaxKind.NumericToken));
+            return new LiteralExpression(Expect(SyntaxKind.NumericToken));
         }
 
         private ExpressionSyntax Factor()

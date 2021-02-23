@@ -1,12 +1,13 @@
 using System;
 
-namespace AfterlifeInterpretor
+namespace AfterlifeInterpretor.CodeAnalysis
 {
     /// <summary>
     /// Evaluator class
+    /// Evaluates a given code
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
-    public class Evaluator
+    public sealed class Evaluator
     {
         private readonly ExpressionSyntax _root;
 
@@ -24,8 +25,8 @@ namespace AfterlifeInterpretor
         {
             if (root is ParenthesisedExpression p)
                 return EvaluateExpression(p.Expression);
-            if (root is NumericExpression n)
-                return (int)n.NumericToken.Value;
+            if (root is LiteralExpression n)
+                return (int)n.Token.Value;
             if (root is BinaryExpression b)
             {
                 int l = EvaluateExpression(b.Left);

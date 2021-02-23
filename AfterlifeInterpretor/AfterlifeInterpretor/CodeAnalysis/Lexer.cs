@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 
-namespace AfterlifeInterpretor
+namespace AfterlifeInterpretor.CodeAnalysis
 {
     /// <summary>
     /// Lexer class
+    /// Tokenise a given code
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
-    public class Lexer
+    internal class Lexer
     {
         private readonly string _text;
         private int _position;
