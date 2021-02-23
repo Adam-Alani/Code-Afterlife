@@ -18,36 +18,40 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _root = root;
         }
 
-        public int Evaluate()
+        public object Evaluate()
         {
             return EvaluateExpression(_root);
         }
 
-        private int EvaluateExpression(BoundExpression root)
+        private object EvaluateExpression(BoundExpression root)
         {
             if (root is BoundLiteral n)
-                return (int)n.Value;
+                return n.Value;
             if (root is BoundUnary u)
             {
+                object operand = EvaluateExpression(u.Operand);
                 return u.OperatorKind switch
                 {
-                    BoundUnaryKind.Neg => -EvaluateExpression(u.Operand),
-                    BoundUnaryKind.Id => EvaluateExpression(u.Operand),
+                    BoundUnaryKind.Neg => -(int)operand,
+                    BoundUnaryKind.Id => (int)operand,
+                    BoundUnaryKind.Not => !((bool)operand),
                     _ => throw new Exception($"Unexpected unary operator {u.OperatorKind}")
                 };
             }
             if (root is BoundBinary b)
             {
-                int l = EvaluateExpression(b.Left);
-                int r = EvaluateExpression(b.Right);
+                object l = EvaluateExpression(b.Left);
+                object r = EvaluateExpression(b.Right);
 
                 return b.OperatorKind switch
                 {
-                    BoundBinaryKind.Add   => l + r,
-                    BoundBinaryKind.Sub  => l - r,
-                    BoundBinaryKind.Mod => l % r,
-                    BoundBinaryKind.Div  => l / r,
-                    BoundBinaryKind.Mul   => l * r,
+                    BoundBinaryKind.Add   => (int)l + (int)r,
+                    BoundBinaryKind.Sub  => (int)l - (int)r,
+                    BoundBinaryKind.Mod => (int)l % (int)r,
+                    BoundBinaryKind.Div  => (int)l / (int)r,
+                    BoundBinaryKind.Mul   => (int)l * (int)r,
+                    BoundBinaryKind.And => (bool)l && (bool)r,
+                    BoundBinaryKind.Or => (bool)l || (bool)r,
                     _                      => throw new Exception($"Unexpected binary operator {b.OperatorKind}")
                 };
             }

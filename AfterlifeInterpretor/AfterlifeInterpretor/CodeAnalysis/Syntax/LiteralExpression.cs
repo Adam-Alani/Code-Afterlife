@@ -11,10 +11,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
     {
         public override SyntaxKind Kind => SyntaxKind.LiteralExpression;
         public SyntaxToken Token { get; }
-
+        public object Value { get; }
+        
         public LiteralExpression(SyntaxToken token)
         {
             Token = token;
+            Value = token.Value;
+        }
+
+        public LiteralExpression(SyntaxToken token, object value)
+        {
+            Token = token;
+            Value = value;
         }
 
         public override IEnumerable<SyntaxNode> GetChildren()

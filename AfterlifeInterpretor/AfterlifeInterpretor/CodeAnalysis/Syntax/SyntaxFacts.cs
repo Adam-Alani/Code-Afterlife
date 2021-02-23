@@ -11,9 +11,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (kind)
             {
+                case SyntaxKind.NotToken:
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 3;
+                    return 4;
                 default:
                     return 0;
             }
@@ -23,16 +24,32 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (kind)
             {
+                case SyntaxKind.AndToken:
+                case SyntaxKind.OrToken:
+                    return 1;
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 1;
+                    return 2;
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
                 case SyntaxKind.ModuloToken:
-                    return 2;
+                    return 3;
                 default:
                     return 0;
             }
+        }
+
+        public static SyntaxKind GetKeywordKind(string text)
+        {
+            return text switch
+            {
+                "true" => SyntaxKind.TrueKeyword,
+                "false" => SyntaxKind.FalseKeyword,
+                "and" => SyntaxKind.AndToken,
+                "or" => SyntaxKind.OrToken,
+                "not" => SyntaxKind.NotToken,
+                _ => SyntaxKind.IdentifierToken
+            };
         }
     }
 }

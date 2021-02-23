@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax
@@ -81,6 +82,20 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 }
                 
                 return new SyntaxToken(SyntaxKind.SpaceToken, _position, text);
+            }
+
+            if (char.IsLetter(Current))
+            {
+                int start = _position;
+                string text = "";
+
+                while (char.IsLetter(Current))
+                {
+                    text += Current;
+                    _position++;
+                }
+                
+                return new SyntaxToken(SyntaxFacts.GetKeywordKind(text), _position, text);
             }
 
             SyntaxToken token = GetToken();

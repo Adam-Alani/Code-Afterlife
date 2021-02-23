@@ -67,15 +67,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         
         private ExpressionSyntax PrimaryExpression()
         {
-            if (Current.Kind == SyntaxKind.OParenToken)
+            switch (Current.Kind)
             {
-                SyntaxToken open = NextToken();
-                ExpressionSyntax expr = ParseExpression();
-                SyntaxToken close = Expect(SyntaxKind.CParenToken);
+                case SyntaxKind.OParenToken:
+                    SyntaxToken open = NextToken();
+                    ExpressionSyntax expr = ParseExpression();
+                    SyntaxToken close = Expect(SyntaxKind.CParenToken);
 
-                return new ParenthesisedExpression(open, expr, close);
+                    return expr;
+                    // return new ParenthesisedExpression(open, expr, close);
+                case SyntaxKind.TrueKeyword:
+                case SyntaxKind.FalseKeyword:
+                    bool val = Current.Kind == SyntaxKind.TrueKeyword;
+                    return new LiteralExpression(NextToken(), val);
+                default:
+                    return new LiteralExpression(Expect(SyntaxKind.NumericToken));
             }
-            return new LiteralExpression(Expect(SyntaxKind.NumericToken));
         }
 
         private ExpressionSyntax ParseExpression(int parentPrecedence = 0)

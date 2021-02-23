@@ -19,11 +19,19 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         OParenToken,
         CParenToken,
         EndToken,
+        AndToken,
+        OrToken,
+        NotToken,
+        IdentifierToken,
         
         // Expressions
         LiteralExpression,
         BinaryExpression,
         ParenthesisedExpression,
-        UnaryExpression
+        UnaryExpression,
+        
+        // Keywords
+        TrueKeyword,
+        FalseKeyword
     }
 }

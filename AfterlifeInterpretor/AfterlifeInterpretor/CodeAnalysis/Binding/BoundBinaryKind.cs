@@ -6,6 +6,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Sub,
         Mul,
         Div,
-        Mod
+        Mod,
+        And,
+        Or
     }
 }

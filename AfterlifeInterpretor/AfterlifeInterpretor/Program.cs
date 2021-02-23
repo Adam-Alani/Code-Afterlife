@@ -39,7 +39,7 @@ namespace AfterlifeInterpretor
                     else
                     {
                         Evaluator e = new Evaluator(root);
-                        int r = e.Evaluate();
+                        object r = e.Evaluate();
                         Console.WriteLine(r);
                     }
                 }
