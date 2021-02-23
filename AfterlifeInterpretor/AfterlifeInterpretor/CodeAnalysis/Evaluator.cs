@@ -30,12 +30,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
             if (root is BoundUnary u)
             {
                 object operand = EvaluateExpression(u.Operand);
-                return u.OperatorKind switch
+                return u.Operator.Kind switch
                 {
                     BoundUnaryKind.Neg => -(int)operand,
                     BoundUnaryKind.Id => (int)operand,
                     BoundUnaryKind.Not => !((bool)operand),
-                    _ => throw new Exception($"Unexpected unary operator {u.OperatorKind}")
+                    _ => throw new Exception($"Unexpected unary operator {u.Operator.Kind}")
                 };
             }
             if (root is BoundBinary b)
@@ -43,7 +43,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 object l = EvaluateExpression(b.Left);
                 object r = EvaluateExpression(b.Right);
 
-                return b.OperatorKind switch
+                return b.Operator.Kind switch
                 {
                     BoundBinaryKind.Add   => (int)l + (int)r,
                     BoundBinaryKind.Sub  => (int)l - (int)r,
@@ -52,7 +52,13 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundBinaryKind.Mul   => (int)l * (int)r,
                     BoundBinaryKind.And => (bool)l && (bool)r,
                     BoundBinaryKind.Or => (bool)l || (bool)r,
-                    _                      => throw new Exception($"Unexpected binary operator {b.OperatorKind}")
+                    BoundBinaryKind.Eq => Equals(l, r),
+                    BoundBinaryKind.Neq => !Equals(l, r),
+                    BoundBinaryKind.Gt => (int)l > (int)r,
+                    BoundBinaryKind.Lt => (int)l < (int)r,
+                    BoundBinaryKind.LtEq => (int)l <= (int)r,
+                    BoundBinaryKind.GtEq => (int)l >= (int)r,
+                    _                      => throw new Exception($"Unexpected binary operator {b.Operator.Kind}")
                 };
             }
 

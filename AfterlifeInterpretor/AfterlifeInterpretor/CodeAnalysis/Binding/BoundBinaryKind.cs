@@ -8,6 +8,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Div,
         Mod,
         And,
-        Or
+        Or,
+        Eq,
+        Neq,
+        Gt,
+        Lt,
+        GtEq,
+        LtEq
     }
 }

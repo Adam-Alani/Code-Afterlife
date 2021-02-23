@@ -1,20 +1,21 @@
 using System;
+using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundBinary : BoundExpression
     {
         public BoundExpression Left { get;  }
-        public BoundBinaryKind OperatorKind { get;  }
+        public BoundBinaryOperator Operator { get;  }
         public BoundExpression Right { get;  }
         
-        public override Type Type => Left.Type;
+        public override Type Type => Operator.ResultType;
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
         
-        public BoundBinary(BoundExpression left, BoundBinaryKind kind, BoundExpression right)
+        public BoundBinary(BoundExpression left, BoundBinaryOperator op, BoundExpression right)
         {
             Left = left;
-            OperatorKind = kind;
+            Operator = op;
             Right = right;
         }
     }

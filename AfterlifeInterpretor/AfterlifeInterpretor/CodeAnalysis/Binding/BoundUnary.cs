@@ -4,15 +4,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundUnary : BoundExpression
     {
-        public BoundUnaryKind OperatorKind { get;  }
+        public BoundUnaryOperator Operator { get;  }
         public BoundExpression Operand { get;  }
         
-        public override Type Type => Operand.Type;
+        public override Type Type => Operator.ResultType;
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
         
-        public BoundUnary(BoundUnaryKind kind, BoundExpression operand)
+        public BoundUnary(BoundUnaryOperator op, BoundExpression operand)
         {
-            OperatorKind = kind;
+            Operator = op;
             Operand = operand;
         }
     }

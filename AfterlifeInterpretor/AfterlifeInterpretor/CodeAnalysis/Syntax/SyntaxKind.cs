@@ -11,18 +11,28 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         ErrorToken,
         NumericToken,
         SpaceToken,
+        OParenToken,
+        CParenToken,
+        IdentifierToken,
+        EndToken,
+        
+        // Operator Tokens
         PlusToken,
         MinusToken,
         StarToken,
         SlashToken,
         ModuloToken,
-        OParenToken,
-        CParenToken,
-        EndToken,
+        
         AndToken,
         OrToken,
         NotToken,
-        IdentifierToken,
+        NEqToken,
+        EqToken,
+        GtEqToken,
+        GtToken,
+        LtEqToken,
+        LtToken,
+        
         
         // Expressions
         LiteralExpression,
@@ -32,6 +42,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         
         // Keywords
         TrueKeyword,
-        FalseKeyword
+        FalseKeyword,
+        
     }
 }
