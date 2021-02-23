@@ -13,14 +13,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         private readonly string _text;
         private int _position;
 
-        private char Current
+        private char Current => Peek(0);
+
+        private char LookAhead => Peek(1);
+
+        private char Peek(int offset)
         {
-            get
-            {
-                if (_position >= _text.Length)
-                    return '\0';
-                return _text[_position];
-            }
+            if (_position + offset >= _text.Length)
+                return '\0';
+            return _text[_position + offset];
         }
 
         public List<string> Errors { get; }
@@ -34,18 +35,38 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         private SyntaxToken GetToken()
         {
-            return Current switch
+            switch (Current)
             {
-                '\0' => new SyntaxToken(SyntaxKind.EndToken,    _position,   "\0"                     ),
-                '+'  => new SyntaxToken(SyntaxKind.PlusToken,   _position++, "+"                      ),
-                '-'  => new SyntaxToken(SyntaxKind.MinusToken,  _position++, "-"                      ),
-                '*'  => new SyntaxToken(SyntaxKind.StarToken,   _position++, "*"                      ),
-                '/'  => new SyntaxToken(SyntaxKind.SlashToken,  _position++, "/"                      ),
-                '%'  => new SyntaxToken(SyntaxKind.ModuloToken, _position++, "%"                      ),
-                '('  => new SyntaxToken(SyntaxKind.OParenToken, _position++, "("                      ),
-                ')'  => new SyntaxToken(SyntaxKind.CParenToken, _position++, ")"                      ),
-                _    => new SyntaxToken(SyntaxKind.ErrorToken,  _position++, $"{_text[_position - 1]}")
-            };
+                case '\0':
+                    return new SyntaxToken(SyntaxKind.EndToken, _position, "\0");
+                case '+':
+                    return new SyntaxToken(SyntaxKind.PlusToken, _position++, "+");
+                case '-':
+                    return new SyntaxToken(SyntaxKind.MinusToken, _position++, "-");
+                case '*':
+                    return new SyntaxToken(SyntaxKind.StarToken, _position++, "*");
+                case '/':
+                    return new SyntaxToken(SyntaxKind.SlashToken, _position++, "/");
+                case '%':
+                    return new SyntaxToken(SyntaxKind.ModuloToken, _position++, "%");
+                case '(':
+                    return new SyntaxToken(SyntaxKind.OParenToken, _position++, "(");
+                case ')':
+                    return new SyntaxToken(SyntaxKind.CParenToken, _position++, ")");
+                case '!':
+                    return new SyntaxToken(SyntaxKind.NotToken, _position++, "!");
+                case '&':
+                    if (LookAhead == '&')
+                        return new SyntaxToken(SyntaxKind.AndToken, _position += 2, "&&");
+                    break;
+                case '|':
+                    if (LookAhead == '|')
+                        return new SyntaxToken(SyntaxKind.OrToken, _position += 2, "||");
+                    break;
+                default:
+                    return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");
+            }
+            return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");
         }
 
         public SyntaxToken Lex()

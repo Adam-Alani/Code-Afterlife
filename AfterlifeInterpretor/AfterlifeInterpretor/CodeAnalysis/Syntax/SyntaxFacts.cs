@@ -14,7 +14,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 case SyntaxKind.NotToken:
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 4;
+                    return 5;
                 default:
                     return 0;
             }
@@ -24,16 +24,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (kind)
             {
-                case SyntaxKind.AndToken:
                 case SyntaxKind.OrToken:
                     return 1;
+                case SyntaxKind.AndToken:
+                    return 2;
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 2;
+                    return 3;
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
                 case SyntaxKind.ModuloToken:
-                    return 3;
+                    return 4;
                 default:
                     return 0;
             }
