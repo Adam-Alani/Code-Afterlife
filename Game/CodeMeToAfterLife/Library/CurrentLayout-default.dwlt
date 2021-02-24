@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 770
     height: 670
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -72,10 +72,10 @@ MonoBehaviour:
     y: 30
     width: 2560
     height: 1307
-  m_MinSize: {x: 677, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 122
+  controlID: 119
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 686
     height: 1307
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -217,10 +217,10 @@ MonoBehaviour:
     y: 0
     width: 1874
     height: 1307
-  m_MinSize: {x: 401, y: 492}
+  m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 78
+  controlID: 61
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,10 +242,10 @@ MonoBehaviour:
     y: 0
     width: 1874
     height: 670
-  m_MinSize: {x: 401, y: 221}
-  m_MaxSize: {x: 8001, y: 4021}
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 58
+  controlID: 62
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -430,20 +430,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs/Turret
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Prefabs/Turret
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "G:\\Data Ivan\\cours\\\xE9pita\\Prog\\Projet S2\\Game\\Code-Afterlife\\Game\\CodeMeToAfterLife"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4c490000
-    m_LastClickedID: 18764
-    m_ExpandedIDs: 00000000323900003439000036390000383900003a39000046390000dc45000000ca9a3bffffff7f
+    m_SelectedIDs: 72370000
+    m_LastClickedID: 14194
+    m_ExpandedIDs: 00000000723700007437000076370000783700007a3700007c370000fe390000043a0000063a0000083a0000943e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -471,7 +471,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000323900003439000036390000383900003a390000
+    m_ExpandedIDs: 00000000723700007437000076370000783700007a3700007c370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -596,7 +596,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4c6bffff8285ffff6a88ffffa48dffffbc92ffff8ec8ffff60d7ffff0edcffff88f5ffff9ef5ffffd2f7ffffeef7ffffdaf9ffffe4f9ffff6afbffffe840000018410000ce410000d4410000
+      m_ExpandedIDs: cefaffffd6faffffd8faffffdefaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -656,9 +656,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.19425286, y: 0.40075332, z: -0.06762695}
+    m_Target: {x: 0.89489746, y: 0.8742676, z: -0.5928345}
     speed: 2
-    m_Value: {x: -0.19425286, y: 0.40075332, z: -0.06762695}
+    m_Value: {x: 0.89489746, y: 0.8742676, z: -0.5928345}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -704,13 +704,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.12451834, y: 0.20094432, z: -0.025760083, w: 0.9713169}
+    m_Target: {x: 0.21934848, y: -0.48608124, z: 0.12747663, w: 0.8362981}
     speed: 2
-    m_Value: {x: 0.12451813, y: 0.20094398, z: -0.02576004, w: 0.97131526}
+    m_Value: {x: 0.21934481, y: -0.48607314, z: 0.1274745, w: 0.83628416}
   m_Size:
-    m_Target: 0.8604218
+    m_Target: 3.0344226
     speed: 2
-    m_Value: 0.8604218
+    m_Value: 3.0344226
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -796,7 +796,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
