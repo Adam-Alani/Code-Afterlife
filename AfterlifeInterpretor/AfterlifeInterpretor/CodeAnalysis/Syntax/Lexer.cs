@@ -55,27 +55,51 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                     return new SyntaxToken(SyntaxKind.CParenToken, _position++, ")");
                 case '&':
                     if (LookAhead == '&')
-                        return new SyntaxToken(SyntaxKind.AndToken, _position += 2, "&&");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.AndToken, _position - 2, "&&");
+                    }
+
                     break;
                 case '|':
                     if (LookAhead == '|')
-                        return new SyntaxToken(SyntaxKind.OrToken, _position += 2, "||");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.OrToken, _position - 2, "||");
+                    }
+
                     break;
                 case '!':
                     if (LookAhead == '=')
-                        return new SyntaxToken(SyntaxKind.NEqToken, _position += 2, "!=");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.NEqToken, _position - 2, "!=");
+                    }
+                       
                     return new SyntaxToken(SyntaxKind.NotToken, _position++, "!");
                 case '=':
                     if (LookAhead == '=')
-                        return new SyntaxToken(SyntaxKind.EqToken, _position += 2, "==");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.EqToken, _position - 2, "==");
+                    }
+
                     break;
                 case '>':
                     if (LookAhead == '=')
-                        return new SyntaxToken(SyntaxKind.GtEqToken, _position += 2, ">=");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.GtEqToken, _position - 2, ">=");
+                    }
+
                     return new SyntaxToken(SyntaxKind.GtToken, _position ++, ">");
                 case '<':
                     if (LookAhead == '=')
-                        return new SyntaxToken(SyntaxKind.LtEqToken, _position += 2, "<=");
+                    {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxKind.LtEqToken, _position - 2, "<=");
+                    }
+
                     return new SyntaxToken(SyntaxKind.LtToken, _position ++, "<");
                 default:
                     return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");

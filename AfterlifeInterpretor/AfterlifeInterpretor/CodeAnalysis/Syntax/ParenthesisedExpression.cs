@@ -5,6 +5,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
     /// <summary>
     /// ParenthesisedExpression class
     /// Any expression in-between parentheses (e.g: (1 + 2 - 3))
+    ///
+    /// This might be useless and will probably be removed
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
     public sealed class ParenthesisedExpression : ExpressionSyntax
