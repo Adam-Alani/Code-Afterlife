@@ -2,8 +2,16 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal enum BoundUnaryKind
     {
+        // Int unary
         Id,
         Neg,
-        Not
+        
+        // Bool unary
+        Not,
+        
+        // Declaration
+        Bool,
+        Int,
+        Var
     }
 }

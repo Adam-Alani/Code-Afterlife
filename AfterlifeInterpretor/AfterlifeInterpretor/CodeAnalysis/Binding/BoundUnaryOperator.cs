@@ -31,7 +31,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundUnaryOperator(SyntaxKind.NotToken, BoundUnaryKind.Not, typeof(bool)), 
             
             new BoundUnaryOperator(SyntaxKind.PlusToken, BoundUnaryKind.Id, typeof(int)), 
-            new BoundUnaryOperator(SyntaxKind.MinusToken, BoundUnaryKind.Neg, typeof(int)), 
+            new BoundUnaryOperator(SyntaxKind.MinusToken, BoundUnaryKind.Neg, typeof(int)),
         };
 
         public static BoundUnaryOperator Bind(SyntaxKind kind, Type type)

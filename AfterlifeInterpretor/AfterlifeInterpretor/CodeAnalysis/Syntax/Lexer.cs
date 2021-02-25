@@ -84,7 +84,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         return new SyntaxToken(SyntaxKind.EqToken, _position - 2, "==");
                     }
 
-                    break;
+                    return new SyntaxToken(SyntaxKind.AssignToken, _position++, "=");
                 case '>':
                     if (LookAhead == '=')
                     {

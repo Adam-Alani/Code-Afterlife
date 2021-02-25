@@ -14,6 +14,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         OParenToken,
         CParenToken,
         IdentifierToken,
+        VarToken,
+        BoolToken,
+        IntToken,
         EndToken,
         
         // Operator Tokens
@@ -33,12 +36,16 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         LtEqToken,
         LtToken,
         
+        AssignToken,
+        
         
         // Expressions
         LiteralExpression,
         BinaryExpression,
         ParenthesisedExpression,
         UnaryExpression,
+        AssignementExpression,
+        VariableExpression,
         
         // Keywords
         TrueKeyword,

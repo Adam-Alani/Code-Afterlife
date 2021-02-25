@@ -12,6 +12,7 @@ namespace AfterlifeInterpretor
         static void Main(string[] args)
         {
             string prompt;
+            Interpretor interpretor = new Interpretor();
             
             do
             {
@@ -19,17 +20,12 @@ namespace AfterlifeInterpretor
                 prompt = Console.ReadLine();
                 if (prompt != "exit")
                 {
-                    Parser parser = new Parser(prompt);
-                    SyntaxTree tree = parser.Parse();
-                    Binder binder = new Binder();
-                    BoundExpression root = binder.BindExpression(tree.Root);
-
-                    string[] enumerable = tree.Errors.Concat(binder.Errors).ToArray();
-                    if (enumerable.Any())
+                    EvaluationResults evaluationResults = interpretor.Evaluate(prompt);
+                    if (evaluationResults.Errors.Any())
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
 
-                        foreach (string error in enumerable)
+                        foreach (string error in evaluationResults.Errors)
                         {
                             Console.WriteLine(error);
                         }
@@ -38,9 +34,7 @@ namespace AfterlifeInterpretor
                     }
                     else
                     {
-                        Evaluator e = new Evaluator(root);
-                        object r = e.Evaluate();
-                        Console.WriteLine(r);
+                        Console.WriteLine(evaluationResults.Value);
                     }
                 }
             } while (prompt != "exit");

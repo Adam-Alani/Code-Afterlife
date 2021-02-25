@@ -62,7 +62,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         public SyntaxTree Parse()
         {
-            return new SyntaxTree(Errors, ParseExpression(), Expect(SyntaxKind.EndToken));
+            return new SyntaxTree(Errors, ParseAssignements(), Expect(SyntaxKind.EndToken));
+        }
+
+        private ExpressionSyntax ParseAssignements()
+        {
+            ExpressionSyntax assignee = ParseExpression();
+
+            while (Current.Kind == SyntaxKind.AssignToken)
+            {
+                SyntaxToken op = NextToken();
+                ExpressionSyntax assignment = ParseAssignements();
+                
+                assignee = new AssignementExpression(assignee, op, assignment);
+            }
+
+            return assignee;
         }
         
         private ExpressionSyntax PrimaryExpression()
@@ -78,8 +93,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                     // return new ParenthesisedExpression(open, expr, close);
                 case SyntaxKind.TrueKeyword:
                 case SyntaxKind.FalseKeyword:
-                    bool val = Current.Kind == SyntaxKind.TrueKeyword;
-                    return new LiteralExpression(NextToken(), val);
+                    bool trueFalse = Current.Kind == SyntaxKind.TrueKeyword;
+                    return new LiteralExpression(NextToken(), trueFalse);
+                case SyntaxKind.VarToken:
+                case SyntaxKind.BoolToken:
+                case SyntaxKind.IntToken:
+                    return new VariableExpression(NextToken(), new IdentifierExpression(Expect(SyntaxKind.IdentifierToken)));
+                case SyntaxKind.IdentifierToken:
+                    return new IdentifierExpression(NextToken());
                 default:
                     return new LiteralExpression(Expect(SyntaxKind.NumericToken));
             }

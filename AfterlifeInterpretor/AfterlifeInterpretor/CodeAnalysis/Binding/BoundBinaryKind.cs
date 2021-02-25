@@ -2,11 +2,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal enum BoundBinaryKind
     {
+        // Int binary
         Add,
         Sub,
         Mul,
         Div,
         Mod,
+        
+        // Bool binary
         And,
         Or,
         Eq,
@@ -14,6 +17,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Gt,
         Lt,
         GtEq,
-        LtEq
+        LtEq,
+        
+        // Assign 
+        Assign
     }
 }

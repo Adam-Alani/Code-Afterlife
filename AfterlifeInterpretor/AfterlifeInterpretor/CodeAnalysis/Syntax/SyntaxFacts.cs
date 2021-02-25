@@ -56,6 +56,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "and" => SyntaxKind.AndToken,
                 "or" => SyntaxKind.OrToken,
                 "not" => SyntaxKind.NotToken,
+                "bool" => SyntaxKind.BoolToken,
+                "int" => SyntaxKind.IntToken,
+                "var" => SyntaxKind.VarToken,
                 _ => SyntaxKind.IdentifierToken
             };
         }

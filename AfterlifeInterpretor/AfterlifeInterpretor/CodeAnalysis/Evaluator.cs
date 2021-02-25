@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
@@ -12,10 +14,18 @@ namespace AfterlifeInterpretor.CodeAnalysis
     internal sealed class Evaluator
     {
         private readonly BoundExpression _root;
+        private readonly Dictionary<string, object> _variables;
 
+        public Evaluator(BoundExpression root, Dictionary<string, object> variables)
+        {
+            _root = root;
+            _variables = variables;
+        }
+        
         public Evaluator(BoundExpression root)
         {
             _root = root;
+            _variables = new Dictionary<string, object>();
         }
 
         public object Evaluate()
@@ -27,16 +37,38 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             if (root is BoundLiteral n)
                 return n.Value;
+            if (root is BoundVariable bv)
+            {
+                if (!_variables.ContainsKey(bv.Name))
+                {
+                    _variables.Add(bv.Name, GetDefault(bv.Type));
+                }
+                
+                return _variables[bv.Name];
+            }
+
+            if (root is BoundAssignment ba)
+            {
+                EvaluateExpression(ba.Assignee); // Declaring things on the left side when needed
+                _variables[ba.Assignee.Name] = EvaluateExpression(ba.Assignment);
+                return _variables[ba.Assignee.Name];
+            }
             if (root is BoundUnary u)
             {
                 object operand = EvaluateExpression(u.Operand);
-                return u.Operator.Kind switch
+                switch (u.Operator.Kind)
                 {
-                    BoundUnaryKind.Neg => -(int)operand,
-                    BoundUnaryKind.Id => (int)operand,
-                    BoundUnaryKind.Not => !((bool)operand),
-                    _ => throw new Exception($"Unexpected unary operator {u.Operator.Kind}")
-                };
+                    case BoundUnaryKind.Neg:
+                        return -(int) operand;
+                    case BoundUnaryKind.Id:
+                        return (int) operand;
+                    case BoundUnaryKind.Not:
+                        return !((bool) operand);
+                    case BoundUnaryKind.Bool:
+                        
+                    default:
+                        throw new Exception($"Unexpected unary operator {u.Operator.Kind}");
+                }
             }
             if (root is BoundBinary b)
             {
@@ -63,6 +95,15 @@ namespace AfterlifeInterpretor.CodeAnalysis
             }
 
             throw new Exception($"Unexpected node {root.Kind}");
+        }
+
+        private static object GetDefault(Type bvType)
+        {
+            if (bvType == typeof(bool))
+                return false;
+            if (bvType == typeof(int))
+                return 0;
+            return null;
         }
     }
 }
