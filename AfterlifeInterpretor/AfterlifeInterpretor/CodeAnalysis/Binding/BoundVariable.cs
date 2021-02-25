@@ -6,7 +6,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     internal sealed class BoundVariable : BoundExpression
     {
         public string Name { get;  }
-        public override Type Type { get; protected set; }
+        public override Type Type { get; }
         public override BoundNodeKind Kind => BoundNodeKind.VariableExpression;
     
         public BoundVariable(string name, Type type)
@@ -14,5 +14,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             Name = name;
             Type = type;
         }
+
+        
     }
 }

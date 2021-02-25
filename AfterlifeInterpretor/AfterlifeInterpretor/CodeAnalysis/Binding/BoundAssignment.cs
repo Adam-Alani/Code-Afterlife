@@ -8,11 +8,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpression Assignment { get; }
 
         public override BoundNodeKind Kind => BoundNodeKind.AssignmentExpression;
-        public override Type Type
-        {
-            get => Assignment.Type;
-            protected set => Type = Type;
-        }
+        public override Type Type => Assignment.Type;
 
         public BoundAssignment(BoundVariable assignee, BoundExpression assignment)
         {
