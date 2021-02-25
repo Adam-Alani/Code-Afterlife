@@ -78,13 +78,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             if (assignee is BoundVariable bv)
             {
                 BoundExpression assignement = BindExpression(syntax.Assignment);
-                if (assignee.Type != assignement.Type && assignee.Type != typeof(object))
+                if (assignee.Type != assignement.Type && assignee.Type != typeof(object) && assignement.Type != typeof(object))
                 {
                     Errors.Add($"Error: Cannot assign {assignee.Type} with {assignement.Type} at {syntax.Token.Position}");
                     return null;
                     // throw new Exception($"Error: Invalid variable at {syntax.Token.Position}");
                 }
-                
+
+                if (assignee.Type == typeof(object))
+                    assignee.SetType(assignement.Type);
+                else
+                    assignement.SetType(assignee.Type);
                 return new BoundAssignment(bv, assignement);
             }
             

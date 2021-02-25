@@ -7,7 +7,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundUnaryOperator Operator { get;  }
         public BoundExpression Operand { get;  }
         
-        public override Type Type => Operator.ResultType;
+        public override Type Type
+        {
+            get => Operator.ResultType;
+            protected set => Type = Type;
+        }
+
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
         
         public BoundUnary(BoundUnaryOperator op, BoundExpression operand)

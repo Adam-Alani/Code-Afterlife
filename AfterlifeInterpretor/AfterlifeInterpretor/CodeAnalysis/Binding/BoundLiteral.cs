@@ -6,7 +6,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     {
         public object Value { get; }
 
-        public override Type Type => Value.GetType();
+        public override Type Type
+        {
+            get => Value.GetType();
+            protected set => Type = Type;
+        }
+
         public override BoundNodeKind Kind => BoundNodeKind.LiteralExpression;
         
         public BoundLiteral(object value)
