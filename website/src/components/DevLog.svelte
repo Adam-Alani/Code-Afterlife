@@ -7,25 +7,28 @@
     <div class=" z-10 mx-0 my-auto">
         <div class="mt-28 mb-28 flex-grow text-white text-center  " >
             <div>
-            <h1 class="text-xl underline text-green-500">Update Log . . . : 1/14/2021</h1>
+            <h1 class="text-xl underline text-green-500">Update Log . . . : 1/3/2021</h1>
                 <div class="mt-2 mx-16">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare ligula sed cursus suscipit. Nam ut nisi convallis, vulputate turpis id, pretium ipsum. Nullam ligula tortor, viverra sit amet metus sed, rhoncus malesuada leo. Proin ac tincidunt lacus. Donec interdum, libero vel lobortis aliquet, tellus orci sollicitudin tellus, vel commodo mi mi in orci. Nulla vestibulum diam in semper pulvinar. Ut porttitor orci in turpis molestie rutrum. Sed a felis eget mauris tempus facilisis. Aliquam ac posuere lectus.</p>
+                    <p>
+                        Started work on the main map, along with the test puzzle. With that, we also started working on the basic stylistc elements of the game such as the lights, post processing and isometric style. Mouvement and characters are at their early stages, along with the start of the interpreter for a custom-made language, so far, it is capable of evaluating expressions, variable declaration and manipulation, and contains basic features such as while loops and if statements. Finally, started working on more detailed aspects such as the UI/HUD, multiplayer and a custom turret AI.
+                    </p>
                 </div>
             </div>
 
             <div class="mt-8"><h1 class="text-xl underline text-purple-600">Update Log 2</h1>
                 <div class="mt-2 mx-16">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare ligula sed cursus suscipit. Nam ut nisi convallis, vulputate turpis id, pretium ipsum. Nullam ligula tortor, viverra sit amet metus sed, rhoncus malesuada leo. Proin ac tincidunt lacus. Donec interdum, libero vel lobortis aliquet, tellus orci sollicitudin tellus, vel commodo mi mi in orci. Nulla vestibulum diam in semper pulvinar. Ut porttitor orci in turpis molestie rutrum. Sed a felis eget mauris tempus facilisis. Aliquam ac posuere lectus.</p></div>
+                    <p>Coming soon</p>
+                </div>
             </div>
-
             <div class="mt-8"><h1 class="text-xl underline text-yellow-200">Update Log 3</h1>
                 <div class="mt-2 mx-16">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare ligula sed cursus suscipit. Nam ut nisi convallis, vulputate turpis id, pretium ipsum. Nullam ligula tortor, viverra sit amet metus sed, rhoncus malesuada leo. Proin ac tincidunt lacus. Donec interdum, libero vel lobortis aliquet, tellus orci sollicitudin tellus, vel commodo mi mi in orci. Nulla vestibulum diam in semper pulvinar. Ut porttitor orci in turpis molestie rutrum. Sed a felis eget mauris tempus facilisis. Aliquam ac posuere lectus.</p></div>
+                    <p>Coming soon</p>
+                </div>
             </div>
-
             <div class="mt-8"><h1 class="text-xl underline text-blue-500">Update Log 4</h1>
                 <div class="mt-2 mx-16">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare ligula sed cursus suscipit. Nam ut nisi convallis, vulputate turpis id, pretium ipsum. Nullam ligula tortor, viverra sit amet metus sed, rhoncus malesuada leo. Proin ac tincidunt lacus. Donec interdum, libero vel lobortis aliquet, tellus orci sollicitudin tellus, vel commodo mi mi in orci. Nulla vestibulum diam in semper pulvinar. Ut porttitor orci in turpis molestie rutrum. Sed a felis eget mauris tempus facilisis. Aliquam ac posuere lectus.</p></div>
+                    <p>Coming soon</p>
+                </div>
             </div>
         </div>
     </div>
