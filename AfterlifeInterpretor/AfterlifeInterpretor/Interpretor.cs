@@ -23,13 +23,15 @@ namespace AfterlifeInterpretor
         public EvaluationResults Evaluate(string text)
         {
             SyntaxTree tree = new Parser(text).Parse();
+            List<string> errors = tree.Errors;
+            if (errors.Any())
+                return new EvaluationResults(errors.ToArray(), null);
             Binder binder = new Binder(Variables);
             BoundExpression boundExpression = binder.BindExpression(tree.Root);
-            string[] errors = tree.Errors.Concat(binder.Errors).ToArray();
-            if (errors.Any())
-                return new EvaluationResults(errors, null);
+            if (errors.Concat(binder.Errors).Any())
+                return new EvaluationResults(errors.Concat(binder.Errors).ToArray(), null);
 
-            return new EvaluationResults(errors, new Evaluator(boundExpression, Variables).Evaluate());
+            return new EvaluationResults(errors.Concat(binder.Errors).ToArray(), new Evaluator(boundExpression, Variables).Evaluate());
         }
     }
 }
