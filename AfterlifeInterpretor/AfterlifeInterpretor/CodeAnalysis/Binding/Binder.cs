@@ -48,7 +48,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 // throw new Exception($"Unknown variable: {name} at {syntax.Token.Position}");
             }
             
-            return new BoundVariable(name, value.GetType());
+            return new BoundVariable(name, value?.GetType());
         }
 
         private BoundExpression BindVariable(VariableExpression syntax)
