@@ -3084,6 +3084,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 822640400}
     m_Modifications:
+    - target: {fileID: 1593110715, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_Name
+      value: Resolutions Dropdown
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593110717, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593110717, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593110717, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1957902380}
+    - target: {fileID: 1593110717, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593110718, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593110719, guid: affda84081e179448aba29043e12c82e, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7319061633218474576, guid: affda84081e179448aba29043e12c82e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3193,6 +3221,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Options Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7319061633218474577, guid: affda84081e179448aba29043e12c82e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7319061633295081967, guid: affda84081e179448aba29043e12c82e,
         type: 3}

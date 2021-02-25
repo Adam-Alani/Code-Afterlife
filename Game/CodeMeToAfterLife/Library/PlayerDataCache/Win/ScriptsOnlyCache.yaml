@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - OptionsMenu
     - QuickStartLobbyController
     - QuickStartRoomController
+    - Turret
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -29,6 +30,7 @@ ScriptsOnlyBuild:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
     - TMPro.TMP_ColorGradient
+    - TMPro.TMP_Dropdown
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
@@ -45,9 +47,13 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
   sceneClasses:
     Assets/Scenes/Main Menu.unity:
     - Class: 1
@@ -101,13 +107,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11300}
     - Class: 114
+      Script: {instanceID: 11354}
+    - Class: 114
       Script: {instanceID: 11440}
     - Class: 114
       Script: {instanceID: 11460}
     - Class: 114
+      Script: {instanceID: 11498}
+    - Class: 114
       Script: {instanceID: 11542}
     - Class: 114
       Script: {instanceID: 11802}
+    - Class: 114
+      Script: {instanceID: 11904}
     - Class: 114
       Script: {instanceID: 12014}
     - Class: 114
@@ -118,6 +130,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12096}
     - Class: 114
       Script: {instanceID: 12214}
+    - Class: 114
+      Script: {instanceID: 12246}
     - Class: 114
       Script: {instanceID: 12302}
     - Class: 114
@@ -149,15 +163,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13302}
     - Class: 114
-      Script: {instanceID: 13434}
+      Script: {instanceID: 13366}
     - Class: 114
-      Script: {instanceID: 13480}
+      Script: {instanceID: 13436}
     - Class: 114
-      Script: {instanceID: 13566}
+      Script: {instanceID: 13482}
     - Class: 114
-      Script: {instanceID: 13578}
+      Script: {instanceID: 13568}
     - Class: 114
-      Script: {instanceID: 13598}
+      Script: {instanceID: 13580}
+    - Class: 114
+      Script: {instanceID: 13584}
+    - Class: 114
+      Script: {instanceID: 13600}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1442,6 +1460,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.PunBasics
     className: PlayerNameInputField
+  - hash:
+      serializedVersion: 2
+      Hash: 4bc6346e2b5f2d711f71f2004434aee2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Turret
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
