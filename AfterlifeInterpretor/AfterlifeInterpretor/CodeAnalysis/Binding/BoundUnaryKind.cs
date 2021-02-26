@@ -7,11 +7,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Neg,
         
         // Bool unary
-        Not,
-        
-        // Declaration
-        Bool,
-        Int,
-        Var
+        Not
     }
 }

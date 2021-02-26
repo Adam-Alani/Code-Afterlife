@@ -18,8 +18,5 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Lt,
         GtEq,
         LtEq,
-        
-        // Assign 
-        Assign
     }
 }

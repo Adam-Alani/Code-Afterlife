@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis;
@@ -20,18 +21,39 @@ namespace AfterlifeInterpretor
             Variables = new Dictionary<string, object>();
         }
 
-        public EvaluationResults Evaluate(string text)
+        public EvaluationResults[] Interpret(string[] lines)
+        {
+            EvaluationResults[] res = new EvaluationResults[lines.Length];
+            for (int i = 0; i < lines.Length; i++)
+            {
+                EvaluationResults eRes = Interpret(lines[i]);
+                if (eRes.Errs.GetErrors().Any())
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    foreach (Error error in eRes.Errs.GetErrors())
+                    {
+                        Console.WriteLine(error.ToString(i));
+                    }
+                    Console.ResetColor();
+                }
+
+                res[i] = eRes;
+            }
+
+            return res;
+        }
+
+        public EvaluationResults Interpret(string text)
         {
             SyntaxTree tree = new Parser(text).Parse();
-            List<string> errors = tree.Errors;
-            if (errors.Any())
-                return new EvaluationResults(errors.ToArray(), null);
-            Binder binder = new Binder(Variables);
-            BoundExpression boundExpression = binder.BindExpression(tree.Root);
-            if (errors.Concat(binder.Errors).Any())
-                return new EvaluationResults(errors.Concat(binder.Errors).ToArray(), null);
 
-            return new EvaluationResults(errors.Concat(binder.Errors).ToArray(), new Evaluator(boundExpression, Variables).Evaluate());
+            Binder binder = new Binder(Variables, tree.Errs);
+            BoundExpression boundExpression = binder.BindExpression(tree.Root);
+            
+            Evaluator ev = new Evaluator(boundExpression, Variables);
+            object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
+
+            return new EvaluationResults(binder.Errs, res);
         }
     }
 }

@@ -1,18 +1,31 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
+    /// <summary>
+    /// Binder class
+    /// The Binder an all related classes serve as a kind of parser that will also check types
+    /// Author: Raphaël "Sheinxy" Montes
+    /// </summary>
     internal sealed class Binder
     {
         private readonly Dictionary<string, object> _variables;
+
+        public Errors Errs;
         
-        public List<string> Errors = new List<string>();
+        public Binder(Dictionary<string, object> variables, Errors errs)
+        {
+            _variables = variables;
+            Errs = errs;
+        }
         
         public Binder(Dictionary<string, object> variables)
         {
             _variables = variables;
+            Errs = new Errors();
         }
         
         public BoundExpression BindExpression(ExpressionSyntax syntax)
@@ -32,9 +45,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 case SyntaxKind.IdentifierToken:
                     return BindIdentifier((IdentifierExpression) syntax);
                 default:
-                    Errors.Add($"Unexpected syntax: {syntax.Kind}");
-                    return null;
-                    // throw new Exception($"Unexpected syntax: {syntax.Kind}");
+                    Errs.ReportUnknown(syntax.Kind, 0);
+                    return new BoundLiteral(0);
             }
         }
 
@@ -43,29 +55,27 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             string name = syntax.Token.Text;
             if (!_variables.TryGetValue(name, out object value))
             {
-                Errors.Add($"Unknown variable: {name} at {syntax.Token.Position}");
-                return null;
-                // throw new Exception($"Unknown variable: {name} at {syntax.Token.Position}");
+                Errs.ReportUnknown(name, syntax.Token.Position);
+                return new BoundLiteral(0);
             }
             
-            return new BoundVariable(name, value?.GetType());
+            return new BoundVariable(name, value != null ? value.GetType() : typeof(object));
         }
 
         private BoundExpression BindVariable(VariableExpression syntax)
         {
             if (_variables.ContainsKey(syntax.Name.Token.Text))
             {
-                Errors.Add($"Error: {syntax.Name.Token.Text} has already been declared at {syntax.Token.Position}");
-                return null;
+                Errs.ReportDeclared(syntax.Name.Token.Text, syntax.Token.Position);
+                return new BoundLiteral(0);
             }
             
             Type type = BoundVariableTypes.GetType(syntax.Token);
 
             if (type == null)
             {
-                Errors.Add($"$Unknown type: {syntax.Token.Text} at {syntax.Token.Position}");
-                return null;
-                // throw new Exception($"$Unknown type: {syntax.Token.Text} at {syntax.Token.Position}");
+                Errs.ReportUnknown(syntax.Token.Text, syntax.Token.Position);
+                return new BoundLiteral(0);
             }
             
             return new BoundVariable(syntax.Name.Token.Text, type);
@@ -80,18 +90,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 BoundExpression assignement = BindExpression(syntax.Assignment);
                 if (assignee.Type != assignement.Type && assignee.Type != typeof(object))
                 {
-                    Errors.Add($"Error: Cannot assign {assignee.Type} with {assignement.Type} at {syntax.Token.Position}");
-                    return null;
-                    // throw new Exception($"Error: Invalid variable at {syntax.Token.Position}");
+                    Errs.ReportType(assignee.Type, assignement.Type, syntax.Token.Position);
+                    return new BoundLiteral(0);
                 }
                 
                 return new BoundAssignment(bv, assignement);
             }
             
             if (assignee != null)
-                Errors.Add($"Error: Invalid variable at {syntax.Token.Position}");
-            return null;
-            //throw new Exception($"Error: Invalid variable at {syntax.Token.Position}");
+                Errs.ReportUnknown(assignee, syntax.Token.Position);
+
+            return new BoundLiteral(0);
         }
         
 
@@ -101,7 +110,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             BoundUnaryOperator uOperator = BoundUnaryOperator.Bind(syntax.Token.Kind, operandBound.Type);
             if (uOperator == null)
             {
-                Errors.Add($"Error: Unary operator {syntax.Token.Text} is not defined for {operandBound.Type} at {syntax.Token.Position}");
+                Errs.ReportUndefined(syntax.Token.Text, operandBound.Type, syntax.Token.Position);
                 return operandBound;
             }
             return new BoundUnary(uOperator, operandBound);
@@ -120,7 +129,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             if (bOperator == null)
             {
-                Errors.Add($"Error: Binary operator {syntax.Token.Text} is not defined for {left.Type} and {right.Type} at {syntax.Token.Position}");
+                Errs.ReportType(left.Type, right.Type, syntax.Token.Position);
                 return left;
             }
             

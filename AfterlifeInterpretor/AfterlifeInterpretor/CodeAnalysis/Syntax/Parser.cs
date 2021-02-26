@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
@@ -13,8 +14,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         private int _position;
 
         private SyntaxToken Current => Peek(0);
-        
-        public List<string> Errors { get; }
+
+        public Errors Errs;
 
         public Parser(string text)
         {
@@ -32,7 +33,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             _tokens = tokens.ToArray();
             _position = 0;
             
-            Errors = lex.Errors;
+            Errs = lex.Errs;
         }
 
         private SyntaxToken Peek(int offset)
@@ -48,8 +49,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             if (Current.Kind == kind)
                 return NextToken();
             
-            Errors.Add($"ERROR: Unexpected token {Current.Text} at {Current.Position}\n" +
-                            $"Token is {Current.Kind}, expected {kind}");
+            Errs.ReportUnexpected(kind, Current.Kind, Current.Position);
             return new SyntaxToken(kind, Current.Position, null);
         }
 
@@ -62,7 +62,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         public SyntaxTree Parse()
         {
-            return new SyntaxTree(Errors, ParseAssignements(), Expect(SyntaxKind.EndToken));
+            return new SyntaxTree(Errs, ParseAssignements(), Expect(SyntaxKind.EndToken));
         }
 
         private ExpressionSyntax ParseAssignements()

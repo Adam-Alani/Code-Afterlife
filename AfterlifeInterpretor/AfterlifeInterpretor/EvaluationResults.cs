@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis;
 
 namespace AfterlifeInterpretor
 {
     public sealed class EvaluationResults
     {
-        public string[] Errors { get; }
+        public Errors Errs { get; }
         public object Value { get; }
 
-        public EvaluationResults(string[] errors, object value)
+        public EvaluationResults(Errors errs, object value)
         {
-            Errors = errors;
+            Errs = errs;
             Value = value;
         }
     }

@@ -9,13 +9,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
     /// </summary>
     public sealed class SyntaxTree
     {
-        public List<string> Errors { get; }
+        public Errors Errs { get; }
         public ExpressionSyntax Root { get; }
         public SyntaxToken End { get;  }
         
-        public SyntaxTree(List<string> errors, ExpressionSyntax root, SyntaxToken end)
+        public SyntaxTree(Errors errors, ExpressionSyntax root, SyntaxToken end)
         {
-            Errors = errors;
+            Errs = errors;
             Root = root;
             End = end;
         }

@@ -24,13 +24,20 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             return _text[_position + offset];
         }
 
-        public List<string> Errors { get; }
+        public Errors Errs;
 
+        public Lexer(string text, Errors errs)
+        {
+            _text = text;
+            
+            Errs = errs;
+        }
+        
         public Lexer(string text)
         {
             _text = text;
             
-            Errors = new List<string>();
+            Errs = new Errors();
         }
 
         private SyntaxToken GetToken()
@@ -59,7 +66,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.AndToken, _position - 2, "&&");
                     }
-
                     break;
                 case '|':
                     if (LookAhead == '|')
@@ -67,7 +73,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.OrToken, _position - 2, "||");
                     }
-
                     break;
                 case '!':
                     if (LookAhead == '=')
@@ -75,7 +80,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.NEqToken, _position - 2, "!=");
                     }
-                       
                     return new SyntaxToken(SyntaxKind.NotToken, _position++, "!");
                 case '=':
                     if (LookAhead == '=')
@@ -83,7 +87,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.EqToken, _position - 2, "==");
                     }
-
                     return new SyntaxToken(SyntaxKind.AssignToken, _position++, "=");
                 case '>':
                     if (LookAhead == '=')
@@ -91,7 +94,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.GtEqToken, _position - 2, ">=");
                     }
-
                     return new SyntaxToken(SyntaxKind.GtToken, _position ++, ">");
                 case '<':
                     if (LookAhead == '=')
@@ -99,11 +101,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                         _position += 2;
                         return new SyntaxToken(SyntaxKind.LtEqToken, _position - 2, "<=");
                     }
-
                     return new SyntaxToken(SyntaxKind.LtToken, _position ++, "<");
-                default:
-                    return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");
             }
+            
             return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");
         }
 
@@ -111,56 +111,68 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             if (char.IsDigit(Current))
             {
-                int start = _position;
-                string text = "";
-
-                while (char.IsDigit(Current))
-                {
-                    text += Current;
-                    _position++;
-                }
-
-                int value;
-                if (int.TryParse(text, out value))
-                    return new SyntaxToken(SyntaxKind.NumericToken, start, text, value);
-                
-                Errors.Add($"ERROR: Expected a number in {text} at {_position}\n" +
-                                $"Expected {SyntaxKind.NumericToken}");
-                return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
+                return LexDigit();
             }
 
             if (char.IsWhiteSpace(Current))
             {
-                int start = _position;
-                string text = "";
-
-                while (char.IsWhiteSpace(Current))
-                {
-                    text += Current;
-                    _position++;
-                }
-                
-                return new SyntaxToken(SyntaxKind.SpaceToken, _position, text);
+                return LexWhiteSpace();
             }
 
             if (char.IsLetter(Current))
             {
-                int start = _position;
-                string text = "";
-
-                while (char.IsLetter(Current))
-                {
-                    text += Current;
-                    _position++;
-                }
-                
-                return new SyntaxToken(SyntaxFacts.GetKeywordKind(text), _position, text);
+                return LexKeyword();
             }
 
             SyntaxToken token = GetToken();
             if (token.Kind == SyntaxKind.ErrorToken)
-                Errors.Add($"ERROR: Unknown token {token.Text} at {token.Position}");
+                Errs.ReportUnknown(token.Text, _position);
             return token;
+        }
+
+        private SyntaxToken LexKeyword()
+        {
+            string text = "";
+
+            while (char.IsLetter(Current))
+            {
+                text += Current;
+                _position++;
+            }
+
+            return new SyntaxToken(SyntaxFacts.GetKeywordKind(text), _position, text);
+        }
+
+        private SyntaxToken LexWhiteSpace()
+        {
+            string text = "";
+
+            while (char.IsWhiteSpace(Current))
+            {
+                text += Current;
+                _position++;
+            }
+
+            return new SyntaxToken(SyntaxKind.SpaceToken, _position, text);
+        }
+
+        private SyntaxToken LexDigit()
+        {
+            int start = _position;
+            string text = "";
+
+            while (char.IsDigit(Current))
+            {
+                text += Current;
+                _position++;
+            }
+
+            int value;
+            if (int.TryParse(text, out value))
+                return new SyntaxToken(SyntaxKind.NumericToken, start, text, value);
+
+            Errs.ReportUnexpected(SyntaxKind.NumericToken, text, _position);
+            return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
         }
     }
 }
