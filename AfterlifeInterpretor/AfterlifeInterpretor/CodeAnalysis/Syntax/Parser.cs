@@ -85,7 +85,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             {
                 case SyntaxKind.OParenToken:
                     NextToken();
-                    ExpressionSyntax expr = ParseExpression(); 
+                    ExpressionSyntax expr = ParseAssignements(); 
                     Expect(SyntaxKind.CParenToken);
 
                     return expr;

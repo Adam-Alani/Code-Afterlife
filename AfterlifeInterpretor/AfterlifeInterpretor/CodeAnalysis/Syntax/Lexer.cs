@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
     /// <summary>
