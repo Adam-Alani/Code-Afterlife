@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
@@ -40,75 +39,64 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             Errs = new Errors();
         }
 
-        private SyntaxToken GetToken()
+        private SyntaxKind FindKind(string s)
+        {
+            return s switch
+            {
+                "\0" => SyntaxKind.EndToken,
+                "+" => SyntaxKind.PlusToken,
+                "-" => SyntaxKind.MinusToken,
+                "/" => SyntaxKind.SlashToken,
+                "%" => SyntaxKind.ModuloToken,
+                "(" => SyntaxKind.OParenToken,
+                ")" => SyntaxKind.CParenToken,
+                ">" => SyntaxKind.GtToken,
+                "<" => SyntaxKind.LtToken,
+                "=" => SyntaxKind.AssignToken,
+                "!" => SyntaxKind.NotToken,
+                "||" => SyntaxKind.OrToken,
+                "&&" => SyntaxKind.AndToken,
+                "==" => SyntaxKind.EqToken,
+                "!=" => SyntaxKind.NEqToken,
+                ">=" => SyntaxKind.GtEqToken,
+                "<=" => SyntaxKind.LtEqToken,
+                _ => SyntaxKind.ErrorToken
+            };
+        }
+
+        private bool ExpectedLookahead()
         {
             switch (Current)
             {
                 case '\0':
-                    return new SyntaxToken(SyntaxKind.EndToken, _position, "\0");
-                case '+':
-                    return new SyntaxToken(SyntaxKind.PlusToken, _position++, "+");
-                case '-':
-                    return new SyntaxToken(SyntaxKind.MinusToken, _position++, "-");
-                case '*':
-                    return new SyntaxToken(SyntaxKind.StarToken, _position++, "*");
-                case '/':
-                    return new SyntaxToken(SyntaxKind.SlashToken, _position++, "/");
-                case '%':
-                    return new SyntaxToken(SyntaxKind.ModuloToken, _position++, "%");
-                case '(':
-                    return new SyntaxToken(SyntaxKind.OParenToken, _position++, "(");
-                case ')':
-                    return new SyntaxToken(SyntaxKind.CParenToken, _position++, ")");
-                case '&':
-                    if (LookAhead == '&')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.AndToken, _position - 2, "&&");
-                    }
-                    break;
-                case '|':
-                    if (LookAhead == '|')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.OrToken, _position - 2, "||");
-                    }
-                    break;
+                    return false;
                 case '!':
-                    if (LookAhead == '=')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.NEqToken, _position - 2, "!=");
-                    }
-                    return new SyntaxToken(SyntaxKind.NotToken, _position++, "!");
-                case '=':
-                    if (LookAhead == '=')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.EqToken, _position - 2, "==");
-                    }
-                    return new SyntaxToken(SyntaxKind.AssignToken, _position++, "=");
                 case '>':
-                    if (LookAhead == '=')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.GtEqToken, _position - 2, ">=");
-                    }
-                    return new SyntaxToken(SyntaxKind.GtToken, _position ++, ">");
                 case '<':
-                    if (LookAhead == '=')
-                    {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxKind.LtEqToken, _position - 2, "<=");
-                    }
-                    return new SyntaxToken(SyntaxKind.LtToken, _position ++, "<");
+                    return LookAhead == '=';
+                default:
+                    return LookAhead == Current;
             }
-            
-            return new SyntaxToken(SyntaxKind.ErrorToken, _position++, $"{_text[_position - 1]}");
+        }
+
+        private SyntaxToken FindToken()
+        {
+            int start = _position;
+            string text = $"{Current}";
+            if (ExpectedLookahead())
+            {
+                text += LookAhead;
+                _position++;
+            }
+            _position++;
+
+
+            return new SyntaxToken(FindKind(text), start, text);
         }
 
         public SyntaxToken Lex()
         {
+            int start = _position;
             if (char.IsDigit(Current))
             {
                 return LexDigit();
@@ -124,14 +112,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 return LexKeyword();
             }
 
-            SyntaxToken token = GetToken();
+            SyntaxToken token = FindToken();
             if (token.Kind == SyntaxKind.ErrorToken)
-                Errs.ReportUnknown(token.Text, _position);
+                Errs.ReportUnknown(token.Text, start);
             return token;
         }
 
         private SyntaxToken LexKeyword()
         {
+            int start = _position;
             string text = "";
 
             while (char.IsLetter(Current))
@@ -140,11 +129,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 _position++;
             }
 
-            return new SyntaxToken(SyntaxFacts.GetKeywordKind(text), _position, text);
+            return new SyntaxToken(SyntaxFacts.GetKeywordKind(text), start, text);
         }
 
         private SyntaxToken LexWhiteSpace()
         {
+            int start = _position;
             string text = "";
 
             while (char.IsWhiteSpace(Current))
@@ -153,7 +143,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 _position++;
             }
 
-            return new SyntaxToken(SyntaxKind.SpaceToken, _position, text);
+            return new SyntaxToken(SyntaxKind.SpaceToken, start, text);
         }
 
         private SyntaxToken LexDigit()
@@ -167,11 +157,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 _position++;
             }
 
-            int value;
-            if (int.TryParse(text, out value))
+            if (int.TryParse(text, out var value))
                 return new SyntaxToken(SyntaxKind.NumericToken, start, text, value);
 
-            Errs.ReportUnexpected(SyntaxKind.NumericToken, text, _position);
+            Errs.ReportUnexpected(SyntaxKind.NumericToken, text, start);
             return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
         }
     }

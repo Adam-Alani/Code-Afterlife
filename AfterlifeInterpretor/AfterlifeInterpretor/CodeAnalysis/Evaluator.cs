@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis
 {
@@ -14,18 +11,18 @@ namespace AfterlifeInterpretor.CodeAnalysis
     internal sealed class Evaluator
     {
         private readonly BoundExpression _root;
-        private readonly Dictionary<string, object> _variables;
+        private Scope _scope;
 
-        public Evaluator(BoundExpression root, Dictionary<string, object> variables)
+        public Evaluator(BoundExpression root, Scope scope)
         {
             _root = root;
-            _variables = variables;
+            _scope = scope;
         }
         
         public Evaluator(BoundExpression root)
         {
             _root = root;
-            _variables = new Dictionary<string, object>();
+            _scope = new Scope();
         }
 
         public object Evaluate()
@@ -48,35 +45,28 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateVariable(BoundVariable bv)
         {
-            if (!_variables.ContainsKey(bv.Name))
-            {
-                _variables.Add(bv.Name, GetDefault(bv.Type));
-            }
-
-            return _variables[bv.Name];
+            _scope.Declare(bv.Name, GetDefault(bv.Type));
+            return _scope.GetValue(bv.Name);
         }
 
         private object EvaluateAssignment(BoundAssignment ba)
         {
             EvaluateExpression(ba.Assignee); // Declaring things on the left side when needed
-            _variables[ba.Assignee.Name] = EvaluateExpression(ba.Assignment);
-            return _variables[ba.Assignee.Name];
+            object val = EvaluateExpression(ba.Assignment);
+            _scope.SetValue(ba.Assignee.Name, val);
+            return val;
         }
 
         private object EvaluateUnaryExpression(BoundUnary u)
         {
             object operand = EvaluateExpression(u.Operand);
-            switch (u.Operator.Kind)
+            return u.Operator.Kind switch
             {
-                case BoundUnaryKind.Neg:
-                    return -(int) operand;
-                case BoundUnaryKind.Id:
-                    return (int) operand;
-                case BoundUnaryKind.Not:
-                    return !((bool) operand);
-                default:
-                    throw new Exception($"Unexpected unary operator {u.Operator.Kind}");
-            }
+                BoundUnaryKind.Neg => -(int) operand,
+                BoundUnaryKind.Id => operand,
+                BoundUnaryKind.Not => !((bool) operand),
+                _ => throw new Exception($"Unexpected unary operator {u.Operator.Kind}")
+            };
         }
 
         private object EvaluateBinaryExpression(BoundBinary b)

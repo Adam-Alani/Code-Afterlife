@@ -9,16 +9,17 @@ namespace AfterlifeInterpretor
 {
     public sealed class Interpretor
     {
-        public Dictionary<string, object> Variables { get; }
+        private readonly Scope _scope;
+        public Dictionary<string, object> Variables => _scope.Variables;
 
         public Interpretor(Dictionary<string, object> variables)
         {
-            Variables = variables;
+            _scope = new Scope(variables);
         }
         
         public Interpretor()
         {
-            Variables = new Dictionary<string, object>();
+            _scope = new Scope(new Dictionary<string, object>()); 
         }
 
         public EvaluationResults[] Interpret(string[] lines)
@@ -47,10 +48,10 @@ namespace AfterlifeInterpretor
         {
             SyntaxTree tree = new Parser(text).Parse();
 
-            Binder binder = new Binder(Variables, tree.Errs);
+            Binder binder = new Binder(_scope, tree.Errs);
             BoundExpression boundExpression = binder.BindExpression(tree.Root);
             
-            Evaluator ev = new Evaluator(boundExpression, Variables);
+            Evaluator ev = new Evaluator(boundExpression, _scope);
             object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
 
             return new EvaluationResults(binder.Errs, res);

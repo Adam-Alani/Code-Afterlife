@@ -1,5 +1,4 @@
 using System;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {

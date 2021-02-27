@@ -1,5 +1,5 @@
 using System;
-using System.Globalization;
+using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
@@ -11,15 +11,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public Type LeftType { get; }
         public Type RightType { get; }
         public Type ResultType { get; }
-
-        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryKind kind, Type leftType, Type rightType, Type resultType)
-        {
-            SyntaxKind = syntaxKind;
-            Kind = kind;
-            LeftType = leftType;
-            RightType = rightType;
-            ResultType = resultType;
-        }
         
         private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryKind kind, Type type)
         {
@@ -36,6 +27,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             Kind = kind;
             LeftType = operandsType;
             RightType = operandsType;
+            ResultType = resultType;
+        }
+        
+        private BoundBinaryOperator(SyntaxKind syntaxKind, BoundBinaryKind kind, Type leftType, Type rightType, Type resultType)
+        {
+            SyntaxKind = syntaxKind;
+            Kind = kind;
+            LeftType = leftType;
+            RightType = rightType;
             ResultType = resultType;
         }
 
@@ -62,13 +62,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public static BoundBinaryOperator Bind(SyntaxKind kind, Type leftType, Type rightType)
         {
-            foreach (BoundBinaryOperator op in _operators)
-            {
-                if (op.SyntaxKind == kind && op.LeftType == leftType && op.RightType == rightType)
-                    return op;
-            }
-
-            return null;
+            return _operators.FirstOrDefault(op => op.SyntaxKind == kind && op.LeftType == leftType && op.RightType == rightType);
         }
     }
 }

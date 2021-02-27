@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
@@ -12,20 +10,26 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     /// </summary>
     internal sealed class Binder
     {
-        private readonly Dictionary<string, object> _variables;
+        private readonly BoundScope _scope;
 
-        public Errors Errs;
-        
-        public Binder(Dictionary<string, object> variables, Errors errs)
+        public readonly Errors Errs;
+
+        public Binder()
         {
-            _variables = variables;
-            Errs = errs;
+            _scope = new BoundScope();
+            Errs = new Errors();
         }
         
-        public Binder(Dictionary<string, object> variables)
+        public Binder(Scope scope)
         {
-            _variables = variables;
+            _scope = new BoundScope(scope.GetTypes());
             Errs = new Errors();
+        }
+        
+        public Binder(Scope scope, Errors errs)
+        {
+            _scope = new BoundScope(scope.GetTypes());
+            Errs = errs;
         }
         
         public BoundExpression BindExpression(ExpressionSyntax syntax)
@@ -53,41 +57,41 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         private BoundExpression BindIdentifier(IdentifierExpression syntax)
         {
             string name = syntax.Token.Text;
-            if (!_variables.TryGetValue(name, out object value))
+            if (!_scope.TryGetType(name, out Type t))
             {
                 Errs.ReportUnknown(name, syntax.Token.Position);
                 return new BoundLiteral(0);
             }
             
-            return new BoundVariable(name, value != null ? value.GetType() : typeof(object));
+            return new BoundVariable(name, t);
         }
 
         private BoundExpression BindVariable(VariableExpression syntax)
         {
-            if (_variables.ContainsKey(syntax.Name.Token.Text))
-            {
-                Errs.ReportDeclared(syntax.Name.Token.Text, syntax.Token.Position);
-                return new BoundLiteral(0);
-            }
-            
             Type type = BoundVariableTypes.GetType(syntax.Token);
-
+            
             if (type == null)
             {
                 Errs.ReportUnknown(syntax.Token.Text, syntax.Token.Position);
                 return new BoundLiteral(0);
             }
             
+            if (!_scope.TryDeclare(syntax.Name.Token.Text, type))
+            {
+                Errs.ReportDeclared(syntax.Name.Token.Text, syntax.Token.Position);
+                return new BoundLiteral(0);
+            }
+
             return new BoundVariable(syntax.Name.Token.Text, type);
         }
 
         private BoundExpression BindAssignement(AssignementExpression syntax)
         {
+            BoundExpression assignement = BindExpression(syntax.Assignment);
+            
             BoundExpression assignee = BindExpression(syntax.Assignee);
-
             if (assignee is BoundVariable bv)
             {
-                BoundExpression assignement = BindExpression(syntax.Assignment);
                 if (assignee.Type != assignement.Type && assignee.Type != typeof(object))
                 {
                     Errs.ReportType(assignee.Type, assignement.Type, syntax.Token.Position);

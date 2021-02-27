@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
@@ -85,9 +84,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             switch (Current.Kind)
             {
                 case SyntaxKind.OParenToken:
-                    SyntaxToken open = NextToken();
-                    ExpressionSyntax expr = ParseExpression();
-                    SyntaxToken close = Expect(SyntaxKind.CParenToken);
+                    NextToken();
+                    ExpressionSyntax expr = ParseExpression(); 
+                    Expect(SyntaxKind.CParenToken);
 
                     return expr;
                     // return new ParenthesisedExpression(open, expr, close);

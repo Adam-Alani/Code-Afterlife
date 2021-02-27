@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis;
 
 namespace AfterlifeInterpretor

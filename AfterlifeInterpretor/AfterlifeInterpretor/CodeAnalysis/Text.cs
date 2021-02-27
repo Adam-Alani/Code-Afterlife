@@ -6,7 +6,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             line = 0;
             int lastLine = 0;
-            for (int i = 0; i <= chr; i++)
+            for (int i = 0; i <= chr && i < text.Length; i++)
             {
                 if (text[i] == '\n')
                 {
