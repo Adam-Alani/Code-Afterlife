@@ -80,6 +80,10 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Report($"Invalid operation between {a} and {b}", position);
         }
         
+        public void ReportType(object op, Type a, Type b, int position)
+        {
+            Report($"Invalid operation '{op}' between {a} and {b}", position);
+        }
         
 
         public void ReportDeclared(string name, int position)

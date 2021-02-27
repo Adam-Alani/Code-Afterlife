@@ -94,7 +94,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             {
                 if (assignee.Type != assignement.Type && assignee.Type != typeof(object))
                 {
-                    Errs.ReportType(assignee.Type, assignement.Type, syntax.Token.Position);
+                    Errs.ReportType(syntax.Token.Text, assignee.Type, assignement.Type, syntax.Token.Position);
                     return new BoundLiteral(0);
                 }
                 
@@ -133,7 +133,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             if (bOperator == null)
             {
-                Errs.ReportType(left.Type, right.Type, syntax.Token.Position);
+                Errs.ReportType(syntax.Token.Text, left.Type, right.Type, syntax.Token.Position);
                 return left;
             }
             
