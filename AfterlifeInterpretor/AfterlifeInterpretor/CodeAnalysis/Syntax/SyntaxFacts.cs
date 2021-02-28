@@ -59,8 +59,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "bool" => SyntaxKind.BoolToken,
                 "int" => SyntaxKind.IntToken,
                 "var" => SyntaxKind.VarToken,
-                "do" => SyntaxKind.OStatementToken,
-                "end" => SyntaxKind.CStatementToken,
+                "do" => SyntaxKind.OBlockToken,
+                "end" => SyntaxKind.CBlockToken,
                 _ => SyntaxKind.IdentifierToken
             };
         }
@@ -77,8 +77,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "%" => SyntaxKind.ModuloToken,
                 "(" => SyntaxKind.OParenToken,
                 ")" => SyntaxKind.CParenToken,
-                "{" => SyntaxKind.OStatementToken,
-                "}" => SyntaxKind.CStatementToken,
+                "{" => SyntaxKind.OBlockToken,
+                "}" => SyntaxKind.CBlockToken,
                 ">" => SyntaxKind.GtToken,
                 "<" => SyntaxKind.LtToken,
                 "=" => SyntaxKind.AssignToken,

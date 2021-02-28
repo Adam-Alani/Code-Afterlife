@@ -60,6 +60,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 return LexDigit();
             }
 
+            if (Current == '\n' || Current == ';')
+            {
+                return LexEndStatement();
+            }
+
             if (char.IsWhiteSpace(Current))
             {
                 return LexWhiteSpace();
@@ -71,7 +76,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             }
 
             SyntaxToken token = FindToken();
-            if (token.Kind == SyntaxKind.ErrorToken)
+            if (token.Kind == SyntaxKind.ErrorToken) 
                 Errs.ReportUnknown(token.Text, start);
             return token;
         }
@@ -102,6 +107,20 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             }
 
             return new SyntaxToken(SyntaxKind.SpaceToken, start, text);
+        }
+        
+        private SyntaxToken LexEndStatement()
+        {
+            int start = _position;
+            string text = "";
+
+            while (Current == '\n' || Current == ';')
+            {
+                text += Current;
+                _position++;
+            }
+
+            return new SyntaxToken(SyntaxKind.EndStatementToken, start, text);
         }
 
         private SyntaxToken LexDigit()

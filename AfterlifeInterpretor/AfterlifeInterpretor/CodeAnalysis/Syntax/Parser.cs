@@ -66,21 +66,33 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         
         private BlockStatement ParseProgram()
         {
+            SyntaxToken oToken = new SyntaxToken(SyntaxKind.OBlockToken, _position, "");
+            StatementSyntax[] statements = ParseStatements();
+            SyntaxToken cToken = new SyntaxToken(SyntaxKind.CBlockToken, _position, "");
+            
+            return new BlockStatement(oToken, statements, cToken);
+        }
+
+        private StatementSyntax[] ParseStatements()
+        {
             List<StatementSyntax> statements = new List<StatementSyntax>();
             
-            SyntaxToken oToken = new SyntaxToken(SyntaxKind.OStatementToken, _position, "");
-            
-            while (Current.Kind != SyntaxKind.EndToken && Current.Kind != SyntaxKind.CStatementToken)
-                statements.Add(ParseStatement());
-            
-            SyntaxToken cToken = new SyntaxToken(SyntaxKind.CStatementToken, _position, "");
-            
-            return new BlockStatement(oToken, statements.ToArray(), cToken);
+            while (Current.Kind != SyntaxKind.EndToken && Current.Kind != SyntaxKind.CBlockToken)
+            {
+                if (Current.Kind != SyntaxKind.EndStatementToken)
+                    statements.Add(ParseStatement());
+                if (Current.Kind != SyntaxKind.EndToken &&
+                    Current.Kind != SyntaxKind.OBlockToken &&
+                    Current.Kind != SyntaxKind.CBlockToken) 
+                    Expect(SyntaxKind.EndStatementToken);
+            }
+
+            return statements.ToArray();
         }
 
         private StatementSyntax ParseStatement()
         {
-            if (Current.Kind == SyntaxKind.OStatementToken)
+            if (Current.Kind == SyntaxKind.OBlockToken)
                 return ParseBlockStatement();
             
             return ParseExpressionStatement();
@@ -88,16 +100,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         private StatementSyntax ParseBlockStatement()
         {
-            List<StatementSyntax> statements = new List<StatementSyntax>();
+            SyntaxToken oToken = Expect(SyntaxKind.OBlockToken);
+            StatementSyntax[] statements = ParseStatements();
+            SyntaxToken cToken = Expect(SyntaxKind.CBlockToken);
             
-            SyntaxToken oToken = Expect(SyntaxKind.OStatementToken);
-            
-            while (Current.Kind != SyntaxKind.EndToken && Current.Kind != SyntaxKind.CStatementToken)
-                statements.Add(ParseStatement());
-
-            SyntaxToken cToken = Expect(SyntaxKind.CStatementToken);
-            
-            return new BlockStatement(oToken, statements.ToArray(), cToken);
+            return new BlockStatement(oToken, statements, cToken);
         }
         
         private StatementSyntax ParseExpressionStatement()
