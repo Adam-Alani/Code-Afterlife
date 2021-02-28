@@ -59,8 +59,53 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "bool" => SyntaxKind.BoolToken,
                 "int" => SyntaxKind.IntToken,
                 "var" => SyntaxKind.VarToken,
+                "do" => SyntaxKind.OStatementToken,
+                "end" => SyntaxKind.CStatementToken,
                 _ => SyntaxKind.IdentifierToken
             };
+        }
+        
+        public static SyntaxKind GetSymbolKind(string s)
+        {
+            return s switch
+            {
+                "\0" => SyntaxKind.EndToken,
+                "+" => SyntaxKind.PlusToken,
+                "-" => SyntaxKind.MinusToken,
+                "*" => SyntaxKind.StarToken,
+                "/" => SyntaxKind.SlashToken,
+                "%" => SyntaxKind.ModuloToken,
+                "(" => SyntaxKind.OParenToken,
+                ")" => SyntaxKind.CParenToken,
+                "{" => SyntaxKind.OStatementToken,
+                "}" => SyntaxKind.CStatementToken,
+                ">" => SyntaxKind.GtToken,
+                "<" => SyntaxKind.LtToken,
+                "=" => SyntaxKind.AssignToken,
+                "!" => SyntaxKind.NotToken,
+                "||" => SyntaxKind.OrToken,
+                "&&" => SyntaxKind.AndToken,
+                "==" => SyntaxKind.EqToken,
+                "!=" => SyntaxKind.NEqToken,
+                ">=" => SyntaxKind.GtEqToken,
+                "<=" => SyntaxKind.LtEqToken,
+                _ => SyntaxKind.ErrorToken
+            };
+        }
+
+        public static bool ExpectedLookahead(char current, char lookAhead)
+        {
+            switch (current)
+            {
+                case '\0':
+                    return false;
+                case '!':
+                case '>':
+                case '<':
+                    return lookAhead == '=';
+                default:
+                    return lookAhead == current;
+            }
         }
     }
 }

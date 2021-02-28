@@ -23,6 +23,9 @@ namespace AfterlifeInterpretor
                     case "#program":
                         PromptProgram(interpretor);
                         break;
+                    case "#reset":
+                        interpretor = new Interpretor();
+                        break;
                     case "#exit":
                         break;
                     default:

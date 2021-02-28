@@ -13,6 +13,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         SpaceToken,
         OParenToken,
         CParenToken,
+        OStatementToken,
+        CStatementToken,
         IdentifierToken,
         VarToken,
         BoolToken,
@@ -46,6 +48,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         UnaryExpression,
         AssignementExpression,
         VariableExpression,
+        
+        // Statements
+        BlockStatement,
+        ExpressionStatement,
         
         // Keywords
         TrueKeyword,

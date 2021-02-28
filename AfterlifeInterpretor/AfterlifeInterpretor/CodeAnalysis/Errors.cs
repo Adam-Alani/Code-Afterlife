@@ -84,7 +84,6 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             Report($"Invalid operation '{op}' between {a} and {b}", position);
         }
-        
 
         public void ReportDeclared(string name, int position)
         {

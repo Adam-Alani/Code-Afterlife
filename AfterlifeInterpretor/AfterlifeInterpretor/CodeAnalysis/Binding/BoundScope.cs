@@ -5,37 +5,37 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundScope
     {
-        private BoundScope _parent;
+        public BoundScope Parent;
         private Dictionary<string, Type> Variables { get; }
 
         
         public BoundScope()
         {
-            _parent = null;
+            Parent = null;
             Variables = new Dictionary<string, Type>();
         }
         
         public BoundScope(BoundScope parent)
         {
-            _parent = parent;
+            Parent = parent;
             Variables = new Dictionary<string, Type>();
         }
         
         public BoundScope(Dictionary<string, Type> variables)
         {
-            _parent = null;
+            Parent = null;
             Variables = variables;
         }
 
         public BoundScope(BoundScope parent, Dictionary<string, Type> variables)
         {
-            _parent = parent;
+            Parent = parent;
             Variables = variables;
         }
         
         public bool HasVariable(string var)
         {
-            return Variables.ContainsKey(var) || (_parent?.HasVariable(var) ?? false);
+            return Variables.ContainsKey(var) || (Parent?.HasVariable(var) ?? false);
         }
 
         public bool TryDeclare(string var, Type type)
@@ -58,7 +58,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             }
             
             t = null;
-            return _parent?.TryGetType(var, out t) ?? false;
+            return Parent?.TryGetType(var, out t) ?? false;
+        }
+
+        public void ChangeType(string var, Type t)
+        {
+            if (Variables.ContainsKey(var))
+                Variables[var] = t;
+            else
+                Parent?.ChangeType(var, t);
         }
     }
 }

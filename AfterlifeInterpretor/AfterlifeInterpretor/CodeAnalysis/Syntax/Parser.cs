@@ -61,7 +61,48 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         public SyntaxTree Parse()
         {
-            return new SyntaxTree(Errs, ParseAssignements(), Expect(SyntaxKind.EndToken));
+            return new SyntaxTree(Errs, ParseProgram(), Expect(SyntaxKind.EndToken));
+        }
+        
+        private BlockStatement ParseProgram()
+        {
+            List<StatementSyntax> statements = new List<StatementSyntax>();
+            
+            SyntaxToken oToken = new SyntaxToken(SyntaxKind.OStatementToken, _position, "");
+            
+            while (Current.Kind != SyntaxKind.EndToken && Current.Kind != SyntaxKind.CStatementToken)
+                statements.Add(ParseStatement());
+            
+            SyntaxToken cToken = new SyntaxToken(SyntaxKind.CStatementToken, _position, "");
+            
+            return new BlockStatement(oToken, statements.ToArray(), cToken);
+        }
+
+        private StatementSyntax ParseStatement()
+        {
+            if (Current.Kind == SyntaxKind.OStatementToken)
+                return ParseBlockStatement();
+            
+            return ParseExpressionStatement();
+        }
+
+        private StatementSyntax ParseBlockStatement()
+        {
+            List<StatementSyntax> statements = new List<StatementSyntax>();
+            
+            SyntaxToken oToken = Expect(SyntaxKind.OStatementToken);
+            
+            while (Current.Kind != SyntaxKind.EndToken && Current.Kind != SyntaxKind.CStatementToken)
+                statements.Add(ParseStatement());
+
+            SyntaxToken cToken = Expect(SyntaxKind.CStatementToken);
+            
+            return new BlockStatement(oToken, statements.ToArray(), cToken);
+        }
+        
+        private StatementSyntax ParseExpressionStatement()
+        {
+            return new ExpressionStatement(ParseAssignements());
         }
 
         private ExpressionSyntax ParseAssignements()

@@ -6,38 +6,38 @@ namespace AfterlifeInterpretor.CodeAnalysis
     internal sealed class Scope
     {
         public Dictionary<string, object> Variables { get; }
-        private Scope _parent;
+        public Scope Parent;
 
         public Scope()
         {
-            _parent = null;
+            Parent = null;
             Variables = new Dictionary<string, object>();
         }
         
         public Scope(Dictionary<string, object> variables)
         {
-            _parent = null;
+            Parent = null;
             Variables = variables;
         }
         public Scope(Scope parent)
         {
-            _parent = parent;
+            Parent = parent;
             Variables = new Dictionary<string, object>();
         }
         public Scope(Scope parent, Dictionary<string, object> variables)
         {
-            _parent = parent;
+            Parent = parent;
             Variables = variables;
         }
 
         public bool HasVariable(string var)
         {
-            return Variables.ContainsKey(var) || (_parent != null && _parent.HasVariable(var));
+            return Variables.ContainsKey(var) || (Parent != null && Parent.HasVariable(var));
         }
 
         public void Declare(string var, object val)
         {
-            if (!Variables.ContainsKey(var))
+            if (!HasVariable(var))
                 Variables.Add(var, val);
         }
 
@@ -46,14 +46,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
             if (Variables.ContainsKey(var))
                 Variables[var] = val;
             else
-                _parent?.SetValue(var, val);
+                Parent?.SetValue(var, val);
         }
 
         public object GetValue(string var)
         {
             if (Variables.ContainsKey(var))
                 return Variables[var];
-            return _parent?.GetValue(var);
+            return Parent?.GetValue(var);
         }
 
         public Dictionary<string, Type> GetTypes()

@@ -2,9 +2,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal enum BoundNodeKind
     {
+        // Expressions
         UnaryExpression,
         LiteralExpression,
         VariableExpression,
-        AssignmentExpression
+        AssignmentExpression,
+
+        // Statements
+        BlockStatement,
+        ExpressionStatement
     }
 }

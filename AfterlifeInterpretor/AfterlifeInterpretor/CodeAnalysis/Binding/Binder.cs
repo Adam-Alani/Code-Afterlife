@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
@@ -10,7 +11,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     /// </summary>
     internal sealed class Binder
     {
-        private readonly BoundScope _scope;
+        private BoundScope _scope;
 
         public readonly Errors Errs;
 
@@ -31,8 +32,55 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             _scope = new BoundScope(scope.GetTypes());
             Errs = errs;
         }
+
+        public BoundBlockStatement BindProgram(BlockStatement program)
+        {
+            List<BoundStatement> statements = new List<BoundStatement>();
+
+            foreach (StatementSyntax statement in program.Statements)
+            {
+                statements.Add(BindStatement(statement));
+            }
+            
+            return new BoundBlockStatement(statements.ToArray());
+        }
+
+        private BoundStatement BindStatement(StatementSyntax syntax)
+        {
+            switch (syntax.Kind)
+            {
+                case SyntaxKind.BlockStatement:
+                    return BindBlockStatement((BlockStatement) syntax);
+                case SyntaxKind.ExpressionStatement:
+                    return BindExpressionStatement((ExpressionStatement) syntax);
+                default:
+                    Errs.ReportUnknown(syntax.Kind, 0);
+                    return null;
+            }
+        }
+
+        private BoundStatement BindBlockStatement(BlockStatement syntax)
+        {
+            _scope = new BoundScope(_scope);
+            
+            List<BoundStatement> statements = new List<BoundStatement>();
+
+            foreach (StatementSyntax statement in syntax.Statements)
+            {
+                statements.Add(BindStatement(statement));
+            }
+
+            _scope = _scope.Parent;
+            
+            return new BoundBlockStatement(statements.ToArray());
+        }
         
-        public BoundExpression BindExpression(ExpressionSyntax syntax)
+        private BoundStatement BindExpressionStatement(ExpressionStatement syntax)
+        {
+            return new BoundExpressionStatement(BindExpression(syntax.Expression));
+        }
+
+        private BoundExpression BindExpression(ExpressionSyntax syntax)
         {
             switch (syntax.Kind)
             {
@@ -50,7 +98,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                     return BindIdentifier((IdentifierExpression) syntax);
                 default:
                     Errs.ReportUnknown(syntax.Kind, 0);
-                    return new BoundLiteral(0);
+                    return null;
             }
         }
 
@@ -60,7 +108,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             if (!_scope.TryGetType(name, out Type t))
             {
                 Errs.ReportUnknown(name, syntax.Token.Position);
-                return new BoundLiteral(0);
+                return null;
             }
             
             return new BoundVariable(name, t);
@@ -73,13 +121,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             if (type == null)
             {
                 Errs.ReportUnknown(syntax.Token.Text, syntax.Token.Position);
-                return new BoundLiteral(0);
+                return new BoundVariable(syntax.Name.Token.Text, null);
             }
             
             if (!_scope.TryDeclare(syntax.Name.Token.Text, type))
             {
                 Errs.ReportDeclared(syntax.Name.Token.Text, syntax.Token.Position);
-                return new BoundLiteral(0);
+                return null;
             }
 
             return new BoundVariable(syntax.Name.Token.Text, type);
@@ -88,23 +136,31 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         private BoundExpression BindAssignement(AssignementExpression syntax)
         {
             BoundExpression assignement = BindExpression(syntax.Assignment);
+
+            if (assignement == null)
+                return null;
             
             BoundExpression assignee = BindExpression(syntax.Assignee);
             if (assignee is BoundVariable bv)
             {
+                if (bv.Type == null)
+                {
+                    Errs.ReportUnknown(bv.Name, syntax.Token.Position);
+                    return null;
+                }
+                
                 if (assignee.Type != assignement.Type && assignee.Type != typeof(object))
                 {
                     Errs.ReportType(syntax.Token.Text, assignee.Type, assignement.Type, syntax.Token.Position);
-                    return new BoundLiteral(0);
+                    return null;
                 }
                 
+                if (assignee.Type == typeof(object))
+                    _scope.ChangeType(bv.Name, assignement.Type);
                 return new BoundAssignment(bv, assignement);
             }
-            
-            if (assignee != null)
-                Errs.ReportUnknown(assignee, syntax.Token.Position);
 
-            return new BoundLiteral(0);
+            return null;
         }
         
 

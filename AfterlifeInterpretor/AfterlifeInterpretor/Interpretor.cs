@@ -49,9 +49,9 @@ namespace AfterlifeInterpretor
             SyntaxTree tree = new Parser(text).Parse();
 
             Binder binder = new Binder(_scope, tree.Errs);
-            BoundExpression boundExpression = binder.BindExpression(tree.Root);
+            BoundBlockStatement bound = binder.BindProgram(tree.Root);
             
-            Evaluator ev = new Evaluator(boundExpression, _scope);
+            Evaluator ev = new Evaluator(bound, _scope);
             object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
 
             return new EvaluationResults(binder.Errs, res);

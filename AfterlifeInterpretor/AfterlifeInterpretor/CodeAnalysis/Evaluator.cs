@@ -10,16 +10,16 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// </summary>
     internal sealed class Evaluator
     {
-        private readonly BoundExpression _root;
+        private readonly BoundBlockStatement _root;
         private Scope _scope;
 
-        public Evaluator(BoundExpression root, Scope scope)
+        public Evaluator(BoundBlockStatement root, Scope scope)
         {
             _root = root;
             _scope = scope;
         }
         
-        public Evaluator(BoundExpression root)
+        public Evaluator(BoundBlockStatement root)
         {
             _root = root;
             _scope = new Scope();
@@ -27,19 +27,55 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         public object Evaluate()
         {
-            return EvaluateExpression(_root);
+            return EvaluateProgram(_root);
         }
 
-        private object EvaluateExpression(BoundExpression root)
+        private object EvaluateProgram(BoundBlockStatement program)
         {
-            return root switch
+            object lastValue = null;
+            foreach (BoundStatement statement in program.Statements)
+                lastValue = EvaluateStatement(statement);
+            return lastValue;
+        }
+
+        private object EvaluateStatement(BoundStatement statement)
+        {
+            return statement.Kind switch
+            {
+                BoundNodeKind.BlockStatement => EvaluateBlockStatement((BoundBlockStatement) statement),
+                BoundNodeKind.ExpressionStatement => EvaluateExpressionStatement((BoundExpressionStatement) statement),
+                _ => throw new Exception($"Unexpected statement {statement.Kind}")
+            };
+        }
+
+        private object EvaluateBlockStatement(BoundBlockStatement block)
+        {
+            _scope = new Scope(_scope);
+            
+            object lastValue = null;
+            foreach (BoundStatement statement in block.Statements)
+                lastValue = EvaluateStatement(statement);
+
+            _scope = _scope.Parent;
+            return lastValue;
+        }
+        
+        private object EvaluateExpressionStatement(BoundExpressionStatement statement)
+        {
+            return EvaluateExpression(statement.Expression); 
+        }
+
+
+        private object EvaluateExpression(BoundExpression expression)
+        {
+            return expression switch
             {
                 BoundLiteral n => n.Value,
                 BoundVariable bv => EvaluateVariable(bv),
                 BoundAssignment ba => EvaluateAssignment(ba),
                 BoundUnary u => EvaluateUnaryExpression(u),
                 BoundBinary b => EvaluateBinaryExpression(b),
-                _ => throw new Exception($"Unexpected node {root.Kind}")
+                _ => throw new Exception($"Unexpected node {expression.Kind}")
             };
         }
 

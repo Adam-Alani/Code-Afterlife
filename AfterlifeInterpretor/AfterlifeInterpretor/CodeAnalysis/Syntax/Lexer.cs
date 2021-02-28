@@ -26,6 +26,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         public Lexer(string text, Errors errs)
         {
             _text = text;
+            _position = 0;
             
             Errs = errs;
         }
@@ -33,63 +34,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         public Lexer(string text)
         {
             _text = text;
-            
+            _position = 0;
             Errs = new Errors();
-        }
-
-        private SyntaxKind FindKind(string s)
-        {
-            return s switch
-            {
-                "\0" => SyntaxKind.EndToken,
-                "+" => SyntaxKind.PlusToken,
-                "-" => SyntaxKind.MinusToken,
-                "/" => SyntaxKind.SlashToken,
-                "%" => SyntaxKind.ModuloToken,
-                "(" => SyntaxKind.OParenToken,
-                ")" => SyntaxKind.CParenToken,
-                ">" => SyntaxKind.GtToken,
-                "<" => SyntaxKind.LtToken,
-                "=" => SyntaxKind.AssignToken,
-                "!" => SyntaxKind.NotToken,
-                "||" => SyntaxKind.OrToken,
-                "&&" => SyntaxKind.AndToken,
-                "==" => SyntaxKind.EqToken,
-                "!=" => SyntaxKind.NEqToken,
-                ">=" => SyntaxKind.GtEqToken,
-                "<=" => SyntaxKind.LtEqToken,
-                _ => SyntaxKind.ErrorToken
-            };
-        }
-
-        private bool ExpectedLookahead()
-        {
-            switch (Current)
-            {
-                case '\0':
-                    return false;
-                case '!':
-                case '>':
-                case '<':
-                    return LookAhead == '=';
-                default:
-                    return LookAhead == Current;
-            }
         }
 
         private SyntaxToken FindToken()
         {
             int start = _position;
             string text = $"{Current}";
-            if (ExpectedLookahead())
+            if (SyntaxFacts.ExpectedLookahead(Current, LookAhead))
             {
                 text += LookAhead;
                 _position++;
             }
             _position++;
-
-
-            return new SyntaxToken(FindKind(text), start, text);
+            
+            return new SyntaxToken(SyntaxFacts.GetSymbolKind(text), start, text);
         }
 
         public SyntaxToken Lex()

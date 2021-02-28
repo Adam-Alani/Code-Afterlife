@@ -9,10 +9,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
     public sealed class SyntaxTree
     {
         public Errors Errs { get; }
-        public ExpressionSyntax Root { get; }
+        public BlockStatement Root { get; }
         public SyntaxToken End { get;  }
         
-        public SyntaxTree(Errors errors, ExpressionSyntax root, SyntaxToken end)
+        public SyntaxTree(Errors errors, BlockStatement root, SyntaxToken end)
         {
             Errs = errors;
             Root = root;
