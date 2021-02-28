@@ -171,7 +171,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             if (uOperator == null)
             {
                 Errs.ReportUndefined(syntax.Token.Text, operandBound.Type, syntax.Token.Position);
-                return operandBound;
+                return null;
             }
             return new BoundUnary(uOperator, operandBound);
         }
@@ -185,12 +185,16 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         {
             BoundExpression left = BindExpression(syntax.Left);
             BoundExpression right = BindExpression(syntax.Right);
+
+            if (left == null || right == null)
+                return null;
+            
             BoundBinaryOperator bOperator = BoundBinaryOperator.Bind(syntax.Token.Kind, left.Type, right.Type);
 
             if (bOperator == null)
             {
                 Errs.ReportType(syntax.Token.Text, left.Type, right.Type, syntax.Token.Position);
-                return left;
+                return null;
             }
             
             return new BoundBinary(left, bOperator, right);
