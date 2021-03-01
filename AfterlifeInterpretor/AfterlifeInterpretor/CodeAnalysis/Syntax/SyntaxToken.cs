@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 
-namespace AfterlifeInterpretor
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 {
     /// <summary>
     /// Syntax token class
+    /// Any kind of token tokenised by the lexer
     /// Author: Raphaël "Sheinxy" Montes
     /// </summary>
-    public class SyntaxToken : SyntaxNode
+    public sealed class SyntaxToken : SyntaxNode
     {
         public override SyntaxKind Kind { get; }
         public int Position { get; }
