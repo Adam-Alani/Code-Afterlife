@@ -1,7 +1,7 @@
 # Prototype interpretor for the project - Raphaël "Sheinxy" Montes
 
-### TODO List:
+### TODO List for first defence:
 - [x] Expressions evaluations
-- [ ] Statements  evaluations
-- [ ] Blocks 	  evaluations
-- [ ] Globals and Locals
+- [x] Booleans
+- [x] Variables
+- [x] If and while
