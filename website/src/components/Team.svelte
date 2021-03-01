@@ -1,30 +1,32 @@
-<div class=" terminal">
+<div class=" terminal ">
     <div class="   flex  z-20 mx-0 my-auto left-1/2 right-0 ">
         <div class=" mt-8 justify-center flex flex-1 ">
             <img src="images/about.png" class=" size justify-around align-middle  "/>
         </div>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2  xl:grid-cols-4 py-12 mx-12  ">
+    <div class="grid gap-5 grid-cols-1 lg:grid-cols-2  xl:grid-cols-4 py-12 mx-12  ">
 
-                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
+                <div class=" inline-block  px-8 items-center justify-center px-8  card rounded-lg shadow-lg">
+                    <h1 class="mt-2 text-pink-500 big underline te text-center ">Raphael</h1>
                     <img src="images/raph.png" class="image" width="250px" height="auto" />
-                    <h1 class="mt-2 text-pink-500 big underline te">Raphael</h1>
-                    <span class="text-white med">He does this</span>
+                    <span class="text-white med">Works primarily on the Babylon Interpreter</span>
                 </div>
-                <div class="align-top inline-block text-center px-8  items-center justify-center px-8 flex flex-col">
+                <div class=" inline-block  px-8  items-center justify-center px-8 card rounded-lg hadow-lg">
+                    <h1 class="mt-2 text-pink-500 big underline text-center">Theo</h1>
                     <img src="images/theo.png" class="image" width="250px" height="auto" />
-                    <h1 class="mt-2 text-pink-500 big underline">Theo</h1>
-                    <span class="text-white med">Him too</span>
+                    
+                    <span class="text-white med">Works on game design, controls and characters</span>
                 </div>
-                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
+                <div class=" inline-block px-8 items-center justify-center px-8 card rounded-lg shadow-lg">
+                    <h1 class="mt-2 text-pink-500 big underline text-center">Adam</h1>
                     <img src="images/adam.png" class="image" width="250px" height="auto"/>
-                    <h1 class="mt-2 text-pink-500 big underline">Adam</h1>
-                    <span class="text-white med">Same here</span>
+                    
+                    <span class="text-white med">Works on the graphics and the IDE/Terminal</span>
                 </div>
-                <div class="align-top inline-block text-center px-8 items-center justify-center px-8 flex flex-col">
-                    <img src="images/raph.png" class="image" width="250px" height="auto"/>
-                    <h1 class="mt-2 text-pink-500 big underline">Ivan</h1>
-                    <span class="text-white med">Gros glandeur</span>
+                <div class=" inline-block px-8 items-center justify-center px-8 card rounded-lg shadow-lg">
+                    <h1 class="mt-2 text-pink-500 big underline text-center">Ivan</h1>
+                    <img src="images/ivan.png" class="image" width="250px" height="auto"/>
+                    <span class="text-white med">Works on the multiplayer and AI</span>
                 </div>
             </div>
     </div>
@@ -44,6 +46,16 @@
         margin:-10px;
     }
 
+    .image {
+        @apply shadow-lg;
+        border-radius: 2%;
+    }
+    .card {
+        background-color: #0f0917;
+        padding-bottom:1rem;
+
+    }
+
     .big {
         font-size: 3rem;
     }
@@ -54,15 +66,12 @@
         flex: 1 1 160px;
         margin: 10px;
     }
-    .image {
-        border-radius: 100%;
-        filter: drop-shadow(-10px 3px 0px #DB2777);
-    }
+
     .card {
         flex: 0 1 24%;
     }
     .terminal {
-        background-color: #00d9ff;
+        background-color: #211231;
         filter: drop-shadow(0 0 10px #DB2777);
     }
     .size {

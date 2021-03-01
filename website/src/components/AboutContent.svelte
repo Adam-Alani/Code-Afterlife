@@ -13,9 +13,8 @@
             <ul class="list-disc" style="list-style-type:square ">
                 <li><p>Explore the <span class="text-green-500"> cyberpunk neon </span>inspired city</p></li>
                 <li><p>Fight off enemies</p></li>
-                <li><p><span class="text-yellow-200">Program</span> your way into liberty</p></li>
-                <li><p>Unlock <span class="text-purple-600">super-code</span>, syntaxical weapons</p></li>
-
+                <li><p><span class="text-yellow-200">Program</span> your way into liberty with Babylon and Euphrate, an advanced programming language and terminal you designed</p></li>
+                <li><p>Unlock <span class="text-purple-600">super-code</span>, syntaxical weapons that will help you take down anything standing in your way</p></li>
             </ul>
 
         </div>
