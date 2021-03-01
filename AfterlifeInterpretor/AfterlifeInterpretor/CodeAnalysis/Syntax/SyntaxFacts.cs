@@ -61,6 +61,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "var" => SyntaxKind.VarToken,
                 "do" => SyntaxKind.OBlockToken,
                 "end" => SyntaxKind.CBlockToken,
+                "if" => SyntaxKind.IfKeyword,
+                "else" => SyntaxKind.ElseKeyword,
+                "while" => SyntaxKind.WhileKeyword,
                 _ => SyntaxKind.IdentifierToken
             };
         }
@@ -97,13 +100,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (current)
             {
-                case '\0':
+                default:
                     return false;
                 case '!':
                 case '>':
                 case '<':
+                case '=':
                     return lookAhead == '=';
-                default:
+                case '|':
+                case '&':
                     return lookAhead == current;
             }
         }

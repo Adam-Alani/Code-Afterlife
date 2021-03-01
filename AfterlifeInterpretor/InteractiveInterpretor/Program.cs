@@ -8,6 +8,8 @@ namespace InteractiveInterpretor
 {
     class Program
     {
+        private static readonly Dictionary<string, string> Macros = new Dictionary<string, string>();
+        
         static void Main()
         {
             string prompt;
@@ -15,12 +17,14 @@ namespace InteractiveInterpretor
             do
             {
                 Console.Write("> ");
-                prompt = Console.ReadLine();
+                prompt = Console.ReadLine() ?? "";
+                if (prompt.StartsWith("#macro"))
+                {
+                    Macro(prompt.Split(' ')[1]);
+                    continue;
+                }
                 switch (prompt)
                 {
-                    case "#multiline":
-                        PromptMultiline(interpretor);
-                        break;
                     case "#program":
                         PromptProgram(interpretor);
                         break;
@@ -34,6 +38,21 @@ namespace InteractiveInterpretor
                         break;
                 }
             } while (prompt != "#exit");
+        }
+
+        private static void Macro(string name)
+        {
+            string text = "";
+            string prompt;
+
+            do
+            {
+                Console.Write("| ");
+                prompt = Console.ReadLine();
+                if (prompt != "#end") text += $"{prompt}\n";
+            } while (prompt != "#end");
+            
+            Macros[name] = text;
         }
 
         private static void PromptProgram(Interpretor interpretor)
@@ -51,25 +70,10 @@ namespace InteractiveInterpretor
             Interpret(interpretor, text);
         }
 
-        static void PromptMultiline(Interpretor interpretor)
-        {
-            List<string> lines = new List<string>();
-            string prompt;
-
-            do
-            {
-                Console.Write("| ");
-                prompt = Console.ReadLine();
-                if (prompt != "#end") lines.Add(prompt);
-            } while (prompt != "#end");
-            
-            EvaluationResults ev = interpretor.Interpret(lines.ToArray())[^1];
-            if (!ev.Errs.GetErrors().Any())
-                Console.WriteLine(ev.Value);
-        }
-
         static void Interpret(Interpretor interpretor, string text)
         {
+            if (text.StartsWith("#") && Macros.ContainsKey(text.Substring(1)))
+                text = Macros[text.Substring(1)];
             EvaluationResults evaluationResults = interpretor.Interpret(text);
             if (evaluationResults.Errs.GetErrors().Any())
             {

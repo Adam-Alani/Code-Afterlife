@@ -9,7 +9,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpression Right { get;  }
         
         public override Type Type => Operator.ResultType;
-        public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
+        public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
         
         public BoundBinary(BoundExpression left, BoundBinaryOperator op, BoundExpression right)
         {

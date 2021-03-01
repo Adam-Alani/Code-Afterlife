@@ -41,7 +41,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         
         AssignToken,
         
-        
+        // Keywords
+        TrueKeyword,
+        FalseKeyword,
+        IfKeyword,
+        ElseKeyword,
+        WhileKeyword,
+
         // Expressions
         LiteralExpression,
         BinaryExpression,
@@ -53,10 +59,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         // Statements
         BlockStatement,
         ExpressionStatement,
-        
-        // Keywords
-        TrueKeyword,
-        FalseKeyword,
-        
+        IfStatement,
+        ElseClause,
+        WhileStatement
     }
 }

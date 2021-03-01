@@ -44,6 +44,8 @@ namespace AfterlifeInterpretor.CodeAnalysis
             {
                 BoundNodeKind.BlockStatement => EvaluateBlockStatement((BoundBlockStatement) statement),
                 BoundNodeKind.ExpressionStatement => EvaluateExpressionStatement((BoundExpressionStatement) statement),
+                BoundNodeKind.IfStatement => EvaluateIfStatement((BoundIf) statement),
+                BoundNodeKind.WhileStatement => EvaluateWhileStatement((BoundWhile) statement),
                 _ => throw new Exception($"Unexpected statement {statement.Kind}")
             };
         }
@@ -63,6 +65,21 @@ namespace AfterlifeInterpretor.CodeAnalysis
         private object EvaluateExpressionStatement(BoundExpressionStatement statement)
         {
             return EvaluateExpression(statement.Expression); 
+        }
+
+        private object EvaluateIfStatement(BoundIf statement)
+        {
+            if ((bool) EvaluateExpressionStatement(statement.Condition))
+                return EvaluateStatement(statement.Then);
+            return statement.Else != null ? EvaluateStatement(statement.Else) : null;
+        }
+        
+        private object EvaluateWhileStatement(BoundWhile statement)
+        {
+            object lastValue = null;
+            for(uint calls = 0; calls < 250000 && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+                lastValue = EvaluateStatement(statement.Then);
+            return lastValue;
         }
 
 

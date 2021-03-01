@@ -53,10 +53,38 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                     return BindBlockStatement((BlockStatement) syntax);
                 case SyntaxKind.ExpressionStatement:
                     return BindExpressionStatement((ExpressionStatement) syntax);
+                case SyntaxKind.IfStatement:
+                    return BindIfStatement((IfStatement) syntax);
+                case SyntaxKind.WhileStatement:
+                    return BindWhileStatement((WhileStatement) syntax);
                 default:
                     Errs.ReportUnknown(syntax.Kind, 0);
                     return null;
             }
+        }
+
+        private BoundStatement BindWhileStatement(WhileStatement syntax)
+        {
+            BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
+            if (condition.Expression.Type != typeof(bool))
+            {
+                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                return null;
+            }
+            return new BoundWhile(condition, BindStatement(syntax.Then));
+        }
+
+        private BoundStatement BindIfStatement(IfStatement syntax)
+        {
+            BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
+            if (condition.Expression.Type != typeof(bool))
+            {
+                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                return null;
+            }
+
+            BoundStatement elseClause = (syntax.Else != null) ? BindStatement(syntax.Else.Then) : null;
+            return new BoundIf(condition, BindStatement(syntax.Then), elseClause);
         }
 
         private BoundStatement BindBlockStatement(BlockStatement syntax)
