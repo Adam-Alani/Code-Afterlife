@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="AfterlifeInterpretor" t="IncludeRecursive">
+        <e p="AfterlifeInterpretor.csproj" t="IncludeRecursive" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CodeAnalysis" t="Include">
+          <e p="Binding" t="Include">
+            <e p="Binder.cs" t="Include" />
+            <e p="BoundAssignment.cs" t="Include" />
+            <e p="BoundBinary.cs" t="Include" />
+            <e p="BoundBinaryKind.cs" t="Include" />
+            <e p="BoundBinaryOperator.cs" t="Include" />
+            <e p="BoundBlockStatement.cs" t="Include" />
+            <e p="BoundExpression.cs" t="Include" />
+            <e p="BoundExpressionStatement.cs" t="Include" />
+            <e p="BoundIf.cs" t="Include" />
+            <e p="BoundLiteral.cs" t="Include" />
+            <e p="BoundNode.cs" t="Include" />
+            <e p="BoundNodeKind.cs" t="Include" />
+            <e p="BoundScope.cs" t="Include" />
+            <e p="BoundStatement.cs" t="Include" />
+            <e p="BoundUnary.cs" t="Include" />
+            <e p="BoundUnaryKind.cs" t="Include" />
+            <e p="BoundUnaryOperator.cs" t="Include" />
+            <e p="BoundVariable.cs" t="Include" />
+            <e p="BoundVariableTypes.cs" t="Include" />
+            <e p="BoundWhile.cs" t="Include" />
+          </e>
+          <e p="Errors.cs" t="Include" />
+          <e p="Evaluator.cs" t="Include" />
+          <e p="Scope.cs" t="Include" />
+          <e p="Syntax" t="Include">
+            <e p="AssignementExpression.cs" t="Include" />
+            <e p="BinaryExpression.cs" t="Include" />
+            <e p="BlockStatement.cs" t="Include" />
+            <e p="ElseClause.cs" t="Include" />
+            <e p="ExpressionStatement.cs" t="Include" />
+            <e p="IdentifierExpression.cs" t="Include" />
+            <e p="IfStatement.cs" t="Include" />
+            <e p="Lexer.cs" t="Include" />
+            <e p="LiteralExpression.cs" t="Include" />
+            <e p="ParenthesisedExpression.cs" t="Include" />
+            <e p="Parser.cs" t="Include" />
+            <e p="StatementSyntax.cs" t="Include" />
+            <e p="SyntaxFacts.cs" t="Include" />
+            <e p="SyntaxKind.cs" t="Include" />
+            <e p="SyntaxNode.cs" t="Include" />
+            <e p="SyntaxToken.cs" t="Include" />
+            <e p="SyntaxTree.cs" t="Include" />
+            <e p="UnaryExpression.cs" t="Include" />
+            <e p="VariableExpression.cs" t="Include" />
+            <e p="WhileStatement.cs" t="Include" />
+          </e>
+          <e p="Text.cs" t="Include" />
+        </e>
+        <e p="EvaluationResults.cs" t="Include" />
+        <e p="Interpretor.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="AfterlifeInterpretor.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="AfterlifeInterpretor.sln" t="IncludeFlat" />
+      <e p="InteractiveInterpretor" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="InteractiveInterpretor.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="InteractiveInterpretor.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_AfterlifeInterpretor.-1261905910.00" t="ExcludeRecursive" />
+  </component>
+</project>
