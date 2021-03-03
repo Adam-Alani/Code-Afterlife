@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-version https://git-lfs.github.com/spec/v1
-oid sha256:f6eb39b60c1803bbd15d28b1aa4ef2000d331211dab18b4d902b0866e1340d34
-size 18772
-=======
 ; FBX 7.3.0 project file
 ; Copyright (C) 1997-2010 Autodesk Inc. and/or its licensors.
 ; All rights reserved.
@@ -362,4 +357,3 @@ Connections:  {
 	C: "OO",11474,5697191521049023260
 
 }
->>>>>>> 4ff961f1d7fc56fc4f5403ee7ab52daa1d9a7d42
