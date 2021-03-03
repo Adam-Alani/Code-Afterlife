@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [ExecuteInEditMode]
 [AddComponentMenu("Image Effects/PixelBoy")]
 public class PixelShader : MonoBehaviour
 {
+
     public int h = 64;
     int w;
     protected void Start()
