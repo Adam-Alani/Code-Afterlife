@@ -497,3 +497,5 @@ InitTestScene*.unity
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,csharp,rider,vscode
+
+KB3D/
