@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour
     public float deltaAngleMax; // the max delta between the turret and the enemy (180 for a circle)
     public GameObject limitLeft; // left border
     public GameObject limitRight; // right border
+    public GameObject limitMid;
 
 
     
@@ -26,6 +27,7 @@ public class Turret : MonoBehaviour
     {
         limitLeft.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
         limitRight.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
+        limitMid.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
 
         InvokeRepeating("UpdateTarget", 0f, UpdateTime);
     }
@@ -43,8 +45,8 @@ public class Turret : MonoBehaviour
         Debug.Log("Shortest distance to enemy : " + shortestEnemyDistance); //************************************************
         foreach (GameObject enemy in enemies)
         {
-            
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            CapsuleCollider collider = enemy.GetComponent<Collider>() as CapsuleCollider;
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position) - collider.radius;
             Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
             if (distanceToEnemy < shortestEnemyDistance && InRangeEnemy(enemy))
             {
@@ -58,7 +60,7 @@ public class Turret : MonoBehaviour
         {
             target = nearestEnemy.transform;
         } else
-        {
+        { 
             target = null;
         }
     }
@@ -102,6 +104,7 @@ public class Turret : MonoBehaviour
 
         limitRight.transform.rotation = Quaternion.Euler(0f, rotation.y + deltaAngleMax/2, 0f);
         limitLeft.transform.rotation = Quaternion.Euler(0f, rotation.y - deltaAngleMax/2, 0f);
+        limitMid.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
     /// <summary>
