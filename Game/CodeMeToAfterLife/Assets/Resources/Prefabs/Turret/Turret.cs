@@ -13,7 +13,10 @@ public class Turret : MonoBehaviour
     public float freeRotationSpeed; //of how much it turns when no one's here (depends on rotationSpeed) => + : clockwise  AND - : trigonometric
     public Transform partToRotate; // head of the turret
     public float deltaAngleMax; // the max delta between the turret and the enemy (180 for a circle)
-    
+    public GameObject limitLeft; // left border
+    public GameObject limitRight; // right border
+
+
     
     // Start is called before the first frame update
     /// <summary>
@@ -21,6 +24,9 @@ public class Turret : MonoBehaviour
     /// </summary>    
     void Start()
     {
+        limitLeft.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
+        limitRight.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
+
         InvokeRepeating("UpdateTarget", 0f, UpdateTime);
     }
 
@@ -88,6 +94,10 @@ public class Turret : MonoBehaviour
         Quaternion whereToRotate = Quaternion.Euler(0f, partToRotate.rotation.eulerAngles.y + freeRotationSpeed, 0f);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, whereToRotate, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+
+        limitRight.transform.rotation = Quaternion.Euler(0f, rotation.y + deltaAngleMax/2, 0f);
+        limitLeft.transform.rotation = Quaternion.Euler(0f, rotation.y - deltaAngleMax/2, 0f);
     }
 
     /// <summary>
@@ -99,6 +109,9 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        limitRight.transform.rotation = Quaternion.Euler(0f, rotation.y + deltaAngleMax/2, 0f);
+        limitLeft.transform.rotation = Quaternion.Euler(0f, rotation.y - deltaAngleMax/2, 0f);
     }
 
 
