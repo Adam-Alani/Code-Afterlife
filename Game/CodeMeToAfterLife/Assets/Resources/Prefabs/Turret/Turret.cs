@@ -40,16 +40,20 @@ public class Turret : MonoBehaviour
 
         float shortestEnemyDistance = maxRange;
         GameObject nearestEnemy = null;
-
+        Debug.Log("Shortest distance to enemy : " + shortestEnemyDistance); //************************************************
         foreach (GameObject enemy in enemies)
         {
+            
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+            Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
             if (distanceToEnemy < shortestEnemyDistance && InRangeEnemy(enemy))
             {
                 shortestEnemyDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
+        Debug.Log("End Foreach");//*****************************************************
+        
         if (nearestEnemy != null)
         {
             target = nearestEnemy.transform;
@@ -67,7 +71,7 @@ public class Turret : MonoBehaviour
 
     bool InRangeEnemy (GameObject enemy)
     {
-        float yRotationTurret = partToRotate.transform.rotation.y; // takes the rotation of the turret
+        float yRotationTurret = partToRotate.transform.rotation.eulerAngles.y; // takes the rotation of the turret
         float yEnemyDirection = Quaternion.LookRotation(enemy.transform.position - transform.position).eulerAngles.y; // takes the direction of the current chosen enemy
         float deltaAngle = yEnemyDirection - yRotationTurret; // gives the delta between the two
         return (-deltaAngleMax <= deltaAngle && deltaAngle <= deltaAngleMax);
