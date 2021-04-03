@@ -27,7 +27,9 @@ public class Turret : MonoBehaviour
     {
         limitLeft.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
         limitRight.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
-        limitMid.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
+        limitMid.transform.localScale = new Vector3(0.01f, 0.01f, maxRange);
+
+        limitMid.SetActive(false);
 
         InvokeRepeating("UpdateTarget", 0f, UpdateTime);
     }
@@ -42,19 +44,19 @@ public class Turret : MonoBehaviour
 
         float shortestEnemyDistance = maxRange;
         GameObject nearestEnemy = null;
-        Debug.Log("Shortest distance to enemy : " + shortestEnemyDistance); //************************************************
+        //Debug.Log("Shortest distance to enemy : " + shortestEnemyDistance); //************************************************
         foreach (GameObject enemy in enemies)
         {
             CapsuleCollider collider = enemy.GetComponent<Collider>() as CapsuleCollider;
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position) - collider.radius;
-            Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
+            //Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
             if (distanceToEnemy < shortestEnemyDistance && InRangeEnemy(enemy))
             {
                 shortestEnemyDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
-        Debug.Log("End Foreach");//*****************************************************
+        //Debug.Log("End Foreach");//*****************************************************
         
         if (nearestEnemy != null)
         {
@@ -85,10 +87,20 @@ public class Turret : MonoBehaviour
     /// </summary>
     void Update()
     {
+        Shoot();
         if (target == null)
             TurnAlone();
         else
             TurnToEnemy();
+
+
+
+        
+
+        limitRight.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y + deltaAngleMax/2, 0f);
+        limitLeft.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y - deltaAngleMax/2, 0f);
+        limitMid.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y, 0f);
+        
     }
 
 
@@ -100,12 +112,22 @@ public class Turret : MonoBehaviour
         Quaternion whereToRotate = Quaternion.Euler(0f, partToRotate.rotation.eulerAngles.y + freeRotationSpeed, 0f);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, whereToRotate, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-
-        limitRight.transform.rotation = Quaternion.Euler(0f, rotation.y + deltaAngleMax/2, 0f);
-        limitLeft.transform.rotation = Quaternion.Euler(0f, rotation.y - deltaAngleMax/2, 0f);
-        limitMid.transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
+
+
+    float Abs(float n)
+    {
+        if (n<0)
+            return -n;
+        return n;
+
+    }
+
+    void Shoot()
+    {
+        limitMid.SetActive(target != null && Abs(Quaternion.LookRotation(target.position - transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < 3);
+    }
+
 
     /// <summary>
     /// Turns to saved enemy
@@ -116,9 +138,6 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        limitRight.transform.rotation = Quaternion.Euler(0f, rotation.y + deltaAngleMax/2, 0f);
-        limitLeft.transform.rotation = Quaternion.Euler(0f, rotation.y - deltaAngleMax/2, 0f);
     }
 
 
