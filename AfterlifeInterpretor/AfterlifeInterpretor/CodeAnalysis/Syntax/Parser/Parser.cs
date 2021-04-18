@@ -152,8 +152,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
         private StatementSyntax ParseForStatement()
         {
             SyntaxToken token = Expect(SyntaxKind.ForKeyword);
+            bool mustClose = false;
             if (Current.Kind == SyntaxKind.OParenToken)
+            {
+                mustClose = true;
                 NextToken();
+            }
+                
             ExpressionStatement initialisation = (ExpressionStatement) ParseExpressionStatement();
             Expect(SyntaxKind.EndStatementToken);
             ExpressionStatement condition = (ExpressionStatement) ParseExpressionStatement();
@@ -162,8 +167,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 ? new ExpressionStatement(new EmptyExpression()) 
                 : (ExpressionStatement) ParseExpressionStatement();
             SkipEndStatements();
-            if (Current.Kind == SyntaxKind.CParenToken)
-                NextToken();
+            if (mustClose)
+                Expect(SyntaxKind.CParenToken);
+            SkipEndStatements();
             StatementSyntax then = ParseStatement();
             SkipEndStatements();
             return new ForStatement(token, initialisation, condition, incrementation, then);
