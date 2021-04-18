@@ -86,7 +86,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
             int start = _position;
             string text = "";
 
-            while (!char.IsWhiteSpace(Current) && Current != '\0')
+            while (char.IsLetter(Current) || char.IsDigit(Current) || Current == '_')
             {
                 text += Current;
                 _position++;
