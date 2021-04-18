@@ -4,6 +4,7 @@ using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor
 {

@@ -46,6 +46,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 BoundNodeKind.ExpressionStatement => EvaluateExpressionStatement((BoundExpressionStatement) statement),
                 BoundNodeKind.IfStatement => EvaluateIfStatement((BoundIf) statement),
                 BoundNodeKind.WhileStatement => EvaluateWhileStatement((BoundWhile) statement),
+                BoundNodeKind.ForStatement => EvaluateForStatement((BoundFor) statement),
                 _ => throw new Exception($"Unexpected statement {statement.Kind}")
             };
         }
@@ -81,6 +82,15 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 lastValue = EvaluateStatement(statement.Then);
             return lastValue;
         }
+        
+        private object EvaluateForStatement(BoundFor statement)
+        {
+            object lastValue = null;
+            uint calls = 0;
+            for(EvaluateExpressionStatement(statement.Initialisation); calls < 250000 && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+                lastValue = EvaluateStatement(statement.Then);
+            return lastValue;
+        }
 
 
         private object EvaluateExpression(BoundExpression expression)
@@ -91,7 +101,8 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 BoundVariable bv => EvaluateVariable(bv),
                 BoundAssignment ba => EvaluateAssignment(ba),
                 BoundUnary u => EvaluateUnaryExpression(u),
-                BoundBinary b => EvaluateBinaryExpression(b),
+                BoundBinaryExpression b => EvaluateBinaryExpression(b),
+                BoundEmptyExpression e => null,
                 _ => throw new Exception($"Unexpected node {expression.Kind}")
             };
         }
@@ -122,7 +133,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             };
         }
 
-        private object EvaluateBinaryExpression(BoundBinary b)
+        private object EvaluateBinaryExpression(BoundBinaryExpression b)
         {
             object l = EvaluateExpression(b.Left);
             object r = EvaluateExpression(b.Right);

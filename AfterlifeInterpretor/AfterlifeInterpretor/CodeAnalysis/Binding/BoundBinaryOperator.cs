@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
@@ -49,6 +50,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryKind.Div, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.ModuloToken, BoundBinaryKind.Mod, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.PlusAssignToken, BoundBinaryKind.Add, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.MinusAssignToken, BoundBinaryKind.Sub, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.StarAssignToken, BoundBinaryKind.Mul, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.SlashAssignToken, BoundBinaryKind.Div, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.ModuloAssignToken, BoundBinaryKind.Mod, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.GtToken, BoundBinaryKind.Gt, typeof(int), typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.LtToken, BoundBinaryKind.Lt, typeof(int), typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.GtEqToken, BoundBinaryKind.GtEq, typeof(int), typeof(bool)), 

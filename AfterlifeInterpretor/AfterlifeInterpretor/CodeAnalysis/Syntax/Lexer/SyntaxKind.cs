@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Syntax Kind enum
@@ -40,6 +40,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         LtToken,
         
         AssignToken,
+        PlusAssignToken,
+        MinusAssignToken,
+        StarAssignToken,
+        SlashAssignToken,
+        ModuloAssignToken,
         
         // Keywords
         TrueKeyword,
@@ -47,6 +52,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         IfKeyword,
         ElseKeyword,
         WhileKeyword,
+        ForKeyword,
 
         // Expressions
         LiteralExpression,
@@ -55,12 +61,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         UnaryExpression,
         AssignementExpression,
         VariableExpression,
+        EmptyExpression,
         
         // Statements
         BlockStatement,
         ExpressionStatement,
         IfStatement,
         ElseClause,
-        WhileStatement
+        WhileStatement,
+        ForStatement
     }
 }

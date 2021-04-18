@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
@@ -57,6 +59,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                     return BindIfStatement((IfStatement) syntax);
                 case SyntaxKind.WhileStatement:
                     return BindWhileStatement((WhileStatement) syntax);
+                case SyntaxKind.ForStatement:
+                    return BindForStatement((ForStatement) syntax);
                 default:
                     Errs.ReportUnknown(syntax.Kind, 0);
                     return null;
@@ -72,6 +76,27 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             }
             return new BoundWhile(condition, BindStatement(syntax.Then));
+        }
+        
+        private BoundStatement BindForStatement(ForStatement syntax)
+        {
+            _scope = new BoundScope(_scope);
+            
+            BoundExpressionStatement initialisation = (BoundExpressionStatement)BindExpressionStatement(syntax.Initialisation);
+            
+            BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
+            if (condition.Expression.Type != typeof(bool))
+            {
+                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                return null;
+            }
+            
+            BoundExpressionStatement incrementation = (BoundExpressionStatement)BindExpressionStatement(syntax.Incrementation);
+
+
+            BoundStatement then = BindStatement(syntax.Then);
+            _scope = _scope.Parent;
+            return new BoundFor(initialisation, condition, incrementation, then);
         }
 
         private BoundStatement BindIfStatement(IfStatement syntax)
@@ -124,6 +149,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                     return BindVariable((VariableExpression) syntax); 
                 case SyntaxKind.IdentifierToken:
                     return BindIdentifier((IdentifierExpression) syntax);
+                case SyntaxKind.EmptyExpression:
+                    return new BoundEmptyExpression();
                 default:
                     Errs.ReportUnknown(syntax.Kind, 0);
                     return null;
@@ -167,7 +194,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             if (assignement == null)
                 return null;
-            
+
             BoundExpression assignee = BindExpression(syntax.Assignee);
             if (assignee is BoundVariable bv)
             {
@@ -185,9 +212,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 
                 if (assignee.Type == typeof(object))
                     _scope.ChangeType(bv.Name, assignement.Type);
-                return new BoundAssignment(bv, assignement);
+                return new BoundAssignment(bv, assignement, syntax.Token.Kind);
             }
 
+            Errs.ReportUnexpected(typeof(BoundVariable), assignee, syntax.Token.Position);
             return null;
         }
         
@@ -225,7 +253,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             }
             
-            return new BoundBinary(left, bOperator, right);
+            return new BoundBinaryExpression(left, bOperator, right);
         }
     }
 }

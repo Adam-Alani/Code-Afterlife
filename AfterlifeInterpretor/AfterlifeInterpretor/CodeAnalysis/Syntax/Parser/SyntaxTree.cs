@@ -1,5 +1,7 @@
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
+
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     /// <summary>
     /// SyntaxTree class

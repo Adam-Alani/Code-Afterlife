@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Syntax token class

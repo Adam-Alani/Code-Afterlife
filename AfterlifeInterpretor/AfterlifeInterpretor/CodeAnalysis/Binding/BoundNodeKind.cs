@@ -8,11 +8,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         VariableExpression,
         AssignmentExpression,
         BinaryExpression,
+        EmptyExpression,
 
         // Statements
         BlockStatement,
         ExpressionStatement,
         IfStatement,
         WhileStatement,
+        ForStatement,
     }
 }

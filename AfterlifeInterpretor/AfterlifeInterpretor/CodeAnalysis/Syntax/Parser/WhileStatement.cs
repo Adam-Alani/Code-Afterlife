@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public sealed class WhileStatement : StatementSyntax
     {

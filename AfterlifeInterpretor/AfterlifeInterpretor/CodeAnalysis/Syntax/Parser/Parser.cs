@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     /// <summary>
     /// Parser class
@@ -18,7 +19,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
 
         public Parser(string text)
         {
-            Lexer lex = new Lexer(text);
+            Lexer.Lexer lex = new Lexer.Lexer(text);
             List<SyntaxToken> tokens = new List<SyntaxToken>();
 
             SyntaxToken tk;
@@ -49,6 +50,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 return NextToken();
             
             Errs.ReportUnexpected(kind, Current.Kind, Current.Position);
+            _position++;
             return new SyntaxToken(kind, Current.Position, null);
         }
 
@@ -116,6 +118,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                     return ParseIfStatement();
                 case SyntaxKind.WhileKeyword:
                     return ParseWhileStatement();
+                case SyntaxKind.ForKeyword:
+                    return ParseForStatement();
                 default:
                     return ParseExpressionStatement();
             }
@@ -144,6 +148,26 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             SkipEndStatements();
             return new WhileStatement(token, condition, then);
         }
+        
+        private StatementSyntax ParseForStatement()
+        {
+            SyntaxToken token = Expect(SyntaxKind.ForKeyword);
+            if (Current.Kind == SyntaxKind.OParenToken)
+                NextToken();
+            ExpressionStatement initialisation = (ExpressionStatement) ParseExpressionStatement();
+            Expect(SyntaxKind.EndStatementToken);
+            ExpressionStatement condition = (ExpressionStatement) ParseExpressionStatement();
+            Expect(SyntaxKind.EndStatementToken);
+            ExpressionStatement incrementation = (Current.Kind == SyntaxKind.OBlockToken) 
+                ? new ExpressionStatement(new EmptyExpression()) 
+                : (ExpressionStatement) ParseExpressionStatement();
+            SkipEndStatements();
+            if (Current.Kind == SyntaxKind.CParenToken)
+                NextToken();
+            StatementSyntax then = ParseStatement();
+            SkipEndStatements();
+            return new ForStatement(token, initialisation, condition, incrementation, then);
+        }
 
         private StatementSyntax ParseIfStatement()
         {
@@ -170,7 +194,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             ExpressionSyntax assignee = ParseExpression();
 
-            while (Current.Kind == SyntaxKind.AssignToken)
+            while (SyntaxFacts.IsAssignment(Current.Kind))
             {
                 SyntaxToken op = NextToken();
                 ExpressionSyntax assignment = ParseAssignments();
@@ -202,6 +226,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                     return new VariableExpression(NextToken(), new IdentifierExpression(Expect(SyntaxKind.IdentifierToken)));
                 case SyntaxKind.IdentifierToken:
                     return new IdentifierExpression(NextToken());
+                case SyntaxKind.CBlockToken:
+                case SyntaxKind.CParenToken:
+                case SyntaxKind.EndToken:
+                case SyntaxKind.EndStatementToken:
+                    return new EmptyExpression();
                 default:
                     return new LiteralExpression(Expect(SyntaxKind.NumericToken));
             }

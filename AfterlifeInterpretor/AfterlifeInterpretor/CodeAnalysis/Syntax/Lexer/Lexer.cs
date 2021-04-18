@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Lexer class

@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// SyntaxFact class
@@ -64,6 +64,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "if" => SyntaxKind.IfKeyword,
                 "else" => SyntaxKind.ElseKeyword,
                 "while" => SyntaxKind.WhileKeyword,
+                "for" => SyntaxKind.ForKeyword,
                 _ => SyntaxKind.IdentifierToken
             };
         }
@@ -92,6 +93,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "!=" => SyntaxKind.NEqToken,
                 ">=" => SyntaxKind.GtEqToken,
                 "<=" => SyntaxKind.LtEqToken,
+                "+=" => SyntaxKind.PlusAssignToken,
+                "-=" => SyntaxKind.MinusAssignToken,
+                "*=" => SyntaxKind.StarAssignToken,
+                "/=" => SyntaxKind.SlashAssignToken,
+                "%=" => SyntaxKind.ModuloAssignToken,
                 _ => SyntaxKind.ErrorToken
             };
         }
@@ -102,6 +108,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             {
                 default:
                     return false;
+                case '+':
+                case '-':
+                case '*':
+                case '/':
+                case '%':
                 case '!':
                 case '>':
                 case '<':
@@ -110,6 +121,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 case '|':
                 case '&':
                     return lookAhead == current;
+            }
+        }
+
+        public static bool IsAssignment(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.PlusAssignToken:
+                case SyntaxKind.MinusAssignToken:
+                case SyntaxKind.StarAssignToken:
+                case SyntaxKind.SlashAssignToken:
+                case SyntaxKind.ModuloAssignToken:
+                case SyntaxKind.AssignToken:
+                    return true;
+                default:
+                    return false;
             }
         }
     }

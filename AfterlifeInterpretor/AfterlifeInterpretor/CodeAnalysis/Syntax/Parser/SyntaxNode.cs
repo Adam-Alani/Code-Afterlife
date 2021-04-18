@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     /// <summary>
     /// SyntaxNode class
@@ -12,15 +13,5 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         public abstract SyntaxKind Kind { get; }
 
         public abstract IEnumerable<SyntaxNode> GetChildren();
-    }
-
-    
-    /// <summary>
-    /// ExpressionSyntax class
-    /// Abstract type of node used for expressions
-    /// Author: Raphaël "Sheinxy" Montes
-    /// </summary>
-    public abstract class ExpressionSyntax : SyntaxNode
-    {
     }
 }
