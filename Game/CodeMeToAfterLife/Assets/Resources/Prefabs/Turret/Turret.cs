@@ -13,11 +13,7 @@ public class Turret : MonoBehaviour
     public float freeRotationSpeed; //of how much it turns when no one's here (depends on rotationSpeed) => + : clockwise  AND - : trigonometric
     public Transform partToRotate; // head of the turret
     public float deltaAngleMax; // the max delta between the turret and the enemy (180 for a circle)
-    public GameObject limitLeft; // left border
-    public GameObject limitRight; // right border
-    public GameObject limitMid;
-
-
+    
     
     // Start is called before the first frame update
     /// <summary>
@@ -25,12 +21,6 @@ public class Turret : MonoBehaviour
     /// </summary>    
     void Start()
     {
-        limitLeft.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
-        limitRight.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
-        limitMid.transform.localScale = new Vector3(0.01f, 0.01f, maxRange);
-
-        limitMid.SetActive(false);
-
         InvokeRepeating("UpdateTarget", 0f, UpdateTime);
     }
 
@@ -44,25 +34,21 @@ public class Turret : MonoBehaviour
 
         float shortestEnemyDistance = maxRange;
         GameObject nearestEnemy = null;
-        //Debug.Log("Shortest distance to enemy : " + shortestEnemyDistance); //************************************************
+
         foreach (GameObject enemy in enemies)
         {
-            CapsuleCollider collider = enemy.GetComponent<Collider>() as CapsuleCollider;
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position) - collider.radius;
-            //Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestEnemyDistance && InRangeEnemy(enemy))
             {
                 shortestEnemyDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
-        //Debug.Log("End Foreach");//*****************************************************
-        
         if (nearestEnemy != null)
         {
             target = nearestEnemy.transform;
         } else
-        { 
+        {
             target = null;
         }
     }
@@ -75,7 +61,7 @@ public class Turret : MonoBehaviour
 
     bool InRangeEnemy (GameObject enemy)
     {
-        float yRotationTurret = partToRotate.transform.rotation.eulerAngles.y; // takes the rotation of the turret
+        float yRotationTurret = partToRotate.transform.rotation.y; // takes the rotation of the turret
         float yEnemyDirection = Quaternion.LookRotation(enemy.transform.position - transform.position).eulerAngles.y; // takes the direction of the current chosen enemy
         float deltaAngle = yEnemyDirection - yRotationTurret; // gives the delta between the two
         return (-deltaAngleMax <= deltaAngle && deltaAngle <= deltaAngleMax);
@@ -87,20 +73,10 @@ public class Turret : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Shoot();
         if (target == null)
             TurnAlone();
         else
             TurnToEnemy();
-
-
-
-        
-
-        limitRight.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y + deltaAngleMax/2, 0f);
-        limitLeft.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y - deltaAngleMax/2, 0f);
-        limitMid.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y, 0f);
-        
     }
 
 
@@ -113,21 +89,6 @@ public class Turret : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, whereToRotate, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
-
-
-    float Abs(float n)
-    {
-        if (n<0)
-            return -n;
-        return n;
-
-    }
-
-    void Shoot()
-    {
-        limitMid.SetActive(target != null && Abs(Quaternion.LookRotation(target.position - transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < 3);
-    }
-
 
     /// <summary>
     /// Turns to saved enemy
