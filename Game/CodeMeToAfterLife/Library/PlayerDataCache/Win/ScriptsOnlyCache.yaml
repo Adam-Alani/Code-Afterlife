@@ -6,6 +6,7 @@ ScriptsOnlyBuild:
     - NetworkController
     - OpenLink
     - OptionsMenu
+    - PlayerMovement
     - QuickStartLobbyController
     - QuickStartRoomController
     - ShowRoom
@@ -21,6 +22,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewEditor
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -111,79 +114,81 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11448}
+      Script: {instanceID: 11444}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11502}
     - Class: 114
-      Script: {instanceID: 11550}
+      Script: {instanceID: 11546}
     - Class: 114
-      Script: {instanceID: 11816}
+      Script: {instanceID: 11812}
     - Class: 114
-      Script: {instanceID: 11918}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 12030}
+      Script: {instanceID: 12026}
     - Class: 114
-      Script: {instanceID: 12066}
+      Script: {instanceID: 12062}
     - Class: 114
-      Script: {instanceID: 12074}
+      Script: {instanceID: 12070}
     - Class: 114
-      Script: {instanceID: 12112}
+      Script: {instanceID: 12108}
     - Class: 114
-      Script: {instanceID: 12230}
+      Script: {instanceID: 12156}
     - Class: 114
-      Script: {instanceID: 12248}
+      Script: {instanceID: 12228}
     - Class: 114
-      Script: {instanceID: 12266}
+      Script: {instanceID: 12246}
     - Class: 114
-      Script: {instanceID: 12322}
+      Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 12384}
+      Script: {instanceID: 12320}
     - Class: 114
-      Script: {instanceID: 12434}
+      Script: {instanceID: 12382}
     - Class: 114
-      Script: {instanceID: 12576}
+      Script: {instanceID: 12432}
     - Class: 114
-      Script: {instanceID: 12652}
+      Script: {instanceID: 12574}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12650}
     - Class: 114
-      Script: {instanceID: 12740}
+      Script: {instanceID: 12730}
     - Class: 114
-      Script: {instanceID: 12790}
+      Script: {instanceID: 12738}
     - Class: 114
-      Script: {instanceID: 12808}
+      Script: {instanceID: 12788}
     - Class: 114
-      Script: {instanceID: 12962}
+      Script: {instanceID: 12806}
     - Class: 114
-      Script: {instanceID: 12982}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 12992}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 12990}
     - Class: 114
-      Script: {instanceID: 13124}
+      Script: {instanceID: 13048}
     - Class: 114
-      Script: {instanceID: 13322}
+      Script: {instanceID: 13122}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13320}
     - Class: 114
-      Script: {instanceID: 13458}
+      Script: {instanceID: 13386}
     - Class: 114
-      Script: {instanceID: 13504}
+      Script: {instanceID: 13456}
     - Class: 114
-      Script: {instanceID: 13576}
+      Script: {instanceID: 13502}
     - Class: 114
-      Script: {instanceID: 13596}
+      Script: {instanceID: 13574}
     - Class: 114
-      Script: {instanceID: 13608}
+      Script: {instanceID: 13594}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 13606}
     - Class: 114
-      Script: {instanceID: 13628}
+      Script: {instanceID: 13610}
+    - Class: 114
+      Script: {instanceID: 13626}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -248,8 +253,20 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 12156}
+    - Class: 114
+      Script: {instanceID: 12382}
+    - Class: 114
+      Script: {instanceID: 12738}
+    - Class: 114
+      Script: {instanceID: 13386}
+    - Class: 114
+      Script: {instanceID: 13502}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 136
+      Script: {instanceID: 0}
+    - Class: 143
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -277,17 +294,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11274}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11804}
+      Script: {instanceID: 11800}
     - Class: 114
-      Script: {instanceID: 12030}
+      Script: {instanceID: 12026}
     - Class: 114
-      Script: {instanceID: 13124}
+      Script: {instanceID: 13122}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13150}
     - Class: 114
-      Script: {instanceID: 13596}
+      Script: {instanceID: 13594}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -867,6 +884,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomPlayerTtlProperty
+  - hash:
+      serializedVersion: 2
+      Hash: 4b5a5ebf1f3694bfb717a7918eeb44f4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerMovement
   - hash:
       serializedVersion: 2
       Hash: f941c3a384168571b7d90f58ec4986bc
@@ -1499,6 +1522,12 @@ ScriptsOnlyBuild:
     className: VertexColorCycler
   - hash:
       serializedVersion: 2
+      Hash: 17d041ee89ae008a578d523a809c2da9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PixelShader
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -1565,7 +1594,7 @@ ScriptsOnlyBuild:
     className: PlayerNameInputField
   - hash:
       serializedVersion: 2
-      Hash: 4bc6346e2b5f2d711f71f2004434aee2
+      Hash: ca5d2c3d5c8ff90d41ad0ee43d9a642e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Turret
@@ -1854,7 +1883,6 @@ ScriptsOnlyBuild:
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
-  - Assets/Scenes/Map 2.unity
   - Assets/Scenes/Scene 1.unity
-  playerPath: "G:/Data Ivan/cours/\xE9pita/Prog/Projet S2/Game/builds/build/New Unity
-    Project.exe"
+  - Assets/Scenes/Map 2.unity
+  playerPath: C:/Users/N'importe maison/Desktop/Projet S2 EPITA Theo/New Unity Project.exe
