@@ -38,12 +38,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlayerControls.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/OptionsMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/PlayerControls.cs" />
+      <option value="$PROJECT_DIR$/PlayerMovement.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nq2i8hBHeNvBzVyY1LgigfYHzD" />
@@ -77,6 +78,8 @@
       <workItem from="1618753831136" duration="242000" />
       <workItem from="1618754168705" duration="304000" />
       <workItem from="1618754556969" duration="516000" />
+      <workItem from="1618759328700" duration="28000" />
+      <workItem from="1618764169564" duration="167000" />
     </task>
     <servers />
   </component>
