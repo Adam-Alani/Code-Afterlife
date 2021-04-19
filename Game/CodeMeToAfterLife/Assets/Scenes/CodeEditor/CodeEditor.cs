@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text.RegularExpressions;
+
 public class CodeEditor : MonoBehaviour
 {
     public InputField mainInputField;
@@ -12,7 +13,6 @@ public class CodeEditor : MonoBehaviour
     public void Start()
     {
         mainInputField.onValueChanged.AddListener(FormatText);
-
     }
 
     private void FormatText(string arg0)
