@@ -322,10 +322,11 @@ Assets\Pixelation\Example\Scripts\Plane.cs
 Assets\Pixelation\Example\Scripts\PointLight.cs
 Assets\Pixelation\Scripts\Chunky.cs
 Assets\Pixelation\Scripts\Pixelation.cs
-Assets\Scenes\CodeEditor\CodeEditor.cs
 "Assets\Scenes\Main Menu\OpenLink.cs"
 "Assets\Scenes\Option canvas\OptionsMenu.cs"
+Assets\Scripts\Interactible.cs
 Assets\Scripts\SimpleCameraController.cs
+Assets\TerminalBehavior.cs
 "Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark01.cs"
 "Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark01_UGUI.cs"
 "Assets\TextMesh Pro\Examples & Extras\Scripts\Benchmark02.cs"
