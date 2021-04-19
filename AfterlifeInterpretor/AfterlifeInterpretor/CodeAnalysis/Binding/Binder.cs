@@ -85,9 +85,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             BoundExpressionStatement initialisation = (BoundExpressionStatement)BindExpressionStatement(syntax.Initialisation);
             
             BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
-            if (condition.Expression.Type != typeof(bool))
+            if (condition?.Expression?.Type != typeof(bool))
             {
-                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                Errs.ReportType(condition?.Expression?.Type, typeof(bool), syntax.Token.Position);
                 return null;
             }
             
