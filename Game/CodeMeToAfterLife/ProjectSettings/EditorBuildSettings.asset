@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: ea258ed6dbeec37479df4556d6b587ff
   - enabled: 1
-    path: Assets/Scenes/Test roomname.unity
+    path: Assets/Scenes/Scene 1.unity
     guid: 87603d22b8c63b942bdd0a631bd104d7
   - enabled: 1
     path: Assets/Scenes/Map 2.unity
