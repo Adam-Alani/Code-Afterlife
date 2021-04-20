@@ -24,8 +24,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PV.IsMine)
-            Move();
+        // if (PV.IsMine)
+        Move();
     }
     
     /// <summary>
@@ -73,5 +73,5 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             
         transform.rotation =  Quaternion.Euler(0f, angle, 0f); // rotation around the y axis
-     }
+    }
 }

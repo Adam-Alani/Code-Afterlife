@@ -19,7 +19,63 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="" />
+    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ArtifactDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/EditorInstance.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/EditorInstance.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/SceneVisibilityState.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/SceneVisibilityState.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/SourceAssetDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/SourceAssetDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-132abc97e0109f8409f8c49dd814f7a8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-15eeb3155aeccc548bbc5b04e297c466" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-180e7c6e0892e174eaa87649f48832c6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-21d6dd601fc8b704e82d929226fd975d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-2a2a224122849ae4ca32f50aeb803e3f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-2c580958833a77a4c83b7ba5781dcfca" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-34b51fcf1203f124f9413d7a4d3a8b43" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-42191e48f05f5db45beab1f4cc6c8be9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-47ce302fbb7ef6a4a8ea476995f9e2c8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-4eeec78180a4fe14aa20fd50f1f36864" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-55d2a010166b1ec47a171b17941296f9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-5aaf79012d78f3245a0843ea8566a7a2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-5bd13a144cf71e0418897e1a30384eea" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-63f5863774c80e94bb9b651fe78554bb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-6811447bae9233b4fad755a32bcab148" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-6f4f244abcb0d0f47814a862d54a8167" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-6fdcb3114658d9340bb30356993782fb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-710d4c9e74d02b847bf32203060c9dfd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-78769f22065a7454fab9b0d452df8926" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-79b6b7842e77fd242ad9808bb4c3a268" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-7c8a209fb8d67c84d83ab5866a090ab0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-8e65a0a072fd5d74099a97f5295368e9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-941606466eb386642bffac1a0a41171d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-946fdb5ec5175544bae830edcce3a252" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-ae8941c41c0a83e4aab5f22e41fbd441" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-aef8800170d9f7a4babb8657e2355e24" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-b49e20d22f04bca48bbc5bdb3fd7a157" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-bb59845dd90dc4347a014eea83049feb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-c11b8eafb56bcdc4298040190cf9dbe1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-c29294cf210fb8d4a8e3857a65fe60cf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-c2935f8e465aed04892a44677ef24872" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-c3569d49cc0ce744b88aa5f248e32bb5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-c96d256df14b3cf4f8b9f5d4f5457fd4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-cea64cb95b3c9d24ca112abe087c4286" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-d022c0a41dbe6a843bf9a8d820855abf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-d97c7a1a9039a11419e1e5f7927648f2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-dbfaf92ddf4ffee479856c912e294fc7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-de4bdbea8c2e34245ad876faa2be50ba" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-e11997f2370aa5948a6928c48bb3bbe2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-e889aac3b0a9fe24aa061333a969e1d0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/UnityTempFile-f6adfb14a6ead6d418f1f90537a16db6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/__Backupscenes/0.backup" beforeDir="false" afterPath="$PROJECT_DIR$/../Temp/__Backupscenes/0.backup" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/tempFile.res" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/tempFile.resG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Temp/tempFile.resS" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,12 +85,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Scripts/interactible.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/OptionsMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
+      <option value="$PROJECT_DIR$/Scripts/interactible.cs" />
       <option value="$PROJECT_DIR$/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/TerminalBehavior.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nq2i8hBHeNvBzVyY1LgigfYHzD" />
@@ -64,6 +124,7 @@
       <workItem from="1614152377096" duration="168000" />
       <workItem from="1618832287099" duration="115000" />
       <workItem from="1618832437581" duration="452000" />
+      <workItem from="1618910394443" duration="912000" />
     </task>
     <servers />
   </component>
