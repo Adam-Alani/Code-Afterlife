@@ -9,11 +9,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         
         public override Type Type => Operator.ResultType;
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
-        
-        public BoundUnary(BoundUnaryOperator op, BoundExpression operand)
+        public override int Position { get; }
+
+        public BoundUnary(BoundUnaryOperator op, BoundExpression operand, int position)
         {
             Operator = op;
             Operand = operand;
+            Position = position;
         }
     }
 }

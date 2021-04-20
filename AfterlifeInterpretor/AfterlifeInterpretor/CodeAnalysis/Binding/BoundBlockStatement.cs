@@ -4,10 +4,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     {
         public BoundStatement[] Statements { get; }
         public override BoundNodeKind Kind => BoundNodeKind.BlockStatement;
+        public override int Position { get; }
 
-        public BoundBlockStatement(BoundStatement[] statements)
+        public BoundBlockStatement(BoundStatement[] statements, int position)
         {
             Statements = statements;
+            Position = position;
         }
     }
 }

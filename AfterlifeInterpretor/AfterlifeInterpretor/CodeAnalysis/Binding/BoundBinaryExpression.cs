@@ -10,12 +10,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         
         public override Type Type => Operator.ResultType;
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        
-        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperator op, BoundExpression right)
+        public override int Position { get; }
+
+        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperator op, BoundExpression right, int position)
         {
             Left = left;
             Operator = op;
             Right = right;
+            Position = position;
         }
     }
 }

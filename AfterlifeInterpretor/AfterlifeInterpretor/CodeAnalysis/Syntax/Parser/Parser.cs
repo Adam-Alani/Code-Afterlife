@@ -217,7 +217,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             {
                 case SyntaxKind.OParenToken:
                     NextToken();
+                    SkipEndStatements();
                     ExpressionSyntax expr = ParseAssignments(); 
+                    SkipEndStatements();
                     Expect(SyntaxKind.CParenToken);
 
                     return expr;
@@ -226,6 +228,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 case SyntaxKind.FalseKeyword:
                     bool trueFalse = Current.Kind == SyntaxKind.TrueKeyword;
                     return new LiteralExpression(NextToken(), trueFalse);
+                case SyntaxKind.ListToken:
+                case SyntaxKind.StringToken:
+                case SyntaxKind.FloatToken:
                 case SyntaxKind.VarToken:
                 case SyntaxKind.BoolToken:
                 case SyntaxKind.IntToken:
@@ -237,6 +242,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 case SyntaxKind.EndToken:
                 case SyntaxKind.EndStatementToken:
                     return new EmptyExpression();
+                case SyntaxKind.WordToken:
+                    return new LiteralExpression(Expect(SyntaxKind.WordToken));
+                case SyntaxKind.CommaToken:
+                    Expect(SyntaxKind.CommaToken);
+                    return new EmptyListExpression();
                 default:
                     return new LiteralExpression(Expect(SyntaxKind.NumericToken));
             }
@@ -260,11 +270,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             {
                 doOperation = false;
                 int precedence = Current.Kind.GetBinaryPrecedence();
-                if (precedence != 0 && precedence > parentPrecedence)
+                if (precedence != 0 && precedence > parentPrecedence || (precedence == parentPrecedence && !Current.Kind.IsRightAssociative()))
                 {
                     doOperation = true;
                     SyntaxToken operatorToken = NextToken();
-                    ExpressionSyntax right = ParseExpression(precedence);
+                    ExpressionSyntax right = (Current.Kind == SyntaxKind.EndStatementToken) ? new EmptyExpression() : ParseExpression(precedence);
                     left = new BinaryExpression(left, operatorToken, right);
                 }
             } while (doOperation);

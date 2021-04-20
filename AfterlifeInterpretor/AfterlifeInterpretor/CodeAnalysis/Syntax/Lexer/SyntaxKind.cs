@@ -10,6 +10,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         // Tokens
         ErrorToken,
         NumericToken,
+        WordToken,
         SpaceToken,
         OParenToken,
         CParenToken,
@@ -20,13 +21,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         VarToken,
         BoolToken,
         IntToken,
+        StringToken,
+        FloatToken,
+        ListToken,
         EndToken,
+        PrintToken,
         
         // Operator Tokens
         PlusToken,
         MinusToken,
         StarToken,
         SlashToken,
+        DoubleSlashToken,
         ModuloToken,
         
         AndToken,
@@ -46,6 +52,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         SlashAssignToken,
         ModuloAssignToken,
         
+        SizeToken,
+        HeadToken,
+        TailToken,
+        CommaToken,
+        DotToken,
+
         // Keywords
         TrueKeyword,
         FalseKeyword,
@@ -62,6 +74,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         AssignementExpression,
         VariableExpression,
         EmptyExpression,
+        EmptyListExpression,
         
         // Statements
         BlockStatement,
@@ -69,6 +82,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         IfStatement,
         ElseClause,
         WhileStatement,
-        ForStatement
+        ForStatement,
     }
 }

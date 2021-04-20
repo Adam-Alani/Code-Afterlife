@@ -10,13 +10,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpressionStatement Incrementation { get; }
         
         public override BoundNodeKind Kind => BoundNodeKind.ForStatement;
-        
-        public BoundFor(BoundExpressionStatement initialisation, BoundExpressionStatement condition, BoundExpressionStatement incrementation, BoundStatement then)
+        public override int Position { get; }
+
+        public BoundFor(BoundExpressionStatement initialisation, BoundExpressionStatement condition, BoundExpressionStatement incrementation, BoundStatement then, int position)
         {
             Initialisation = initialisation;
             Condition = condition;
             Incrementation = incrementation;
             Then = then;
+            Position = position;
         }
     }
 }

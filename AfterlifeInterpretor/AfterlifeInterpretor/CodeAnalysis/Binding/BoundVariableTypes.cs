@@ -13,6 +13,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 SyntaxKind.VarToken => typeof(object),
                 SyntaxKind.BoolToken => typeof(bool),
                 SyntaxKind.IntToken => typeof(int),
+                SyntaxKind.FloatToken => typeof(double),
+                SyntaxKind.StringToken => typeof(string),
+                SyntaxKind.ListToken => typeof(List),
                 _ => null
             };
         }

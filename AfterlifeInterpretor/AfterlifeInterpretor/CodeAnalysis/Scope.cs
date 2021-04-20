@@ -61,7 +61,6 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Dictionary<string, Type> res = new Dictionary<string, Type>();
             foreach (KeyValuePair<string, object> kv in Variables)
             {
-                
                 res.Add(kv.Key, kv.Value != null ? kv.Value.GetType() : typeof(object));
             }
 

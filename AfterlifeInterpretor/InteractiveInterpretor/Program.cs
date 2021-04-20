@@ -89,7 +89,15 @@ namespace InteractiveInterpretor
             }
             else
             {
+
+                if (evaluationResults.StdOut.Length > 0)
+                {
+                    Console.WriteLine(evaluationResults.StdOut);
+                    Console.WriteLine();
+                }
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(evaluationResults.Value);
+                Console.ResetColor();
             }
         }
     }

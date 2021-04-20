@@ -9,12 +9,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpressionStatement Condition { get; }
         
         public override BoundNodeKind Kind => BoundNodeKind.IfStatement;
-        
-        public BoundIf(BoundExpressionStatement condition, BoundStatement then, BoundStatement elseClause)
+        public override int Position { get; }
+
+        public BoundIf(BoundExpressionStatement condition, BoundStatement then, BoundStatement elseClause, int position)
         {
             Condition = condition;
             Then = then;
             Else = elseClause;
+            Position = position;
         }
     }
 }

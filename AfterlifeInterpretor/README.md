@@ -4,7 +4,7 @@
   - [x] For-loops
   - [x] +=, -=, *=, /=, %=
   - [ ] Functions
-  - [ ] Strings, Floats
+  - [x] Strings, Floats
   - [ ] In-game integration
-  - [ ] Lists (optional for now)
+  - [x] Lists (optional for now)
   - [ ] If else expressions (optional)

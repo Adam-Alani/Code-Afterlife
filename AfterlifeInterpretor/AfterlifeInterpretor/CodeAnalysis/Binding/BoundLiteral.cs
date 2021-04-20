@@ -8,10 +8,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public override Type Type => Value.GetType();
         public override BoundNodeKind Kind => BoundNodeKind.LiteralExpression;
-        
-        public BoundLiteral(object value)
+        public override int Position { get; }
+
+        public BoundLiteral(object value, int position)
         {
             Value = value;
+            Position = position;
         }
     }
 }

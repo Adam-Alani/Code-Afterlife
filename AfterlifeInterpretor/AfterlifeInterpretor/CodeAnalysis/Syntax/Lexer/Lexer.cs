@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
@@ -75,10 +77,44 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
                 return LexKeyword();
             }
 
+            if (Current == '"')
+            {
+                return LexWord();
+            }
+
             SyntaxToken token = FindToken();
             if (token.Kind == SyntaxKind.ErrorToken) 
                 Errs.ReportUnknown(token.Text, start);
             return token;
+        }
+
+        private SyntaxToken LexWord()
+        {
+            int start = _position;
+            string text = "";
+
+            do
+            {
+                if (Current == '\\')
+                {
+                    _position++;
+                    text += Regex.Unescape($"\\{Current}");
+                }
+                else
+                    text += Current;
+                _position++;
+            } while (Current != '"' && Current != '\0');
+
+            if (Current == '"')
+            {
+                string value = text.Substring(1);
+                text += Current;
+                _position++;
+                return new SyntaxToken(SyntaxKind.WordToken, start, text, value);
+            }
+            
+            Errs.ReportUnexpected('"', SyntaxKind.EndToken, start);
+            return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
         }
 
         private SyntaxToken LexKeyword()
@@ -100,7 +136,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
             int start = _position;
             string text = "";
 
-            while (char.IsWhiteSpace(Current))
+            while (char.IsWhiteSpace(Current) && Current != '\n')
             {
                 text += Current;
                 _position++;
@@ -133,9 +169,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
                 text += Current;
                 _position++;
             }
+            
+            if (Current != '.' && int.TryParse(text, out int integer))
+                return new SyntaxToken(SyntaxKind.NumericToken, start, text, integer);
 
-            if (int.TryParse(text, out var value))
-                return new SyntaxToken(SyntaxKind.NumericToken, start, text, value);
+            do
+            {
+                text += Current;
+                _position++;
+            } while (char.IsDigit(Current));
+            
+            if (double.TryParse(text, out double floating))
+                return new SyntaxToken(SyntaxKind.NumericToken, start, text, floating);
 
             Errs.ReportUnexpected(SyntaxKind.NumericToken, text, start);
             return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
