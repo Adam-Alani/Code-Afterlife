@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 public class CodeEditor : MonoBehaviour
 {
     
-    public GameObject lineNumbers;
+    public TMPro.TMP_Text lineNumbers;
     public TMPro.TMP_Text codeUI;
     public Image caret;
     public string code { get; set; }
@@ -161,7 +161,7 @@ public class CodeEditor : MonoBehaviour
         for (int i = 0; i < numLines; i++) {
             numbers += (i + 1) + "\n";
         }
-        lineNumbers.GetComponent<Text>().text = numbers;
+        lineNumbers.text = numbers;
     }
     
     public void CaretTimer()
