@@ -11,7 +11,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
     public sealed class LiteralExpression : ExpressionSyntax
     {
         public override SyntaxKind Kind => SyntaxKind.LiteralExpression;
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         public object Value { get; }
         
         public LiteralExpression(SyntaxToken token)

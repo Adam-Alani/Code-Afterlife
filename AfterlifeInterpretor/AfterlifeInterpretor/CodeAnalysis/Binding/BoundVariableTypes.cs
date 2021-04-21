@@ -10,12 +10,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         {
             return token.Kind switch
             {
-                SyntaxKind.VarToken => typeof(object),
-                SyntaxKind.BoolToken => typeof(bool),
-                SyntaxKind.IntToken => typeof(int),
-                SyntaxKind.FloatToken => typeof(double),
-                SyntaxKind.StringToken => typeof(string),
-                SyntaxKind.ListToken => typeof(List),
+                SyntaxKind.VarKeyword => typeof(object),
+                SyntaxKind.BoolKeyword => typeof(bool),
+                SyntaxKind.IntKeyword => typeof(int),
+                SyntaxKind.FloatKeyword => typeof(double),
+                SyntaxKind.StringKeyword => typeof(string),
+                SyntaxKind.ListKeyword => typeof(List),
+                SyntaxKind.FunctionKeyword => typeof(Function),
                 _ => null
             };
         }

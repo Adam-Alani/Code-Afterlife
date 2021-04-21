@@ -8,29 +8,36 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundScope Parent;
         private Dictionary<string, Type> Variables { get; }
 
+        public Type BlockType;
+
         
         public BoundScope()
         {
             Parent = null;
             Variables = new Dictionary<string, Type>();
+            BlockType = null;
         }
         
         public BoundScope(BoundScope parent)
         {
             Parent = parent;
             Variables = new Dictionary<string, Type>();
+            BlockType = parent.BlockType;
         }
         
         public BoundScope(Dictionary<string, Type> variables)
         {
             Parent = null;
             Variables = variables;
+            BlockType = null;
+
         }
 
         public BoundScope(BoundScope parent, Dictionary<string, Type> variables)
         {
             Parent = parent;
             Variables = variables;
+            BlockType = parent.BlockType;
         }
         
         public bool HasVariable(string var)

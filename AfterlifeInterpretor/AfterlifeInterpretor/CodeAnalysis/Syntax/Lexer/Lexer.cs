@@ -72,7 +72,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
                 return LexWhiteSpace();
             }
 
-            if (char.IsLetter(Current))
+            if (char.IsLetter(Current) || Current == '_')
             {
                 return LexKeyword();
             }

@@ -1,3 +1,5 @@
+using System;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundIf : BoundStatement
@@ -10,6 +12,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         
         public override BoundNodeKind Kind => BoundNodeKind.IfStatement;
         public override int Position { get; }
+
+        public override Type Type => Then.Type;
 
         public BoundIf(BoundExpressionStatement condition, BoundStatement then, BoundStatement elseClause, int position)
         {

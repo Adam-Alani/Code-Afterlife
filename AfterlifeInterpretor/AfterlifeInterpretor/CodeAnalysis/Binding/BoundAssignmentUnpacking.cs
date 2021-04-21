@@ -5,14 +5,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundAssignmentUnpacking : BoundExpression
     {
-        public BoundBinaryExpression Assignee { get; }
+        public BoundBinary Assignee { get; }
         public BoundExpression Assignment { get; }
 
         public override BoundNodeKind Kind => BoundNodeKind.AssignmentExpression;
         public override int Position { get; }
         public override Type Type => Assignment.Type;
 
-        public BoundAssignmentUnpacking(BoundBinaryExpression assignee, BoundExpression assignment, int position)
+        public BoundAssignmentUnpacking(BoundBinary assignee, BoundExpression assignment, int position)
         {
             Assignee = assignee;
             Position = position;

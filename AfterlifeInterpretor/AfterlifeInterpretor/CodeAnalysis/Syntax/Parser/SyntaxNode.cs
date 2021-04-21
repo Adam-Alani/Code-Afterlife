@@ -11,6 +11,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
     public abstract class SyntaxNode
     {
         public abstract SyntaxKind Kind { get; }
+        
+        public abstract SyntaxToken Token { get;  }
 
         public abstract IEnumerable<SyntaxNode> GetChildren();
     }

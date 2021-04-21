@@ -2,7 +2,7 @@ using System;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
-    internal sealed class BoundBinaryExpression : BoundExpression
+    internal sealed class BoundBinary : BoundExpression
     {
         public BoundExpression Left { get;  }
         public BoundBinaryOperator Operator { get;  }
@@ -12,7 +12,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
         public override int Position { get; }
 
-        public BoundBinaryExpression(BoundExpression left, BoundBinaryOperator op, BoundExpression right, int position)
+        public BoundBinary(BoundExpression left, BoundBinaryOperator op, BoundExpression right, int position)
         {
             Left = left;
             Operator = op;

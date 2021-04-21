@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
@@ -11,11 +12,17 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// </summary>
     internal sealed class Evaluator
     {
+        private const int MAX_ITER = 250000;
+        
+        private const int MAX_DEPTH = 5000;
+        
         private readonly BoundBlockStatement _root;
         private Scope _scope;
 
         public Errors Errs;
         public string StdOut;
+
+        private int _depth;
 
         public Evaluator(BoundBlockStatement root, Scope scope)
         {
@@ -23,6 +30,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _scope = scope;
             Errs = new Errors();
             StdOut = "";
+            _depth = 0;
         }
         
         public Evaluator(BoundBlockStatement root)
@@ -31,6 +39,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _scope = new Scope();
             Errs = new Errors();
             StdOut = "";
+            _depth = 0;
         }
         
         public Evaluator(BoundBlockStatement root, Scope scope, Errors errs)
@@ -39,6 +48,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _scope = scope;
             Errs = errs;
             StdOut = "";
+            _depth = 0;
         }
         
         public Evaluator(BoundBlockStatement root, Errors errs)
@@ -47,18 +57,37 @@ namespace AfterlifeInterpretor.CodeAnalysis
             _scope = new Scope();
             Errs = errs;
             StdOut = "";
+            _depth = 0;
+        }
+        
+        private object ReportError(string s, int p)
+        {
+            Errs.Report(s, p);
+            return null;
         }
 
         public object Evaluate()
         {
-            return EvaluateProgram(_root);
+            try
+            {
+                return EvaluateProgram(_root);
+            }
+            catch (Exception)
+            {
+                Errs.Report("Unexpected behaviour", -1);
+                return null;
+            }
         }
 
         private object EvaluateProgram(BoundBlockStatement program)
         {
             object lastValue = null;
             foreach (BoundStatement statement in program.Statements)
+            {
                 lastValue = EvaluateStatement(statement);
+                if (_scope.Return) break;
+            }
+                
             return lastValue;
         }
 
@@ -71,8 +100,30 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 BoundNodeKind.IfStatement => EvaluateIfStatement((BoundIf) statement),
                 BoundNodeKind.WhileStatement => EvaluateWhileStatement((BoundWhile) statement),
                 BoundNodeKind.ForStatement => EvaluateForStatement((BoundFor) statement),
-                _ => throw new Exception($"Unexpected statement {statement.Kind}")
+                BoundNodeKind.ReturnStatement => EvaluateReturn((BoundReturn) statement),
+                _ => ReportError($"Unexpected statement {statement.Kind}", statement.Position)
             };
+        }
+
+        private object EvaluateReturn(BoundReturn statement)
+        {
+            _scope.Return = true;
+            return EvaluateExpression(statement.Expression);
+        }
+
+        private object EvaluateFunctionDeclaration(BoundFunction statement)
+        {
+            Function f = new Function(statement.Args, statement.Body, statement.Type, _scope);
+            EvaluateVariable(statement.Assignee);
+            
+            if (_scope.GetValue(statement.Assignee.Name) != null && _scope.GetValue(statement.Assignee.Name).GetType() != f.GetType())
+            {
+                Errs.ReportType(_scope?.GetValue(statement.Assignee.Name).GetType(), f.GetType(), statement.Position);
+                return null;
+            }
+                
+            _scope.SetValue(statement.Assignee.Name, f);
+            return f;
         }
 
         private object EvaluateBlockStatement(BoundBlockStatement block)
@@ -81,7 +132,11 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             foreach (BoundStatement statement in block.Statements)
+            {
                 lastValue = EvaluateStatement(statement);
+                if (_scope.Return) break;
+            }
+                
 
             _scope = _scope.Parent;
             return lastValue;
@@ -102,8 +157,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
         private object EvaluateWhileStatement(BoundWhile statement)
         {
             object lastValue = null;
-            for(uint calls = 0; calls < 250000 && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+            uint calls = 0;
+            for(; calls < MAX_ITER && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
                 lastValue = EvaluateStatement(statement.Then);
+            
+            if (calls == MAX_ITER)
+                Errs.Report("Stack Overflow", statement.Position);
             return lastValue;
         }
         
@@ -113,10 +172,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             uint calls = 0;
-            for(EvaluateExpressionStatement(statement.Initialisation); calls < 250000 && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+            for(EvaluateExpressionStatement(statement.Initialisation); calls < MAX_ITER && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
                 lastValue = EvaluateStatement(statement.Then);
             
             _scope = _scope.Parent;
+            
+            if (calls == MAX_ITER)
+                Errs.Report("Stack Overflow", statement.Position);
+            
             return lastValue;
         }
 
@@ -130,11 +193,67 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 BoundAssignment ba => EvaluateAssignment(ba),
                 BoundAssignmentUnpacking bau => EvaluateAssignmentUnpacking(bau),
                 BoundUnary u => EvaluateUnaryExpression(u),
-                BoundBinaryExpression b => EvaluateBinaryExpression(b),
+                BoundBinary b => EvaluateBinaryExpression(b),
                 BoundEmptyExpression e => null,
                 BoundEmptyListExpression el => new List(),
-                _ => throw new Exception($"Unexpected node {expression.Kind}")
+                BoundCallExpression ce => EvaluateCall(ce),
+                BoundFunction bf => EvaluateFunctionDeclaration(bf),
+                BoundIfExpression bif => EvaluateIfExpression(bif),
+                _ => ReportError($"Unexpected node {expression.Kind}", expression.Position)
             };
+        }
+
+        private object EvaluateIfExpression(BoundIfExpression bif)
+        {
+            if ((bool)EvaluateExpression(bif.Condition))
+                return EvaluateExpression(bif.Then);
+            return EvaluateExpression(bif.Else);
+        }
+
+        private object EvaluateCall(BoundCallExpression ce)
+        {
+            if (_depth < MAX_DEPTH)
+            {
+                _depth += 1;
+                Function f = (Function)EvaluateExpression(ce.Called);
+                _scope = new Scope(_scope, f.Scope.Variables ?? new Dictionary<string, object>());
+
+
+                if (ce.Args is BoundEmptyListExpression && !(f.Args is BoundEmptyListExpression))
+                {
+                    Errs.Report("Invalid call: not enough arguments", ce.Position);
+                
+                    _depth -= 1;
+                    _scope = _scope.Parent;
+                    return null;
+                }
+
+                if (f.Args is BoundEmptyListExpression && !(ce.Args is BoundEmptyListExpression))
+                {
+                    Errs.Report("Invalid call: too many arguments", ce.Position);
+                
+                    _depth -= 1;
+                    _scope = _scope.Parent;
+                    return null;
+                }
+
+                if (!(f.Args is BoundEmptyListExpression))
+                {
+                    BoundAssignmentUnpacking assignArgs =
+                        new BoundAssignmentUnpacking((BoundBinary) f.Args, (BoundBinary) ce.Args, ce.Position);
+
+                    EvaluateAssignmentUnpacking(assignArgs);
+                }
+            
+                object val = EvaluateStatement(f.Body);
+            
+                _depth -= 1;
+                _scope = _scope.Parent;
+                return (f.Type != null) ? val : null;
+            }
+
+            Errs.Report("Stack overflow", ce.Position);
+            return null;
         }
 
         private object EvaluateAssignmentUnpacking(BoundAssignmentUnpacking bau)
@@ -150,21 +269,22 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             UnpackAssignments(assignees, assignments, bau);
             
+            _scope.Undeclare("_");
             return assignments;
         }
         
-        private List ConstructAssigneeList(BoundBinaryExpression assigneeList)
+        private List ConstructAssigneeList(BoundBinary assigneeList)
         {
             if (assigneeList.Left is BoundVariable bv)
             {
                 return new List(bv,
-                    (assigneeList.Right is BoundBinaryExpression bbe) ? ConstructAssigneeList(bbe) : 
+                    (assigneeList.Right is BoundBinary bbe) ? ConstructAssigneeList(bbe) : 
                     (assigneeList.Right is BoundVariable bve) ? new List(bve) : null);
             }
-            if (assigneeList.Left is BoundBinaryExpression bbv)
+            if (assigneeList.Left is BoundBinary bbv)
             {
                 return new List(ConstructAssigneeList(bbv),
-                    (assigneeList.Right is BoundBinaryExpression bbe) ? ConstructAssigneeList(bbe) : 
+                    (assigneeList.Right is BoundBinary bbe) ? ConstructAssigneeList(bbe) : 
                     (assigneeList.Right is BoundVariable bve) ? new List(bve) : null);
             }
             
@@ -192,13 +312,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private void AssignTail(List assignees, List assignments, BoundAssignmentUnpacking bau)
         {
-            if (assignees.Head is List al)
+            BoundVariable bv = (BoundVariable) assignees.Head;
+            object val = EvaluateVariable(bv);
+            if (bv.Type == typeof(object) || val is List)
             {
-                UnpackAssignments(al, assignments, bau);
+                _scope.SetValue(bv.Name, assignments);
             }
-            else if (assignees.Head is BoundVariable bv)
+            else
             {
-                EvaluateVariable(bv);
                 object isAssigned = (assignments.Tail.IsEmpty) ? assignments.Head : assignments;
                 if (_scope.GetValue(bv.Name) != null && _scope.GetValue(bv.Name).GetType() != isAssigned?.GetType())
                 {
@@ -248,28 +369,43 @@ namespace AfterlifeInterpretor.CodeAnalysis
             object val = EvaluateExpression(ba.Assignment);
             if (_scope.GetValue(ba.Assignee.Name) != null && _scope.GetValue(ba.Assignee.Name).GetType() != val?.GetType())
             {
-                Errs.ReportType(_scope?.GetValue(ba.Assignee.Name).GetType(), val?.GetType(), ba.Position);
+                Errs.ReportType(_scope.GetValue(ba.Assignee.Name).GetType(), val?.GetType(), ba.Position);
                 return null;
             }
                 
             _scope.SetValue(ba.Assignee.Name, val);
+            if (ba.Assignee.Name == "_") 
+                _scope.Undeclare(ba.Assignee.Name);
             return val;
         }
 
         private object EvaluateUnaryExpression(BoundUnary u)
         {
             object operand = EvaluateExpression(u.Operand);
-            return u.Operator.Kind switch
+            
+            if (BoundUnaryOperator.Bind(u.Operator.SyntaxKind, operand?.GetType() ?? typeof(object)) == null)
             {
-                BoundUnaryKind.Neg => -(int) operand,
-                BoundUnaryKind.Id => operand,
-                BoundUnaryKind.Not => !((bool) operand),
-                BoundUnaryKind.Head => ((List) operand).Head,
-                BoundUnaryKind.Tail => ((List) operand).Tail,
-                BoundUnaryKind.Size => ((List) operand).Size,
-                BoundUnaryKind.Print => Print(operand),
-                _ => throw new Exception($"Unexpected unary operator {u.Operator.Kind}")
-            };
+                return ReportError($"Unexpected type {operand?.GetType()}", u.Position);
+            }
+
+            try
+            {
+                return u.Operator.Kind switch
+                {
+                    BoundUnaryKind.Neg => -(int) operand,
+                    BoundUnaryKind.Id => operand,
+                    BoundUnaryKind.Not => !((bool) operand),
+                    BoundUnaryKind.Head => ((List) operand).Head,
+                    BoundUnaryKind.Tail => ((List) operand).Tail,
+                    BoundUnaryKind.Size => ((List) operand).Size,
+                    BoundUnaryKind.Print => Print(operand),
+                    _ => ReportError($"Unexpected unary operator {u.Operator.Kind}", u.Position)
+                };
+            }
+            catch (Exception)
+            {
+                return ReportError("Invalid operation", u.Position);
+            }
         }
 
         private object Print(object operand)
@@ -278,31 +414,55 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return operand.ToString();
         }
 
-        private object EvaluateBinaryExpression(BoundBinaryExpression b)
+        private object EvaluateBinaryExpression(BoundBinary b)
         {
             object l = EvaluateExpression(b.Left);
             object r = EvaluateExpression(b.Right);
 
-            return b.Operator.Kind switch
+            if (BoundBinaryOperator.Bind(b.Operator.SyntaxKind, l?.GetType() ?? typeof(object), r?.GetType() ?? typeof(object)) == null)
             {
-                BoundBinaryKind.Add => Add(l, r),
-                BoundBinaryKind.Sub => Sub(l, r),
-                BoundBinaryKind.Mod => Convert.ToInt32(l) % Convert.ToInt32(r),
-                BoundBinaryKind.Div => Div(l, r),
-                BoundBinaryKind.IntDiv => IntDiv(l, r),
-                BoundBinaryKind.Mul => Mul(l, r),
-                BoundBinaryKind.And => (bool) l && (bool) r,
-                BoundBinaryKind.Or => (bool) l || (bool) r,
-                BoundBinaryKind.Eq => Equals(l, r),
-                BoundBinaryKind.Neq => !Equals(l, r),
-                BoundBinaryKind.Gt => (int) l > (int) r,
-                BoundBinaryKind.Lt => (int) l < (int) r,
-                BoundBinaryKind.LtEq => (int) l <= (int) r,
-                BoundBinaryKind.GtEq => (int) l >= (int) r,
-                BoundBinaryKind.Comma => CreateList(l, r),
-                BoundBinaryKind.Dot => ListIndex((List)l, (int)r, b.Position),
-                _ => throw new Exception($"Unexpected binary operator {b.Operator.Kind}")
-            };
+                Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), b.Position);
+                return null;
+            }
+            
+            try
+            {
+                return b.Operator.Kind switch
+                {
+                    BoundBinaryKind.Add => Add(l, r),
+                    BoundBinaryKind.Sub => Sub(l, r),
+                    BoundBinaryKind.Mod => Convert.ToInt32(l) % Convert.ToInt32(r),
+                    BoundBinaryKind.Div => Div(l, r),
+                    BoundBinaryKind.IntDiv => IntDiv(l, r),
+                    BoundBinaryKind.Mul => Mul(l, r),
+                    BoundBinaryKind.And => (bool) l && (bool) r,
+                    BoundBinaryKind.Or => (bool) l || (bool) r,
+                    BoundBinaryKind.Eq => CheckEquals(l, r),
+                    BoundBinaryKind.Neq => !CheckEquals(l, r),
+                    BoundBinaryKind.Gt => Convert.ToDouble(l) > Convert.ToDouble(r),
+                    BoundBinaryKind.Lt => Convert.ToDouble(l) < Convert.ToDouble(r),
+                    BoundBinaryKind.LtEq => Convert.ToDouble(l) <= Convert.ToDouble(r),
+                    BoundBinaryKind.GtEq => Convert.ToDouble(l) >= Convert.ToDouble(r),
+                    BoundBinaryKind.Comma => CreateList(l, r),
+                    BoundBinaryKind.Dot => ListIndex((List)l, (int)r, b.Position),
+                    _ => ReportError($"Unexpected binary operator {b.Operator.Kind}", b.Position)
+                };
+            }
+            catch(DivideByZeroException)
+            {
+                return ReportError("Division by zero", b.Position);
+            }
+            catch (Exception)
+            {
+                return ReportError("Invalid operation", b.Position);
+            }
+        }
+
+        private bool CheckEquals(object l, object r)
+        {
+            if (l?.GetType() == typeof(double) || r?.GetType() == typeof(double))
+                return Math.Abs(Convert.ToDouble(l) - Convert.ToDouble(r)) < 0.000000001;
+            return Equals(l, r);
         }
 
         private object ListIndex(List list, int i, int pos)
@@ -343,27 +503,26 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return null;
         }
 
-        private static object Add(object l, object r)
+        private object Add(object l, object r)
         {
             Type leftType = l.GetType();
             Type rightType = r.GetType();
-
             if (leftType == typeof(List))
-                return (List) l + r;
+                    return (List) l + r;
             if (rightType == typeof(List))
                 return l + (List) r;
 
             if (leftType == typeof(string) || rightType == typeof(string))
                 return Convert.ToString(l) + Convert.ToString(r);
-            
+        
             if (leftType == typeof(double) || rightType == typeof(double))
                 return Convert.ToDouble(l) + Convert.ToDouble(r);
-            
-            
+        
+        
             return Convert.ToInt32(l) + Convert.ToInt32(r);
         }
         
-        private static object Sub(object l, object r)
+        private object Sub(object l, object r)
         {
             Type leftType = l.GetType();
             Type rightType = r.GetType();
@@ -374,7 +533,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return Convert.ToInt32(l) - Convert.ToInt32(r);
         }
         
-        private static object Mul(object l, object r)
+        private object Mul(object l, object r)
         {
             Type leftType = l.GetType();
             Type rightType = r.GetType();
@@ -409,7 +568,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return Convert.ToInt32(l) * Convert.ToInt32(r);
         }
         
-        private static object Div(object l, object r)
+        private object Div(object l, object r)
         {
             Type leftType = l.GetType();
             Type rightType = r.GetType();
@@ -420,7 +579,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return Convert.ToInt32(l) / Convert.ToInt32(r);
         }
         
-        private static object IntDiv(object l, object r)
+        private object IntDiv(object l, object r)
         {
             return Convert.ToInt32(l) / Convert.ToInt32(r);
         }

@@ -12,5 +12,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         {
             Position = position;
         }
+
+        public override string ToString()
+        {
+            return "()";
+        }
     }
 }

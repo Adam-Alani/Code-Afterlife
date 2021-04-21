@@ -8,7 +8,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
         
         public override SyntaxKind Kind => SyntaxKind.UnaryExpression;
         public ExpressionSyntax Operand { get; }
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         
         public UnaryExpression(SyntaxToken token, ExpressionSyntax operand)
         {

@@ -14,5 +14,14 @@ namespace AfterlifeInterpretor
             StdOut = stdout;
             Value = value;
         }
+
+        public override string ToString()
+        {
+            if (Value is null)
+                return "()";
+            if (Value is string)
+                return '"' + Value.ToString() + '"';
+            return Value.ToString();
+        }
     }
 }

@@ -15,5 +15,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             Value = value;
             Position = position;
         }
+
+        public override string ToString()
+        {
+            string type = (Type != null) ? Text.PrettyType(Type) : "()";
+
+            return $"{type}: {Value}";
+        }
     }
 }

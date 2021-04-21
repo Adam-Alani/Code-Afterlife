@@ -1,3 +1,5 @@
+using System;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundBlockStatement : BoundStatement
@@ -6,10 +8,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override BoundNodeKind Kind => BoundNodeKind.BlockStatement;
         public override int Position { get; }
 
-        public BoundBlockStatement(BoundStatement[] statements, int position)
+        public override Type Type { get; }
+
+        public BoundBlockStatement(BoundStatement[] statements, int position, Type type = null)
         {
             Statements = statements;
             Position = position;
+            Type = type;
         }
     }
 }

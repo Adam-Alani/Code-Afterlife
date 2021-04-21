@@ -5,7 +5,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public class ElseClause : SyntaxNode
     {
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         public StatementSyntax Then { get; }
 
         public override SyntaxKind Kind => SyntaxKind.ElseClause;

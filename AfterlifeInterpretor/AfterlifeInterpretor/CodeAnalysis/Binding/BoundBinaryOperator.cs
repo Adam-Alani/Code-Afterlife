@@ -48,10 +48,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.AndToken, BoundBinaryKind.And, typeof(bool)), 
             
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(double), typeof(int), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryKind.Sub, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryKind.Sub, typeof(double), typeof(int), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(double), typeof(int), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryKind.Div, typeof(int)), 
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryKind.Div, typeof(double), typeof(int), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.DoubleSlashToken, BoundBinaryKind.IntDiv, typeof(int)),
+            new BoundBinaryOperator(SyntaxKind.DoubleSlashToken, BoundBinaryKind.IntDiv, typeof(int), typeof(double), typeof(int)),
             new BoundBinaryOperator(SyntaxKind.ModuloToken, BoundBinaryKind.Mod, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.PlusAssignToken, BoundBinaryKind.Add, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.MinusAssignToken, BoundBinaryKind.Sub, typeof(int)), 
@@ -60,10 +65,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.ModuloAssignToken, BoundBinaryKind.Mod, typeof(int)), 
             
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(double)), 
+            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(int), typeof(double), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryKind.Sub, typeof(double)), 
+            new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryKind.Sub, typeof(int), typeof(double), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(double)), 
+            new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(int), typeof(double), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryKind.Div, typeof(double)), 
+            new BoundBinaryOperator(SyntaxKind.SlashToken, BoundBinaryKind.Div, typeof(int), typeof(double), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.DoubleSlashToken, BoundBinaryKind.IntDiv, typeof(double), typeof(int)),
+            new BoundBinaryOperator(SyntaxKind.DoubleSlashToken, BoundBinaryKind.IntDiv, typeof(double), typeof(int), typeof(int)),
             new BoundBinaryOperator(SyntaxKind.PlusAssignToken, BoundBinaryKind.Add, typeof(double)), 
             new BoundBinaryOperator(SyntaxKind.MinusAssignToken, BoundBinaryKind.Sub, typeof(double)), 
             new BoundBinaryOperator(SyntaxKind.StarAssignToken, BoundBinaryKind.Mul, typeof(double)), 
@@ -77,6 +87,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(int),  typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(int), typeof(bool)),
             
+            new BoundBinaryOperator(SyntaxKind.GtToken, BoundBinaryKind.Gt, typeof(int), typeof(double), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.LtToken, BoundBinaryKind.Lt, typeof(int), typeof(double), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.GtEqToken, BoundBinaryKind.GtEq, typeof(int), typeof(double), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.LtEqToken, BoundBinaryKind.LtEq, typeof(int), typeof(double), typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(int), typeof(double),  typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(int), typeof(double), typeof(bool)),
+            
             new BoundBinaryOperator(SyntaxKind.GtToken, BoundBinaryKind.Gt, typeof(double), typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.LtToken, BoundBinaryKind.Lt, typeof(double), typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.GtEqToken, BoundBinaryKind.GtEq, typeof(double), typeof(bool)), 
@@ -85,9 +102,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(double), typeof(bool)),
             
             
+            new BoundBinaryOperator(SyntaxKind.GtToken, BoundBinaryKind.Gt, typeof(double), typeof(int), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.LtToken, BoundBinaryKind.Lt, typeof(double), typeof(int), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.GtEqToken, BoundBinaryKind.GtEq, typeof(double), typeof(int), typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.LtEqToken, BoundBinaryKind.LtEq, typeof(double), typeof(int), typeof(bool)),
+            new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(double), typeof(int),  typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(double), typeof(int), typeof(bool)),
+            
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(int), typeof(string), typeof(string)),
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(string), typeof(int), typeof(string)),
-            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(string)), 
+            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(string), typeof(object), typeof(string)), 
+            new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(object), typeof(string), typeof(string)),
             new BoundBinaryOperator(SyntaxKind.PlusAssignToken, BoundBinaryKind.Add, typeof(string)), 
             new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(string),  typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(string), typeof(bool)),
@@ -96,7 +121,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(bool), typeof(bool)),
             
             new BoundBinaryOperator(SyntaxKind.CommaToken, BoundBinaryKind.Comma, typeof(object), typeof(List)),
-            new BoundBinaryOperator(SyntaxKind.DotToken, BoundBinaryKind.Dot, typeof(List), typeof(int), typeof(object)),
+            new BoundBinaryOperator(SyntaxKind.DotToken, BoundBinaryKind.Dot, typeof(List), typeof(int), typeof(Unpredictable)),
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(List)),
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(List), typeof(object), typeof(List)),
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(object), typeof(List), typeof(List)),
@@ -109,7 +134,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public static BoundBinaryOperator Bind(SyntaxKind kind, Type leftType, Type rightType)
         {
-            return _operators.FirstOrDefault(op => op.SyntaxKind == kind && (op.LeftType == leftType || op.LeftType == typeof(object)) && (op.RightType == rightType || op.RightType == typeof(object)));
+            return _operators.FirstOrDefault(op => op.SyntaxKind == kind && (op.LeftType == leftType || op.LeftType == typeof(object) || leftType == typeof(Unpredictable)) && (op.RightType == rightType || op.RightType == typeof(object) || rightType == typeof(Unpredictable)));
         }
 
         private static Type GetHarmonisation(Tuple<Type, Type> types)

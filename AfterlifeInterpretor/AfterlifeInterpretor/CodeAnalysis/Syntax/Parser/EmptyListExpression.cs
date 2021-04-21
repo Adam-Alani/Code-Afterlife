@@ -3,16 +3,19 @@ using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
-    public class EmptyListExpression : ExpressionSyntax
+    internal class EmptyListExpression : ExpressionSyntax
     {
-        public EmptyListExpression()
+        public EmptyListExpression(SyntaxToken token)
         {
+            Token = token;
         }
 
         public override SyntaxKind Kind => SyntaxKind.EmptyListExpression;
+        public override SyntaxToken Token { get; }
+
         public override IEnumerable<SyntaxNode> GetChildren()
         {
-            yield return null;
+            yield return Token;
         }
     }
 }

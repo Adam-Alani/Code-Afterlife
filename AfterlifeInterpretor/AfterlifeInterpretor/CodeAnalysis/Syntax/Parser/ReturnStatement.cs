@@ -3,23 +3,21 @@ using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
-    public sealed class VariableExpression : ExpressionSyntax
+    public sealed class ReturnStatement : StatementSyntax
     {
-        public IdentifierExpression Name { get; }
+        public override SyntaxKind Kind => SyntaxKind.ReturnStatement;
         public override SyntaxToken Token { get; }
-        public override SyntaxKind Kind => SyntaxKind.VariableExpression;
+        public ExpressionSyntax Expression { get; }
 
-        public VariableExpression(SyntaxToken token, IdentifierExpression name)
+        public ReturnStatement(SyntaxToken token, ExpressionSyntax expression)
         {
-            Name = name;
             Token = token;
+            Expression = expression;
         }
-
-        
         public override IEnumerable<SyntaxNode> GetChildren()
         {
             yield return Token;
-            yield return Name;
+            yield return Expression;
         }
     }
 }

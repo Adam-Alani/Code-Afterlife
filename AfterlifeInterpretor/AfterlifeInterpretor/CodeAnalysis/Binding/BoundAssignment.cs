@@ -28,7 +28,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 case SyntaxKind.StarAssignToken:
                 case SyntaxKind.SlashAssignToken:
                 case SyntaxKind.ModuloAssignToken:
-                    return new BoundBinaryExpression(Assignee, BoundBinaryOperator.Bind(op, Assignee.Type, assignment.Type), assignment, Position);
+                    return new BoundBinary(Assignee, BoundBinaryOperator.Bind(op, Assignee.Type, assignment.Type), assignment, Position);
                 default:
                     return assignment;
             }

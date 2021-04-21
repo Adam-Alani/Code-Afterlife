@@ -1,3 +1,5 @@
+using System;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal abstract class BoundNode
@@ -5,5 +7,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public abstract BoundNodeKind Kind { get;  }
         
         public abstract int Position { get; }
+        
+        public abstract Type Type { get; }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
@@ -50,8 +51,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 return NextToken();
             
             Errs.ReportUnexpected(kind, Current.Kind, Current.Position);
-            _position++;
-            return new SyntaxToken(kind, Current.Position, null);
+            if (Peek(1).Kind != SyntaxKind.EndToken)
+                _position++;
+            return new SyntaxToken(kind, Current.Position, Current.ToString());
         }
 
         private SyntaxToken NextToken()
@@ -79,6 +81,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                    Current.Kind != SyntaxKind.EndToken &&
                    Current.Kind != SyntaxKind.OBlockToken &&
                    Current.Kind != SyntaxKind.CBlockToken;
+        }
+
+        private bool IsValueToken(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.OParenToken:
+                case SyntaxKind.NumericToken:
+                case SyntaxKind.WordToken:
+                case SyntaxKind.TrueKeyword:
+                case SyntaxKind.FalseKeyword:
+                case SyntaxKind.IdentifierToken:
+                    return true;
+                default:
+                    return false;
+            }
         }
         
         private BlockStatement ParseProgram()
@@ -114,15 +132,38 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             {
                 case SyntaxKind.OBlockToken:
                     return ParseBlockStatement();
-                case SyntaxKind.IfKeyword:
-                    return ParseIfStatement();
                 case SyntaxKind.WhileKeyword:
                     return ParseWhileStatement();
                 case SyntaxKind.ForKeyword:
                     return ParseForStatement();
+                case SyntaxKind.IfKeyword:
+                    return ParseIfStatement();
+                case SyntaxKind.ReturnKeyword:
+                    return new ReturnStatement(Expect(SyntaxKind.ReturnKeyword), ParseExpression());
                 default:
                     return ParseExpressionStatement();
             }
+        }
+        
+        private StatementSyntax ParseIfStatement()
+        {
+            SyntaxToken token = Expect(SyntaxKind.IfKeyword);
+            ExpressionStatement condition = (ExpressionStatement)ParseExpressionStatement();
+            SkipEndStatements();
+            StatementSyntax then = ParseStatement();
+            SkipEndStatements();
+            return new IfStatement(token, condition, then, ParseElseClause());
+        }
+        
+        private ElseClause ParseElseClause()
+        {
+            if (Current.Kind != SyntaxKind.ElseKeyword)
+                return null;
+            
+            SyntaxToken token = NextToken();
+            SkipEndStatements();
+            StatementSyntax statement = ParseStatement();
+            return new ElseClause(token, statement);
         }
 
         private StatementSyntax ParseBlockStatement()
@@ -164,7 +205,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             ExpressionStatement condition = (ExpressionStatement) ParseExpressionStatement();
             Expect(SyntaxKind.EndStatementToken);
             ExpressionStatement incrementation = (Current.Kind == SyntaxKind.OBlockToken) 
-                ? new ExpressionStatement(new EmptyExpression()) 
+                ? new ExpressionStatement(new EmptyExpression(Current)) 
                 : (ExpressionStatement) ParseExpressionStatement();
             SkipEndStatements();
             if (mustClose)
@@ -173,27 +214,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             StatementSyntax then = ParseStatement();
             SkipEndStatements();
             return new ForStatement(token, initialisation, condition, incrementation, then);
-        }
-
-        private StatementSyntax ParseIfStatement()
-        {
-            SyntaxToken token = Expect(SyntaxKind.IfKeyword);
-            ExpressionStatement condition = (ExpressionStatement)ParseExpressionStatement();
-            SkipEndStatements();
-            StatementSyntax then = ParseStatement();
-            SkipEndStatements();
-            return new IfStatement(token, condition, then, ParseElseClause());
-        }
-
-        private ElseClause ParseElseClause()
-        {
-            if (Current.Kind != SyntaxKind.ElseKeyword)
-                return null;
-            
-            SyntaxToken token = NextToken();
-            SkipEndStatements();
-            StatementSyntax statement = ParseStatement();
-            return new ElseClause(token, statement);
         }
 
         private ExpressionSyntax ParseAssignments()
@@ -221,6 +241,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                     ExpressionSyntax expr = ParseAssignments(); 
                     SkipEndStatements();
                     Expect(SyntaxKind.CParenToken);
+                    
+                    if (expr is CallExpression ce && IsValueToken(Current.Kind))
+                        return new CallExpression(ce, ParseArguments(true));
 
                     return expr;
                     // return new ParenthesisedExpression(open, expr, close);
@@ -228,43 +251,85 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 case SyntaxKind.FalseKeyword:
                     bool trueFalse = Current.Kind == SyntaxKind.TrueKeyword;
                     return new LiteralExpression(NextToken(), trueFalse);
-                case SyntaxKind.ListToken:
-                case SyntaxKind.StringToken:
-                case SyntaxKind.FloatToken:
-                case SyntaxKind.VarToken:
-                case SyntaxKind.BoolToken:
-                case SyntaxKind.IntToken:
+                case SyntaxKind.ListKeyword:
+                case SyntaxKind.StringKeyword:
+                case SyntaxKind.FloatKeyword:
+                case SyntaxKind.VarKeyword:
+                case SyntaxKind.BoolKeyword:
+                case SyntaxKind.IntKeyword:
                     return new VariableExpression(NextToken(), new IdentifierExpression(Expect(SyntaxKind.IdentifierToken)));
                 case SyntaxKind.IdentifierToken:
+                    if (IsValueToken(Peek(1).Kind))
+                        return new CallExpression(new IdentifierExpression(NextToken()), ParseArguments(true));
                     return new IdentifierExpression(NextToken());
+                case SyntaxKind.FunctionKeyword:
+                    return ParseFunctionDeclaration();
+                case SyntaxKind.IfKeyword:
+                    return ParseIfExpression();
                 case SyntaxKind.CBlockToken:
                 case SyntaxKind.CParenToken:
                 case SyntaxKind.EndToken:
                 case SyntaxKind.EndStatementToken:
-                    return new EmptyExpression();
+                    return new EmptyExpression(Current);
                 case SyntaxKind.WordToken:
                     return new LiteralExpression(Expect(SyntaxKind.WordToken));
                 case SyntaxKind.CommaToken:
-                    Expect(SyntaxKind.CommaToken);
-                    return new EmptyListExpression();
+                    return new EmptyListExpression(Expect(SyntaxKind.CommaToken));
                 default:
                     return new LiteralExpression(Expect(SyntaxKind.NumericToken));
             }
         }
 
+        private ExpressionSyntax ParseIfExpression()
+        {
+            SyntaxToken token = Expect(SyntaxKind.IfKeyword);
+            ExpressionStatement condition = (ExpressionStatement)ParseExpressionStatement();
+            SkipEndStatements();
+            ExpressionSyntax then = ParseExpression();
+            SkipEndStatements();
+            Expect(SyntaxKind.ElseKeyword);
+            return new IfExpression(token, condition, then, ParseExpression());
+        }
+
+        private ExpressionSyntax ParseFunctionDeclaration()
+        {
+            SyntaxToken token = Expect(SyntaxKind.FunctionKeyword);
+            SyntaxToken name = Expect(SyntaxKind.IdentifierToken);
+
+
+            ExpressionSyntax args = (Current.Kind == SyntaxKind.AssignToken)
+                ? new EmptyListExpression(Current)
+                : ParseArguments();
+            if (!(args is BinaryExpression) && !(args is EmptyListExpression))
+            {
+                Errs.ReportUnexpected("List", args.Kind,  token.Position);
+                return new FunctionDeclaration(token, new IdentifierExpression(name), new EmptyExpression(args.Token), null);
+            }
+
+            Stack<ExpressionSyntax> subArgs = new Stack<ExpressionSyntax>();
+            while (Current.Kind != SyntaxKind.AssignToken && Current.Kind != SyntaxKind.EndToken)
+            {
+                subArgs.Push(ParseArguments());
+            }
+            Expect(SyntaxKind.AssignToken);
+            SkipEndStatements();
+            StatementSyntax body = (Current.Kind == SyntaxKind.OBlockToken) ? ParseStatement() : new ExpressionStatement(ParseExpression());
+            while (subArgs.Count > 0)
+            {
+                ExpressionSyntax subArg = subArgs.Pop();
+                SyntaxToken subName = new SyntaxToken(SyntaxKind.IdentifierToken, subArg.Token.Position, "_");
+                body = new ExpressionStatement(new FunctionDeclaration(token, new IdentifierExpression(subName), subArg, body));
+            }
+
+            return new FunctionDeclaration(token, new IdentifierExpression(name), args, body);
+        }
+
         private ExpressionSyntax ParseExpression(int parentPrecedence = 0)
         {
-            ExpressionSyntax left;
-            int unaryPrecedence = Current.Kind.GetUnaryPrecedence();
-            if (unaryPrecedence != 0 && unaryPrecedence >= parentPrecedence)
-            {
-                left = new UnaryExpression(NextToken(), ParseExpression(unaryPrecedence));
-            }
-            else
-            {
-                left = PrimaryExpression();
-            }
-            
+            ExpressionSyntax left = ParseUnary(parentPrecedence);
+            while (left is CallExpression ce && IsValueToken(Current.Kind))
+                left = new CallExpression(ce, ParseArguments(true));
+
             bool doOperation;
             do
             {
@@ -274,12 +339,36 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 {
                     doOperation = true;
                     SyntaxToken operatorToken = NextToken();
-                    ExpressionSyntax right = (Current.Kind == SyntaxKind.EndStatementToken) ? new EmptyExpression() : ParseExpression(precedence);
+                    ExpressionSyntax right = (Current.Kind == SyntaxKind.EndStatementToken) ? new EmptyExpression(Current) : ParseExpression(precedence);
                     left = new BinaryExpression(left, operatorToken, right);
                 }
             } while (doOperation);
             
             return left;
+        }
+
+        private ExpressionSyntax ParseUnary(int parentPrecedence)
+        {
+            int unaryPrecedence = Current.Kind.GetUnaryPrecedence();
+            if (unaryPrecedence != 0 && unaryPrecedence >= parentPrecedence)
+            {
+                return new UnaryExpression(NextToken(), ParseExpression(unaryPrecedence));
+            }
+            return PrimaryExpression();
+        }
+
+        private ExpressionSyntax ParseArguments(bool allowNonvariable = false)
+        {
+            ExpressionSyntax args = ParseExpression();
+            if (allowNonvariable && !(args.Token.Kind == SyntaxKind.CommaToken || args is EmptyExpression))
+                args = new BinaryExpression(args, new SyntaxToken(SyntaxKind.CommaToken, args.Token.Position, ""),
+                    new EmptyExpression(args.Token));
+            else if (args is VariableExpression ve)
+                args = new BinaryExpression(ve, new SyntaxToken(SyntaxKind.CommaToken, ve.Token.Position, ""),
+                    new EmptyExpression(args.Token));
+            if (args is EmptyExpression)
+                args = new EmptyListExpression(args.Token);
+            return args;
         }
     }
 }

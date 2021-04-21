@@ -11,6 +11,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
     public sealed class SyntaxToken : SyntaxNode
     {
         public override SyntaxKind Kind { get; }
+        public override SyntaxToken Token { get; }
         public int Position { get; }
         public string Text { get; }
         public object Value { get; }
@@ -21,6 +22,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
             Position = position;
             Text = text;
             Value = value;
+            Token = this;
         }
 
         public override IEnumerable<SyntaxNode> GetChildren()

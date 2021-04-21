@@ -7,9 +7,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
     {
         public ExpressionSyntax Expression { get; }
         public override SyntaxKind Kind => SyntaxKind.ExpressionStatement;
+        public override SyntaxToken Token { get; }
+
         public ExpressionStatement(ExpressionSyntax expression)
         {
             Expression = expression;
+            Token = Expression.Token;
         }
         
         public override IEnumerable<SyntaxNode> GetChildren()

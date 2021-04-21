@@ -12,21 +12,21 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
     /// </summary>
     public sealed class ParenthesisedExpression : ExpressionSyntax
     {
-        public SyntaxToken OpenToken { get; }
+        public override SyntaxToken Token { get; }
         public ExpressionSyntax Expression { get; }
         public SyntaxToken CloseToken { get; }
         public override SyntaxKind Kind => SyntaxKind.ParenthesisedExpression;
 
         public ParenthesisedExpression(SyntaxToken openToken, ExpressionSyntax expression, SyntaxToken closeToken)
         {
-            OpenToken = openToken;
+            Token = openToken;
             Expression = expression;
             CloseToken = closeToken;
         }
         
         public override IEnumerable<SyntaxNode> GetChildren()
         {
-            yield return OpenToken;
+            yield return Token;
             yield return Expression;
             yield return CloseToken;
         }

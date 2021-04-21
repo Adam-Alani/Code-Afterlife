@@ -16,6 +16,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             Position = position;
         }
 
-        
+        public override string ToString()
+        {
+            string type = (Type != null) ? Text.PrettyType(Type) : "()";
+            return $"{type} {Name}";
+        }
     }
 }

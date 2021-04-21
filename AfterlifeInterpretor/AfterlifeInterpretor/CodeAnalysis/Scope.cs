@@ -7,27 +7,32 @@ namespace AfterlifeInterpretor.CodeAnalysis
     {
         public Dictionary<string, object> Variables { get; }
         public Scope Parent;
+        public bool Return;
 
         public Scope()
         {
             Parent = null;
             Variables = new Dictionary<string, object>();
+            Return = false;
         }
         
         public Scope(Dictionary<string, object> variables)
         {
             Parent = null;
             Variables = variables;
+            Return = false;
         }
         public Scope(Scope parent)
         {
             Parent = parent;
             Variables = new Dictionary<string, object>();
+            Return = false;
         }
         public Scope(Scope parent, Dictionary<string, object> variables)
         {
             Parent = parent;
             Variables = variables;
+            Return = false;
         }
 
         public bool HasVariable(string var)
@@ -39,6 +44,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             if (!HasVariable(var))
                 Variables.Add(var, val);
+        }
+
+        public void Undeclare(string var)
+        {
+            if (!Variables.Remove(var)&& Parent != null)
+                Parent.Undeclare(var);
         }
 
         public void SetValue(string var, object val)

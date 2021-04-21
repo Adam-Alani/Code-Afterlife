@@ -10,6 +10,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         BinaryExpression,
         EmptyExpression,
         EmptyListExpression,
+        CallExpression,
+        IfExpression,
 
         // Statements
         BlockStatement,
@@ -17,6 +19,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         IfStatement,
         WhileStatement,
         ForStatement,
-        
+        FunctionDeclaration,
+        ReturnStatement,
     }
 }

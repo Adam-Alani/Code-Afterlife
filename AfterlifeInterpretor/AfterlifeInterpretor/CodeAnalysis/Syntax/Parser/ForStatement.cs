@@ -5,7 +5,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public sealed class ForStatement : StatementSyntax
     {
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         
         public ExpressionStatement Initialisation { get; }
         public ExpressionStatement Condition { get; }

@@ -96,7 +96,7 @@ namespace InteractiveInterpretor
                     Console.WriteLine();
                 }
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine(evaluationResults.Value);
+                Console.WriteLine(evaluationResults);
                 Console.ResetColor();
             }
         }

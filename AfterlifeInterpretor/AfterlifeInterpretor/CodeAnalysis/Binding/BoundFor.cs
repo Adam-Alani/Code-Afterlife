@@ -1,3 +1,5 @@
+using System;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundFor : BoundStatement
@@ -11,6 +13,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         
         public override BoundNodeKind Kind => BoundNodeKind.ForStatement;
         public override int Position { get; }
+        public override Type Type => Then.Type;
 
         public BoundFor(BoundExpressionStatement initialisation, BoundExpressionStatement condition, BoundExpressionStatement incrementation, BoundStatement then, int position)
         {
@@ -20,5 +23,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             Then = then;
             Position = position;
         }
+
+        
     }
 }

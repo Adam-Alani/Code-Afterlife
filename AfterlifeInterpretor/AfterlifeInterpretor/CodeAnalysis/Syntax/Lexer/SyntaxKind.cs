@@ -18,12 +18,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         CBlockToken,
         EndStatementToken,
         IdentifierToken,
-        VarToken,
-        BoolToken,
-        IntToken,
-        StringToken,
-        FloatToken,
-        ListToken,
         EndToken,
         PrintToken,
         
@@ -65,6 +59,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         ElseKeyword,
         WhileKeyword,
         ForKeyword,
+        FunctionKeyword,
+        ReturnKeyword,
+        VarKeyword,
+        BoolKeyword,
+        IntKeyword,
+        StringKeyword,
+        FloatKeyword,
+        ListKeyword,
+
 
         // Expressions
         LiteralExpression,
@@ -75,13 +78,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         VariableExpression,
         EmptyExpression,
         EmptyListExpression,
+        FunctionDeclaration,
+        CallExpression,
+        IfExpression,
+        ElseClause,
         
         // Statements
         BlockStatement,
         ExpressionStatement,
-        IfStatement,
-        ElseClause,
         WhileStatement,
         ForStatement,
+        ReturnStatement,
+        IfStatement
     }
 }

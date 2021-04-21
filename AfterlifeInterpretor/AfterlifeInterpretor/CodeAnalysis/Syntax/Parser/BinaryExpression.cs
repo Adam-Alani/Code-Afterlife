@@ -9,7 +9,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
         public override SyntaxKind Kind => SyntaxKind.BinaryExpression;
         public ExpressionSyntax Left { get; }
         public ExpressionSyntax Right { get; }
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         
         public BinaryExpression(ExpressionSyntax l, SyntaxToken token, ExpressionSyntax r)
         {
