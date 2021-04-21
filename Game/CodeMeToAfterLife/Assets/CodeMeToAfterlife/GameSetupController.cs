@@ -14,6 +14,7 @@ public class GameSetupController : MonoBehaviour
     {
         CreatePlayer();
     }
+    
     /// <summary>
     /// Creates the player located in : Code-Afterlife\Game\CodeMeToAfterLife\Assets\Resources\Prefabs
     /// (needs to be in the Resources folder in a folder named as the first parameter)

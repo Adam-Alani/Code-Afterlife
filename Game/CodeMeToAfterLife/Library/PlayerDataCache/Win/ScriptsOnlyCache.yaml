@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Assets.Pixelation.Scripts.Pixelation
+    - CameraPosition
     - CodeEditor
     - CustomInput
     - GameSetupController
@@ -83,23 +85,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11276}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11308}
     - Class: 114
-      Script: {instanceID: 11380}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 11548}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 12026}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 12800}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 13130}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13604}
+      Script: {instanceID: 13608}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -170,89 +172,93 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11304}
+      Script: {instanceID: 11308}
     - Class: 114
-      Script: {instanceID: 11380}
+      Script: {instanceID: 11384}
     - Class: 114
-      Script: {instanceID: 11446}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11466}
+      Script: {instanceID: 11470}
     - Class: 114
-      Script: {instanceID: 11504}
+      Script: {instanceID: 11508}
     - Class: 114
-      Script: {instanceID: 11548}
+      Script: {instanceID: 11552}
     - Class: 114
-      Script: {instanceID: 11812}
+      Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 11914}
+      Script: {instanceID: 11816}
     - Class: 114
-      Script: {instanceID: 12026}
+      Script: {instanceID: 11918}
     - Class: 114
-      Script: {instanceID: 12062}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12070}
+      Script: {instanceID: 12066}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12226}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 12244}
+      Script: {instanceID: 12230}
     - Class: 114
-      Script: {instanceID: 12264}
+      Script: {instanceID: 12248}
     - Class: 114
-      Script: {instanceID: 12320}
+      Script: {instanceID: 12268}
     - Class: 114
-      Script: {instanceID: 12362}
+      Script: {instanceID: 12324}
     - Class: 114
-      Script: {instanceID: 12386}
+      Script: {instanceID: 12366}
     - Class: 114
-      Script: {instanceID: 12436}
+      Script: {instanceID: 12390}
     - Class: 114
-      Script: {instanceID: 12580}
+      Script: {instanceID: 12440}
     - Class: 114
-      Script: {instanceID: 12628}
+      Script: {instanceID: 12584}
     - Class: 114
-      Script: {instanceID: 12658}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 12738}
+      Script: {instanceID: 12662}
     - Class: 114
-      Script: {instanceID: 12746}
+      Script: {instanceID: 12742}
     - Class: 114
-      Script: {instanceID: 12796}
+      Script: {instanceID: 12750}
     - Class: 114
-      Script: {instanceID: 12814}
+      Script: {instanceID: 12800}
     - Class: 114
-      Script: {instanceID: 12968}
+      Script: {instanceID: 12818}
     - Class: 114
-      Script: {instanceID: 12988}
+      Script: {instanceID: 12972}
     - Class: 114
-      Script: {instanceID: 12998}
+      Script: {instanceID: 12992}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 13002}
     - Class: 114
-      Script: {instanceID: 13130}
+      Script: {instanceID: 13060}
     - Class: 114
-      Script: {instanceID: 13158}
+      Script: {instanceID: 13134}
     - Class: 114
-      Script: {instanceID: 13328}
+      Script: {instanceID: 13162}
     - Class: 114
-      Script: {instanceID: 13394}
+      Script: {instanceID: 13332}
     - Class: 114
-      Script: {instanceID: 13462}
+      Script: {instanceID: 13398}
     - Class: 114
       Script: {instanceID: 13466}
     - Class: 114
-      Script: {instanceID: 13512}
+      Script: {instanceID: 13470}
     - Class: 114
-      Script: {instanceID: 13584}
+      Script: {instanceID: 13516}
     - Class: 114
-      Script: {instanceID: 13604}
+      Script: {instanceID: 13588}
     - Class: 114
-      Script: {instanceID: 13616}
+      Script: {instanceID: 13608}
     - Class: 114
       Script: {instanceID: 13620}
     - Class: 114
-      Script: {instanceID: 13636}
+      Script: {instanceID: 13624}
+    - Class: 114
+      Script: {instanceID: 13640}
+    - Class: 114
+      Script: {instanceID: 18506}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -305,7 +311,7 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13158}
+      Script: {instanceID: 13162}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -342,9 +348,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 12362}
+      Script: {instanceID: 11624}
     - Class: 114
-      Script: {instanceID: 13158}
+      Script: {instanceID: 12366}
+    - Class: 114
+      Script: {instanceID: 13162}
+    - Class: 114
+      Script: {instanceID: 18506}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 135
@@ -1938,6 +1948,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 7c4d61ba679beaa5d71821c8c9d31078
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraPosition
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity

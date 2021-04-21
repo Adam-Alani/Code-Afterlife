@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // if it's my screen and the code ediotr isn't opened
-        if (PV.IsMine && SceneManager.sceneCount != 2) // Main Scene and Don't Destroy on Load Photon MOno
+        if (PV.IsMine && SceneManager.sceneCount <= 2) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     

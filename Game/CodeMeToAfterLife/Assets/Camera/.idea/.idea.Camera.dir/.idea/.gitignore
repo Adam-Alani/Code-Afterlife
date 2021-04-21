@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Camera.iml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../../:\Users\N'importe maison\Documents\GitHub\Code-Afterlife\Game\CodeMeToAfterLife\Assets\Camera\.idea\.idea.Camera.dir\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
