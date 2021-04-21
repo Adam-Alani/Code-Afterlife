@@ -262,7 +262,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             {
                 Function f = _scope.GetFunction(fbv.Name);
                 if (f != null && f.Type != typeof(Unpredictable))
-                    return new BoundCallExpression(fe, args, typeof(Function), syntax.Called.Token.Position, f);
+                    return new BoundCallExpression(fe, args, f.Type, syntax.Called.Token.Position, f);
                 return new BoundCallExpression(fe, args, typeof(Unpredictable),syntax.Called.Token.Position);
             }
 
