@@ -9,14 +9,8 @@ public class TerminalBehavior : MonoBehaviour
     public bool isInRange;
     public KeyCode openKey;
     public KeyCode closeKey;
-    // public Animator animator; // if we want to add an animation
-    
-    public Scene currentScene;
 
-    void Start()
-    {
-        
-    }
+    public int BuildIndexCodeEditor = 2;
 
     void Update()
     {
@@ -65,15 +59,12 @@ public class TerminalBehavior : MonoBehaviour
     
     public void OpenTerminal()
     {
-        SceneManager.LoadScene("Assets/CodeEditor/Code Editor.unity", LoadSceneMode.Additive);
+        SceneManager.LoadScene(BuildIndexCodeEditor, LoadSceneMode.Additive);
         Debug.Log("Terminal is open");
-            
-        // animator.SetBool("IsOpen", isOpen); // if we want to add an animation
     }
 
     public void CloseTerminal()
     {
-        // SceneManager.LoadScene("Assets/Scenes/Test Terminal.unity");
         SceneManager.UnloadSceneAsync("Assets/CodeEditor/Code Editor.unity");
         Debug.Log("Terminal is close");
     }

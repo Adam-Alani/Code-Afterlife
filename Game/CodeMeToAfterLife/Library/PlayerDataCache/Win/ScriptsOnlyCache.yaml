@@ -1,6 +1,8 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CodeEditor
+    - CustomInput
     - GameSetupController
     - MainMenu
     - NetworkController
@@ -9,6 +11,7 @@ ScriptsOnlyBuild:
     - PlayerController
     - QuickStartLobbyController
     - QuickStartRoomController
+    - TerminalBehavior
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -20,8 +23,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PhotonTransformViewEditor
-    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
@@ -58,6 +59,63 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Text
     - UnityEngine.UI.Toggle
   sceneClasses:
+    Assets/CodeEditor/Code Editor.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 11274}
+    - Class: 114
+      Script: {instanceID: 11276}
+    - Class: 114
+      Script: {instanceID: 11304}
+    - Class: 114
+      Script: {instanceID: 11380}
+    - Class: 114
+      Script: {instanceID: 11548}
+    - Class: 114
+      Script: {instanceID: 12026}
+    - Class: 114
+      Script: {instanceID: 12628}
+    - Class: 114
+      Script: {instanceID: 12796}
+    - Class: 114
+      Script: {instanceID: 13056}
+    - Class: 114
+      Script: {instanceID: 13130}
+    - Class: 114
+      Script: {instanceID: 13604}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Main Menu.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -112,81 +170,89 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11322}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11464}
+      Script: {instanceID: 11380}
     - Class: 114
-      Script: {instanceID: 11484}
+      Script: {instanceID: 11446}
     - Class: 114
-      Script: {instanceID: 11522}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11566}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11830}
+      Script: {instanceID: 11548}
     - Class: 114
-      Script: {instanceID: 11932}
+      Script: {instanceID: 11812}
     - Class: 114
-      Script: {instanceID: 12044}
+      Script: {instanceID: 11914}
     - Class: 114
-      Script: {instanceID: 12080}
+      Script: {instanceID: 12026}
     - Class: 114
-      Script: {instanceID: 12088}
+      Script: {instanceID: 12062}
     - Class: 114
-      Script: {instanceID: 12126}
+      Script: {instanceID: 12070}
+    - Class: 114
+      Script: {instanceID: 12108}
+    - Class: 114
+      Script: {instanceID: 12226}
     - Class: 114
       Script: {instanceID: 12244}
     - Class: 114
-      Script: {instanceID: 12262}
+      Script: {instanceID: 12264}
     - Class: 114
-      Script: {instanceID: 12280}
+      Script: {instanceID: 12320}
     - Class: 114
-      Script: {instanceID: 12336}
+      Script: {instanceID: 12362}
     - Class: 114
-      Script: {instanceID: 12398}
+      Script: {instanceID: 12386}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12590}
+      Script: {instanceID: 12580}
     - Class: 114
-      Script: {instanceID: 12668}
+      Script: {instanceID: 12628}
     - Class: 114
-      Script: {instanceID: 12748}
+      Script: {instanceID: 12658}
     - Class: 114
-      Script: {instanceID: 12756}
+      Script: {instanceID: 12738}
     - Class: 114
-      Script: {instanceID: 12806}
+      Script: {instanceID: 12746}
     - Class: 114
-      Script: {instanceID: 12824}
+      Script: {instanceID: 12796}
     - Class: 114
-      Script: {instanceID: 12978}
+      Script: {instanceID: 12814}
+    - Class: 114
+      Script: {instanceID: 12968}
+    - Class: 114
+      Script: {instanceID: 12988}
     - Class: 114
       Script: {instanceID: 12998}
     - Class: 114
-      Script: {instanceID: 13008}
+      Script: {instanceID: 13056}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 13130}
     - Class: 114
-      Script: {instanceID: 13140}
+      Script: {instanceID: 13158}
     - Class: 114
-      Script: {instanceID: 13338}
+      Script: {instanceID: 13328}
     - Class: 114
-      Script: {instanceID: 13404}
+      Script: {instanceID: 13394}
     - Class: 114
-      Script: {instanceID: 13474}
+      Script: {instanceID: 13462}
     - Class: 114
-      Script: {instanceID: 13520}
+      Script: {instanceID: 13466}
     - Class: 114
-      Script: {instanceID: 13592}
+      Script: {instanceID: 13512}
     - Class: 114
-      Script: {instanceID: 13612}
+      Script: {instanceID: 13584}
     - Class: 114
-      Script: {instanceID: 13624}
+      Script: {instanceID: 13604}
     - Class: 114
-      Script: {instanceID: 13628}
+      Script: {instanceID: 13616}
     - Class: 114
-      Script: {instanceID: 13644}
+      Script: {instanceID: 13620}
     - Class: 114
-      Script: {instanceID: 18868}
+      Script: {instanceID: 13636}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -239,8 +305,49 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13168}
+      Script: {instanceID: 13158}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    Assets/Scenes/Test Terminal.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 12362}
+    - Class: 114
+      Script: {instanceID: 13158}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 135
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -837,6 +944,12 @@ ScriptsOnlyBuild:
     className: OpenLink
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ExitTerminal
+  - hash:
+      serializedVersion: 2
       Hash: 09717ed829e33db0363e41ce72dbf6a1
     assemblyName: Assembly-CSharp.dll
     namespaceName: Assets.Pixelation.Example.Scripts
@@ -915,6 +1028,12 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
+      Hash: 1db83fc0832e3c9905cec89afc2e12b1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TerminalBehavior
+  - hash:
+      serializedVersion: 2
       Hash: cba6cca6bb3290c4c00d709cf63843db
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -925,6 +1044,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: c7fb827afc771c4901346a28595ef7d9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: interactible
   - hash:
       serializedVersion: 2
       Hash: adb92691ab0496634b4241d3545a0010
@@ -979,6 +1104,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
     className: OnClickDestroy
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CloseTerminal
   - hash:
       serializedVersion: 2
       Hash: c656dcc13ae391b68d594cc8f9c590b0
@@ -1059,7 +1190,7 @@ ScriptsOnlyBuild:
     className: ToggleExpand
   - hash:
       serializedVersion: 2
-      Hash: cea4e0662230859b69fcff07ee00f90f
+      Hash: 663b4f213c04772bf4e863785a39c5a9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: CodeEditor
@@ -1575,6 +1706,12 @@ ScriptsOnlyBuild:
     className: Line
   - hash:
       serializedVersion: 2
+      Hash: 4b5a5ebf1f3694bfb717a7918eeb44f4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerController
+  - hash:
+      serializedVersion: 2
       Hash: 3165968ba45c74472d279ba04455fccb
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1801,15 +1938,11 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 4b5a5ebf1f3694bfb717a7918eeb44f4
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerController
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/Scene 1.unity
-  playerPath: C:/Users/N'importe maison/Desktop/Projet S2 EPITA Theo/build/New Unity
-    Project.exe
+  - Assets/CodeEditor/Code Editor.unity
+  - Assets/Scenes/Test Terminal.unity
+  playerPath: C:/Users/N'importe maison/Desktop/Theo/Projet S2 EPITA Theo/build/New
+    Unity Project.exe
