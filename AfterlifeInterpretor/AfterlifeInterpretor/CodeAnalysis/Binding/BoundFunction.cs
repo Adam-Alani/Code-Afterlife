@@ -13,6 +13,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public override Type Type => Body?.Type;
 
+        public override string TypeString => Body?.TypeString;
+
         public BoundFunction(BoundVariable assignee, BoundExpression args, BoundStatement body, int position)
         {
             Assignee = assignee;
@@ -23,7 +25,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public override string ToString()
         {
-            return new Function(Args, Body, Type, null).ToString();
+            return new Function(Args, Body, Type, null, TypeString).ToString();
         }
     }
 }

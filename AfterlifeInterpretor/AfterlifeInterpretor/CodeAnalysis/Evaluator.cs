@@ -18,6 +18,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         
         private readonly BoundBlockStatement _root;
         private Scope _scope;
+        private Scope _global;
 
         public Errors Errs;
         public string StdOut;
@@ -28,6 +29,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             _root = root;
             _scope = scope;
+            _global = scope;
             Errs = new Errors();
             StdOut = "";
             _depth = 0;
@@ -37,6 +39,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             _root = root;
             _scope = new Scope();
+            _global = _scope;
             Errs = new Errors();
             StdOut = "";
             _depth = 0;
@@ -46,6 +49,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             _root = root;
             _scope = scope;
+            _global = scope;
             Errs = errs;
             StdOut = "";
             _depth = 0;
@@ -55,6 +59,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             _root = root;
             _scope = new Scope();
+            _global = _scope;
             Errs = errs;
             StdOut = "";
             _depth = 0;
@@ -119,7 +124,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateFunctionDeclaration(BoundFunction statement)
         {
-            Function f = new Function(statement.Args, statement.Body, statement.Type, _scope);
+            Function f = new Function(statement.Args, statement.Body, statement.Type, _scope, statement.TypeString);
             EvaluateVariable(statement.Assignee);
             
             if (_scope.GetValue(statement.Assignee.Name) != null && _scope.GetValue(statement.Assignee.Name).GetType() != f.GetType())
@@ -228,16 +233,18 @@ namespace AfterlifeInterpretor.CodeAnalysis
             if (_depth < MAX_DEPTH)
             {
                 _depth += 1;
-                Function f = (Function)EvaluateExpression(ce.Called);
-                _scope = new Scope(_scope, f.Scope.Variables ?? new Dictionary<string, object>());
-
+                Scope parent = _scope;
+                
+                Function f = (Function) EvaluateExpression(ce.Called);
+                _scope = new Scope(f.EvalScope ?? _global);
+                _scope.Parent.ForbidChanges();
 
                 if (ce.Args is BoundEmptyListExpression && !(f.Args is BoundEmptyListExpression))
                 {
                     Errs.Report("Invalid call: not enough arguments", ce.Position);
                 
                     _depth -= 1;
-                    _scope = _scope.Parent;
+                    _scope = parent;
                     return null;
                 }
 
@@ -246,7 +253,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     Errs.Report("Invalid call: too many arguments", ce.Position);
                 
                     _depth -= 1;
-                    _scope = _scope.Parent;
+                    _scope = parent;
                     return null;
                 }
 
@@ -257,11 +264,17 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
                     EvaluateAssignmentUnpacking(assignArgs);
                 }
-            
+                
+                _scope.Parent.AllowChanges();
+                f.EvalScope = null;
                 object val = EvaluateStatement(f.Body);
-            
+
+                if (val is Function fv)
+                    fv.EvalScope = _scope;
+
                 _depth -= 1;
-                _scope = _scope.Parent;
+                _scope.Parent.Return = false;
+                _scope = parent;
                 _scope.Return = false;
                 return (f.Type != null) ? val : null;
             }
@@ -373,8 +386,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateVariable(BoundVariable bv)
         {
-            _scope.Declare(bv.Name, GetDefault(bv.Type));
-            return _scope.GetValue(bv.Name);
+            object value = _scope.GetValue(bv.Name);
+            _scope.Declare(bv.Name, value ?? GetDefault(bv.Type));
+            return value;
         }
 
         private object EvaluateAssignment(BoundAssignment ba)

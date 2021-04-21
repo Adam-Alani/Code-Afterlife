@@ -13,21 +13,27 @@ namespace AfterlifeInterpretor.CodeAnalysis
         public BoundExpression Args { get; }
         public BoundStatement Body { get; }
         
-        public Type Type { get; private set; }
+        public Type Type { get; }
+        
+        public string TypeString { get; }
         
         public Scope Scope { get; }
 
-        public Function(BoundExpression args, BoundStatement body, Type type, Scope scope)
+        public Scope EvalScope;
+
+        public Function(BoundExpression args, BoundStatement body, Type type, Scope scope, string typeString = null, Scope evalScope = null)
         {
             Args = args;
             Body = body;
             Type = type;
             Scope = scope;
+            TypeString = typeString ?? ((Type != null) ? Text.PrettyType(Type) : "()");
+            EvalScope = evalScope;
         }
 
         public override string ToString()
         {
-            string type = (Type != null) ? Text.PrettyType(Type) : "()";
+            string type = TypeString;
             if (Body is BoundExpressionStatement {Expression: BoundCallExpression bce})
             {
                 type = GetCallType(bce);
@@ -43,7 +49,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             return $"{GetArgString(Args)} -> {type}";
         }
 
-        private string GetTypeDepth(int depth)
+        public string GetTypeDepth(int depth)
         {
             if (depth <= 0)
                 return ToString();
@@ -52,7 +58,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 return (new Function(bf.Args, bf.Body, Type, Scope)).GetTypeDepth(depth - 1);
             }
 
-            return "";
+            return Text.PrettyType(Type);
         }
 
         private string GetCallType(BoundCallExpression bce)
@@ -74,6 +80,26 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 {
                     return f.GetTypeDepth(depth);
                 }
+            }
+            return "function";
+        }
+        
+        
+        private static string GetCallType(BoundCallExpression bce, BoundScope scope)
+        {
+            int depth = 0;
+            while (bce.Called is BoundCallExpression bce1)
+            {
+                depth++;
+                bce = bce1;
+            }
+
+            if (!(bce.Args is BoundEmptyListExpression))
+                depth++;
+
+            if (bce.Called is BoundVariable bv)
+            {
+                return scope.GetFunction(bv.Name).GetTypeDepth(depth);
             }
             return "function";
         }

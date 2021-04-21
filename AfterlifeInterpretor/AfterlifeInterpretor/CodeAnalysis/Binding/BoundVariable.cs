@@ -6,6 +6,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     {
         public string Name { get;  }
         public override Type Type { get; }
+        public override string TypeString => Text.PrettyType(Type);
         public override BoundNodeKind Kind => BoundNodeKind.VariableExpression;
         public override int Position { get; }
 

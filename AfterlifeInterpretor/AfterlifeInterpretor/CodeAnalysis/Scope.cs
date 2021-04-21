@@ -8,12 +8,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
         public Dictionary<string, object> Variables { get; }
         public Scope Parent;
         public bool Return;
-
+        private bool _allowChanges;
+        
         public Scope()
         {
             Parent = null;
             Variables = new Dictionary<string, object>();
             Return = false;
+            _allowChanges = true;
         }
         
         public Scope(Dictionary<string, object> variables)
@@ -21,43 +23,49 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Parent = null;
             Variables = variables;
             Return = false;
+            _allowChanges = true;
         }
         public Scope(Scope parent)
         {
             Parent = parent;
             Variables = new Dictionary<string, object>();
             Return = false;
+            _allowChanges = true;
         }
         public Scope(Scope parent, Dictionary<string, object> variables)
         {
             Parent = parent;
             Variables = variables;
             Return = false;
+            _allowChanges = true;
         }
 
         public bool HasVariable(string var)
         {
-            return Variables.ContainsKey(var) || (Parent != null && Parent.HasVariable(var));
+            return  _allowChanges && (Variables.ContainsKey(var) || (Parent != null && Parent.HasVariable(var)));
         }
 
         public void Declare(string var, object val)
         {
-            if (!HasVariable(var))
+            if (_allowChanges &&!HasVariable(var))
                 Variables.Add(var, val);
         }
 
         public void Undeclare(string var)
         {
-            if (!Variables.Remove(var)&& Parent != null)
+            if (_allowChanges && !Variables.Remove(var)&& Parent != null)
                 Parent.Undeclare(var);
         }
 
         public void SetValue(string var, object val)
         {
-            if (Variables.ContainsKey(var))
-                Variables[var] = val;
-            else
-                Parent?.SetValue(var, val);
+            if (_allowChanges)
+            {
+                if (Variables.ContainsKey(var))
+                    Variables[var] = val;
+                else 
+                    Parent?.SetValue(var, val);
+            }
         }
 
         public object GetValue(string var)
@@ -76,6 +84,28 @@ namespace AfterlifeInterpretor.CodeAnalysis
             }
 
             return res;
+        }
+
+        public Dictionary<string, Function> GetFunctions()
+        {
+            Dictionary<string, Function> functions = new Dictionary<string, Function>();
+            foreach (KeyValuePair<string, object> kv in Variables)
+            {
+                if (kv.Value is Function f)
+                    functions.Add(kv.Key, f);
+            }
+
+            return functions;
+        }
+
+        public void ForbidChanges()
+        {
+            _allowChanges = false;
+        }
+
+        public void AllowChanges()
+        {
+            _allowChanges = true;
         }
     }
 }

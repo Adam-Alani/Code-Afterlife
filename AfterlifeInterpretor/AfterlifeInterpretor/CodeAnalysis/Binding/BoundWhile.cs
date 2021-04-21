@@ -11,7 +11,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override BoundNodeKind Kind => BoundNodeKind.WhileStatement;
         public override int Position { get; }
 
-        public override Type Type => Then.Type;
+        public override Type Type => Then?.Type;
+        public override string TypeString => Then?.TypeString;
+
 
         public BoundWhile(BoundExpressionStatement condition, BoundStatement then, int position)
         {

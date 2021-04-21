@@ -9,13 +9,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpression Called { get; }
         public BoundExpression Args { get; }
         public override Type Type { get; }
+        public override string TypeString { get; }
 
-        public BoundCallExpression(BoundExpression called, BoundExpression args, Type type, int position)
+        public Function F { get; }
+        
+        public int Depth { get;  }
+
+        public BoundCallExpression(BoundExpression called, BoundExpression args, Type type, int position,
+            Function f = null, int depth = 1, string typeString = null)
         {
             Called = called;
             Args = args;
             Position = position;
             Type = type;
+            F = f;
+            Depth = depth;
+            TypeString = typeString ?? ((Type != null) ? Text.PrettyType(Type) : "()");
         }
     }
 }

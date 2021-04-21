@@ -9,5 +9,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public abstract int Position { get; }
         
         public abstract Type Type { get; }
+        
+        public abstract string TypeString { get; }
     }
 }

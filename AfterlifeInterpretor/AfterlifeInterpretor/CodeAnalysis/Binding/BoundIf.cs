@@ -13,7 +13,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override BoundNodeKind Kind => BoundNodeKind.IfStatement;
         public override int Position { get; }
 
-        public override Type Type => Then.Type;
+        public override Type Type => Then?.Type;
+        
+        public override string TypeString => Then?.TypeString;
+
 
         public BoundIf(BoundExpressionStatement condition, BoundStatement then, BoundStatement elseClause, int position)
         {

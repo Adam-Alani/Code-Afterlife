@@ -26,13 +26,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         
         public Binder(Scope scope)
         {
-            _scope = new BoundScope(scope.GetTypes());
+            _scope = new BoundScope(variables:scope.GetTypes(), functions:scope.GetFunctions());
             Errs = new Errors();
         }
         
         public Binder(Scope scope, Errors errs)
         {
-            _scope = new BoundScope(scope.GetTypes());
+            _scope = new BoundScope(variables:scope.GetTypes(), functions:scope.GetFunctions());
             Errs = errs;
         }
 
@@ -80,6 +80,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return new BoundReturn(bs, syntax.Token.Position);
             }
             _scope.BlockType = bs?.Type;
+            if (bs?.Type == typeof(Function) && bs is BoundCallExpression bce)
+            {
+                string typeString = bce.F?.GetTypeDepth(bce.Depth);
+                if (_scope.TypeString == null)
+                    _scope.TypeString = "(" + typeString + ")";
+                else if (_scope.TypeString != typeString)
+                {
+                    Errs.Report($"Invalid return type: expected {_scope.TypeString}, got {typeString}", bs.Position);
+                }
+            }
+            
             return new BoundReturn(bs, syntax.Token.Position);
         }
 
@@ -88,11 +99,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             int position = syntax.Variable.Token.Position;
             _allowOverwriting = true;
             BoundVariable assignee = BindVariable(syntax.Variable);
+            _scope.SetFunction(assignee.Name, typeof(Unpredictable));
             _scope = new BoundScope(_scope);
             BoundExpression args = BindExpression(syntax.Args);
             _allowOverwriting = false;
             BoundStatement body = BindStatement(syntax.Body);
             _scope = _scope.Parent;
+            _scope.SetFunction(assignee.Name, body?.Type);
             return new BoundFunction(assignee, args, body, position);
         }
 
@@ -131,17 +144,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         private BoundStatement BindIfStatement(IfStatement syntax)
         {
             BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
-            if (condition.Expression.Type != typeof(bool) && condition.Expression.Type != typeof(Unpredictable))
+            if (condition?.Expression?.Type != typeof(bool) && condition?.Expression?.Type != typeof(Unpredictable))
             {
-                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                Errs.ReportType(condition?.Expression?.Type, typeof(bool), syntax.Token.Position);
                 return null;
             }
 
             BoundStatement elseClause = (syntax.Else != null) ? BindStatement(syntax.Else.Then) : null;
             BoundStatement then = BindStatement(syntax.Then);
-            if (elseClause != null && elseClause.Type != then.Type && elseClause?.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
+            if (elseClause != null && elseClause.Type != then?.Type && elseClause.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
             {
-                Errs.ReportType("Unmatching types in if", then.Type, elseClause.Type, syntax.Token.Position);
+                Errs.ReportType("Unmatching types in if", then?.Type, elseClause.Type, syntax.Token.Position);
                 return null;
             }
             
@@ -162,9 +175,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             }
 
             Type t = _scope.BlockType;
+            string typeString = _scope.TypeString;
             _scope = _scope.Parent;
             
-            return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t);
+            return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t, typeString);
         }
         
         private BoundStatement BindExpressionStatement(ExpressionStatement syntax)
@@ -232,18 +246,34 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             }
             
-            BoundExpression f = BindExpression(syntax.Called);
-            if (f == null)
+            BoundExpression fe = BindExpression(syntax.Called);
+            if (fe == null)
                 return null;
             BoundExpression args = BindExpression(syntax.Args);
-
-            if (f.Type != typeof(Function) && f.Type != typeof(Unpredictable))
+            
+            if (fe.Type != typeof(Function) && fe.Type != typeof(Unpredictable))
             {
-                Errs.ReportType(f.Type, typeof(Function), syntax.Called.Token.Position);
+                Errs.ReportType(fe.Type, typeof(Function), syntax.Called.Token.Position);
                 return null;
             }
-            
-            return new BoundCallExpression(f, args, typeof(Unpredictable),syntax.Called.Token.Position);
+
+
+            if (fe is BoundVariable fbv)
+            {
+                Function f = _scope.GetFunction(fbv.Name);
+                if (f != null && f.Type != typeof(Unpredictable))
+                    return new BoundCallExpression(fe, args, typeof(Function), syntax.Called.Token.Position, f);
+                return new BoundCallExpression(fe, args, typeof(Unpredictable),syntax.Called.Token.Position);
+            }
+
+            if (fe is BoundCallExpression fce)
+            {
+                if (fce.F?.GetTypeDepth(fce.Depth + 1) == Text.PrettyType(fce.F?.Type))
+                    return new BoundCallExpression(fe, args, fce.F?.Type,syntax.Called.Token.Position, fce.F, fce.Depth + 1);
+                return new BoundCallExpression(fe, args, fce.Type, syntax.Called.Token.Position, fce.F, fce.Depth + 1);
+            }
+
+            return new BoundCallExpression(fe, args, typeof(Unpredictable),syntax.Called.Token.Position);
         }
 
         private BoundVariable BindIdentifier(IdentifierExpression syntax)

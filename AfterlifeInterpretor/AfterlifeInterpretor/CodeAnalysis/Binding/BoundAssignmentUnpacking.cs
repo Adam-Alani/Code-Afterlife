@@ -10,7 +10,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
         public override BoundNodeKind Kind => BoundNodeKind.AssignmentExpression;
         public override int Position { get; }
-        public override Type Type => Assignment.Type;
+        public override Type Type => Assignment?.Type;
+        public override string TypeString => Assignment?.TypeString;
+
 
         public BoundAssignmentUnpacking(BoundBinary assignee, BoundExpression assignment, int position)
         {

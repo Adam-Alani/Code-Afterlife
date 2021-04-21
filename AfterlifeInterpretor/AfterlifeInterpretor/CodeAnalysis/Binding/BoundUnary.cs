@@ -7,7 +7,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundUnaryOperator Operator { get;  }
         public BoundExpression Operand { get;  }
         
-        public override Type Type => Operator.ResultType;
+        public override Type Type => Operator?.ResultType;
+        public override string TypeString => Text.PrettyType(Type);
+
         public override BoundNodeKind Kind => BoundNodeKind.UnaryExpression;
         public override int Position { get; }
 

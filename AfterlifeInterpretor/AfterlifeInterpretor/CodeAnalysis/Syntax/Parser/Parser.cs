@@ -13,6 +13,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
     {
         private readonly SyntaxToken[] _tokens;
         private int _position;
+        private bool _canBeCall;
 
         private SyntaxToken Current => Peek(0);
 
@@ -35,6 +36,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             _position = 0;
             
             Errs = lex.Errs;
+            _canBeCall = false;
         }
 
         private SyntaxToken Peek(int offset)
@@ -65,6 +67,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 
         public SyntaxTree Parse()
         {
+            _canBeCall = true;
             return new SyntaxTree(Errs, ParseProgram(), Expect(SyntaxKind.EndToken));
         }
         
@@ -129,6 +132,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 
         private StatementSyntax ParseStatement()
         {
+            _canBeCall = true;
             switch (Current.Kind)
             {
                 case SyntaxKind.OBlockToken:
@@ -237,6 +241,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             switch (Current.Kind)
             {
                 case SyntaxKind.OParenToken:
+                    bool safeCall = _canBeCall;
+                    _canBeCall = true;
                     NextToken();
                     SkipEndStatements();
                     ExpressionSyntax expr = ParseAssignments(); 
@@ -246,6 +252,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                     if (expr is CallExpression ce && IsValueToken(Current.Kind))
                         return new CallExpression(ce, ParseArguments(true));
 
+                    _canBeCall = safeCall;
                     return expr;
                     // return new ParenthesisedExpression(open, expr, close);
                 case SyntaxKind.TrueKeyword:
@@ -260,8 +267,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 case SyntaxKind.IntKeyword:
                     return new VariableExpression(NextToken(), new IdentifierExpression(Expect(SyntaxKind.IdentifierToken)));
                 case SyntaxKind.IdentifierToken:
-                    if (IsValueToken(Peek(1).Kind))
+                    if (_canBeCall && IsValueToken(Peek(1).Kind))
+                    {
+                        _canBeCall = false;
                         return new CallExpression(new IdentifierExpression(NextToken()), ParseArguments(true));
+                    }
                     return new IdentifierExpression(NextToken());
                 case SyntaxKind.FunctionKeyword:
                     return ParseFunctionDeclaration();
@@ -286,10 +296,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             SyntaxToken token = Expect(SyntaxKind.IfKeyword);
             ExpressionStatement condition = (ExpressionStatement)ParseExpressionStatement();
             SkipEndStatements();
+            _canBeCall = true;
             ExpressionSyntax then = ParseExpression();
             SkipEndStatements();
             Expect(SyntaxKind.ElseKeyword);
-            return new IfExpression(token, condition, then, ParseExpression());
+            _canBeCall = true;
+            return new IfExpression(token, condition, then, ParseAssignments());
         }
 
         private ExpressionSyntax ParseFunctionDeclaration()
@@ -307,20 +319,27 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                 return new FunctionDeclaration(token, new IdentifierExpression(name), new EmptyExpression(args.Token), null);
             }
 
-            Stack<ExpressionSyntax> subArgs = new Stack<ExpressionSyntax>();
+            // Possible improvement: adding sub functions, I didn't manage to do it because of scoping issue,
+            // and I'm too tired to find a solution
+            // considering that it is not important, it is fine
+            /* Stack<ExpressionSyntax> subArgs = new Stack<ExpressionSyntax>();
             while (Current.Kind != SyntaxKind.AssignToken && Current.Kind != SyntaxKind.EndToken)
             {
                 subArgs.Push(ParseArguments());
-            }
+            } */
+            
             Expect(SyntaxKind.AssignToken);
             SkipEndStatements();
             StatementSyntax body = (Current.Kind == SyntaxKind.OBlockToken) ? ParseStatement() : new ExpressionStatement(ParseExpression());
+            
+            /*
             while (subArgs.Count > 0)
             {
                 ExpressionSyntax subArg = subArgs.Pop();
                 SyntaxToken subName = new SyntaxToken(SyntaxKind.IdentifierToken, subArg.Token.Position, "_");
                 body = new ExpressionStatement(new FunctionDeclaration(token, new IdentifierExpression(subName), subArg, body));
             }
+            */
 
             return new FunctionDeclaration(token, new IdentifierExpression(name), args, body);
         }

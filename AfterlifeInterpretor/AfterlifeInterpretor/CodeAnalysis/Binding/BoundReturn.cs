@@ -9,7 +9,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override int Position { get; }
 
         public BoundExpression Expression;
-        public override Type Type => Expression.Type;
+        public override Type Type => Expression?.Type;
+        public override string TypeString => Expression?.TypeString;
+
 
         public BoundReturn(BoundExpression expression, int position)
         {
