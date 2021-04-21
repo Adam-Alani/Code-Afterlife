@@ -261,9 +261,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                     return new VariableExpression(NextToken(), new IdentifierExpression(Expect(SyntaxKind.IdentifierToken)));
                 case SyntaxKind.IdentifierToken:
                     if (IsValueToken(Peek(1).Kind))
-                    {
-                        return new CallExpression(new IdentifierExpression(NextToken()), ParseArguments(true));
-                    }
+                        return new CallExpression(new IdentifierExpression(NextToken()), ParseArguments(true, true));
                     return new IdentifierExpression(NextToken());
                 case SyntaxKind.FunctionKeyword:
                     return ParseFunctionDeclaration();
@@ -332,11 +330,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             return new FunctionDeclaration(token, new IdentifierExpression(name), args, body);
         }
 
-        private ExpressionSyntax ParseExpression(int parentPrecedence = 0)
+        private ExpressionSyntax ParseExpression(int parentPrecedence = 0, bool stopAtNotComma = false)
         {
             ExpressionSyntax left = ParseUnary(parentPrecedence);
             while (left is CallExpression ce && IsValueToken(Current.Kind))
                 left = new CallExpression(ce, ParseArguments(true));
+
+            if (stopAtNotComma && Current.Kind != SyntaxKind.CommaToken)
+                return left;
 
             bool doOperation;
             do
@@ -365,9 +366,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             return PrimaryExpression();
         }
 
-        private ExpressionSyntax ParseArguments(bool allowNonvariable = false)
+        private ExpressionSyntax ParseArguments(bool allowNonvariable = false, bool stopAtNotComma = false)
         {
-            ExpressionSyntax args = ParseExpression();
+            ExpressionSyntax args = ParseExpression(stopAtNotComma: stopAtNotComma);
             if (allowNonvariable && !(args.Token.Kind == SyntaxKind.CommaToken || args is EmptyExpression))
                 args = new BinaryExpression(args, new SyntaxToken(SyntaxKind.CommaToken, args.Token.Position, ""),
                     new EmptyExpression(args.Token));
