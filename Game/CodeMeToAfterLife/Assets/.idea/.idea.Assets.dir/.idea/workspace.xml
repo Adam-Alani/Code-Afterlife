@@ -19,7 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="" />
+    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeEditor/Code Editor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/CodeEditor/Code Editor.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Resources/Prefabs/Terminal.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Prefabs/Terminal.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Test Terminal.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Test Terminal.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scripts/interactible.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Scripts/interactible.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TerminalBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TerminalBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ArtifactDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ShaderCache/EditorEncounteredVariants" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ShaderCache/EditorEncounteredVariants" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/SourceAssetDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/SourceAssetDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/StateCache/SceneView/b1d4a7-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/StateCache/SceneView/b1d4a7-mainStage.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,12 +44,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Scripts/interactible.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TerminalBehavior.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/OptionsMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
+      <option value="$PROJECT_DIR$/CloseTerminal.cs" />
       <option value="$PROJECT_DIR$/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/Scripts/interactible.cs" />
+      <option value="$PROJECT_DIR$/TerminalBehavior.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nq2i8hBHeNvBzVyY1LgigfYHzD" />
@@ -64,6 +85,10 @@
       <workItem from="1614152377096" duration="168000" />
       <workItem from="1618832287099" duration="115000" />
       <workItem from="1618832437581" duration="452000" />
+      <workItem from="1618910394443" duration="912000" />
+      <workItem from="1618916479838" duration="1249000" />
+      <workItem from="1618918707505" duration="621000" />
+      <workItem from="1618921947699" duration="4408000" />
     </task>
     <servers />
   </component>

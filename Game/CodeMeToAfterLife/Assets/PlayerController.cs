@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PV.IsMine)
+        // if it's my screen and the code ediotr isn't opened
+        if (PV.IsMine && SceneManager.sceneCount != 2) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     
@@ -63,15 +65,20 @@ public class PlayerController : MonoBehaviour
     
         return direction;
     }
-        
+
     /// <summary>
     /// Rotation the player based on his direction
     /// </summary>
     void PlayerRotate(Vector3 direction)
     {
+        // create the angle
         float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            
-        transform.rotation =  Quaternion.Euler(0f, angle, 0f); // rotation around the y axis
-     }
+
+        // smooth the rotation
+        float angle =
+            Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+        // rotate around the y axis
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+    }
 }

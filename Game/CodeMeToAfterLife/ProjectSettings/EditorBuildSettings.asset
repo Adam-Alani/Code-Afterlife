@@ -54,4 +54,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene 1.unity
     guid: 87603d22b8c63b942bdd0a631bd104d7
+  - enabled: 1
+    path: Assets/CodeEditor/Code Editor.unity
+    guid: 4204987111859674ea20b0098ed3a29d
+  - enabled: 1
+    path: Assets/Scenes/Test Terminal.unity
+    guid: 0f1ce040dafd1a54f81a7125da637207
   m_configObjects: {}
