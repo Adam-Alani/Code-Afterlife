@@ -236,7 +236,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 Scope parent = _scope;
                 
                 Function f = (Function) EvaluateExpression(ce.Called);
-                _scope = new Scope(f.EvalScope ?? _global);
+                _scope = new Scope(_scope.Caller ?? _global);
                 _scope.Parent.ForbidChanges();
 
                 if (ce.Args is BoundEmptyListExpression && !(f.Args is BoundEmptyListExpression))
@@ -266,11 +266,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 }
                 
                 _scope.Parent.AllowChanges();
-                f.EvalScope = null;
+                _scope.Caller = _scope;
                 object val = EvaluateStatement(f.Body);
+                _scope.Caller = null;
 
                 if (val is Function fv)
                     fv.EvalScope = _scope;
+                
+                f.EvalScope = null;
 
                 _depth -= 1;
                 _scope.Parent.Return = false;
