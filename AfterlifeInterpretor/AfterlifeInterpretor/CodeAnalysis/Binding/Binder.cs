@@ -152,9 +152,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             BoundStatement elseClause = (syntax.Else != null) ? BindStatement(syntax.Else.Then) : null;
             BoundStatement then = BindStatement(syntax.Then);
-            if (elseClause != null && elseClause.Type != then?.Type && elseClause.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
+            if (elseClause?.Type != then?.Type && elseClause?.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
             {
-                Errs.ReportType("Unmatching types in if", then?.Type, elseClause.Type, syntax.Token.Position);
+                Errs.ReportType("Unmatching types in if", then?.Type, elseClause?.Type, syntax.Token.Position);
                 return null;
             }
             
@@ -167,15 +167,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             
             List<BoundStatement> statements = new List<BoundStatement>();
 
-            
+            Type t = null;
             foreach (StatementSyntax statement in syntax.Statements)
             {
                 BoundStatement bs = BindStatement(statement);
                 statements.Add(bs);
+                if (t != null && t != bs?.Type && bs?.Type != typeof(Unpredictable) && t != typeof(Unpredictable))
+                {
+                    Errs.ReportType("Invalid return type", t, bs?.Type, syntax.Token.Position);
+                    return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t, _scope.TypeString);
+                    
+                }
+                t = bs?.Type;
             }
 
-            Type t = _scope.BlockType;
             string typeString = _scope.TypeString;
+            t = _scope.BlockType;
             _scope = _scope.Parent;
             
             return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t, typeString);
