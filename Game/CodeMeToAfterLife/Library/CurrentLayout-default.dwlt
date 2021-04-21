@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 653
     height: 773
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -238,8 +238,8 @@ MonoBehaviour:
     y: 0
     width: 444
     height: 773
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -388,7 +388,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -2560
     y: -137
-    width: 1682
+    width: 1462
     height: 752
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
@@ -401,9 +401,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 764, y: 229.33, z: 0}
+    m_Target: {x: -28.44629, y: 195.75781, z: -103.07031}
     speed: 2
-    m_Value: {x: 764, y: 229.33, z: 0}
+    m_Value: {x: -28.44629, y: 195.75781, z: -103.07031}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -449,17 +449,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.0044995397, y: -0.00060172146, z: -0.0000002984277, w: 1.00001}
+    m_Target: {x: 0.45609254, y: 0.114229895, z: -0.05916452, w: 0.8805852}
     speed: 2
-    m_Value: {x: 0.0044995397, y: 0.00060172146, z: 0.00000029842772, w: -1.0000101}
+    m_Value: {x: 0.457413, y: 0.11414104, z: -0.05933581, w: 0.8799003}
   m_Size:
-    m_Target: 539.5504
+    m_Target: 35.430546
     speed: 2
-    m_Value: 539.5504
+    m_Value: 33.904827
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.49748743
@@ -509,9 +509,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 46380000
-      m_LastClickedID: 14406
-      m_ExpandedIDs: 6afbffffa2370000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 66c4ffffe2cfffffe4cfffff8ed1ffff16d7ffff52e4ffff80e7ffffdaebffffeeebfffff0ebffff26eeffff3aeeffff3ceeffffeaefffff3af1ffffd6f2ffffd4f8fffffaf8ffff6afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -692,19 +692,19 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/Prefabs
+    - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/Prefabs
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "G:\\Data Ivan\\cours\\\xE9pita\\Prog\\Projet S2\\Game\\Code-Afterlife\\Game\\CodeMeToAfterLife"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7a3a0000
-    m_LastClickedID: 14970
+    m_SelectedIDs: 7c3a0000
+    m_LastClickedID: 14972
     m_ExpandedIDs: 000000006e3a0000703a0000723a0000743a0000763a0000783a00007a3a00007c3a00007e3a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000066380000000000008030000080350000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -2560
     y: 636
-    width: 1875
+    width: 2560
     height: 513
   m_ViewDataDictionary: {fileID: 0}
 --- !u!114 &18

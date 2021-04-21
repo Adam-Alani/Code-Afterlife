@@ -212,6 +212,7 @@ MonoBehaviour:
   limitLeft: {fileID: 3816955407397212032}
   limitRight: {fileID: 61390960606741989}
   limitMid: {fileID: 1622928346}
+  turret: {fileID: 2043297241718979886}
 --- !u!1 &2138873211800674873
 GameObject:
   m_ObjectHideFlags: 0
