@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
@@ -318,7 +317,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             }
 
-            if (assignement.Type == typeof(object))
+            if (assignement.Type == typeof(object) || assignement.Type == typeof(Unpredictable))
             {
                 return new BoundAssignment(bv, assignement, syntax.Token.Kind, syntax.Token.Position);
             }

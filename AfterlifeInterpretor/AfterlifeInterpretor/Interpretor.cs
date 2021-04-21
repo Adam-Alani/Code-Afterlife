@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 

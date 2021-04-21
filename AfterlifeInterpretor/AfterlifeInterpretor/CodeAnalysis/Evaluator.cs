@@ -112,8 +112,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateReturn(BoundReturn statement)
         {
+            object val = EvaluateExpression(statement.Expression);
             _scope.Return = true;
-            return EvaluateExpression(statement.Expression);
+            return val;
         }
 
         private object EvaluateFunctionDeclaration(BoundFunction statement)
@@ -261,6 +262,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
                 _depth -= 1;
                 _scope = _scope.Parent;
+                _scope.Return = false;
                 return (f.Type != null) ? val : null;
             }
 
