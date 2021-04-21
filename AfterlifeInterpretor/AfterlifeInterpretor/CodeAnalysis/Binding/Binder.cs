@@ -238,7 +238,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             BoundExpression args = BindExpression(syntax.Args);
 
-            if (f.Type != typeof(Function))
+            if (f.Type != typeof(Function) && f.Type != typeof(Unpredictable))
             {
                 Errs.ReportType(f.Type, typeof(Function), syntax.Called.Token.Position);
                 return null;
