@@ -35,7 +35,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundUnaryOperator(SyntaxKind.PlusToken, BoundUnaryKind.Id, typeof(int)), 
             new BoundUnaryOperator(SyntaxKind.MinusToken, BoundUnaryKind.Neg, typeof(int)),
             
-            new BoundUnaryOperator(SyntaxKind.HeadToken, BoundUnaryKind.Head, typeof(List),typeof(object)),
+            new BoundUnaryOperator(SyntaxKind.HeadToken, BoundUnaryKind.Head, typeof(List),typeof(Unpredictable)),
             new BoundUnaryOperator(SyntaxKind.TailToken, BoundUnaryKind.Tail, typeof(List)),
             new BoundUnaryOperator(SyntaxKind.SizeToken, BoundUnaryKind.Size, typeof(List), typeof(int)),
             
