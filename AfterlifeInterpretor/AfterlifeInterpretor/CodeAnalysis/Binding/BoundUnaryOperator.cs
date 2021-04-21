@@ -39,7 +39,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundUnaryOperator(SyntaxKind.TailToken, BoundUnaryKind.Tail, typeof(List)),
             new BoundUnaryOperator(SyntaxKind.SizeToken, BoundUnaryKind.Size, typeof(List), typeof(int)),
             
-            new BoundUnaryOperator(SyntaxKind.PrintToken, BoundUnaryKind.Print, typeof(object))
+            new BoundUnaryOperator(SyntaxKind.PrintToken, BoundUnaryKind.Print, typeof(string))
 
         };
 
