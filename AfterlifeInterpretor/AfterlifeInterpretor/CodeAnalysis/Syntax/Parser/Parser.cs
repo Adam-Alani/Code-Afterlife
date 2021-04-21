@@ -78,6 +78,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
         {
             return start.Kind != SyntaxKind.IfKeyword &&
                    start.Kind != SyntaxKind.WhileKeyword &&
+                   start.Kind != SyntaxKind.ForKeyword &&
                    Current.Kind != SyntaxKind.EndToken &&
                    Current.Kind != SyntaxKind.OBlockToken &&
                    Current.Kind != SyntaxKind.CBlockToken;

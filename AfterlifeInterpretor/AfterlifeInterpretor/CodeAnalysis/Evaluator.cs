@@ -85,7 +85,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
             foreach (BoundStatement statement in program.Statements)
             {
                 lastValue = EvaluateStatement(statement);
-                if (_scope.Return) break;
+                if (_scope.Return)
+                {
+                    if (_scope.Parent != null)
+                        _scope.Parent.Return = true;
+                    return lastValue;
+                }
             }
                 
             return lastValue;
@@ -134,7 +139,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
             foreach (BoundStatement statement in block.Statements)
             {
                 lastValue = EvaluateStatement(statement);
-                if (_scope.Return) break;
+                if (_scope.Return)
+                {
+                    _scope = _scope.Parent;
+                    _scope.Return = true;
+                    return lastValue;
+                }
             }
                 
 
@@ -158,7 +168,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             object lastValue = null;
             uint calls = 0;
-            for(; calls < MAX_ITER && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+            for(; calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
                 lastValue = EvaluateStatement(statement.Then);
             
             if (calls == MAX_ITER)
@@ -172,9 +182,11 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             uint calls = 0;
-            for(EvaluateExpressionStatement(statement.Initialisation); calls < MAX_ITER && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+            for(EvaluateExpressionStatement(statement.Initialisation); calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
                 lastValue = EvaluateStatement(statement.Then);
-            
+
+            if (_scope.Parent != null)
+                _scope.Parent.Return = _scope.Return;
             _scope = _scope.Parent;
             
             if (calls == MAX_ITER)
