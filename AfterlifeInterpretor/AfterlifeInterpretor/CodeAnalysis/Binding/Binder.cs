@@ -182,7 +182,6 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             }
 
             string typeString = _scope.TypeString;
-            t = _scope.BlockType;
             _scope = _scope.Parent;
             
             return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t, typeString);

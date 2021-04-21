@@ -26,6 +26,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Variables = variables;
             Return = false;
             _allowChanges = true;
+            Caller = null;
         }
         public Scope(Scope parent)
         {
@@ -33,6 +34,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Variables = new Dictionary<string, object>();
             Return = false;
             _allowChanges = true;
+            Caller = Parent?.Caller;
         }
         public Scope(Scope parent, Dictionary<string, object> variables)
         {
@@ -40,6 +42,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             Variables = variables;
             Return = false;
             _allowChanges = true;
+            Caller = Parent?.Caller;
         }
 
         public bool HasVariable(string var)
