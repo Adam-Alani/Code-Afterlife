@@ -1,4 +1,6 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+using System.Text.RegularExpressions;
+
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Lexer class
@@ -70,9 +72,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 return LexWhiteSpace();
             }
 
-            if (char.IsLetter(Current))
+            if (char.IsLetter(Current) || Current == '_')
             {
                 return LexKeyword();
+            }
+
+            if (Current == '"')
+            {
+                return LexWord();
             }
 
             SyntaxToken token = FindToken();
@@ -81,12 +88,41 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             return token;
         }
 
+        private SyntaxToken LexWord()
+        {
+            int start = _position;
+            string text = "";
+
+            do
+            {
+                if (Current == '\\')
+                {
+                    _position++;
+                    text += Regex.Unescape($"\\{Current}");
+                }
+                else
+                    text += Current;
+                _position++;
+            } while (Current != '"' && Current != '\0');
+
+            if (Current == '"')
+            {
+                string value = text.Substring(1);
+                text += Current;
+                _position++;
+                return new SyntaxToken(SyntaxKind.WordToken, start, text, value);
+            }
+            
+            Errs.ReportUnexpected('"', SyntaxKind.EndToken, start);
+            return new SyntaxToken(SyntaxKind.ErrorToken, start, text);
+        }
+
         private SyntaxToken LexKeyword()
         {
             int start = _position;
             string text = "";
 
-            while (char.IsLetter(Current))
+            while (char.IsLetter(Current) || char.IsDigit(Current) || Current == '_')
             {
                 text += Current;
                 _position++;
@@ -100,7 +136,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             int start = _position;
             string text = "";
 
-            while (char.IsWhiteSpace(Current))
+            while (char.IsWhiteSpace(Current) && Current != '\n')
             {
                 text += Current;
                 _position++;
@@ -133,9 +169,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 text += Current;
                 _position++;
             }
+            
+            if (Current != '.' && int.TryParse(text, out int integer))
+                return new SyntaxToken(SyntaxKind.NumericToken, start, text, integer);
 
-            if (int.TryParse(text, out var value))
-                return new SyntaxToken(SyntaxKind.NumericToken, start, text, value);
+            do
+            {
+                text += Current;
+                _position++;
+            } while (char.IsDigit(Current));
+            
+            if (double.TryParse(text, out double floating))
+                return new SyntaxToken(SyntaxKind.NumericToken, start, text, floating);
 
             Errs.ReportUnexpected(SyntaxKind.NumericToken, text, start);
             return new SyntaxToken(SyntaxKind.ErrorToken, start, text);

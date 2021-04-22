@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Syntax token class
@@ -10,6 +11,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
     public sealed class SyntaxToken : SyntaxNode
     {
         public override SyntaxKind Kind { get; }
+        public override SyntaxToken Token { get; }
         public int Position { get; }
         public string Text { get; }
         public object Value { get; }
@@ -20,6 +22,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             Position = position;
             Text = text;
             Value = value;
+            Token = this;
         }
 
         public override IEnumerable<SyntaxNode> GetChildren()

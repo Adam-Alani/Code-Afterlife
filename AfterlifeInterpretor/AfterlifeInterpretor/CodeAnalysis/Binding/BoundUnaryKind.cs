@@ -7,6 +7,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Neg,
         
         // Bool unary
-        Not
+        Not,
+        
+        // List unary
+        Head,
+        Tail,
+        Size,
+        
+        // Other
+        Print
     }
 }

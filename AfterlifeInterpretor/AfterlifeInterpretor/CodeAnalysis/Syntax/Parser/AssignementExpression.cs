@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public sealed class AssignementExpression : ExpressionSyntax
     {
@@ -8,13 +9,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         public override SyntaxKind Kind => SyntaxKind.AssignementExpression;
         public ExpressionSyntax Assignee { get; }
         public ExpressionSyntax Assignment { get; }
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         
         public AssignementExpression(ExpressionSyntax assignee, SyntaxToken token, ExpressionSyntax assignment)
         {
             Assignee = assignee;
-            Assignment = assignment;
             Token = token;
+            Assignment = assignment;
         }
 
         public override IEnumerable<SyntaxNode> GetChildren()
