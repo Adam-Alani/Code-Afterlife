@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis
+namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     /// <summary>
     /// Unpredictable type

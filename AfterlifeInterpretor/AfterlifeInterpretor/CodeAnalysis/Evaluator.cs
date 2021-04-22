@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
-using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor.CodeAnalysis
 {
@@ -12,9 +10,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// </summary>
     internal sealed class Evaluator
     {
-        private const int MAX_ITER = 250000;
+        private const int MaxIter = 250000;
         
-        private const int MAX_DEPTH = 5000;
+        private const int MaxDepth = 5000;
         
         private readonly BoundBlockStatement _root;
         private Scope _scope;
@@ -174,10 +172,10 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             object lastValue = null;
             uint calls = 0;
-            for(; calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+            for(; calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
                 lastValue = EvaluateStatement(statement.Then);
             
-            if (calls == MAX_ITER)
+            if (calls == MaxIter)
                 Errs.Report("Stack Overflow", statement.Position);
             return lastValue;
         }
@@ -188,14 +186,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             uint calls = 0;
-            for(EvaluateExpressionStatement(statement.Initialisation); calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+            for(EvaluateExpressionStatement(statement.Initialisation); calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
                 lastValue = EvaluateStatement(statement.Then);
 
             if (_scope.Parent != null)
                 _scope.Parent.Return = _scope.Return;
             _scope = _scope.Parent;
             
-            if (calls == MAX_ITER)
+            if (calls == MaxIter)
                 Errs.Report("Stack Overflow", statement.Position);
             
             return lastValue;
@@ -230,7 +228,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateCall(BoundCallExpression ce)
         {
-            if (_depth < MAX_DEPTH)
+            if (_depth < MaxDepth)
             {
                 _depth += 1;
                 Scope parent = _scope;

@@ -1,9 +1,6 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {

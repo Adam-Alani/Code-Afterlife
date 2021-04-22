@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Reflection;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
-using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
-using Binder = System.Reflection.Binder;
 
 namespace AfterlifeInterpretor.CodeAnalysis
 {
@@ -106,9 +101,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private string GetArgString(BoundExpression arg)
         {
-            if (Args is BoundEmptyListExpression)
+            if (arg is BoundEmptyListExpression)
                 return "()";
-            if (Args is BoundBinary bb)
+            if (arg is BoundBinary bb)
             {
                 string left = (bb.Left is BoundBinary bbl) ? "(" + GetArgString(bbl) + ")" : (bb.Left is BoundVariable) ? Text.PrettyType(bb.Left.Type) : bb.Left.ToString();
                 string right = (bb.Right is BoundBinary bbr) ? GetArgString(bbr) :(bb.Right is BoundVariable) ? Text.PrettyType(bb.Right.Type) : bb.Right.ToString();
