@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 1463
     height: 773
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 12}
@@ -394,14 +394,14 @@ MonoBehaviour:
   m_ShowContextualTools: 0
   m_WindowGUID: b1d4a7a835f21004a98e4cac17f32329
   m_Gizmos: 0
-  m_SceneIsLit: 1
+  m_SceneIsLit: 0
   m_SceneLighting: 1
   m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -28.44629, y: 195.75781, z: -103.07031}
+    m_Target: {x: -2.80365, y: 1.2661133, z: 0.5439453}
     speed: 2
     m_Value: {x: -28.44629, y: 195.75781, z: -103.07031}
   m_RenderMode: 0
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
-    showSkybox: 1
+    showSkybox: 0
     showFlares: 1
     showImageEffects: 1
     showParticleSystems: 1
@@ -449,13 +449,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.45609254, y: 0.114229895, z: -0.05916452, w: 0.8805852}
+    m_Target: {x: 0.14182305, y: -0.05194452, z: 0.0074524726, w: 0.98850495}
     speed: 2
-    m_Value: {x: 0.457413, y: 0.11414104, z: -0.05933581, w: 0.8799003}
+    m_Value: {x: 0.45609266, y: 0.114229925, z: -0.059164535, w: 0.88058543}
   m_Size:
-    m_Target: 35.430546
+    m_Target: 14.273706
     speed: 2
-    m_Value: 33.904827
+    m_Value: 35.430546
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -509,9 +509,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 66c4ffffe2cfffffe4cfffff8ed1ffff16d7ffff52e4ffff80e7ffffdaebffffeeebfffff0ebffff26eeffff3aeeffff3ceeffffeaefffff3af1ffffd6f2ffffd4f8fffffaf8ffff6afbffff
+      m_SelectedIDs: 02510000
+      m_LastClickedID: 20738
+      m_ExpandedIDs: 58edffffee500000f250000002510000145100001651000018510000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -692,20 +692,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Resources/Prefabs/Turret
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Resources/Prefabs/Turret
   m_LastFoldersGridSize: -1
   m_LastProjectPath: "G:\\Data Ivan\\cours\\\xE9pita\\Prog\\Projet S2\\Game\\Code-Afterlife\\Game\\CodeMeToAfterLife"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 7c3a0000
-    m_LastClickedID: 14972
-    m_ExpandedIDs: 000000006e3a0000703a0000723a0000743a0000763a0000783a00007a3a00007c3a00007e3a000000ca9a3b
+    scrollPos: {x: 0, y: 39}
+    m_SelectedIDs: ea3b0000
+    m_LastClickedID: 15338
+    m_ExpandedIDs: 00000000ba3b0000bc3b0000be3b0000c03b0000c23b0000c43b0000c63b0000c83b0000ca3b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -733,7 +733,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006e3a0000703a0000723a0000743a0000763a0000783a00007a3a00007c3a00007e3a0000
+    m_ExpandedIDs: 00000000ba3b0000bc3b0000be3b0000c03b0000c23b0000c43b0000c63b0000c83b0000ca3b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

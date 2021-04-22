@@ -16,7 +16,8 @@ public class Turret : MonoBehaviour
     public GameObject limitLeft; // left border
     public GameObject limitRight; // right border
     public GameObject limitMid;
-
+    public bool off; // disables the turret
+    public bool limits; // disables the limits view
     public GameObject turret;
 
 
@@ -31,8 +32,12 @@ public class Turret : MonoBehaviour
         limitRight.transform.localScale = new Vector3(0.03f, 0.03f, maxRange);
         limitMid.transform.localScale = new Vector3(0.01f, 0.01f, maxRange);
 
-        limitMid.SetActive(false);
+        limitLeft.SetActive(limits);
+        limitRight.SetActive(limits);
 
+
+        limitMid.SetActive(false);
+        off = false;
         InvokeRepeating("UpdateTarget", 0f, UpdateTime);
     }
 
@@ -89,6 +94,10 @@ public class Turret : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (off)
+            return;
+
+
         Shoot();
         if (target == null)
             TurnAlone();
