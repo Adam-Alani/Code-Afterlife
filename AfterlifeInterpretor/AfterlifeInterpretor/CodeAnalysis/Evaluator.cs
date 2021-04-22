@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
+using System.Drawing;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
-using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor.CodeAnalysis
 {
@@ -12,9 +11,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
     /// </summary>
     internal sealed class Evaluator
     {
-        private const int MAX_ITER = 250000;
+        private const int MaxIter = 250000;
         
-        private const int MAX_DEPTH = 5000;
+        private const int MaxDepth = 5000;
         
         private readonly BoundBlockStatement _root;
         private Scope _scope;
@@ -174,10 +173,10 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             object lastValue = null;
             uint calls = 0;
-            for(; calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+            for(; calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
                 lastValue = EvaluateStatement(statement.Then);
             
-            if (calls == MAX_ITER)
+            if (calls == MaxIter)
                 Errs.Report("Stack Overflow", statement.Position);
             return lastValue;
         }
@@ -188,14 +187,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             uint calls = 0;
-            for(EvaluateExpressionStatement(statement.Initialisation); calls < MAX_ITER && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+            for(EvaluateExpressionStatement(statement.Initialisation); calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
                 lastValue = EvaluateStatement(statement.Then);
 
             if (_scope.Parent != null)
                 _scope.Parent.Return = _scope.Return;
             _scope = _scope.Parent;
             
-            if (calls == MAX_ITER)
+            if (calls == MaxIter)
                 Errs.Report("Stack Overflow", statement.Position);
             
             return lastValue;
@@ -230,7 +229,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateCall(BoundCallExpression ce)
         {
-            if (_depth < MAX_DEPTH)
+            if (_depth < MaxDepth)
             {
                 _depth += 1;
                 Scope parent = _scope;
@@ -426,9 +425,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundUnaryKind.Neg => -(int) operand,
                     BoundUnaryKind.Id => operand,
                     BoundUnaryKind.Not => !((bool) operand),
-                    BoundUnaryKind.Head => ((List) operand).Head,
-                    BoundUnaryKind.Tail => ((List) operand).Tail,
-                    BoundUnaryKind.Size => ((List) operand).Size,
+                    BoundUnaryKind.Head => Head(operand, u.Position),
+                    BoundUnaryKind.Tail => Tail(operand, u.Position),
+                    BoundUnaryKind.Size => SizeUnary(operand, u.Position),
                     BoundUnaryKind.Print => Print(operand),
                     _ => ReportError($"Unexpected unary operator {u.Operator.Kind}", u.Position)
                 };
@@ -437,6 +436,36 @@ namespace AfterlifeInterpretor.CodeAnalysis
             {
                 return ReportError("Invalid operation", u.Position);
             }
+        }
+
+        private object SizeUnary(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => s.Length,
+                List l => l.Size,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
+        }
+
+        private object Tail(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => (s.Length > 0) ? s.Remove(0, 1) : "",
+                List l => l.Tail,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
+        }
+
+        private object Head(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => (s.Length > 0) ? s[0].ToString() : "",
+                List l => l.Head,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
         }
 
         private object Print(object operand)
@@ -475,7 +504,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundBinaryKind.LtEq => Convert.ToDouble(l) <= Convert.ToDouble(r),
                     BoundBinaryKind.GtEq => Convert.ToDouble(l) >= Convert.ToDouble(r),
                     BoundBinaryKind.Comma => CreateList(l, r),
-                    BoundBinaryKind.Dot => ListIndex((List)l, (int)r, b.Position),
+                    BoundBinaryKind.Dot => Dot(l, r, b.Position),
                     _ => ReportError($"Unexpected binary operator {b.Operator.Kind}", b.Position)
                 };
             }
@@ -487,6 +516,28 @@ namespace AfterlifeInterpretor.CodeAnalysis
             {
                 return ReportError("Invalid operation", b.Position);
             }
+        }
+
+        private object Dot(object l, object r, int pos)
+        {
+            if (r is int ri)
+            {
+                switch (l)
+                {
+                    case List li:
+                        return ListIndex(li, ri, pos);
+                    case string s when s.Length <= ri:
+                        Errs.Report("Index out of bound", pos);
+                        return null;
+                    case string s:
+                        return s[ri].ToString();
+                    default:
+                        Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), pos);
+                        return null;
+                }
+            }
+            Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), pos);
+            return null;
         }
 
         private bool CheckEquals(object l, object r)

@@ -1,9 +1,6 @@
 using System;
-using System.Diagnostics;
 using System.Linq;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
@@ -109,6 +106,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(double), typeof(int),  typeof(bool)), 
             new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(double), typeof(int), typeof(bool)),
             
+            new BoundBinaryOperator(SyntaxKind.DotToken, BoundBinaryKind.Dot, typeof(string), typeof(int), typeof(string)),
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(int), typeof(string), typeof(string)),
             new BoundBinaryOperator(SyntaxKind.StarToken, BoundBinaryKind.Mul, typeof(string), typeof(int), typeof(string)),
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(string), typeof(object), typeof(string)), 
