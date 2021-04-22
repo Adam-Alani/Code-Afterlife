@@ -14,7 +14,7 @@ public class GameSetupController : MonoBehaviour
     /// </summary>
     void Start()
     {
-		cameraPosition = FindObjectOfType<CameraPosition>();
+        cameraPosition = FindObjectOfType<CameraPosition>();
         CreatePlayer();
     }
     
