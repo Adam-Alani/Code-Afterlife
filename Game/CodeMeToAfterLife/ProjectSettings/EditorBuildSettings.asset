@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test roomname.unity
     guid: 87603d22b8c63b942bdd0a631bd104d7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map 2.unity
     guid: 22a9409f695f1dd4bafbdbf6781dd972
+  - enabled: 1
+    path: Assets/Scenes/Level01.unity
+    guid: b3ada23f681081b40bc01e729ddcbfa2
   m_configObjects: {}

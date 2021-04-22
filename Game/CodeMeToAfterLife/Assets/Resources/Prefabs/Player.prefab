@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6490264022754806961}
-  speed: 6
+  speed: 12
   turnSmoothTime: 0.1
   forward: {x: 0, y: 0, z: 0}
   right: {x: 0, y: 0, z: 0}
