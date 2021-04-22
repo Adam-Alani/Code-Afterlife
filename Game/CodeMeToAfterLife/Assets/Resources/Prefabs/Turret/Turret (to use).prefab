@@ -468,8 +468,9 @@ GameObject:
   - component: {fileID: 7779666334505101052}
   - component: {fileID: 8315661093509468729}
   - component: {fileID: 1435516752386450534}
+  - component: {fileID: 6103501223409853680}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,6 +537,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &6103501223409853680
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720959712187245860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 1}
+  m_Center: {x: 3.3217873e-13, y: 0.0000009536743, z: 0.00000011920929}
 --- !u!1 &7604761803110194570
 GameObject:
   m_ObjectHideFlags: 0
