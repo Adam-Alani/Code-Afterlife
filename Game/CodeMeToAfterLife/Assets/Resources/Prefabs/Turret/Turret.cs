@@ -102,7 +102,7 @@ public class Turret : MonoBehaviour
         limitRight.SetActive(limits);
 
         limitMid.SetActive(Shoot() || ForceMidLaser);
-        Debug.Log(Shoot() || ForceMidLaser);
+        //Debug.Log(Shoot() || ForceMidLaser);
 
 
         //Shoot();
