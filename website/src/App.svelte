@@ -57,7 +57,7 @@
 					<Team/>
 				</div>
 				<div class="flex justify-center terminal" id="download">
-					<a href="https://github.com/Adam-Alani/Code-Afterlife/archive/0.1a.zip" class="large green text-white rounded-lg my-4 px-6">Download</a>
+					<a href="https://github.com/Adam-Alani/Code-Afterlife/releases/tag/0.1a" class="large green text-white rounded-lg my-4 px-6">Download</a>
 				</div>
 			</div>
 		</div>

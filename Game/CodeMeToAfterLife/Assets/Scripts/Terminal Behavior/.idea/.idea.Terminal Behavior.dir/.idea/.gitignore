@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/.idea.Terminal Behavior.iml
+/projectSettingsUpdater.xml
+# Datasource local storage ignored files
+/../../../../../../../../../../../../../../:\Users\N'importe maison\Documents\GitHub\Code-Afterlife\Game\CodeMeToAfterLife\Assets\Scripts\Terminal Behavior\.idea\.idea.Terminal Behavior.dir\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
