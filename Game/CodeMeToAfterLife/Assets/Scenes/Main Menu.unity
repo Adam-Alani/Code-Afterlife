@@ -1735,7 +1735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31baa035fefcefe4aa1598b8b4450595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multyplayerSceneIndex: 3
+  multyplayerSceneIndex: 1
 --- !u!4 &1141584700
 Transform:
   m_ObjectHideFlags: 0
