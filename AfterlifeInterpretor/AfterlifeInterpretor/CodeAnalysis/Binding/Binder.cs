@@ -155,7 +155,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             BoundStatement elseClause = (syntax.Else != null) ? BindStatement(syntax.Else.Then) : null;
             BoundStatement then = BindStatement(syntax.Then);
-            if (elseClause?.Type != then?.Type && elseClause?.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
+            if (elseClause != null && elseClause.Type != then?.Type && elseClause.Type != typeof(Unpredictable) && then?.Type != typeof(Unpredictable))
             {
                 Errs.ReportType("Unmatching types in if", then?.Type, elseClause?.Type, syntax.Token.Position);
                 return null;
