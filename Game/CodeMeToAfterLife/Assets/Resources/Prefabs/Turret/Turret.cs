@@ -18,6 +18,7 @@ public class Turret : MonoBehaviour
     public GameObject limitMid;
     public bool off; // disables the turret
     public bool limits; // disables the limits view
+    public bool ForceMidLaser; // forces or not the mid laser
     public GameObject turret;
 
 
@@ -97,8 +98,14 @@ public class Turret : MonoBehaviour
         if (off)
             return;
 
+        limitLeft.SetActive(limits);
+        limitRight.SetActive(limits);
 
-        Shoot();
+        limitMid.SetActive(Shoot() || ForceMidLaser);
+        Debug.Log(Shoot() || ForceMidLaser);
+
+
+        //Shoot();
         if (target == null)
             TurnAlone();
         else
@@ -131,9 +138,9 @@ public class Turret : MonoBehaviour
 
     }
 
-    void Shoot()
+    bool Shoot()
     {
-        limitMid.SetActive(target != null && Abs(Quaternion.LookRotation(target.position - turret.transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < 3);
+        return target != null && Abs(Quaternion.LookRotation(target.position - turret.transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < 3;
     }
 
 

@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 6342606766618355236}
   - component: {fileID: 8228879292494214293}
   - component: {fileID: 5431411728007608574}
-  - component: {fileID: 8128542486936599299}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -142,20 +141,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &8128542486936599299
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235161344165980090}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2043297241718979886
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +199,7 @@ MonoBehaviour:
   limitMid: {fileID: 1622928346}
   off: 0
   limits: 1
+  ForceMidLaser: 0
   turret: {fileID: 2043297241718979886}
 --- !u!1 &2138873211800674873
 GameObject:
@@ -307,7 +293,6 @@ GameObject:
   - component: {fileID: 8776381786253539512}
   - component: {fileID: 7009946518873581982}
   - component: {fileID: 5862034993403219759}
-  - component: {fileID: 105649477744795850}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -376,20 +361,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &105649477744795850
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3669770075604958428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3741082323993789803
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +468,6 @@ GameObject:
   - component: {fileID: 7779666334505101052}
   - component: {fileID: 8315661093509468729}
   - component: {fileID: 1435516752386450534}
-  - component: {fileID: 2701397508618202868}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -566,20 +536,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &2701397508618202868
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4720959712187245860}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7604761803110194570
 GameObject:
   m_ObjectHideFlags: 0
