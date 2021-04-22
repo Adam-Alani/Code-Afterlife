@@ -13,7 +13,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
     {
         private const int MaxIter = 250000;
         
-        private const int MaxDepth = 5000;
+        private const int MaxDepth = 500;
         
         private readonly BoundBlockStatement _root;
         private Scope _scope;

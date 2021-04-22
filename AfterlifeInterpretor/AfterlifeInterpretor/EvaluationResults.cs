@@ -17,6 +17,8 @@ namespace AfterlifeInterpretor
 
         public override string ToString()
         {
+            if (Errs.GetErrors().Count > 0)
+                return "ERROR";
             if (Value is null)
                 return "()";
             if (Value is string)
