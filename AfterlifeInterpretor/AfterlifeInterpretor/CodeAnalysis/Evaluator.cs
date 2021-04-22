@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
 
 namespace AfterlifeInterpretor.CodeAnalysis
@@ -424,9 +425,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundUnaryKind.Neg => -(int) operand,
                     BoundUnaryKind.Id => operand,
                     BoundUnaryKind.Not => !((bool) operand),
-                    BoundUnaryKind.Head => ((List) operand).Head,
-                    BoundUnaryKind.Tail => ((List) operand).Tail,
-                    BoundUnaryKind.Size => ((List) operand).Size,
+                    BoundUnaryKind.Head => Head(operand, u.Position),
+                    BoundUnaryKind.Tail => Tail(operand, u.Position),
+                    BoundUnaryKind.Size => SizeUnary(operand, u.Position),
                     BoundUnaryKind.Print => Print(operand),
                     _ => ReportError($"Unexpected unary operator {u.Operator.Kind}", u.Position)
                 };
@@ -435,6 +436,36 @@ namespace AfterlifeInterpretor.CodeAnalysis
             {
                 return ReportError("Invalid operation", u.Position);
             }
+        }
+
+        private object SizeUnary(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => s.Length,
+                List l => l.Size,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
+        }
+
+        private object Tail(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => (s.Length > 0) ? s.Remove(0, 1) : "",
+                List l => l.Tail,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
+        }
+
+        private object Head(object operand, int pos)
+        {
+            return operand switch
+            {
+                string s => (s.Length > 0) ? s[0].ToString() : "",
+                List l => l.Head,
+                _ => ReportError($"Unexpected type {operand?.GetType()}", pos)
+            };
         }
 
         private object Print(object operand)
@@ -473,7 +504,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundBinaryKind.LtEq => Convert.ToDouble(l) <= Convert.ToDouble(r),
                     BoundBinaryKind.GtEq => Convert.ToDouble(l) >= Convert.ToDouble(r),
                     BoundBinaryKind.Comma => CreateList(l, r),
-                    BoundBinaryKind.Dot => ListIndex((List)l, (int)r, b.Position),
+                    BoundBinaryKind.Dot => Dot(l, r, b.Position),
                     _ => ReportError($"Unexpected binary operator {b.Operator.Kind}", b.Position)
                 };
             }
@@ -485,6 +516,28 @@ namespace AfterlifeInterpretor.CodeAnalysis
             {
                 return ReportError("Invalid operation", b.Position);
             }
+        }
+
+        private object Dot(object l, object r, int pos)
+        {
+            if (r is int ri)
+            {
+                switch (l)
+                {
+                    case List li:
+                        return ListIndex(li, ri, pos);
+                    case string s when s.Length <= ri:
+                        Errs.Report("Index out of bound", pos);
+                        return null;
+                    case string s:
+                        return s[ri].ToString();
+                    default:
+                        Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), pos);
+                        return null;
+                }
+            }
+            Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), pos);
+            return null;
         }
 
         private bool CheckEquals(object l, object r)

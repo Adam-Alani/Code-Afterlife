@@ -38,6 +38,10 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundUnaryOperator(SyntaxKind.TailToken, BoundUnaryKind.Tail, typeof(List)),
             new BoundUnaryOperator(SyntaxKind.SizeToken, BoundUnaryKind.Size, typeof(List), typeof(int)),
             
+            new BoundUnaryOperator(SyntaxKind.HeadToken, BoundUnaryKind.Head, typeof(string),typeof(string)),
+            new BoundUnaryOperator(SyntaxKind.TailToken, BoundUnaryKind.Tail, typeof(string)),
+            new BoundUnaryOperator(SyntaxKind.SizeToken, BoundUnaryKind.Size, typeof(string), typeof(int)),
+            
             new BoundUnaryOperator(SyntaxKind.PrintToken, BoundUnaryKind.Print, typeof(object), typeof(string))
 
         };
