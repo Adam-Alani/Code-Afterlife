@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 2955082567359272232}
   - component: {fileID: 7088824286430854649}
   - component: {fileID: 290610368979256801}
+  - component: {fileID: -5321965992352231543}
   m_Layer: 0
   m_Name: Terminal
   m_TagString: Untagged
@@ -214,7 +215,7 @@ Transform:
   m_GameObject: {fileID: 7513105447004600699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 507.1172, y: 319.51562, z: -1.75}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6775227491476209003}
   - {fileID: 8384302046058147951}
@@ -267,3 +268,16 @@ MonoBehaviour:
   openKey: 116
   closeKey: 27
   BuildIndexCodeEditor: 2
+--- !u!65 &-5321965992352231543
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7513105447004600699}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

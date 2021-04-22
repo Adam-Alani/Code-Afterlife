@@ -6,14 +6,18 @@ using System.IO;
 
 public class GameSetupController : MonoBehaviour
 {
+    CameraPosition cameraPosition;
+
     // Start is called before the first frame update
     /// <summary>
     /// Asks to create a player each time someone is connecting
     /// </summary>
     void Start()
     {
+		cameraPosition = FindObjectOfType<CameraPosition>();
         CreatePlayer();
     }
+    
     /// <summary>
     /// Creates the player located in : Code-Afterlife\Game\CodeMeToAfterLife\Assets\Resources\Prefabs
     /// (needs to be in the Resources folder in a folder named as the first parameter)
@@ -21,6 +25,7 @@ public class GameSetupController : MonoBehaviour
     private void CreatePlayer()
     {
         Debug.Log("Creating Player");
-        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
+		cameraPosition.SetCameraTarget(player.transform);
     }
 }
