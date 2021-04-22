@@ -2,15 +2,15 @@ using System;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
-    internal sealed class BoundIf : BoundStatement
+    internal sealed class BoundIfExpression : BoundExpression
     {
-        public BoundStatement Else { get; }
+        public BoundExpression Else { get; }
 
-        public BoundStatement Then { get; }
+        public BoundExpression Then { get; }
 
-        public BoundExpressionStatement Condition { get; }
+        public BoundExpression Condition { get; }
         
-        public override BoundNodeKind Kind => BoundNodeKind.IfStatement;
+        public override BoundNodeKind Kind => BoundNodeKind.IfExpression;
         public override int Position { get; }
 
         public override Type Type => Then?.Type;
@@ -18,7 +18,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public override string TypeString => Then?.TypeString;
 
 
-        public BoundIf(BoundExpressionStatement condition, BoundStatement then, BoundStatement elseClause, int position)
+        public BoundIfExpression(BoundExpression condition, BoundExpression then, BoundExpression elseClause, int position)
         {
             Condition = condition;
             Then = then;

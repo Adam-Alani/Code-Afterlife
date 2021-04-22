@@ -7,32 +7,23 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
     {
         public BoundScope Parent;
         private Dictionary<string, Type> Variables { get; }
+        
+        private Dictionary<string, Function> Functions { get; }
+
+        public Type BlockType;
+
+        public string TypeString;
 
         
-        public BoundScope()
-        {
-            Parent = null;
-            Variables = new Dictionary<string, Type>();
-        }
-        
-        public BoundScope(BoundScope parent)
+        public BoundScope(BoundScope parent = null, Dictionary<string, Type> variables = null, Dictionary<string, Function> functions = null)
         {
             Parent = parent;
-            Variables = new Dictionary<string, Type>();
-        }
-        
-        public BoundScope(Dictionary<string, Type> variables)
-        {
-            Parent = null;
-            Variables = variables;
+            Variables = variables ?? new Dictionary<string, Type>();
+            BlockType = parent?.BlockType;
+            Functions = functions ?? new Dictionary<string, Function>();
+            TypeString = null;
         }
 
-        public BoundScope(BoundScope parent, Dictionary<string, Type> variables)
-        {
-            Parent = parent;
-            Variables = variables;
-        }
-        
         public bool HasVariable(string var)
         {
             return Variables.ContainsKey(var) || (Parent?.HasVariable(var) ?? false);
@@ -43,6 +34,8 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             if (!HasVariable(var))
             {
                 Variables.Add(var, type);
+                if (type == typeof(Function))
+                    Functions.Add(var, null);
                 return true;
             }
 
@@ -67,6 +60,21 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 Variables[var] = t;
             else
                 Parent?.ChangeType(var, t);
+        }
+
+        public void SetFunction(string var, Type t)
+        {
+            if (Functions.ContainsKey(var))
+            {
+                Functions[var] = new Function(null, null, t, null);
+            }
+        }
+
+        public Function GetFunction(string name)
+        {
+            if (Functions.ContainsKey(name))
+                return Functions[name];
+            return Parent?.GetFunction(name);
         }
     }
 }

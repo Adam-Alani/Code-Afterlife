@@ -1,23 +1,22 @@
 using System;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
-    internal sealed class BoundExpressionStatement : BoundStatement
+    internal sealed class BoundReturn : BoundStatement
     {
-        public BoundExpression Expression { get; }
-        public override BoundNodeKind Kind => BoundNodeKind.ExpressionStatement;
+        public override BoundNodeKind Kind => BoundNodeKind.ReturnStatement;
         public override int Position { get; }
 
+        public BoundExpression Expression;
         public override Type Type => Expression?.Type;
         public override string TypeString => Expression?.TypeString;
 
 
-        public BoundExpressionStatement(BoundExpression expression, int position)
+        public BoundReturn(BoundExpression expression, int position)
         {
             Expression = expression;
             Position = position;
         }
-
-        
     }
 }

@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public sealed class IfStatement : StatementSyntax
     {
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         public ExpressionStatement Condition { get; }
         public StatementSyntax Then { get; }
         public ElseClause Else { get; }

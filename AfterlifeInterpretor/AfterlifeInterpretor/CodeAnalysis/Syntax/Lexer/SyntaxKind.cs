@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// Syntax Kind enum
@@ -10,6 +10,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         // Tokens
         ErrorToken,
         NumericToken,
+        WordToken,
         SpaceToken,
         OParenToken,
         CParenToken,
@@ -17,16 +18,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         CBlockToken,
         EndStatementToken,
         IdentifierToken,
-        VarToken,
-        BoolToken,
-        IntToken,
         EndToken,
+        PrintToken,
         
         // Operator Tokens
         PlusToken,
         MinusToken,
         StarToken,
         SlashToken,
+        DoubleSlashToken,
         ModuloToken,
         
         AndToken,
@@ -40,13 +40,34 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         LtToken,
         
         AssignToken,
+        PlusAssignToken,
+        MinusAssignToken,
+        StarAssignToken,
+        SlashAssignToken,
+        ModuloAssignToken,
         
+        SizeToken,
+        HeadToken,
+        TailToken,
+        CommaToken,
+        DotToken,
+
         // Keywords
         TrueKeyword,
         FalseKeyword,
         IfKeyword,
         ElseKeyword,
         WhileKeyword,
+        ForKeyword,
+        FunctionKeyword,
+        ReturnKeyword,
+        VarKeyword,
+        BoolKeyword,
+        IntKeyword,
+        StringKeyword,
+        FloatKeyword,
+        ListKeyword,
+
 
         // Expressions
         LiteralExpression,
@@ -55,12 +76,19 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         UnaryExpression,
         AssignementExpression,
         VariableExpression,
+        EmptyExpression,
+        EmptyListExpression,
+        FunctionDeclaration,
+        CallExpression,
+        IfExpression,
+        ElseClause,
         
         // Statements
         BlockStatement,
         ExpressionStatement,
-        IfStatement,
-        ElseClause,
-        WhileStatement
+        WhileStatement,
+        ForStatement,
+        ReturnStatement,
+        IfStatement
     }
 }

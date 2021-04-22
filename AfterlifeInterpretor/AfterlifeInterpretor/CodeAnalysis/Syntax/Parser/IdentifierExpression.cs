@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 {
     public sealed class IdentifierExpression : ExpressionSyntax
     {
-        public SyntaxToken Token { get; }
+        public override SyntaxToken Token { get; }
         public override SyntaxKind Kind => SyntaxKind.IdentifierToken;
 
         public IdentifierExpression(SyntaxToken identifier)

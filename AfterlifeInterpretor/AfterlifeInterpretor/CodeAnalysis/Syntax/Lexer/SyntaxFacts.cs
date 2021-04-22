@@ -1,4 +1,4 @@
-namespace AfterlifeInterpretor.CodeAnalysis.Syntax
+namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
 {
     /// <summary>
     /// SyntaxFact class
@@ -11,10 +11,15 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (kind)
             {
+                case SyntaxKind.PrintToken:
+                    return 8;
+                case SyntaxKind.SizeToken:
+                case SyntaxKind.TailToken:
+                case SyntaxKind.HeadToken:
                 case SyntaxKind.NotToken:
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 6;
+                    return 7;
                 default:
                     return 0;
             }
@@ -24,26 +29,43 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
         {
             switch (kind)
             {
-                case SyntaxKind.OrToken:
+                case SyntaxKind.CommaToken:
                     return 1;
-                case SyntaxKind.AndToken:
+                case SyntaxKind.OrToken:
                     return 2;
+                case SyntaxKind.AndToken:
+                    return 3;
                 case SyntaxKind.EqToken:
                 case SyntaxKind.NEqToken:
                 case SyntaxKind.GtEqToken:
                 case SyntaxKind.LtEqToken:
                 case SyntaxKind.GtToken:
                 case SyntaxKind.LtToken:
-                    return 3;
+                    return 4;
                 case SyntaxKind.PlusToken:
                 case SyntaxKind.MinusToken:
-                    return 4;
+                    return 5;
                 case SyntaxKind.StarToken:
                 case SyntaxKind.SlashToken:
+                case SyntaxKind.DoubleSlashToken:
                 case SyntaxKind.ModuloToken:
-                    return 5;
+                    return 6;
+                case SyntaxKind.DotToken:
+                    return 8;
                 default:
                     return 0;
+            }
+        }
+
+        public static bool IsRightAssociative(this SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.DotToken:
+                case SyntaxKind.CommaToken:
+                    return false;
+                default:
+                    return true;
             }
         }
 
@@ -56,14 +78,25 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "and" => SyntaxKind.AndToken,
                 "or" => SyntaxKind.OrToken,
                 "not" => SyntaxKind.NotToken,
-                "bool" => SyntaxKind.BoolToken,
-                "int" => SyntaxKind.IntToken,
-                "var" => SyntaxKind.VarToken,
+                "bool" => SyntaxKind.BoolKeyword,
+                "int" => SyntaxKind.IntKeyword,
+                "string" => SyntaxKind.StringKeyword,
+                "float" => SyntaxKind.FloatKeyword,
+                "list" => SyntaxKind.ListKeyword,
+                "var" => SyntaxKind.VarKeyword,
+                "function" => SyntaxKind.FunctionKeyword,
+                "return" => SyntaxKind.ReturnKeyword,
                 "do" => SyntaxKind.OBlockToken,
+                "begin" => SyntaxKind.OBlockToken,
                 "end" => SyntaxKind.CBlockToken,
                 "if" => SyntaxKind.IfKeyword,
                 "else" => SyntaxKind.ElseKeyword,
                 "while" => SyntaxKind.WhileKeyword,
+                "for" => SyntaxKind.ForKeyword,
+                "head" => SyntaxKind.HeadToken,
+                "tail" => SyntaxKind.TailToken,
+                "size" => SyntaxKind.SizeToken,
+                "print" => SyntaxKind.PrintToken,
                 _ => SyntaxKind.IdentifierToken
             };
         }
@@ -73,10 +106,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             return s switch
             {
                 "\0" => SyntaxKind.EndToken,
+                "," => SyntaxKind.CommaToken,
+                "." => SyntaxKind.DotToken,
                 "+" => SyntaxKind.PlusToken,
                 "-" => SyntaxKind.MinusToken,
                 "*" => SyntaxKind.StarToken,
                 "/" => SyntaxKind.SlashToken,
+                "//" => SyntaxKind.DoubleSlashToken,
                 "%" => SyntaxKind.ModuloToken,
                 "(" => SyntaxKind.OParenToken,
                 ")" => SyntaxKind.CParenToken,
@@ -92,6 +128,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 "!=" => SyntaxKind.NEqToken,
                 ">=" => SyntaxKind.GtEqToken,
                 "<=" => SyntaxKind.LtEqToken,
+                "+=" => SyntaxKind.PlusAssignToken,
+                "-=" => SyntaxKind.MinusAssignToken,
+                "*=" => SyntaxKind.StarAssignToken,
+                "/=" => SyntaxKind.SlashAssignToken,
+                "%=" => SyntaxKind.ModuloAssignToken,
                 _ => SyntaxKind.ErrorToken
             };
         }
@@ -102,6 +143,12 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
             {
                 default:
                     return false;
+                case '/':
+                    return lookAhead == '=' || lookAhead == current;
+                case '+':
+                case '-':
+                case '*':
+                case '%':
                 case '!':
                 case '>':
                 case '<':
@@ -110,6 +157,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax
                 case '|':
                 case '&':
                     return lookAhead == current;
+            }
+        }
+
+        public static bool IsAssignment(SyntaxKind kind)
+        {
+            switch (kind)
+            {
+                case SyntaxKind.PlusAssignToken:
+                case SyntaxKind.MinusAssignToken:
+                case SyntaxKind.StarAssignToken:
+                case SyntaxKind.SlashAssignToken:
+                case SyntaxKind.ModuloAssignToken:
+                case SyntaxKind.AssignToken:
+                    return true;
+                default:
+                    return false;
             }
         }
     }

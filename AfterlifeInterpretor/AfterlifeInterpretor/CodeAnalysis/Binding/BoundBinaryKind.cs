@@ -7,6 +7,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Sub,
         Mul,
         Div,
+        IntDiv,
         Mod,
         
         // Bool binary
@@ -18,5 +19,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         Lt,
         GtEq,
         LtEq,
+        
+        // List binary
+        Comma,
+        Dot
     }
 }

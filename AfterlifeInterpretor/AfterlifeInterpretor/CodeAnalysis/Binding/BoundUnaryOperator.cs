@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis.Syntax;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer;
 
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
@@ -33,11 +34,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             
             new BoundUnaryOperator(SyntaxKind.PlusToken, BoundUnaryKind.Id, typeof(int)), 
             new BoundUnaryOperator(SyntaxKind.MinusToken, BoundUnaryKind.Neg, typeof(int)),
+            
+            new BoundUnaryOperator(SyntaxKind.HeadToken, BoundUnaryKind.Head, typeof(List),typeof(Unpredictable)),
+            new BoundUnaryOperator(SyntaxKind.TailToken, BoundUnaryKind.Tail, typeof(List)),
+            new BoundUnaryOperator(SyntaxKind.SizeToken, BoundUnaryKind.Size, typeof(List), typeof(int)),
+            
+            new BoundUnaryOperator(SyntaxKind.PrintToken, BoundUnaryKind.Print, typeof(object), typeof(string))
+
         };
 
         public static BoundUnaryOperator Bind(SyntaxKind kind, Type type)
         {
-            return _operators.FirstOrDefault(op => op.SyntaxKind == kind && op.OperandType == type);
+            return _operators.FirstOrDefault(op => op.SyntaxKind == kind && op.OperandType == type || op.OperandType == typeof(object));
         }
     }
 }

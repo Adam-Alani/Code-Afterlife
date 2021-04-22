@@ -1,3 +1,5 @@
+using System;
+
 namespace AfterlifeInterpretor.CodeAnalysis.Binding
 {
     internal sealed class BoundWhile : BoundStatement
@@ -7,11 +9,17 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundExpressionStatement Condition { get; }
         
         public override BoundNodeKind Kind => BoundNodeKind.WhileStatement;
-        
-        public BoundWhile(BoundExpressionStatement condition, BoundStatement then)
+        public override int Position { get; }
+
+        public override Type Type => Then?.Type;
+        public override string TypeString => Then?.TypeString;
+
+
+        public BoundWhile(BoundExpressionStatement condition, BoundStatement then, int position)
         {
             Condition = condition;
             Then = then;
+            Position = position;
         }
     }
 }
