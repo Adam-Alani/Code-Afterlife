@@ -1,0 +1,9 @@
+# Binaries
+bin
+obj
+
+# Rider
+.idea
+*.userprefs
+
+.DS_Store
