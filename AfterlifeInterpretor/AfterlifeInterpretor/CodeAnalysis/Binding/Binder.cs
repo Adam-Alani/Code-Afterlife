@@ -90,6 +90,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                     Errs.Report($"Invalid return type: expected {_scope.TypeString}, got {typeString}", bs.Position);
                 }
             }
+
+            if (_scope.Parent != null)
+                _scope.Parent.BlockType = _scope.BlockType;
             
             return new BoundReturn(bs, syntax.Token.Position);
         }
@@ -172,13 +175,14 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             {
                 BoundStatement bs = BindStatement(statement);
                 statements.Add(bs);
-                if (t != null && t != bs?.Type && bs?.Type != typeof(Unpredictable) && t != typeof(Unpredictable))
+                if (t != null && t != _scope.BlockType && _scope.BlockType != typeof(Unpredictable) && t != typeof(Unpredictable))
                 {
                     Errs.ReportType("Invalid return type", t, bs?.Type, syntax.Token.Position);
                     return new BoundBlockStatement(statements.ToArray(), syntax.Token.Position, t, _scope.TypeString);
                     
                 }
-                t = bs?.Type;
+                if (t == null)
+                    t = _scope.BlockType;
             }
 
             string typeString = _scope.TypeString;
