@@ -6,12 +6,15 @@ using System.IO;
 
 public class GameSetupController : MonoBehaviour
 {
+    CameraPosition cameraPosition;
+
     // Start is called before the first frame update
     /// <summary>
     /// Asks to create a player each time someone is connecting
     /// </summary>
     void Start()
     {
+		cameraPosition = FindObjectOfType<CameraPosition>();
         CreatePlayer();
     }
     
@@ -22,6 +25,7 @@ public class GameSetupController : MonoBehaviour
     private void CreatePlayer()
     {
         Debug.Log("Creating Player");
-        PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
+        GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
+		cameraPosition.SetCameraTarget(player.transform);
     }
 }
