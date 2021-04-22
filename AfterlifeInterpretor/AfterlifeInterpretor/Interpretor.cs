@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AfterlifeInterpretor.CodeAnalysis;
-using AfterlifeInterpretor.CodeAnalysis.Syntax;
 using AfterlifeInterpretor.CodeAnalysis.Binding;
+using AfterlifeInterpretor.CodeAnalysis.Syntax.Parser;
 
 namespace AfterlifeInterpretor
 {
     public sealed class Interpretor
     {
-        private readonly Scope _scope;
+        private Scope _scope;
         public Dictionary<string, object> Variables => _scope.Variables;
 
         public Interpretor(Dictionary<string, object> variables)
@@ -46,15 +46,18 @@ namespace AfterlifeInterpretor
 
         public EvaluationResults Interpret(string text)
         {
+            Scope newScope = new Scope(_scope.Parent, new Dictionary<string, object>(_scope.Variables));
             SyntaxTree tree = new Parser(text).Parse();
 
-            Binder binder = new Binder(_scope, tree.Errs);
+            Binder binder = new Binder(newScope, tree.Errs);
             BoundBlockStatement bound = binder.BindProgram(tree.Root);
             
-            Evaluator ev = new Evaluator(bound, _scope);
+            Evaluator ev = new Evaluator(bound, newScope, binder.Errs);
             object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
 
-            return new EvaluationResults(binder.Errs, res);
+            if (!ev.Errs.GetErrors().Any())
+                _scope = newScope;
+            return new EvaluationResults(ev.Errs, ev.StdOut, res);
         }
     }
 }

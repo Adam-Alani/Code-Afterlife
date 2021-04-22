@@ -8,14 +8,18 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         public BoundBinaryOperator Operator { get;  }
         public BoundExpression Right { get;  }
         
-        public override Type Type => Operator.ResultType;
+        public override Type Type => Operator?.ResultType;
         public override BoundNodeKind Kind => BoundNodeKind.BinaryExpression;
-        
-        public BoundBinary(BoundExpression left, BoundBinaryOperator op, BoundExpression right)
+        public override int Position { get; }
+        public override string TypeString => Text.PrettyType(Type);
+
+
+        public BoundBinary(BoundExpression left, BoundBinaryOperator op, BoundExpression right, int position)
         {
             Left = left;
             Operator = op;
             Right = right;
+            Position = position;
         }
     }
 }
