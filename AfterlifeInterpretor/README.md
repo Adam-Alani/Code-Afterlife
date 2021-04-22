@@ -5,6 +5,6 @@
   - [x] +=, -=, *=, /=, %=
   - [x] Functions
   - [x] Strings, Floats
-  - [ ] In-game integration
+  - [x] In-game integration
   - [x] Lists (optional for now)
   - [x] If else expressions (optional)

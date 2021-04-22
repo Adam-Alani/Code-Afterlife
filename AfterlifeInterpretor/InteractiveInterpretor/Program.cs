@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AfterlifeInterpretor;
 using AfterlifeInterpretor.CodeAnalysis;
@@ -70,6 +71,7 @@ namespace InteractiveInterpretor
             Interpret(interpretor, text);
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0002: Excessive memory allocations in SOH", MessageId = "type: System.String")]
         static void Interpret(Interpretor interpretor, string text)
         {
             if (text.StartsWith("#") && Macros.ContainsKey(text.Substring(1)))
