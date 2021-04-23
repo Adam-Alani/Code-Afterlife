@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
+using AfterlifeInterpretor;
+
 public class CodeEditor : MonoBehaviour
 {
     
+    public Button outputButton;
     public TMPro.TMP_Text lineNumbers;
     public TMPro.TMP_Text codeUI;
+    public Text outputText;
     public Image caret;
     public string code { get; set; }
     public int lineIndex;
@@ -17,11 +21,16 @@ public class CodeEditor : MonoBehaviour
     float lastInputTime;
     float timer;
     const string indentString = "  ";
+
+    private Interpretor interpretor; 
     
 
     // Start is called before the first frame update
     public void Start()
     {
+
+        outputButton.onClick.AddListener(executeCode);
+
         if (code == null) {
             code = "";
         }
@@ -32,6 +41,8 @@ public class CodeEditor : MonoBehaviour
         CustomInput.instance.RegisterKey (KeyCode.RightArrow);
         CustomInput.instance.RegisterKey (KeyCode.UpArrow);
         CustomInput.instance.RegisterKey (KeyCode.DownArrow);
+
+        interpretor = new Interpretor();
     }
 
     
@@ -254,11 +265,21 @@ public class CodeEditor : MonoBehaviour
         return text;
     }
 
+    public void executeCode() {
+
+        interpretor = new Interpretor();
+        Debug.Log(code);
+        EvaluationResults er = interpretor.Interpret(code.ToLower());
+        outputText.GetComponent<Text>().text = er.ToString();
+        
+    }
+
     
     
     // Update is called once per frame
     void Update()
     {
+
         
 
         HandleTextInput ();

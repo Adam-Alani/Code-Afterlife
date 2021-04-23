@@ -40,12 +40,6 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             return Equals(Head, other.Head) && Equals(Tail, other.Tail) && Size == other.Size && IsEmpty == other.IsEmpty;
         }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Head, Tail, Size, IsEmpty);
-        }
-
         public static List operator +(List l1, List l2)
         {
             if (l1.IsEmpty)

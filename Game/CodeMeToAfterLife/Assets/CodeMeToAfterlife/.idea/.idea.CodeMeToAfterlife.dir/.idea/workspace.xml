@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="45151772-ca14-4a92-aace-85473b517a70" name="Default Changelist" comment="" />
+    <list default="true" id="45151772-ca14-4a92-aace-85473b517a70" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CodeMeToAfterlife.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CodeMeToAfterlife.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameSetupController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GameSetupController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/ArtifactDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/LastBuild.buildreport" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/LastBuild.buildreport" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonChat.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonChat.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonRealtime.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonRealtime.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Demos.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Demos.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Utilities.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Utilities.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Unity.TextMeshPro.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Unity.TextMeshPro.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Unity.Timeline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/Unity.Timeline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/UnityEngine.UI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/Managed/UnityEngine.UI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/boot.config" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/boot.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/globalgamemanagers" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/globalgamemanagers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/globalgamemanagers.assets" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/globalgamemanagers.assets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/level1" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/level1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/resources.assets" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/Data/resources.assets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/ScriptsOnlyCache.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/PlayerDataCache/Win/ScriptsOnlyCache.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/SourceAssetDB" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/SourceAssetDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/StateCache/Hierarchy/ad5e5b-e82f04d141be25946a.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/StateCache/Hierarchy/ad5e5b-e82f04d141be25946a.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,14 +39,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/QuickStartLobbyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/NetworkController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/GameSetupController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/QuickStartRoomController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/GameSetupController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../TerminalBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/QuickStartRoomController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/../ShowPlayerName.cs" />
       <option value="$PROJECT_DIR$/../PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/GameSetupController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1opM3VtaivMqSoMOZm47o7pyIpU" />
@@ -47,6 +74,7 @@
       <workItem from="1618758684648" duration="608000" />
       <workItem from="1618759488821" duration="1407000" />
       <workItem from="1618824372233" duration="319000" />
+      <workItem from="1619121742901" duration="323000" />
     </task>
     <servers />
   </component>

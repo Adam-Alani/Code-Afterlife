@@ -1,3 +1,13 @@
+# Binaries
+bin
+obj
+
+# Rider
+.idea
+*.userprefs
+
+.DS_Store
+
 # Created by https://www.toptal.com/developers/gitignore/api/unity,csharp,rider,vscode
 # Edit at https://www.toptal.com/developers/gitignore?templates=unity,csharp,rider,vscode
 
