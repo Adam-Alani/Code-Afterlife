@@ -1,12 +1,16 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Assets.Pixelation.Scripts.Pixelation
+    - CameraPosition
+    - CodeEditor
+    - CustomInput
     - GameSetupController
     - MainMenu
     - NetworkController
     - OpenLink
     - OptionsMenu
-    - PlayerMovement
+    - PlayerController
     - QuickStartLobbyController
     - QuickStartRoomController
     - TerminalBehavior
@@ -91,11 +95,15 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11306}
+      Script: {instanceID: 11304}
     - Class: 114
-      Script: {instanceID: 11550}
+      Script: {instanceID: 11548}
     - Class: 114
-      Script: {instanceID: 12032}
+      Script: {instanceID: 11620}
+    - Class: 114
+      Script: {instanceID: 11640}
+    - Class: 114
+      Script: {instanceID: 12030}
     - Class: 114
       Script: {instanceID: 12368}
     - Class: 114
@@ -113,8 +121,6 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -176,19 +182,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11280}
     - Class: 114
-      Script: {instanceID: 11306}
+      Script: {instanceID: 11304}
+    - Class: 114
+      Script: {instanceID: 11380}
     - Class: 114
       Script: {instanceID: 11446}
     - Class: 114
-      Script: {instanceID: 11464}
+      Script: {instanceID: 11466}
     - Class: 114
-      Script: {instanceID: 11468}
+      Script: {instanceID: 11504}
     - Class: 114
-      Script: {instanceID: 11506}
+      Script: {instanceID: 11548}
     - Class: 114
-      Script: {instanceID: 11550}
+      Script: {instanceID: 11570}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11620}
+    - Class: 114
+      Script: {instanceID: 11640}
     - Class: 114
       Script: {instanceID: 11690}
     - Class: 114
@@ -198,15 +208,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11918}
     - Class: 114
-      Script: {instanceID: 12032}
+      Script: {instanceID: 12030}
     - Class: 114
-      Script: {instanceID: 12068}
+      Script: {instanceID: 12066}
     - Class: 114
-      Script: {instanceID: 12076}
+      Script: {instanceID: 12074}
     - Class: 114
-      Script: {instanceID: 12114}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 12162}
+      Script: {instanceID: 12160}
+    - Class: 114
+      Script: {instanceID: 12232}
     - Class: 114
       Script: {instanceID: 12250}
     - Class: 114
@@ -221,6 +233,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 12442}
     - Class: 114
       Script: {instanceID: 12586}
+    - Class: 114
+      Script: {instanceID: 12634}
     - Class: 114
       Script: {instanceID: 12664}
     - Class: 114
@@ -261,10 +275,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 13624}
     - Class: 114
       Script: {instanceID: 13640}
-    - Class: 114
-      Script: {instanceID: 16130}
-    - Class: 114
-      Script: {instanceID: 16132}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -388,6 +398,12 @@ ScriptsOnlyBuild:
     className: UserIdField
   - hash:
       serializedVersion: 2
+      Hash: 28d866f00e030b3e4ccd1446eaa2a187
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CustomInput
+  - hash:
+      serializedVersion: 2
       Hash: 11bdd61587db747672b66c52442395d8
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -446,12 +462,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: GroupTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 180e3f168bc54f1db30ff03c1109bb74
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: QuickStartLobbyController
   - hash:
       serializedVersion: 2
       Hash: 2b1d1de79e4d31f1861f586502176c81
@@ -566,6 +576,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: Assets.Pixelation.Scripts
     className: Pixelation
+  - hash:
+      serializedVersion: 2
+      Hash: 7c4d61ba679beaa5d71821c8c9d31078
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraPosition
   - hash:
       serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
@@ -730,12 +746,6 @@ ScriptsOnlyBuild:
     className: PhotonRigidbody2DView
   - hash:
       serializedVersion: 2
-      Hash: 28d866f00e030b3e4ccd1446eaa2a187
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CustomInput
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -880,10 +890,10 @@ ScriptsOnlyBuild:
     className: CurrentRoomPlayerTtlProperty
   - hash:
       serializedVersion: 2
-      Hash: 4b5a5ebf1f3694bfb717a7918eeb44f4
+      Hash: 4d11f681d154af4e9a0e2e72aff42e50
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PlayerMovement
+    className: PlayerController
   - hash:
       serializedVersion: 2
       Hash: f941c3a384168571b7d90f58ec4986bc
@@ -896,6 +906,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: CurrentRoomIsOpenToggle
+  - hash:
+      serializedVersion: 2
+      Hash: 180e3f168bc54f1db30ff03c1109bb74
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: QuickStartLobbyController
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1138,12 +1154,6 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
-      Hash: 663b4f213c04772bf4e863785a39c5a9
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CodeEditor
-  - hash:
-      serializedVersion: 2
       Hash: 4fe8955e1c662935371b0936cafbb89b
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -1154,6 +1164,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
     className: ToggleExpand
+  - hash:
+      serializedVersion: 2
+      Hash: 663b4f213c04772bf4e863785a39c5a9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CodeEditor
   - hash:
       serializedVersion: 2
       Hash: e244702e0dc05782229aa524e4d757f5
@@ -1474,7 +1490,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 7b42ae19b7305d1784f45c1e0f3baa62
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameSetupController
@@ -1538,6 +1554,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: VertexColorCycler
+  - hash:
+      serializedVersion: 2
+      Hash: 17d041ee89ae008a578d523a809c2da9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PixelShader
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1896,4 +1918,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
   - Assets/Scenes/Level01.unity
-  playerPath: "G:/Data Ivan/cours/\xE9pita/Prog/Projet S2/Game/builds/New Unity Project.exe"
+  playerPath: C:/Users/N'importe maison/Desktop/Theo/Projet S2 EPITA Theo/build/New
+    Unity Project.exe
