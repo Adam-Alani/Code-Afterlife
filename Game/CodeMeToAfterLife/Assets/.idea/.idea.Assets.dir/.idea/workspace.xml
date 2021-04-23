@@ -19,7 +19,39 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="" />
+    <list default="true" id="621f7cda-6cff-4947-affb-da66ce9b0c7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Assets.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeMeToAfterlife/.idea/.idea.CodeMeToAfterlife.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CodeMeToAfterlife/.idea/.idea.CodeMeToAfterlife.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CodeMeToAfterlife/GameSetupController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/CodeMeToAfterlife/GameSetupController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Level01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Level01.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ArtifactDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ArtifactDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/CurrentLayout-default.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/CurrentLayout-default.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/InspectorExpandedItems.asset" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/InspectorExpandedItems.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/LastBuild.buildreport" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/LastBuild.buildreport" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/LastSceneManagerSetup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/LastSceneManagerSetup.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonChat.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonChat.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonRealtime.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonRealtime.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Demos.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Demos.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Utilities.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.Utilities.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/PhotonUnityNetworking.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Unity.TextMeshPro.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Unity.TextMeshPro.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Unity.Timeline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/Unity.Timeline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/UnityEngine.UI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/Managed/UnityEngine.UI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/boot.config" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/boot.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/globalgamemanagers" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/globalgamemanagers" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/globalgamemanagers.assets" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/globalgamemanagers.assets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/level1" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/level1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/resources.assets" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/Data/resources.assets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/ScriptsOnlyCache.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/PlayerDataCache/Win/ScriptsOnlyCache.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/ScriptAssemblies/Assembly-CSharp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/SourceAssetDB" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/SourceAssetDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-e82f04d141be25946a.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-e82f04d141be25946a.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/StateCache/Hierarchy/ad5e5b-mainStage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Library/StateCache/SceneView/b1d4a7-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Library/StateCache/SceneView/b1d4a7-mainStage.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,13 +70,14 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/MainMenu.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TerminalBehavior.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/OptionsMenu.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
       <option value="$PROJECT_DIR$/PlayerControls.cs" />
       <option value="$PROJECT_DIR$/PlayerMovement.cs" />
+      <option value="$PROJECT_DIR$/PlayerController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1nq2i8hBHeNvBzVyY1LgigfYHzD" />
@@ -80,6 +113,7 @@
       <workItem from="1618754556969" duration="516000" />
       <workItem from="1618759328700" duration="28000" />
       <workItem from="1618764169564" duration="167000" />
+      <workItem from="1619171469436" duration="1231000" />
     </task>
     <servers />
   </component>

@@ -47,7 +47,7 @@ public class GameSetupController : MonoBehaviour
     private void SetSpawnPoints()
     {
         Vector3 spawnPoint1 = new Vector3(-20, 5, 40);
-        Vector3 spawnPoint2 = new Vector3(5, 0, 0);
+        Vector3 spawnPoint2 = new Vector3(-20, 5, -40);
         spawnPoints = new Vector3[] {spawnPoint1, spawnPoint2};
     }
 }

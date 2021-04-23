@@ -102,8 +102,11 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "Laser")
         {
-            transform.position = spawnPoints[playerNumber];
+			controller.enabled = false;
+            transform.localPosition = spawnPoints[playerNumber];
             Debug.Log("pew pew");
+			controller.enabled = true; 
         }
     }
 }
+
