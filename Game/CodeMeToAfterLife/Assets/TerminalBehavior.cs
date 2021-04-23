@@ -59,12 +59,14 @@ public class TerminalBehavior : MonoBehaviour
     
     public void OpenTerminal()
     {
+        FindObjectOfType<AudioManager>().Play("OpenTerminal");
         SceneManager.LoadScene(BuildIndexCodeEditor, LoadSceneMode.Additive);
         Debug.Log("Terminal is open");
     }
 
     public void CloseTerminal()
     {
+        FindObjectOfType<AudioManager>().Play("CloseTerminal");
         SceneManager.UnloadSceneAsync("Assets/CodeEditor/Code Editor.unity");
         Debug.Log("Terminal is close");
     }

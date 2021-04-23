@@ -102,6 +102,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "Laser")
         {
+            FindObjectOfType<AudioManager>().Play("LaserShot");
+            
 			controller.enabled = false;
             transform.localPosition = spawnPoints[playerNumber];
             Debug.Log("pew pew");
