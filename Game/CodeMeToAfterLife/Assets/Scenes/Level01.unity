@@ -1748,6 +1748,16 @@ PrefabInstance:
       propertyPath: maxRange
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
+        type: 3}
+      propertyPath: deltaAngleMax
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ff719a2553089c4d9eed71a1953efb3, type: 3}
 --- !u!1 &1959665820
