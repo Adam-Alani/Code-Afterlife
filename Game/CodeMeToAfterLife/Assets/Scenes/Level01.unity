@@ -478,6 +478,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Iso Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 7323683451250893489, guid: 7ba15cb4644872b4fa9655e0f66d0a83,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ba15cb4644872b4fa9655e0f66d0a83, type: 3}
 --- !u!1001 &301153945
