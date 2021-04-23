@@ -115,9 +115,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         private BoundStatement BindWhileStatement(WhileStatement syntax)
         {
             BoundExpressionStatement condition = (BoundExpressionStatement)BindExpressionStatement(syntax.Condition);
-            if (condition.Expression.Type != typeof(bool) && condition.Expression.Type != typeof(Unpredictable))
+            if (condition?.Expression?.Type != typeof(bool) && condition?.Expression?.Type != typeof(Unpredictable))
             {
-                Errs.ReportType(condition.Expression.Type, typeof(bool), syntax.Token.Position);
+                Errs.ReportType(condition?.Expression?.Type, typeof(bool), syntax.Token.Position);
                 return null;
             }
             return new BoundWhile(condition, BindStatement(syntax.Then), syntax.Token.Position);
