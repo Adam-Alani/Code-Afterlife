@@ -23,7 +23,7 @@ public class CodeEditor : MonoBehaviour
     const string indentString = "  ";
 
     private Interpretor interpretor; 
-    
+    string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=<>()[]{},;!&|^_ \" %";
 
     // Start is called before the first frame update
     public void Start()
@@ -49,14 +49,16 @@ public class CodeEditor : MonoBehaviour
     void HandleTextInput () {
         string input = Input.inputString;
         if (!Input.GetKey (KeyCode.LeftControl) && !Input.GetKey (KeyCode.LeftCommand)) {
-            foreach (char c in input) {
-                lastInputTime = Time.time;
-                if (string.IsNullOrEmpty (code) || charIndex == code.Length) {
-                    code += c;
-                } else {
-                    code = code.Insert (charIndex, c.ToString ());
+			foreach (char c in input) {
+                if (legalChars.Contains (c.ToString ().ToLower ())) {
+                    lastInputTime = Time.time;
+                    if (string.IsNullOrEmpty (code) || charIndex == code.Length) {
+                        code += c;
+                    } else {
+                        code = code.Insert (charIndex, c.ToString ());
+                    }
+                    charIndex++;
                 }
-                charIndex++;
             }
         }
     }
@@ -251,7 +253,7 @@ public class CodeEditor : MonoBehaviour
         string pattern = @"(?<=\bfunction\b)(.*?)(?=\{)";
         text = Regex.Replace(text, pattern,  "<color=#03fc17>$&</color>"   , RegexOptions.IgnoreCase);
         
-        string[] initKeywords = {"int", "var", "bool","return"};
+        string[] initKeywords = {"int", "var", "bool","return","string"};
         text = Regex.Replace(text, "\\b" + string.Join("\\b|\\b", initKeywords) + "\\b", "<color=#ff00d4>$&</color>" );
 
         string[] expKeywords = {"for", "if", "else", "while"};
@@ -270,8 +272,12 @@ public class CodeEditor : MonoBehaviour
         interpretor = new Interpretor();
         Debug.Log(code);
         EvaluationResults er = interpretor.Interpret(code.ToLower());
-        outputText.GetComponent<Text>().text = er.ToString();
-        
+		if (er.ToString() == "ERROR") {
+			outputText.GetComponent<Text>().text = "<color=#FF0000>" + er.ToString() + "</color>";
+		}
+		else {
+			outputText.GetComponent<Text>().text = er.ToString();
+		}
     }
 
     
