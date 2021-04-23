@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +19,7 @@ public class Turret : MonoBehaviour
     public bool off; // disables the turret
     public bool limits; // disables the limits view
     public bool ForceMidLaser; // forces or not the mid laser
-    public GameObject turret;
-
+    public float turretPrecision;
 
     
     // Start is called before the first frame update
@@ -56,7 +55,7 @@ public class Turret : MonoBehaviour
         {
             CharacterController collider = enemy.GetComponent<CharacterController>();
 
-            float distanceToEnemy = Vector3.Distance(turret.transform.position, enemy.transform.position) - collider.radius;
+            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position) - collider.radius;
             //Debug.Log("Distance to enemy : " + distanceToEnemy); //*********************************************
             if (distanceToEnemy < shortestEnemyDistance && InRangeEnemy(enemy))
             {
@@ -84,7 +83,7 @@ public class Turret : MonoBehaviour
     bool InRangeEnemy (GameObject enemy)
     {
         float yRotationTurret = partToRotate.transform.rotation.eulerAngles.y; // takes the rotation of the turret
-        float yEnemyDirection = Quaternion.LookRotation(enemy.transform.position - turret.transform.position).eulerAngles.y; // takes the direction of the current chosen enemy
+        float yEnemyDirection = Quaternion.LookRotation(enemy.transform.position - transform.position).eulerAngles.y; // takes the direction of the current chosen enemy
         float deltaAngle = yEnemyDirection - yRotationTurret; // gives the delta between the two
         return (-deltaAngleMax <= deltaAngle && deltaAngle <= deltaAngleMax);
     }
@@ -140,7 +139,8 @@ public class Turret : MonoBehaviour
 
     bool Shoot()
     {
-        return target != null && Abs(Quaternion.LookRotation(target.position - turret.transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < 3;
+
+        return target != null && Abs(Quaternion.LookRotation(target.position - transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < turretPrecision;
     }
 
 
@@ -149,7 +149,7 @@ public class Turret : MonoBehaviour
     /// </summary>
     void TurnToEnemy() 
     {
-        Vector3 dir = target.position - turret.transform.position;
+        Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
@@ -162,6 +162,6 @@ public class Turret : MonoBehaviour
     void OnDrawGizmosSelected ()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(turret.transform.position, maxRange);
+        Gizmos.DrawWireSphere(transform.position, maxRange);
     }
 }

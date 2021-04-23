@@ -198,9 +198,9 @@ MonoBehaviour:
   limitRight: {fileID: 61390960606741989}
   limitMid: {fileID: 1622928346}
   off: 0
-  limits: 1
+  limits: 0
   ForceMidLaser: 0
-  turret: {fileID: 2043297241718979886}
+  turretPrecision: 10
 --- !u!1 &2138873211800674873
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 1}
+  m_Size: {x: 5, y: 5, z: 1}
   m_Center: {x: 3.3217873e-13, y: 0.0000009536743, z: 0.00000011920929}
 --- !u!1 &7604761803110194570
 GameObject:
