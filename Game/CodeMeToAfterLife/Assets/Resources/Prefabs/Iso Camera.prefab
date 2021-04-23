@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4531006199779293293}
   - component: {fileID: 8640577743745965727}
   - component: {fileID: 56200649124381900}
-  - component: {fileID: 2559563870747446867}
+  - component: {fileID: 3120841424578135991}
   m_Layer: 0
   m_Name: Iso Camera
   m_TagString: MainCamera
@@ -61,7 +61,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: d3765330fd1b7034abc55d831fc09ee2, type: 3}
-  BlockCount: 128
---- !u!114 &2559563870747446867
+  BlockCount: 256
+--- !u!114 &3120841424578135991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,4 +113,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smoothSpeed: 10
-  offset: {x: -25, y: -25, z: -25}
+  offset: {x: -25, y: 25, z: -25}

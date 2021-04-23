@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 1570805257295915757}
   - component: {fileID: 8994734579140851265}
   - component: {fileID: 8610963429692020889}
+  - component: {fileID: 8785859563320333409}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -348,8 +349,8 @@ MonoBehaviour:
   controller: {fileID: 6490264022754806961}
   speed: 35
   turnSmoothTime: 0.1
-  forward: {x: 0, y: 0, z: 0}
-  right: {x: 0, y: 0, z: 0}
+  playerNumber: 0
+  spawnPoints: []
   PV: {fileID: 5167707125925105463}
 --- !u!114 &8610963429692020889
 MonoBehaviour:
@@ -367,6 +368,7 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+<<<<<<< HEAD
 --- !u!1001 &3715777504271766516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -457,3 +459,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3715777504271766516}
   m_PrefabAsset: {fileID: 0}
+=======
+--- !u!136 &8785859563320333409
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6850990891250253382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+>>>>>>> ab38cf79b14e8f16bcf2c56618df66f6e899c9d5

@@ -7,6 +7,7 @@ using System.IO;
 public class GameSetupController : MonoBehaviour
 {
     CameraPosition cameraPosition;
+    public Vector3[] spawnPoints;
 
     // Start is called before the first frame update
     /// <summary>
@@ -14,6 +15,7 @@ public class GameSetupController : MonoBehaviour
     /// </summary>
     void Start()
     {
+        SetSpawnPoints();
         cameraPosition = FindObjectOfType<CameraPosition>();
         CreatePlayer();
     }
@@ -24,8 +26,28 @@ public class GameSetupController : MonoBehaviour
     /// </summary>
     private void CreatePlayer()
     {
+        int playerNumber;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            playerNumber = 0;
+        }
+        else
+        {
+            playerNumber = 1;
+        }
+        
         Debug.Log("Creating Player");
-        GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), Vector3.zero, Quaternion.identity);
-		cameraPosition.SetCameraTarget(player.transform);
+        GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), spawnPoints[playerNumber], Quaternion.identity);
+        PlayerController pc = FindObjectOfType<PlayerController>();
+        pc.SetPlayerNumber(playerNumber);
+        pc.SetPlayerSpawnPoints(spawnPoints);
+        cameraPosition.SetCameraTarget(player.transform);
+    }
+
+    private void SetSpawnPoints()
+    {
+        Vector3 spawnPoint1 = new Vector3(-20, 5, 40);
+        Vector3 spawnPoint2 = new Vector3(-20, 5, -40);
+        spawnPoints = new Vector3[] {spawnPoint1, spawnPoint2};
     }
 }

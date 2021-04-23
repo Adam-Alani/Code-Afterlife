@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
+
+    public int playerNumber;
+    public Vector3[] spawnPoints;
     
-    public Vector3 forward; // vertical axis in isometric system
-    public Vector3 right; // horizontal axis in isometric system
+    private Vector3 forward; // vertical axis in isometric system
+    private Vector3 right; // horizontal axis in isometric system
     public PhotonView PV;
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,4 +84,29 @@ public class PlayerController : MonoBehaviour
         // rotate around the y axis
         transform.rotation = Quaternion.Euler(0f, angle, 0f);
     }
+
+    public void SetPlayerNumber(int num)
+    {
+        playerNumber = num;
+    }
+
+    public void SetPlayerSpawnPoints(Vector3[] spawnpoints)
+    {
+        spawnPoints = spawnpoints;
+    }
+
+    /// <summary>
+    /// detects when hit by a laser and kill the player lol
+    /// </summary>
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.name == "Laser")
+        {
+			controller.enabled = false;
+            transform.localPosition = spawnPoints[playerNumber];
+            Debug.Log("pew pew");
+			controller.enabled = true; 
+        }
+    }
 }
+
