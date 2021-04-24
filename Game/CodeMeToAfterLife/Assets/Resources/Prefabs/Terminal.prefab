@@ -31,7 +31,7 @@ Transform:
   m_LocalPosition: {x: 507.1172, y: 319.51562, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8099018679936552609}
+  - {fileID: 8642346014703121354}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -92,8 +92,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.8634033, z: 0.9647608}
+  m_Center: {x: 0, y: 0.9338379, z: 0.01761961}
 --- !u!1001 &8099018679936160801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101,6 +101,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3660738669107863760}
     m_Modifications:
+    - target: {fileID: -7511558181221131132, guid: 9c9c01ea5d9bcf74db52c9818f202508,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a9878e76a155014b85782fdbc8aa8e7, type: 2}
     - target: {fileID: 100000, guid: 9c9c01ea5d9bcf74db52c9818f202508, type: 3}
       propertyPath: m_Name
       value: ATM
@@ -163,9 +168,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c9c01ea5d9bcf74db52c9818f202508, type: 3}
---- !u!4 &8099018679936552609 stripped
+--- !u!4 &8642346014703121354 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 9c9c01ea5d9bcf74db52c9818f202508,
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9c9c01ea5d9bcf74db52c9818f202508,
     type: 3}
   m_PrefabInstance: {fileID: 8099018679936160801}
   m_PrefabAsset: {fileID: 0}

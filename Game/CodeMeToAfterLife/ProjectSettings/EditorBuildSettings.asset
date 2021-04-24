@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level01.unity
     guid: b3ada23f681081b40bc01e729ddcbfa2
+  - enabled: 1
+    path: Assets/CodeEditor/Code Editor.unity
+    guid: 4204987111859674ea20b0098ed3a29d
   m_configObjects: {}
