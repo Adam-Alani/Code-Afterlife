@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4531006199779293293}
   - component: {fileID: 8640577743745965727}
   - component: {fileID: 56200649124381900}
-  - component: {fileID: 416975570060838478}
+  - component: {fileID: 6099932129733987489}
   m_Layer: 0
   m_Name: Iso Camera
   m_TagString: MainCamera
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: d3765330fd1b7034abc55d831fc09ee2, type: 3}
   BlockCount: 256
---- !u!114 &416975570060838478
+--- !u!114 &6099932129733987489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
