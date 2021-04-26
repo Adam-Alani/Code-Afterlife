@@ -189,11 +189,11 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 32
-  rotationSpeed: 10
+  maxRange: 36
+  rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635401578110}
-  deltaAngleMax: 60
+  deltaAngleMax: 360
   limitLeft: {fileID: 3816955407397212032}
   limitRight: {fileID: 61390960606741989}
   limitMid: {fileID: 1622928346}
