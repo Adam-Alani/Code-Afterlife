@@ -231,9 +231,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
         private BoundExpression BindIfExpression(IfExpression syntax)
         {
             BoundExpression condition = BindExpression(syntax.Condition.Expression);
-            if (condition.Type != typeof(bool))
+            if (condition?.Type != typeof(bool))
             {
-                Errs.ReportType(condition.Type, typeof(bool), syntax.Token.Position);
+                Errs.ReportType(condition?.Type, typeof(bool), syntax.Token.Position);
                 return null;
             }
 
