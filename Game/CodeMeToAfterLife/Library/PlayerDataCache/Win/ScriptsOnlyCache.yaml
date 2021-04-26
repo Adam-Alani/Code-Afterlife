@@ -142,11 +142,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13176}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13384}
     - Class: 114
-      Script: {instanceID: 13622}
+      Script: {instanceID: 13414}
     - Class: 114
-      Script: {instanceID: 48540}
+      Script: {instanceID: 13624}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -301,21 +301,21 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 13346}
     - Class: 114
-      Script: {instanceID: 13412}
+      Script: {instanceID: 13414}
     - Class: 114
-      Script: {instanceID: 13484}
+      Script: {instanceID: 13486}
     - Class: 114
-      Script: {instanceID: 13530}
+      Script: {instanceID: 13532}
     - Class: 114
-      Script: {instanceID: 13602}
+      Script: {instanceID: 13604}
     - Class: 114
-      Script: {instanceID: 13622}
+      Script: {instanceID: 13624}
     - Class: 114
-      Script: {instanceID: 13634}
+      Script: {instanceID: 13636}
     - Class: 114
-      Script: {instanceID: 13638}
+      Script: {instanceID: 13640}
     - Class: 114
-      Script: {instanceID: 13654}
+      Script: {instanceID: 13656}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1651,6 +1651,12 @@ ScriptsOnlyBuild:
     className: SimpleCameraController
   - hash:
       serializedVersion: 2
+      Hash: 69700538dde194253cba75c89fe99c0f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: doors
+  - hash:
+      serializedVersion: 2
       Hash: 2b53d93770b9036b2fd1c7854560bc69
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -1961,12 +1967,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: 69700538dde194253cba75c89fe99c0f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: doors
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
