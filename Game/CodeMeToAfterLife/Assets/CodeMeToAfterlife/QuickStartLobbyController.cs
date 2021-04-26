@@ -13,6 +13,12 @@ public class QuickStartLobbyController : MonoBehaviourPunCallbacks
     public int roomSize;
     public bool Private;
     
+
+    void Awake () 
+     {
+     QualitySettings.vSyncCount = 0;  // VSync must be disabled
+     Application.targetFrameRate = 90;
+     }
     
     /// <summary>
     /// When connected to a server synchronises the scene with the others players in the game (to change if we decide that players of the same game can be in different scenes
