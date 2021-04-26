@@ -15,9 +15,9 @@
                 </div>
             </div>
 
-            <div class="mt-8"><h1 class="text-xl underline text-purple-600">Update Log 2</h1>
+            <div class="mt-8"><h1 class="text-xl underline text-purple-600">Update Log . . . : 26/4/2021</h1>
                 <div class="mt-2 mx-16">
-                    <p>Coming soon</p>
+                    <p>Finished the first level, with it comes the terminal and an IDE with syntax highlighting autoindentation, and unit testing. The IDE uses our own interpreted language Babylon.  now contains the +=, -=, *= and /= operators, for loops, strings floats and lists, and functions.  For the first map, we used 2 terminals that activate/deactivate doors and turrets. We also now have our main character design, a bit more sound design (for the terminal, turret and background music). Finally, multiplayer is now 100% done.</p>
                 </div>
             </div>
             <div class="mt-8"><h1 class="text-xl underline text-yellow-200">Update Log 3</h1>
