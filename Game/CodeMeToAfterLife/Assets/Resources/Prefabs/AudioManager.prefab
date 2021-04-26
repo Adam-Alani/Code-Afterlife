@@ -40,37 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7590397728373004292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b416e723b51aa4eaff2005f79d49e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 92454c86454fb0442b3e24b4c885466f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: OpenTerminal
-    clip: {fileID: 8300000, guid: cb7dcdcfb30d3814582f50fca9d6edf7, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: CloseTerminal
-    clip: {fileID: 8300000, guid: 8e49ca00d1a370a4ab144925d0451131, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: LaserShot
-    clip: {fileID: 8300000, guid: 19f55e87867da2d4cbc0f3ae539570f7, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-  - name: DoorOpen
-    clip: {fileID: 8300000, guid: 49c5bb80bc37c604791d82eb1c619484, type: 3}
-    volume: 0.523
-    pitch: 0
-    loop: 0
-    source: {fileID: 0}
-  - name: MainMusic
-    clip: {fileID: 8300000, guid: 9fbb4a7da7b433b4695ffcfc01511b7a, type: 3}
-    volume: 0.5
-    pitch: 1
-    loop: 1
-    source: {fileID: 0}
+  sounds: []
