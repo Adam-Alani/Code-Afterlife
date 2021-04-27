@@ -20,6 +20,11 @@ public class Turret : MonoBehaviour
     public bool limits; // disables the limits view
     public bool ForceMidLaser; // forces or not the mid laser
     public float turretPrecision;
+    public GameObject codeEditor;
+
+    public GameObject redWire;
+    public GameObject greenWire;
+    private bool forceDisable;
 
     
     // Start is called before the first frame update
@@ -96,11 +101,22 @@ public class Turret : MonoBehaviour
     {
         if (off)
             return;
+        
+        off = codeEditor.GetComponent<CodeEditor>().Solved;
+
+        if (off)
+        {
+            redWire.SetActive(false);
+            greenWire.SetActive(true);
+            forceDisable = true;
+        }
+
+
 
         limitLeft.SetActive(limits);
         limitRight.SetActive(limits);
 
-        limitMid.SetActive(Shoot() || ForceMidLaser);
+        limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
         //Debug.Log(Shoot() || ForceMidLaser);
 
 

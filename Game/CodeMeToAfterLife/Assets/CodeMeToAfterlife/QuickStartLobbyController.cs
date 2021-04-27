@@ -17,7 +17,7 @@ public class QuickStartLobbyController : MonoBehaviourPunCallbacks
     void Awake () 
      {
      QualitySettings.vSyncCount = 0;  // VSync must be disabled
-     Application.targetFrameRate = 90;
+     Application.targetFrameRate = 80;
      }
     
     /// <summary>

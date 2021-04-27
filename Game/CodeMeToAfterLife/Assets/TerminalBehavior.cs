@@ -10,7 +10,13 @@ public class TerminalBehavior : MonoBehaviour
     public KeyCode openKey;
     public KeyCode closeKey;
 
-    public int BuildIndexCodeEditor = 2;
+    public GameObject CodeEditor;
+
+    void Start()
+    {
+        CodeEditor.SetActive(false);
+    }
+
 
     void Update()
     {
@@ -24,7 +30,10 @@ public class TerminalBehavior : MonoBehaviour
                     OpenTerminal();
                 }
             }
-            if (Input.GetKeyDown(closeKey))
+            // replace here
+        }
+
+        if (Input.GetKeyDown(closeKey))
             {
                 if (isOpen)
                 {
@@ -32,7 +41,6 @@ public class TerminalBehavior : MonoBehaviour
                     CloseTerminal();
                 }
             }
-        }
     }
     
     // method called by unity when there is a collision
@@ -60,14 +68,18 @@ public class TerminalBehavior : MonoBehaviour
     public void OpenTerminal()
     {
         FindObjectOfType<AudioManager>().Play("OpenTerminal");
-        SceneManager.LoadScene(BuildIndexCodeEditor, LoadSceneMode.Additive);
+        CodeEditor.SetActive(true);
+        
+        //SceneManager.LoadScene(BuildIndexCodeEditor, LoadSceneMode.Additive);
         Debug.Log("Terminal is open");
     }
 
     public void CloseTerminal()
     {
         FindObjectOfType<AudioManager>().Play("CloseTerminal");
-        SceneManager.UnloadSceneAsync("Assets/CodeEditor/Code Editor.unity");
+        CodeEditor.SetActive(false);
+        
+        //SceneManager.UnloadSceneAsync("Assets/CodeEditor/Code Editor.unity");
         Debug.Log("Terminal is close");
     }
 }

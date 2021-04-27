@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Text.RegularExpressions;
 using AfterlifeInterpretor;
+using System;
 
 public class CodeEditor : MonoBehaviour
 {
@@ -24,6 +25,13 @@ public class CodeEditor : MonoBehaviour
 
     private Interpretor interpretor; 
     string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=<>()[]{},;!&|^_ \" %";
+
+    public bool Solved = false;
+
+    public int PuzzleLevel;
+    public GameObject Puzzles;
+    
+
 
     // Start is called before the first frame update
     public void Start()
@@ -270,13 +278,23 @@ public class CodeEditor : MonoBehaviour
     public void executeCode() {
 
         interpretor = new Interpretor();
-        Debug.Log(code);
         EvaluationResults er = interpretor.Interpret(code.ToLower());
 		if (er.ToString() == "ERROR") {
 			outputText.GetComponent<Text>().text = "<color=#FF0000>" + er.ToString() + "</color>";
 		}
 		else {
 			outputText.GetComponent<Text>().text = er.ToString();
+            string res;
+            (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
+            if (Solved) {
+                outputText.GetComponent<Text>().text = "Good answer bravo";
+            } else 
+            {
+                outputText.GetComponent<Text>().text = "bad answer " + res;
+            }
+            //this.Puzzle.Evaluate(interpretor, PuzzleLevel);
+            
+            // appeller un script pour voir si cest bon les tests
 		}
     }
 
@@ -304,7 +322,9 @@ public class CodeEditor : MonoBehaviour
 
     }
 
-
 }
 
-    
+public interface MyPuzzle
+{
+    bool Evaluate(Interpretor interpretor);
+}    

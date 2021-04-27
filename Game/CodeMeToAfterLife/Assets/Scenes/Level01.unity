@@ -411,6 +411,12 @@ Transform:
   m_Father: {fileID: 1357652804}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &311573089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5817942233133994156, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+    type: 3}
+  m_PrefabInstance: {fileID: 1520203216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &333723053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -503,6 +509,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sci Fi Gates right
       objectReference: {fileID: 0}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: redWire
+      value: 
+      objectReference: {fileID: 1184119141}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: greenWire
+      value: 
+      objectReference: {fileID: 141055107}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: codeEditor
+      value: 
+      objectReference: {fileID: 1339544850}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
 --- !u!1 &376806759
@@ -598,6 +619,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376806759}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &470107029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8549480384889065604, guid: c61dd69fbe08c724e8f8b4d410922e0b,
+    type: 3}
+  m_PrefabInstance: {fileID: 557379648164565847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &623707596
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,9 +1016,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
         type: 3}
+      propertyPath: redWire
+      value: 
+      objectReference: {fileID: 470107029}
+    - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
+        type: 3}
       propertyPath: maxRange
       value: 36
       objectReference: {fileID: 0}
+    - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
+        type: 3}
+      propertyPath: greenWire
+      value: 
+      objectReference: {fileID: 1200043562}
+    - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
+        type: 3}
+      propertyPath: codeEditor
+      value: 
+      objectReference: {fileID: 311573089}
     - target: {fileID: 5078949380103936350, guid: 4ff719a2553089c4d9eed71a1953efb3,
         type: 3}
       propertyPath: ForceMidLaser
@@ -1140,6 +1182,12 @@ Transform:
   m_Father: {fileID: 1357652804}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1200043562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8585022588597706496, guid: 96ff05168127f2549b981c5c55eae890,
+    type: 3}
+  m_PrefabInstance: {fileID: 6775377280320456218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1240253127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1387376852609775829, guid: c61dd69fbe08c724e8f8b4d410922e0b,
@@ -1352,11 +1400,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -5321965992352231543, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_RootOrder
@@ -1427,43 +1470,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5817942231886432656, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>INSTRUCTIONS:</b>
+
+        Write the fibonacci function
+
+
+        -----------------'
+      objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Name
       value: Terminal Doors
       objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8099018679936552609, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6759871075158765291, guid: 3f68ffa8a34e7cc46b7ee2c986370d89, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f68ffa8a34e7cc46b7ee2c986370d89, type: 3}
+--- !u!1 &1339544850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5817942233133994156, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+    type: 3}
+  m_PrefabInstance: {fileID: 1339544849}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1344018036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1765,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5817942231886432656, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>INSTRUCTIONS:</b>
+
+        Write the multiplication function
+
+
+        -----------------'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: "<b>TESTS:</b>\n\t-multiply(1, 2) = 2\n\t-multiply(12, 2) = 24\n\t-multiply(4,
+        2) = 8\n\n--------------------\n\t\n\n\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: PuzzleLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Name
@@ -1795,7 +1846,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 180
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6759871075158765291, guid: 3f68ffa8a34e7cc46b7ee2c986370d89, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3f68ffa8a34e7cc46b7ee2c986370d89, type: 3}
 --- !u!1001 &1666927506
 PrefabInstance:
@@ -2091,6 +2143,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sci Fi Gates left
       objectReference: {fileID: 0}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: redWire
+      value: 
+      objectReference: {fileID: 1184119141}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: greenWire
+      value: 
+      objectReference: {fileID: 141055107}
+    - target: {fileID: 7956244579227683047, guid: 22d2c44fed4ffa743aac7afe4d993905,
+        type: 3}
+      propertyPath: codeEditor
+      value: 
+      objectReference: {fileID: 1339544850}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22d2c44fed4ffa743aac7afe4d993905, type: 3}
 --- !u!1 &1787964615
