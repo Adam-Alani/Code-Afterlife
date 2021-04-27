@@ -15,6 +15,7 @@ ScriptsOnlyBuild:
     - Puzzle
     - QuickStartLobbyController
     - QuickStartRoomController
+    - ShowRoom
     - TerminalBehavior
     - Turret
     - doors
@@ -104,9 +105,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11282}
-    - Class: 114
       Script: {instanceID: 11284}
+    - Class: 114
+      Script: {instanceID: 11286}
     - Class: 114
       Script: {instanceID: 11318}
     - Class: 114
@@ -120,6 +121,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11654}
     - Class: 114
+      Script: {instanceID: 11818}
+    - Class: 114
       Script: {instanceID: 11954}
     - Class: 114
       Script: {instanceID: 12046}
@@ -128,23 +131,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12410}
     - Class: 114
-      Script: {instanceID: 12650}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12818}
+      Script: {instanceID: 12820}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 13080}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13388}
+      Script: {instanceID: 13390}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13420}
     - Class: 114
-      Script: {instanceID: 13536}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 13628}
+      Script: {instanceID: 13630}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -209,13 +212,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11282}
-    - Class: 114
       Script: {instanceID: 11284}
     - Class: 114
       Script: {instanceID: 11286}
     - Class: 114
       Script: {instanceID: 11288}
+    - Class: 114
+      Script: {instanceID: 11290}
     - Class: 114
       Script: {instanceID: 11318}
     - Class: 114
@@ -271,49 +274,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12460}
     - Class: 114
-      Script: {instanceID: 12602}
+      Script: {instanceID: 12604}
     - Class: 114
-      Script: {instanceID: 12650}
+      Script: {instanceID: 12652}
     - Class: 114
-      Script: {instanceID: 12680}
+      Script: {instanceID: 12682}
     - Class: 114
-      Script: {instanceID: 12760}
+      Script: {instanceID: 12762}
     - Class: 114
-      Script: {instanceID: 12768}
+      Script: {instanceID: 12770}
     - Class: 114
-      Script: {instanceID: 12818}
+      Script: {instanceID: 12820}
     - Class: 114
-      Script: {instanceID: 12836}
+      Script: {instanceID: 12838}
     - Class: 114
-      Script: {instanceID: 12990}
+      Script: {instanceID: 12992}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 13012}
     - Class: 114
-      Script: {instanceID: 13020}
+      Script: {instanceID: 13022}
     - Class: 114
-      Script: {instanceID: 13078}
+      Script: {instanceID: 13080}
     - Class: 114
-      Script: {instanceID: 13152}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13350}
+      Script: {instanceID: 13352}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13420}
     - Class: 114
-      Script: {instanceID: 13490}
+      Script: {instanceID: 13492}
     - Class: 114
-      Script: {instanceID: 13536}
+      Script: {instanceID: 13538}
     - Class: 114
-      Script: {instanceID: 13608}
+      Script: {instanceID: 13610}
     - Class: 114
-      Script: {instanceID: 13628}
+      Script: {instanceID: 13630}
     - Class: 114
-      Script: {instanceID: 13640}
+      Script: {instanceID: 13642}
     - Class: 114
-      Script: {instanceID: 13644}
+      Script: {instanceID: 13646}
     - Class: 114
-      Script: {instanceID: 13660}
+      Script: {instanceID: 13662}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
