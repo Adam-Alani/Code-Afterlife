@@ -12,6 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e221f434580201e4885e5e9c03ca1b53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4628264919111599344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817942233133994156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7513105447004600699
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +116,7 @@ MonoBehaviour:
   openKey: 116
   closeKey: 27
   CodeEditor: {fileID: 5817942233620645211}
+  solved: 0
 --- !u!65 &-5321965992352231543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -185,6 +208,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4750433810507853373, guid: 091e1fe30d53642409070d945938379f,
         type: 3}
+    - target: {fileID: 8586005975169917471, guid: 3a90e1e09567fbc44b3408a2f66950e7,
+        type: 3}
+      propertyPath: Terminal
+      value: 
+      objectReference: {fileID: 7513105447004600699}
+    - target: {fileID: 8586005976682036515, guid: 3a90e1e09567fbc44b3408a2f66950e7,
+        type: 3}
+      propertyPath: m_Text
+      value: dfgdfgdfgdfg
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a90e1e09567fbc44b3408a2f66950e7, type: 3}
 --- !u!1 &5817942233620645211 stripped
@@ -212,6 +245,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3660738669107863760}
     m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9c9c01ea5d9bcf74db52c9818f202508,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 9c9c01ea5d9bcf74db52c9818f202508,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

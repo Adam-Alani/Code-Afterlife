@@ -4089,6 +4089,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7319061633218474579, guid: affda84081e179448aba29043e12c82e,
+        type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: a568a8051e76d194899910c28de7aab0,
+        type: 2}
     - target: {fileID: 7319061633295081967, guid: affda84081e179448aba29043e12c82e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

@@ -9,9 +9,18 @@ public class TerminalBehavior : MonoBehaviour
     public bool isInRange;
     public KeyCode openKey;
     public KeyCode closeKey;
-
+    
     public GameObject CodeEditor;
 
+    public bool solved;
+    
+
+
+    public void SetSolved()
+    {
+        solved = true;
+    }
+    
     void Start()
     {
         CodeEditor.SetActive(false);
@@ -20,7 +29,7 @@ public class TerminalBehavior : MonoBehaviour
 
     void Update()
     {
-        if (isInRange) // if we're in range to interact
+        if (isInRange && !solved) // if we're in range to interact
         {
             if (Input.GetKeyDown(openKey)) // if the right key is pressed
             {

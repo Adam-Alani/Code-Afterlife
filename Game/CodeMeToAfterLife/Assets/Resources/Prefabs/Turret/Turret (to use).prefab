@@ -151,6 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1661987345630603156}
   - component: {fileID: 5078949380103936350}
+  - component: {fileID: -4797445942402079244}
   m_Layer: 0
   m_Name: Turret (to use)
   m_TagString: Untagged
@@ -201,6 +202,31 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 0
   turretPrecision: 10
+  codeEditor: {fileID: 0}
+  redWire: {fileID: 0}
+  greenWire: {fileID: 0}
+--- !u!114 &-4797445942402079244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043297241718979886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2138873211800674873
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +396,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 636595635401578110}
+  - component: {fileID: 3861951402856879395}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -395,6 +422,22 @@ Transform:
   m_Father: {fileID: 1661987345630603156}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &3861951402856879395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3741082323993789803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &3816955407397212032
 GameObject:
   m_ObjectHideFlags: 0

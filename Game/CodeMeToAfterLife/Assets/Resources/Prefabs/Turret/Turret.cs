@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class Turret : MonoBehaviour
 {
@@ -93,22 +95,25 @@ public class Turret : MonoBehaviour
         return (-deltaAngleMax <= deltaAngle && deltaAngle <= deltaAngleMax);
     }
 
-    // Update is called once per frame
-    /// <summary>
-    /// Calls either TurnAlone or TurnToEnemy if the current enemy is null or not
-    /// </summary>
-    void Update()
+    [PunRPC]
+    void Disable()
     {
-        if (off)
-            return;
-        
+        redWire.SetActive(false);
+        greenWire.SetActive(true);
+        forceDisable = true;
+        off = true;
+    }
+
+
+    [PunRPC]
+    void UpdateRpc()
+    {
         off = codeEditor.GetComponent<CodeEditor>().Solved;
 
         if (off)
         {
-            redWire.SetActive(false);
-            greenWire.SetActive(true);
-            forceDisable = true;
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("Disable", RpcTarget.All);
         }
 
 
@@ -116,7 +121,7 @@ public class Turret : MonoBehaviour
         limitLeft.SetActive(limits);
         limitRight.SetActive(limits);
 
-        limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
+        
         //Debug.Log(Shoot() || ForceMidLaser);
 
 
@@ -130,7 +135,23 @@ public class Turret : MonoBehaviour
         limitRight.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y + deltaAngleMax/2, 0f);
         limitLeft.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y - deltaAngleMax/2, 0f);
         limitMid.transform.rotation = Quaternion.Euler(0f, partToRotate.transform.rotation.eulerAngles.y, 0f);
-        
+    }
+
+
+    // Update is called once per frame
+    /// <summary>
+    /// Calls either TurnAlone or TurnToEnemy if the current enemy is null or not
+    /// </summary>
+    void Update()
+    {
+        limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
+
+        if (off)
+            return;
+
+        PhotonView photonView = PhotonView.Get(this);
+        photonView.RPC("UpdateRpc", RpcTarget.All);
+
     }
 
 

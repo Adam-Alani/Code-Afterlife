@@ -43,4 +43,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92454c86454fb0442b3e24b4c885466f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: fd61228b4dd4bd340bd48c60f6ec2e71, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CloseTerminal
+    clip: {fileID: 8300000, guid: 4008ba764289a3c49a4d708537a77d95, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: OpenTerminal
+    clip: {fileID: 8300000, guid: faef9697024ac084ab77ba8135f99b53, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: 2864efcbeac37394a92d4eb760c6ae24, type: 3}
+    volume: 0.268
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LaserShot
+    clip: {fileID: 8300000, guid: d936f11187b9a6741b83504c2753630d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

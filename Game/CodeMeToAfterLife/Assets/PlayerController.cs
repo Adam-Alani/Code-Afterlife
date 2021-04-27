@@ -29,10 +29,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // if it's my screen and the code ediotr isn't opened
-        if (PV.IsMine) // Main Scene and Don't Destroy on Load Photon MOno
+        if (PV.IsMine && !IsTerminalOpen() ) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     
+    /// <summary>
+    /// checks if the terminal is open or not
+    /// </summary>
+    bool IsTerminalOpen()
+    {
+        GameObject terminal = GameObject.Find("Terminal");
+        return terminal != null;
+    }
+
     /// <summary>
     /// Setup the forward and right axis in isometric system
     /// </summary>

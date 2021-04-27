@@ -6,6 +6,8 @@ using TMPro;
 using System.Text.RegularExpressions;
 using AfterlifeInterpretor;
 using System;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class CodeEditor : MonoBehaviour
 {
@@ -30,6 +32,8 @@ public class CodeEditor : MonoBehaviour
 
     public int PuzzleLevel;
     public GameObject Puzzles;
+
+    public GameObject Terminal;
     
 
 
@@ -284,19 +288,35 @@ public class CodeEditor : MonoBehaviour
 		}
 		else {
 			outputText.GetComponent<Text>().text = er.ToString();
-            string res;
-            (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
-            if (Solved) {
-                outputText.GetComponent<Text>().text = "Good answer bravo";
-            } else 
-            {
-                outputText.GetComponent<Text>().text = "bad answer " + res;
-            }
+
+            
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("CheckSolved", RpcTarget.All);
+            
+
             //this.Puzzle.Evaluate(interpretor, PuzzleLevel);
             
             // appeller un script pour voir si cest bon les tests
 		}
     }
+
+
+
+    [PunRPC]
+    void CheckSolved()
+    {
+        string res;
+        (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
+
+        if (Solved) {
+            outputText.GetComponent<Text>().text = "Good answer bravo";
+            Terminal.GetComponent<TerminalBehavior>().SetSolved();
+        } else 
+        {
+            outputText.GetComponent<Text>().text = "bad answer " + res;
+        }
+    }
+
 
     
     

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class doors : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class doors : MonoBehaviour
     public GameObject greenWire;
     public GameObject redWire;
 
+    private bool prevres;
+    private bool res;
 
 
 
@@ -22,14 +26,26 @@ public class doors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool res = codeEditor.GetComponent<CodeEditor>().Solved;
+        PhotonView photonView = PhotonView.Get(this);
+        photonView.RPC("UpdateRpc", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void UpdateRpc()
+    {
+        prevres = res;
+        res = codeEditor.GetComponent<CodeEditor>().Solved;
 
         if (res)
         {
             animator.SetBool("Open", res);
+            if (!prevres)
+            {
+                FindObjectOfType<AudioManager>().Play("DoorOpen");
+                Debug.Log("Played DoorOpen");
+            }
             redWire.SetActive(false);
             greenWire.SetActive(true);
-
         }
     }
 }
