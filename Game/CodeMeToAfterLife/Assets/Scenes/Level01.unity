@@ -1547,6 +1547,11 @@ PrefabInstance:
 
         -----------------'
       objectReference: {fileID: 0}
+    - target: {fileID: 5817942233620645211, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Name
@@ -2012,7 +2017,7 @@ PrefabInstance:
       propertyPath: m_Text
       value: '<b>INSTRUCTIONS:</b>
 
-        Write the multiplication function
+        Write the multiply function
 
 
         -----------------'
@@ -2026,6 +2031,11 @@ PrefabInstance:
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: PuzzleLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233620645211, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
