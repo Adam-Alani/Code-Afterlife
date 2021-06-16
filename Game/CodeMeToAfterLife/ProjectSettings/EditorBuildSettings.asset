@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/1 - Tutorial Map.unity
+    guid: e0ddd269c55b4b24aa764e85e6b6b81f
   m_configObjects: {}

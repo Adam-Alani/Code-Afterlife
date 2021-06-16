@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // if it's my screen and the code ediotr isn't opened
-        if (PV.IsMine && !IsTerminalOpen() ) // Main Scene and Don't Destroy on Load Photon MOno
+        if (PV.IsMine && !IsTerminalOpen()) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("LaserShot");
             
 			controller.enabled = false;
-            transform.localPosition = spawnPoints[playerNumber];
+            // transform.localPosition = spawnPoints[playerNumber];
             Debug.Log("pew pew");
 			controller.enabled = true; 
         }
