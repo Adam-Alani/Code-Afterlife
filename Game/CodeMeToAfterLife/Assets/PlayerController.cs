@@ -24,12 +24,22 @@ public class PlayerController : MonoBehaviour
     {
         Setup();
     }
-        
+    
+    /// <summary>
+    /// Setup the forward and right axis in isometric system
+    /// </summary>
+    void Setup()
+    {
+        forward = Camera.main.transform.forward;
+        forward.y = 0; 
+        forward = Vector3.Normalize(forward);
+        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+    }
+    
     // Update is called once per frame
     void Update()
     {
-        // if it's my screen and the code ediotr isn't opened
-        if (PV.IsMine && !IsTerminalOpen()) // Main Scene and Don't Destroy on Load Photon MOno
+        if (PV.IsMine && !IsTerminalOpen())
             Move();
     }
     
@@ -42,17 +52,6 @@ public class PlayerController : MonoBehaviour
         return terminal != null;
     }
 
-    /// <summary>
-    /// Setup the forward and right axis in isometric system
-    /// </summary>
-    void Setup()
-    {
-        forward = Camera.main.transform.forward;
-        forward.y = 0; 
-        forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
-    }
-    
     /// <summary>
     ///  Perform the Movement
     /// </summary>
@@ -111,10 +110,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "Laser")
         {
+            // play the sound
             FindObjectOfType<AudioManager>().Play("LaserShot");
             
-			controller.enabled = false;
-            // transform.localPosition = spawnPoints[playerNumber];
+            // kill the player
+            controller.enabled = false;
+            transform.localPosition = spawnPoints[playerNumber];
             Debug.Log("pew pew");
 			controller.enabled = true; 
         }

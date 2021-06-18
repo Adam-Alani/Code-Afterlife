@@ -72,12 +72,10 @@ public class GameSetupController : MonoBehaviour
         cameraPosition.SetCameraTarget(player.transform);
     }*/
 
-
-
     private void SetSpawnPoints()
     {
-        Vector3 spawnPoint1 = new Vector3(-20, 5, 40);
-        Vector3 spawnPoint2 = new Vector3(-20, 5, -40);
+        Vector3 spawnPoint1 = new Vector3(30, 6, -36);
+        Vector3 spawnPoint2 = new Vector3(30, 6, -246);
         spawnPoints = new Vector3[] {spawnPoint1, spawnPoint2};
     }
 }
