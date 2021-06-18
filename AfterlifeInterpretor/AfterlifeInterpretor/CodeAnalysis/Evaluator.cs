@@ -173,7 +173,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             object lastValue = null;
             uint calls = 0;
-            for(; calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
+            for(;Errs.GetErrors().Count <= 0 &&  calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); calls++)
                 lastValue = EvaluateStatement(statement.Then);
             
             if (calls == MaxIter)
@@ -187,7 +187,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             
             object lastValue = null;
             uint calls = 0;
-            for(EvaluateExpressionStatement(statement.Initialisation); calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
+            for(EvaluateExpressionStatement(statement.Initialisation); Errs.GetErrors().Count <= 0 && calls < MaxIter && !_scope.Return && (bool) EvaluateExpressionStatement(statement.Condition); EvaluateStatement(statement.Incrementation), calls++)
                 lastValue = EvaluateStatement(statement.Then);
 
             if (_scope.Parent != null)
@@ -229,6 +229,9 @@ namespace AfterlifeInterpretor.CodeAnalysis
 
         private object EvaluateCall(BoundCallExpression ce)
         {
+            if (Errs.GetErrors().Count > 0)
+                return null;
+            
             if (_depth < MaxDepth)
             {
                 _depth += 1;
@@ -261,17 +264,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
                     BoundAssignmentUnpacking assignArgs =
                         new BoundAssignmentUnpacking((BoundBinary) f.Args, (BoundBinary) ce.Args, ce.Position);
 
-                    EvaluateAssignmentUnpacking(assignArgs);
+                    EvaluateAssignmentUnpacking(assignArgs); 
                 }
                 
                 _scope.Parent.AllowChanges();
-                _scope = new Scope(_global, _scope.Variables);
+                _scope = new Scope(f.Scope, _scope.Variables);
                 object val = EvaluateStatement(f.Body);
-
-                if (val is Function fv)
-                    fv.EvalScope = _scope;
-                
-                f.EvalScope = null;
 
                 _depth -= 1;
                 _scope.Parent.Return = false;
@@ -344,7 +342,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
             object val = EvaluateVariable(bv);
             if (bv.Type == typeof(object) || val is List)
             {
-                _scope.SetValue(bv.Name, assignments);
+                _scope.SetValue(bv.Name, (assignments.Head is List) ? assignments.Head : assignments);
             }
             else
             {
@@ -483,7 +481,7 @@ namespace AfterlifeInterpretor.CodeAnalysis
                 Errs.ReportType("Incompatible types", l?.GetType(), r?.GetType(), b.Position);
                 return null;
             }
-            
+
             try
             {
                 return b.Operator.Kind switch

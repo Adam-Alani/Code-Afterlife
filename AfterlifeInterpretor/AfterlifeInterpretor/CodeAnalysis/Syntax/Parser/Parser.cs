@@ -309,22 +309,22 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
             // Possible improvement: adding sub functions, I didn't manage to do it because of scoping issue,
             // and I'm too tired to find a solution
             // considering that it is not important, it is fine
-            /*Stack<ExpressionSyntax> subArgs = new Stack<ExpressionSyntax>();
+            Stack<ExpressionSyntax> subArgs = new Stack<ExpressionSyntax>();
             while (Current.Kind != SyntaxKind.AssignToken && Current.Kind != SyntaxKind.EndToken)
             {
                 subArgs.Push(ParseArguments());
-            } */
+            } 
             
             Expect(SyntaxKind.AssignToken);
             SkipEndStatements();
             StatementSyntax body = (Current.Kind == SyntaxKind.OBlockToken) ? ParseStatement() : new ExpressionStatement(ParseExpression());
             
-            /*while (subArgs.Count > 0)
+            while (subArgs.Count > 0)
             {
                 ExpressionSyntax subArg = subArgs.Pop();
                 SyntaxToken subName = new SyntaxToken(SyntaxKind.IdentifierToken, subArg.Token.Position, "_");
                 body = new ExpressionStatement(new FunctionDeclaration(token, new IdentifierExpression(subName), subArg, body));
-            }*/
+            }
 
             return new FunctionDeclaration(token, new IdentifierExpression(name), args, body);
         }
