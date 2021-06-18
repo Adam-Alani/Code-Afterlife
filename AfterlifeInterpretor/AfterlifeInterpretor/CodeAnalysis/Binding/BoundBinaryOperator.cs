@@ -44,6 +44,9 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
             new BoundBinaryOperator(SyntaxKind.OrToken, BoundBinaryKind.Or, typeof(bool)),
             new BoundBinaryOperator(SyntaxKind.AndToken, BoundBinaryKind.And, typeof(bool)), 
             
+            new BoundBinaryOperator(SyntaxKind.EqToken, BoundBinaryKind.Eq, typeof(object),  typeof(bool)), 
+            new BoundBinaryOperator(SyntaxKind.NEqToken, BoundBinaryKind.Neq, typeof(object), typeof(bool)),
+            
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(int)), 
             new BoundBinaryOperator(SyntaxKind.PlusToken, BoundBinaryKind.Add, typeof(double), typeof(int), typeof(double)),
             new BoundBinaryOperator(SyntaxKind.MinusToken, BoundBinaryKind.Sub, typeof(int)), 

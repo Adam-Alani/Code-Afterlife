@@ -19,7 +19,9 @@ namespace AfterlifeInterpretor
         
         public Interpretor()
         {
-            _scope = new Scope(new Dictionary<string, object>()); 
+            Dictionary<string, object> variables = new Dictionary<string, object>();
+            variables.Add("emptylist", new List());
+            _scope = new Scope(variables); 
         }
 
         public EvaluationResults[] Interpret(string[] lines)

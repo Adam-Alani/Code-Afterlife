@@ -14,16 +14,13 @@ namespace AfterlifeInterpretor.CodeAnalysis
         
         public Scope Scope { get; }
 
-        public Scope EvalScope;
-
-        public Function(BoundExpression args, BoundStatement body, Type type, Scope scope, string typeString = null, Scope evalScope = null)
+        public Function(BoundExpression args, BoundStatement body, Type type, Scope scope, string typeString = null)
         {
             Args = args;
             Body = body;
             Type = type;
             Scope = scope;
             TypeString = typeString ?? ((Type != null) ? Text.PrettyType(Type) : "()");
-            EvalScope = evalScope;
         }
 
         public override string ToString()
@@ -48,10 +45,14 @@ namespace AfterlifeInterpretor.CodeAnalysis
         {
             if (depth <= 0)
                 return ToString();
+            
             if (Body is BoundExpressionStatement {Expression: BoundFunction bf})
             {
                 return (new Function(bf.Args, bf.Body, Type, Scope)).GetTypeDepth(depth - 1);
             }
+
+            if (depth > 1)
+                return "";
 
             return Text.PrettyType(Type);
         }

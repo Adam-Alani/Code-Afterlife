@@ -261,7 +261,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
                 return null;
             BoundExpression args = BindExpression(syntax.Args);
             
-            if (fe.Type != typeof(Function) && fe.Type != typeof(Unpredictable))
+            if (!(fe is BoundCallExpression) && fe.Type != typeof(Function) && fe.Type != typeof(Unpredictable))
             {
                 Errs.ReportType(fe.Type, typeof(Function), syntax.Called.Token.Position);
                 return null;
@@ -278,7 +278,13 @@ namespace AfterlifeInterpretor.CodeAnalysis.Binding
 
             if (fe is BoundCallExpression fce)
             {
-                if (fce.F?.GetTypeDepth(fce.Depth + 1) == Text.PrettyType(fce.F?.Type))
+                string typeDepth = fce.F?.GetTypeDepth(fce.Depth + 1);
+                if (string.IsNullOrEmpty(typeDepth) && fce.Type != typeof(Unpredictable))
+                {
+                    Errs.ReportUnexpected(typeof(Function), fce.Type, fce.Position);
+                    return null;
+                }
+                if (typeDepth == Text.PrettyType(fce.F?.Type))
                     return new BoundCallExpression(fe, args, fce.F?.Type,syntax.Called.Token.Position, fce.F, fce.Depth + 1);
                 return new BoundCallExpression(fe, args, fce.Type, syntax.Called.Token.Position, fce.F, fce.Depth + 1);
             }
