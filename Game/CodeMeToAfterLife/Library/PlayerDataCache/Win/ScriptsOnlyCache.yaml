@@ -9,11 +9,13 @@ ScriptsOnlyBuild:
     - DialogueManager
     - DialogueTrigger
     - GameSetupController
+    - LaunchDialogue
     - LevelChanger
     - MainMenu
     - NetworkController
     - OpenDialogue
     - OpenLink
+    - OpenRepeatableDialogue
     - OptionsMenu
     - Pad
     - PlayerController
@@ -174,6 +176,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 14222}
     - Class: 114
       Script: {instanceID: 14332}
+    - Class: 114
+      Script: {instanceID: 34342}
+    - Class: 114
+      Script: {instanceID: 46482}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1147,7 +1153,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsOpenToggle
   - hash:
       serializedVersion: 2
-      Hash: f7d660e8005998bc04e229b1e8be1815
+      Hash: be75ead91dc072cdaf7a6be60a691ac0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: OpenDialogue
@@ -1873,7 +1879,7 @@ ScriptsOnlyBuild:
     className: SimpleCameraController
   - hash:
       serializedVersion: 2
-      Hash: 69700538dde194253cba75c89fe99c0f
+      Hash: 9e4cbbf6a5899ee077c42d9f312e046a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: doors
@@ -2177,6 +2183,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 27c30076a5bc55c98768bb0208945c50
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LaunchDialogue
+  - hash:
+      serializedVersion: 2
+      Hash: 892c8325de88b5030b65d8ee54cccfc7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: OpenRepeatableDialogue
   platform: 5
   scenePathNames:
   - Assets/Scenes/Main Menu.unity
