@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: Terminal
       value: 
       objectReference: {fileID: 7513105447004600699}
+    - target: {fileID: 8586005975255700240, guid: 3a90e1e09567fbc44b3408a2f66950e7,
+        type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8586005976682036515, guid: 3a90e1e09567fbc44b3408a2f66950e7,
         type: 3}
       propertyPath: m_Text

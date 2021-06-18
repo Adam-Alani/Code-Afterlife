@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 right; // horizontal axis in isometric system
     public PhotonView PV;
 
+    public GameObject EscapeMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // if it's my screen and the code ediotr isn't opened
-        if (PV.IsMine && !IsTerminalOpen() ) // Main Scene and Don't Destroy on Load Photon MOno
+        if (PV.IsMine && !(IsTerminalOpen() || EscapeMenu.active)) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Move()
     {
+        //Debug.Log($"EscapeMenu status : {EscapeMenu.active}");
         Vector3 direction = GetDirection();
         if (direction.magnitude >= 0.1f)
         {

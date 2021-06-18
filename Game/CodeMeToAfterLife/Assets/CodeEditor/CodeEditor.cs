@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -287,7 +287,7 @@ public class CodeEditor : MonoBehaviour
 			outputText.GetComponent<Text>().text = "<color=#FF0000>" + er.ToString() + "</color>";
 		}
 		else {
-			outputText.GetComponent<Text>().text = er.ToString();
+			//outputText.GetComponent<Text>().text = er.ToString();
 
             
             PhotonView photonView = PhotonView.Get(this);
