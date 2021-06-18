@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7956244579227683047}
   - component: {fileID: 2322505539423983517}
   - component: {fileID: 1509809208393907748}
+  - component: {fileID: -6847903009551324099}
   m_Layer: 0
-  m_Name: Sci Fi Gates
+  m_Name: Sci_Fi_Gates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,6 +73,7 @@ MonoBehaviour:
   codeEditor: {fileID: 0}
   greenWire: {fileID: 0}
   redWire: {fileID: 0}
+  isAuto: 0
 --- !u!114 &2322505539423983517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +118,19 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
+--- !u!135 &-6847903009551324099
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4972167997025983191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4972167997025983193
 GameObject:
   m_ObjectHideFlags: 0
