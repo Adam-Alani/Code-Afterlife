@@ -11,6 +11,8 @@ public class GameSetupController : MonoBehaviour
     public Vector3[] spawnPoints;
     private int[] changeIndex = new int[] {1, 0};
 
+    public List<int> SpawnPointsUsed = new List<int>();
+
     // Start is called before the first frame update
     /// <summary>
     /// Asks to create a player each time someone is connecting
@@ -19,31 +21,42 @@ public class GameSetupController : MonoBehaviour
     {
         SetSpawnPoints();
         cameraPosition = FindObjectOfType<CameraPosition>();
-        CreatePlayer();
+        //CreatePlayer();
+        PhotonView photonView = PhotonView.Get(this);
+        photonView.RPC("CreatePlayer", RpcTarget.All);
     }
        
     /// <summary>
     /// Creates the player located in : Code-Afterlife\Game\CodeMeToAfterLife\Assets\Resources\Prefabs
     /// (needs to be in the Resources folder in a folder named as the first parameter)
     /// </summary>
+    [PunRPC]
     private void CreatePlayer()
     {
+
         int playerNumber;
-        if (PhotonNetwork.IsMasterClient)
+        if (SpawnPointsUsed.Count == 0)
         {
-            playerNumber = 0;
+            playerNumber = new System.Random().Next(2);
+            Debug.Log("GameSetupController : Random Choice");
         }
         else
         {
-            playerNumber = 1;
+            playerNumber = changeIndex[SpawnPointsUsed[0]];
+            Debug.Log($"GameSetupController : other player's number {SpawnPointsUsed[0]} and new one : {playerNumber}");
         }
-        
+        SpawnPointsUsed.Add(playerNumber);
         Debug.Log("Creating Player");
         GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), spawnPoints[playerNumber], Quaternion.identity);
         PlayerController pc = FindObjectOfType<PlayerController>();
         pc.SetPlayerNumber(playerNumber);
         pc.SetPlayerSpawnPoints(spawnPoints);
         cameraPosition.SetCameraTarget(player.transform);
+    }
+
+    public void RemovePlayer(int playerNumber)
+    {
+        SpawnPointsUsed.Remove(playerNumber);
     }
 
     /*

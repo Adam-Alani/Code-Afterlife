@@ -784,6 +784,8 @@ MonoBehaviour:
   openKey: 27
   closeKey: 27
   openning: 0
+  PV: {fileID: 0}
+  VolumeSlider: {fileID: 7505450956735799630}
 --- !u!1 &5422061731307994218
 GameObject:
   m_ObjectHideFlags: 0

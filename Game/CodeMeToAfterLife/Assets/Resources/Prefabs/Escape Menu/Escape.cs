@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.UI;
 
 public class Escape : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class Escape : MonoBehaviour
     public KeyCode openKey;
     public KeyCode closeKey;
     public bool openning; // if we're openning the menu
+    public PhotonView PV;
+
+    public Slider VolumeSlider; 
 
     /// <summary>
     /// Setup of the object
@@ -32,6 +36,8 @@ public class Escape : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
 
         UpdateTerminals();
+
+        
     }
 
     // Start is called before the first frame update
@@ -39,6 +45,15 @@ public class Escape : MonoBehaviour
     {
         UpdateTerminals();
     }
+
+    void OnEnable()
+    {
+        // Get Volume
+        AudioManager audiomanager = FindObjectOfType<AudioManager>();
+        VolumeSlider.value = audiomanager.GetVolume();
+    }
+
+
 
     // Update is called once per frame
     void Update()
@@ -53,7 +68,7 @@ public class Escape : MonoBehaviour
     void UpdateTerminals()
     {
         Terminals = FindObjectsOfType<TerminalBehavior>();
-        Debug.Log("Updated Terminals");
+        Debug.Log("Escape menu : Updated Terminals");
     }
 
     /// <summary>
@@ -73,16 +88,16 @@ public class Escape : MonoBehaviour
         
         if (Input.GetKeyDown(openKey)) // if the right key is pressed
         {
-            if (!isOpen)
+            if (!isOpen && PV.IsMine)
             {
                 OpenMenu();
             }else 
-                Debug.Log("Escape Menu already opened");
+                Debug.Log("Escape Menu : already opened");
         }
 
         if (Input.GetKeyDown(closeKey) && !openning)
         {
-            if (isOpen)
+            if (isOpen && PV.IsMine)
             {
                 CloseMenu();
             }
@@ -94,7 +109,7 @@ public class Escape : MonoBehaviour
     /// </summary>
     void OpenMenu()
     {
-        Debug.Log("Escape Menu is open");
+        Debug.Log("Escape Menu : is open");
         MenuCanvas.SetActive(true);
         isOpen = true;
         openning = true;
@@ -105,7 +120,7 @@ public class Escape : MonoBehaviour
     /// </summary>
     public void CloseMenu()
     {
-        Debug.Log("Escape Menu is close");
+        Debug.Log("Escape Menu : is close");
         isOpen = false;
         MenuCanvas.SetActive(false);
     }
@@ -129,7 +144,7 @@ public class Escape : MonoBehaviour
     public void SetFullscreen (bool fullscreen) 
     {
         Screen.fullScreen = fullscreen;
-        Debug.Log($"Set Fullscreen active : {fullscreen}");
+        Debug.Log($"Escape Menu : Set Fullscreen active : {fullscreen}");
     }
 
     /// <summary>

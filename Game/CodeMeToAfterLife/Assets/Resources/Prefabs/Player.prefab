@@ -342,6 +342,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escape Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 5899249866662171275, guid: 7f2fda79c42bc934e9666e932c2d2975,
+        type: 3}
+      propertyPath: PV
+      value: 
+      objectReference: {fileID: 5167707125925105463}
     - target: {fileID: 7644316248562215953, guid: 7f2fda79c42bc934e9666e932c2d2975,
         type: 3}
       propertyPath: m_IsActive

@@ -949,7 +949,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomPlayerTtlProperty
   - hash:
       serializedVersion: 2
-      Hash: c5c7df73645e70ecf5ce84bc10c845b5
+      Hash: 6719d1754ac1161104331df00a1c30af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LevelChanger
@@ -1003,7 +1003,7 @@ ScriptsOnlyBuild:
     className: PointLight
   - hash:
       serializedVersion: 2
-      Hash: 072ade3597ee4a0b4cdfc786d865e345
+      Hash: 6a9db5fa671ccb0a6305cb06d08a9f59
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Escape
@@ -1567,7 +1567,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: 7b42ae19b7305d1784f45c1e0f3baa62
+      Hash: 25c49fa9a663e0c2d8ce330748c9ff18
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameSetupController

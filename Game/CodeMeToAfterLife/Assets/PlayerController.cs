@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
             
 			controller.enabled = false;
             transform.localPosition = spawnPoints[playerNumber];
-            Debug.Log("pew pew");
+            Debug.Log("turret pew pew player");
 			controller.enabled = true; 
         }
     }
