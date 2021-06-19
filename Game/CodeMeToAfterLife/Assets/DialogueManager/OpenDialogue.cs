@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenDialogue : MonoBehaviour
 {
-    public KeyCode openKey;
+    public KeyCode openKey = KeyCode.G;
 	public Dialogue dialogue;
 
     private bool isInRange;

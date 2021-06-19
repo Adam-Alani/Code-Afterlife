@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenRepeatableDialogue : MonoBehaviour
 {
-    public KeyCode openKey;
+    public KeyCode openKey = KeyCode.G;
     public Dialogue dialogue;
     public Dialogue repeatableDialogue;
 

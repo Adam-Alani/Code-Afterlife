@@ -44,7 +44,7 @@ public class CodeEditor : MonoBehaviour
         outputButton.onClick.AddListener(executeCode);
 
         if (code == null) {
-            code = "";
+            code = codeUI.text;
         }
         charIndex = code.Length;
 
@@ -282,7 +282,7 @@ public class CodeEditor : MonoBehaviour
     public void executeCode() {
 
         interpretor = new Interpretor();
-        EvaluationResults er = interpretor.Interpret(code.ToLower());
+        EvaluationResults er = interpretor.Interpret(code);
 		if (er.ToString() == "ERROR") {
 			outputText.GetComponent<Text>().text = "<color=#FF0000>" + er.ToString() + "</color>";
 		}
@@ -307,7 +307,7 @@ public class CodeEditor : MonoBehaviour
     {
         string res;
         (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
-
+    
         if (Solved) {
             outputText.GetComponent<Text>().text = "Good answer bravo";
             Terminal.GetComponent<TerminalBehavior>().SetSolved();
