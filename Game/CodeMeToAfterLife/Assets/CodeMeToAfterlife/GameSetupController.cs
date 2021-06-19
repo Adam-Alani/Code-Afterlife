@@ -11,7 +11,7 @@ public class GameSetupController : MonoBehaviour
     public Vector3[] spawnPoints;
     private int[] changeIndex = new int[] {1, 0};
 
-    public List<int> SpawnPointsUsed = new List<int>();
+    
 
     // Start is called before the first frame update
     /// <summary>
@@ -21,42 +21,34 @@ public class GameSetupController : MonoBehaviour
     {
         SetSpawnPoints();
         cameraPosition = FindObjectOfType<CameraPosition>();
-        //CreatePlayer();
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("CreatePlayer", RpcTarget.All);
+        CreatePlayer();
     }
        
     /// <summary>
     /// Creates the player located in : Code-Afterlife\Game\CodeMeToAfterLife\Assets\Resources\Prefabs
     /// (needs to be in the Resources folder in a folder named as the first parameter)
     /// </summary>
-    [PunRPC]
     private void CreatePlayer()
     {
 
         int playerNumber;
-        if (SpawnPointsUsed.Count == 0)
+        if (PhotonNetwork.IsMasterClient)
         {
-            playerNumber = new System.Random().Next(2);
-            Debug.Log("GameSetupController : Random Choice");
+            playerNumber = 0;
+            Debug.Log("GameSetupController : 0");
         }
         else
         {
-            playerNumber = changeIndex[SpawnPointsUsed[0]];
-            Debug.Log($"GameSetupController : other player's number {SpawnPointsUsed[0]} and new one : {playerNumber}");
+            playerNumber = 1;
+            Debug.Log("GameSetupController : 1");
         }
-        SpawnPointsUsed.Add(playerNumber);
+     
         Debug.Log("Creating Player");
         GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), spawnPoints[playerNumber], Quaternion.identity);
         PlayerController pc = FindObjectOfType<PlayerController>();
         pc.SetPlayerNumber(playerNumber);
         pc.SetPlayerSpawnPoints(spawnPoints);
         cameraPosition.SetCameraTarget(player.transform);
-    }
-
-    public void RemovePlayer(int playerNumber)
-    {
-        SpawnPointsUsed.Remove(playerNumber);
     }
 
     /*

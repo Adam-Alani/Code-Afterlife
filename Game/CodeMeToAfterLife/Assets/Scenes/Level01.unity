@@ -1700,7 +1700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoints: []
-  SpawnPointsUsed: 
 --- !u!4 &1405119269
 Transform:
   m_ObjectHideFlags: 0
@@ -2891,18 +2890,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.171875
+      value: 170.8
       objectReference: {fileID: 0}
     - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 217.01562
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -102.234375
+      value: 2.9
       objectReference: {fileID: 0}
     - target: {fileID: 4365133353935651379, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}

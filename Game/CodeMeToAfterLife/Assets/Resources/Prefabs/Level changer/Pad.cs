@@ -7,10 +7,15 @@ public class Pad : MonoBehaviour
 
     public bool Is_in;
 
+    public GameObject greenpad;
+    public GameObject redpad;
+
     // Start is called before the first frame update
     void Start()
     {
         Is_in = false;
+        greenpad.SetActive(false);
+        redpad.SetActive(true);
     }
 
     // method called by unity when the collision starts
@@ -21,6 +26,8 @@ public class Pad : MonoBehaviour
         {
             Is_in = true;
             Debug.Log("Player now in range");
+            greenpad.SetActive(true);
+            redpad.SetActive(false);
         }
     }
     
@@ -32,6 +39,8 @@ public class Pad : MonoBehaviour
         {
             Is_in = false;
             Debug.Log("Player now is no longer in range");
+            greenpad.SetActive(false);
+            redpad.SetActive(true);
         }
     }
 }
