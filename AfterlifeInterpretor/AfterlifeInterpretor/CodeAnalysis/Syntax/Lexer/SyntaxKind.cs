@@ -20,6 +20,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
         IdentifierToken,
         EndToken,
         PrintToken,
+        CommentToken,
         
         // Operator Tokens
         PlusToken,
