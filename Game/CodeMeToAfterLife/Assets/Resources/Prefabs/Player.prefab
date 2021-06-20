@@ -162,6 +162,7 @@ MonoBehaviour:
   playerNumber: 0
   spawnPoints: []
   PV: {fileID: 5167707125925105463}
+  EscapeMenu: {fileID: 0}
 --- !u!114 &8610963429692020889
 MonoBehaviour:
   m_ObjectHideFlags: 0

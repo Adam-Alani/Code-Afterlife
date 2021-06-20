@@ -13073,6 +13073,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1563317631910129004, guid: 640c7adbe82af7946ac73e970f2675a4,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6014325538598831890}
+    - target: {fileID: 1563317631910129004, guid: 640c7adbe82af7946ac73e970f2675a4,
+        type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 6014325538710432896}
     - target: {fileID: 1563317631910129005, guid: 640c7adbe82af7946ac73e970f2675a4,
         type: 3}
       propertyPath: m_Name
