@@ -46,7 +46,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
 
         private SyntaxToken Expect(SyntaxKind kind)
         {
-            if (Current.Kind == kind)
+            if (Current.Kind == kind || kind == SyntaxKind.EndStatementToken && Current.Kind == SyntaxKind.CommentToken)
                 return NextToken();
             
             Errs.ReportUnexpected(kind, Current.Kind, Current.Position);
@@ -266,6 +266,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Parser
                     return ParseFunctionDeclaration();
                 case SyntaxKind.IfKeyword:
                     return ParseIfExpression();
+                case SyntaxKind.CommentToken:
                 case SyntaxKind.CBlockToken:
                 case SyntaxKind.CParenToken:
                 case SyntaxKind.EndToken:
