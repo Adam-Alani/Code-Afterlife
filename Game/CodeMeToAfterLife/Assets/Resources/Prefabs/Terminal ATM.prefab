@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 290610368979256801}
   - component: {fileID: -5321965992352231543}
   m_Layer: 0
-  m_Name: Terminal
+  m_Name: Terminal ATM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
