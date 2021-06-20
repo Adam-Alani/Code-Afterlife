@@ -62,7 +62,7 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
                 return LexDigit();
             }
 
-            if (Current == '#')
+            if (Current == '#' && LookAhead == '#')
             {
                 return LexComment();
             }
