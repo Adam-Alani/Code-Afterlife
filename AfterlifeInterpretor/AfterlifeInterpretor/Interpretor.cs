@@ -27,20 +27,30 @@ namespace AfterlifeInterpretor
         public EvaluationResults[] Interpret(string[] lines)
         {
             EvaluationResults[] res = new EvaluationResults[lines.Length];
-            for (int i = 0; i < lines.Length; i++)
+            try
             {
-                EvaluationResults eRes = Interpret(lines[i]);
-                if (eRes.Errs.GetErrors().Any())
+                
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    foreach (Error error in eRes.Errs.GetErrors())
+                    EvaluationResults eRes = Interpret(lines[i]);
+                    if (eRes.Errs.GetErrors().Any())
                     {
-                        Console.WriteLine(error.ToString(i));
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        foreach (Error error in eRes.Errs.GetErrors())
+                        {
+                            Console.WriteLine(error.ToString(i));
+                        }
+                        Console.ResetColor();
                     }
-                    Console.ResetColor();
+
+                    res[i] = eRes;
                 }
 
-                res[i] = eRes;
+                
+            }
+            catch (Exception e)
+            {
+                // ignored
             }
 
             return res;
@@ -48,18 +58,26 @@ namespace AfterlifeInterpretor
 
         public EvaluationResults Interpret(string text)
         {
-            Scope newScope = new Scope(_scope.Parent, new Dictionary<string, object>(_scope.Variables));
-            SyntaxTree tree = new Parser(text).Parse();
+            try
+            {
+                Scope newScope = new Scope(_scope.Parent, new Dictionary<string, object>(_scope.Variables));
+                SyntaxTree tree = new Parser(text).Parse();
 
-            Binder binder = new Binder(newScope, tree.Errs);
-            BoundBlockStatement bound = binder.BindProgram(tree.Root);
+                Binder binder = new Binder(newScope, tree.Errs);
+                BoundBlockStatement bound = binder.BindProgram(tree.Root);
             
-            Evaluator ev = new Evaluator(bound, newScope, binder.Errs);
-            object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
+                Evaluator ev = new Evaluator(bound, newScope, binder.Errs);
+                object res = (binder.Errs.GetErrors().Any()) ? null : ev.Evaluate();
 
-            if (!ev.Errs.GetErrors().Any())
-                _scope = newScope;
-            return new EvaluationResults(ev.Errs, ev.StdOut, res);
+                if (!ev.Errs.GetErrors().Any())
+                    _scope = newScope;
+                return new EvaluationResults(ev.Errs, ev.StdOut, res);
+            }
+            catch (Exception e)
+            {
+                return new EvaluationResults(new Errors(new List<Error>() {new Error("Unknown error", 0)}), "", null);
+            }
+            
         }
     }
 }
