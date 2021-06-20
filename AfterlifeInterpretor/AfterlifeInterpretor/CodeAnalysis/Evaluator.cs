@@ -474,6 +474,12 @@ namespace AfterlifeInterpretor.CodeAnalysis
         private object EvaluateBinaryExpression(BoundBinary b)
         {
             object l = EvaluateExpression(b.Left);
+
+            if (b.Operator.Kind == BoundBinaryKind.And && !(bool) l)
+                return false;
+            if (b.Operator.Kind == BoundBinaryKind.Or && (bool) l)
+                return true;
+            
             object r = EvaluateExpression(b.Right);
 
             if (BoundBinaryOperator.Bind(b.Operator.SyntaxKind, l?.GetType() ?? typeof(object), r?.GetType() ?? typeof(object)) == null)
