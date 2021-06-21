@@ -193,8 +193,8 @@ PrefabInstance:
       propertyPath: m_Text
       value: '<b>INSTRUCTIONS:</b>
 
-        Create the function that deletes a given
-        element from a list
+        Create a function that tells if an element
+        is in a list
 
 
         -----------------'
@@ -202,8 +202,8 @@ PrefabInstance:
     - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Text
-      value: "<b>TESTS:</b>\n\t-delete( (0), 0) = ()\n\t-delete( (1, 2, 3), 2) =
-        (2)\n\t-delete( (7, 42), 42) = (7)\n\n--------------------\n\t\n\n\n"
+      value: "<b>TESTS:</b>\n\t-search( (0, 1, 2) 1) = true\n\t-search( (0, 1, 2),
+        42 ) = false\n\n--------------------\n\t\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233083339197, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -1351,8 +1351,9 @@ PrefabInstance:
       propertyPath: m_Text
       value: '<b>INSTRUCTIONS:</b>
 
-        Create a function that tells if an element
-        is in a list
+        I''ve been looking in the source code,
+        I''ve seen that the parameter target was a string, you could try to sacrifice
+        yourself to help the other one
 
 
         -----------------'
@@ -1360,8 +1361,7 @@ PrefabInstance:
     - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Text
-      value: "<b>TESTS:</b>\n\t-search( (0, 1, 2) 1) = true\n\t-search( (0, 1, 2),
-        42 ) = false\n\n--------------------\n\t\n\n\n"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -1628,6 +1628,7 @@ MonoBehaviour:
       you can see the documentation on our website codemetoafterlife.ml, or in the
       game files !
     - Good luck in your adventure fellow programmer !
+  isLastLevel: 0
 --- !u!65 &979484405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12844,6 +12845,7 @@ MonoBehaviour:
       :D
     - The show is not over yet tho, you still have a few puzzles to solve before
       finishing the game !
+  isLastLevel: 0
 --- !u!65 &1529257302
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13879,6 +13881,7 @@ MonoBehaviour:
       :D
     - The show is not over yet tho, you still have a few puzzles to solve before
       finishing the game !
+  isLastLevel: 0
 --- !u!4 &2349697985565791968
 Transform:
   m_ObjectHideFlags: 0
@@ -13971,6 +13974,7 @@ MonoBehaviour:
       you can see the documentation on our website codemetoafterlife.ml, or in the
       game files !
     - Good luck in your adventure fellow programmer !
+  isLastLevel: 0
 --- !u!33 &3452298356699685616
 MeshFilter:
   m_ObjectHideFlags: 0

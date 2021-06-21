@@ -545,7 +545,7 @@ PrefabInstance:
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -555,7 +555,7 @@ PrefabInstance:
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.3
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -596,6 +596,28 @@ PrefabInstance:
         type: 3}
       propertyPath: viewIdField
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942231886432656, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>INSTRUCTIONS:</b>
+
+        Create the function that returns the
+        index of a value
+
+
+        -----------------'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: "<b>TESTS:</b>\n\t-indexof( (1, 2), 2) = 1\n\t-indexof( (7, 42), 7)
+        = 0\n\n--------------------\n\t\n\n\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233083339197, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_text
+      value: '## The value is assumed present'
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -731,12 +753,12 @@ PrefabInstance:
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -746,7 +768,7 @@ PrefabInstance:
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.3
+      value: -83
       objectReference: {fileID: 0}
     - target: {fileID: 3660738669107863760, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -787,6 +809,27 @@ PrefabInstance:
         type: 3}
       propertyPath: viewIdField
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942231886432656, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>INSTRUCTIONS:</b>
+
+        I heard that we could finishGame using
+        booleans
+
+
+        -----------------'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: Solved
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -886,8 +929,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5324936143116975078, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}
+      propertyPath: nextlevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324936143116975078, guid: ece952e54af4c5d4a9e885c9ee532c81,
+        type: 3}
       propertyPath: isLastLevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5480144396932563032, guid: ece952e54af4c5d4a9e885c9ee532c81,
         type: 3}
@@ -967,6 +1015,28 @@ PrefabInstance:
         type: 3}
       propertyPath: viewIdField
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942231886432656, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: '<b>INSTRUCTIONS:</b>
+
+        Create the function that deletes a given
+        element from a list
+
+
+        -----------------'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_Text
+      value: "<b>TESTS:</b>\n\t-delete( (0), 0) = ()\n\t-delete( (1, 2, 3), 2) =
+        (2)\n\t-delete( (7, 42), 42) = (7)\n\n--------------------\n\t\n\n\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233083339197, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_text
+      value: '## The element is assumed present'
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -7904,7 +7974,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 923675137}
   isBehaviorChanged: 0
   speedChanged: 0
@@ -7954,7 +8024,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 923675137}
   isBehaviorChanged: 0
   speedChanged: 0
@@ -8004,7 +8074,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 923675137}
   isBehaviorChanged: 0
   speedChanged: 0
@@ -8054,7 +8124,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0
@@ -8103,7 +8173,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0
@@ -8152,7 +8222,7 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor_disables: {fileID: 0}
+  codeEditor_disables: {fileID: 728086794}
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0

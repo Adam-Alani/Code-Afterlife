@@ -24,16 +24,16 @@ public class Puzzle : MonoBehaviour
         // Level 1
         Functions.Add(Sorted); // 5
 
-        Functions.Add(Search); // 6        
+        Functions.Add(SetTarget); // 6        
 
-        Functions.Add(Delete); // 7
+        Functions.Add(Search); // 7
         
         // Level 2
-        //Functions.Add(); // 8
+        Functions.Add(Delete); // 8
 
-        //Functions.Add(); // 9
+        Functions.Add(IndexOf); // 9
 
-        //Functions.Add(); // 10
+        Functions.Add(FinishGame); // 10
 
     }
 
@@ -75,11 +75,7 @@ public class Puzzle : MonoBehaviour
 
     public (bool, string) Syra(Interpretor interpretor)
     {
-        string er = interpretor.Interpret("syra 0").ToString();
-        if (er != "15")
-            return (false, er); 
-
-        er = interpretor.Interpret("syra 1").ToString();
+        string er = interpretor.Interpret("syra 1").ToString();
         if (er != "46")
             return (false, er); 
         
@@ -118,6 +114,20 @@ public class Puzzle : MonoBehaviour
         return (er == "267914296", er); 
     }
 
+    public (bool, string) Sorted(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("sorted (0, 1, 2, 3, 4, 5)").ToString();
+        if (er != "true")
+            return (false, er); 
+
+        er = interpretor.Interpret("sorted  (5, 1, 2, 3, 4, 5)").ToString();
+        if (er != "false")
+            return (false, er);
+        
+        er = interpretor.Interpret("sorted (42, 42, 69)").ToString();
+        return (er == "true", er); 
+    }
+
     public (bool, string) Search(Interpretor interpretor)
     {
         string er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 0").ToString();
@@ -135,19 +145,10 @@ public class Puzzle : MonoBehaviour
         er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5, 42) 42").ToString();
         return (er == "True", er); 
     }
-
-    public (bool, string) Sorted(Interpretor interpretor)
+    public (bool, string) SetTarget(Interpretor interpretor)
     {
-        string er = interpretor.Interpret("sorted (0, 1, 2, 3, 4, 5)").ToString();
-        if (er != "true")
-            return (false, er); 
-
-        er = interpretor.Interpret("sorted  (5, 1, 2, 3, 4, 5)").ToString();
-        if (er != "false")
-            return (false, er);
-        
-        er = interpretor.Interpret("sorted (42, 42, 69)").ToString();
-        return (er == "true", er); 
+        string er = interpretor.Interpret("target").ToString();
+        return (er == "me", er); 
     }
 
     public (bool, string) Delete(Interpretor interpretor)
@@ -168,7 +169,28 @@ public class Puzzle : MonoBehaviour
         return (er == "(0, 1, 2, 3, 4)", er); 
     }
 
+    public (bool, string) IndexOf(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 0").ToString();
+        if (er != "(1, 2, 3, 4, 5)")
+            return (false, er); 
 
+        er = interpretor.Interpret("indexof  (0, 1, 2, 3, 4, 5) 1").ToString();
+        if (er != "1")
+            return (false, er);
+        
+        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 4").ToString();
+        if (er != "4")
+            return (false, er); 
+        
+        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 5").ToString();
+        return (er == "5", er); 
+    }
 
+    public (bool, string) FinishGame(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("finishGame").ToString();
+        return (er == "true", er); 
+    }
 
 }

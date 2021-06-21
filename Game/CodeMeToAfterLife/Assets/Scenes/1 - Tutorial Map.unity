@@ -17997,6 +17997,7 @@ MonoBehaviour:
       the terminal."
     - "And for that, let\u2019s learn first how to write a function ! Go to the sign
       to learn more !"
+  isLastLevel: 0
 --- !u!65 &1214146958
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18206,7 +18207,7 @@ PrefabInstance:
     - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Text
-      value: "<b>TESTS:</b>\n\t-syra(0) = 15\n\t-syra(2) = 23\n\t-syra(4) = 35\n\n-------------------\n\t\n\n\n"
+      value: "<b>TESTS:</b>\n\t-syra(1) = 0\n\t-syra(2) = 23\n\t-syra(4) = 35\n\n-------------------\n\t\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5817942232943034246, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -21039,6 +21040,7 @@ MonoBehaviour:
     - "To guide you through this tutorial, we put black signs that contains informations.
       You can press G to read them ! Don\u2019t forget to get close to them \U0001F609!"
     - Anyway, good luck in your journey little dev !
+  isLastLevel: 0
 --- !u!65 &1711553048
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24412,6 +24414,7 @@ MonoBehaviour:
       game\u2019s all about ahah"
     - "Anyway, you\u2019ll now be able to continue your adventure. Go on your corresponding
       pads to go to the next level. Good luck programmers !"
+  isLastLevel: 0
 --- !u!114 &1395622684491257535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24431,6 +24434,7 @@ MonoBehaviour:
       game\u2019s all about ahah"
     - "Anyway, you\u2019ll now be able to continue your adventure. Go on your corresponding
       pads to go to the next level. Good luck programmers !"
+  isLastLevel: 0
 --- !u!1 &1508331234643067522
 GameObject:
   m_ObjectHideFlags: 0
@@ -25069,6 +25073,7 @@ MonoBehaviour:
       stuck !\u201D"
     - You guys are gonna help each other till the end of the game, so make sure you
       get along !
+  isLastLevel: 0
 --- !u!33 &4780070298959120698
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -25172,6 +25177,7 @@ MonoBehaviour:
     - "To guide you through this tutorial, we put black signs that contains informations.
       You can press G to read them ! Don\u2019t forget to get close to them \U0001F609!"
     - Anyway, good luck in your journey little dev !
+  isLastLevel: 0
 --- !u!1 &5104230355840953700
 GameObject:
   m_ObjectHideFlags: 0

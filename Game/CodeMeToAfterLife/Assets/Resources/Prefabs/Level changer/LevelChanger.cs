@@ -11,10 +11,6 @@ public class LevelChanger : MonoBehaviour
     public Pad pad2;
     public int nextlevel;
     private bool changing;
-    public bool isLastLevel;
-    public GameObject LastlevelCanvas;
-
-
 
     // Update is called once per frame
     void Update()
@@ -22,10 +18,7 @@ public class LevelChanger : MonoBehaviour
         if (pad1.Is_in && pad2.Is_in /*&& PhotonNetwork.IsMasterClient*/ && !changing)
         {
             changing = true;
-            if(!isLastLevel)
-                ChangeLevel();
-            else
-                LastLevel();
+            ChangeLevel();
         }
     }
     
@@ -35,9 +28,4 @@ public class LevelChanger : MonoBehaviour
         PhotonNetwork.LoadLevel(nextlevel);
 
     }
-    void LastLevel()
-    {
-        LastlevelCanvas.SetActive(true);
-    }
-
 }

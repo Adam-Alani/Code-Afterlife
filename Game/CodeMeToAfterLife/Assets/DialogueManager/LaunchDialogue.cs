@@ -7,13 +7,15 @@ public class LaunchDialogue : MonoBehaviour
     public Dialogue dialogue;
     private bool isInRange;
     private bool isLaunched;
+    public bool isLastLevel;
 
     void Update()
     {
-        if (isInRange) // if we're in range to interact
+        if (isInRange || isLastLevel) // if we're in range to interact
         {
             if (!isLaunched)
             {
+                Debug.Log("Show yourself, Ah Ah dialogue goes bruhh");
                 isLaunched = true;
                 FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
             }

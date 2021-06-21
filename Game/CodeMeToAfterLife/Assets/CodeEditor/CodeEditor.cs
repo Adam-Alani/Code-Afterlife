@@ -174,7 +174,7 @@ public class CodeEditor : MonoBehaviour
                 formattedCode += "\n";
             }
 
-            if (line.Contains ("{") || line.Contains ("if")) {  // was previously : if (line.Contains ("{")) {
+            if (line.Contains ("{")) {  // was previously : if (line.Contains ("{")) {
                 indentLevel++;
             }
         }
@@ -274,8 +274,8 @@ public class CodeEditor : MonoBehaviour
         string[] expKeywords = {"for", "if", "else", "while"};
         text = Regex.Replace(text, "\\b" + string.Join("\\b|\\b", expKeywords) + "\\b", "<color=#0014ed>$&</color>" );
         
-        string comments = @"\#\#.*$";
-        text = Regex.Replace(text, comments,  "<color=#a1a1a1a1>$&</color>"   , RegexOptions.IgnoreCase);
+        string comments = @"##.*$"; //  @"\#\#.*$"
+        text = Regex.Replace(text, comments,  "<color=#a1a1a1a1>$&</color>"   , RegexOptions.IgnoreCase | RegexOptions.Multiline);
         
 
         

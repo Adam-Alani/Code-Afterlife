@@ -51,7 +51,7 @@ public class doors : MonoBehaviour
             animator.SetBool("Open", res);
             FindObjectOfType<AudioManager>().Play("DoorOpen");
             Debug.Log("Played DoorOpen");
-            if (!isAuto && !(redWire is null) && !(greenWire is null))
+            if (!isAuto && !(redWire is null || greenWire is null))
             {
                 redWire.SetActive(false);
                 greenWire.SetActive(true);
