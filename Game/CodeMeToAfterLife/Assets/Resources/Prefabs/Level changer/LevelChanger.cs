@@ -11,7 +11,6 @@ public class LevelChanger : MonoBehaviour
     public Pad pad2;
     public int nextlevel;
     private bool changing;
-    public Vector3[] NextSpawnpoints;
     public bool isLastLevel;
     public GameObject LastlevelCanvas;
 
@@ -34,12 +33,7 @@ public class LevelChanger : MonoBehaviour
     {
         Debug.Log("LevelChanger : Changing level");
         PhotonNetwork.LoadLevel(nextlevel);
-        /*PlayerController[] pcs = FindObjectsOfType<PlayerController>();
-        foreach(PlayerController pc in pcs)
-        {
-            pc.SetPlayerSpawnPoints(NextSpawnpoints);
-            pc.transform.position = NextSpawnpoints[pc.playerNumber];
-        }*/
+
     }
     void LastLevel()
     {
