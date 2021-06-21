@@ -10,32 +10,40 @@ public class LevelChanger : MonoBehaviour
     public Pad pad1;
     public Pad pad2;
     public int nextlevel;
+    private bool changing;
+    public Vector3[] NextSpawnpoints;
+    public bool isLastLevel;
+    public GameObject LastlevelCanvas;
 
 
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (pad1.Is_in && pad2.Is_in)
-            ChangeLevel();
-    }
-
-
-
-    void ChangeLevel()
-    {
-        if (PhotonNetwork.IsMasterClient)
+        if (pad1.Is_in && pad2.Is_in /*&& PhotonNetwork.IsMasterClient*/ && !changing)
         {
-            Debug.Log("Starting Game");
-
-            PhotonNetwork.LoadLevel(nextlevel);
+            changing = true;
+            if(!isLastLevel)
+                ChangeLevel();
+            else
+                LastLevel();
         }
     }
+    
+    void ChangeLevel()
+    {
+        Debug.Log("LevelChanger : Changing level");
+        PhotonNetwork.LoadLevel(nextlevel);
+        /*PlayerController[] pcs = FindObjectsOfType<PlayerController>();
+        foreach(PlayerController pc in pcs)
+        {
+            pc.SetPlayerSpawnPoints(NextSpawnpoints);
+            pc.transform.position = NextSpawnpoints[pc.playerNumber];
+        }*/
+    }
+    void LastLevel()
+    {
+        LastlevelCanvas.SetActive(true);
+    }
+
 }

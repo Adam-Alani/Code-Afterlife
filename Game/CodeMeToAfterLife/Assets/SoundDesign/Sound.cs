@@ -16,4 +16,15 @@ public class Sound
     
     [HideInInspector]
     public AudioSource source;
+
+    public float GetVolume()
+    {
+        return volume;
+    }
+
+    public void SetVolume(float volume)
+    {
+        source.volume = volume;
+        this.volume = volume;
+    }
 }

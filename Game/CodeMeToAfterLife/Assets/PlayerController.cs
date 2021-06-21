@@ -19,27 +19,20 @@ public class PlayerController : MonoBehaviour
     private Vector3 right; // horizontal axis in isometric system
     public PhotonView PV;
 
+    public GameObject EscapeMenu;
+
     // Start is called before the first frame update
     void Start()
     {
+        //DontDestroyOnLoad(gameObject);
         Setup();
     }
-    
-    /// <summary>
-    /// Setup the forward and right axis in isometric system
-    /// </summary>
-    void Setup()
-    {
-        forward = Camera.main.transform.forward;
-        forward.y = 0; 
-        forward = Vector3.Normalize(forward);
-        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
-    }
-    
+        
     // Update is called once per frame
     void Update()
     {
-        if (PV.IsMine && !IsTerminalOpen())
+        // if it's my screen and the code ediotr isn't opened
+        if (PV.IsMine && !(IsTerminalOpen() || EscapeMenu.active)) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
     
@@ -53,10 +46,22 @@ public class PlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// Setup the forward and right axis in isometric system
+    /// </summary>
+    void Setup()
+    {
+        forward = Camera.main.transform.forward;
+        forward.y = 0; 
+        forward = Vector3.Normalize(forward);
+        right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+    }
+    
+    /// <summary>
     ///  Perform the Movement
     /// </summary>
     void Move()
     {
+        //Debug.Log($"EscapeMenu status : {EscapeMenu.active}");
         Vector3 direction = GetDirection();
         if (direction.magnitude >= 0.1f)
         {
@@ -110,15 +115,24 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.name == "Laser")
         {
-            // play the sound
             FindObjectOfType<AudioManager>().Play("LaserShot");
             
-            // kill the player
-            controller.enabled = false;
+			controller.enabled = false;
             transform.localPosition = spawnPoints[playerNumber];
-            Debug.Log("pew pew");
+            Debug.Log("turret pew pew player");
 			controller.enabled = true; 
         }
     }
+    public void SpeedUpPlayer()
+	{
+		speed = 100;
+		Debug.Log("Player goes zoom");
+	}
+
+	public void ResetPlayerSpeed()
+	{
+		speed = 35;
+		Debug.Log("Player goes rompiche");
+	}
 }
 

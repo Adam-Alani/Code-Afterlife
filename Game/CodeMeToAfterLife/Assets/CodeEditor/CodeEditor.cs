@@ -26,7 +26,7 @@ public class CodeEditor : MonoBehaviour
     const string indentString = "  ";
 
     private Interpretor interpretor; 
-    string legalChars = "abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=<>()[]{},;!&|^_ \" %";
+    string legalChars = "#abcdefghijklmnopqrstuvwxyz 0.123456789+-/*=<>()[]{},;!&|^_ \" %";
 
     public bool Solved = false;
 
@@ -45,6 +45,9 @@ public class CodeEditor : MonoBehaviour
 
         if (code == null) {
             code = codeUI.text;
+            formatLines();
+            string formattedCode = autoIndentation();
+            codeUI.text = textFormatter(formattedCode);
         }
         charIndex = code.Length;
 
@@ -171,7 +174,7 @@ public class CodeEditor : MonoBehaviour
                 formattedCode += "\n";
             }
 
-            if (line.Contains ("{")) {
+            if (line.Contains ("{") || line.Contains ("if")) {  // was previously : if (line.Contains ("{")) {
                 indentLevel++;
             }
         }
@@ -271,6 +274,9 @@ public class CodeEditor : MonoBehaviour
         string[] expKeywords = {"for", "if", "else", "while"};
         text = Regex.Replace(text, "\\b" + string.Join("\\b|\\b", expKeywords) + "\\b", "<color=#0014ed>$&</color>" );
         
+        string comments = @"\#\#.*$";
+        text = Regex.Replace(text, comments,  "<color=#a1a1a1a1>$&</color>"   , RegexOptions.IgnoreCase);
+        
 
         
         
@@ -279,8 +285,10 @@ public class CodeEditor : MonoBehaviour
         return text;
     }
 
-    public void executeCode() {
-
+    public void executeCode()
+    {
+        Debug.Log("CodeEditor : executing code");
+        outputText.GetComponent<Text>().text = "";
         interpretor = new Interpretor();
         EvaluationResults er = interpretor.Interpret(code);
 		if (er.ToString() == "ERROR") {
@@ -298,6 +306,7 @@ public class CodeEditor : MonoBehaviour
             
             // appeller un script pour voir si cest bon les tests
 		}
+        Debug.Log("CodeEditor : executed code");
     }
 
 

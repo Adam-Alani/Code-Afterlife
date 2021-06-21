@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AfterlifeInterpretor;
@@ -11,15 +11,30 @@ public class Puzzle : MonoBehaviour
 
     void Start()
     {
-        Functions.Add(SetIsActivated);
+        // Tuto level
+        Functions.Add(SetIsActivated); // 0
 
-        Functions.Add(SetRange);
+        Functions.Add(SetRange); // 1
 
-        Functions.Add(Multiply);
-        Functions.Add(Divide);
+        Functions.Add(Factorial); // 2
 
-        Functions.Add(Factorial);
-        Functions.Add(Fibo);
+        Functions.Add(Syra); // 3 
+
+        Functions.Add(Fibo); // 4
+        // Level 1
+        Functions.Add(Sorted); // 5
+
+        Functions.Add(Search); // 6        
+
+        Functions.Add(Delete); // 7
+        
+        // Level 2
+        //Functions.Add(); // 8
+
+        //Functions.Add(); // 9
+
+        //Functions.Add(); // 10
+
     }
 
 
@@ -31,10 +46,6 @@ public class Puzzle : MonoBehaviour
     public (bool, string) SetIsActivated(Interpretor interpretor)
     {
         AfterlifeInterpretor.EvaluationResults er = interpretor.Interpret("isActivated");
-        if (er is null)
-            Debug.Log("NULLLLL JEAN - Pierre NULLLLLLLLLLLLLLLL");
-        else
-            Debug.Log(er.ToString());
         return ((bool)er.Value == false, er.ToString()); 
     }
 
@@ -43,44 +54,6 @@ public class Puzzle : MonoBehaviour
         string er = interpretor.Interpret("range").ToString();
         return (er == "0", er); 
     }
-
-
-    public (bool, string) Multiply(Interpretor interpretor)
-    {
-        string er = interpretor.Interpret("multiply 4, 2").ToString();
-        if (er != "8")
-            return (false, er); 
-
-        er = interpretor.Interpret("multiply 4, 4").ToString();
-        if (er != "16")
-            return (false, er); 
-        
-        er = interpretor.Interpret("multiply 10, 4").ToString();
-        if (er != "40")
-            return (false, er); 
-        
-        er = interpretor.Interpret("multiply 10, 10").ToString();
-        return (er == "100", er); 
-    }
-
-    public (bool, string) Divide(Interpretor interpretor)
-    {
-        string er = interpretor.Interpret("divide 4, 2").ToString();
-        if (er != "2")
-            return (false, er); 
-
-        er = interpretor.Interpret("divide 4, 4").ToString();
-        if (er != "1")
-            return (false, er); 
-        
-        er = interpretor.Interpret("divide 12, 4").ToString();
-        if (er != "3")
-            return (false, er); 
-        
-        er = interpretor.Interpret("divide 100, 10").ToString();
-        return (er == "10", er); 
-    }
-
 
     public (bool, string) Factorial(Interpretor interpretor)
     {
@@ -100,6 +73,32 @@ public class Puzzle : MonoBehaviour
         return (er == "3628800", er); 
     }
 
+    public (bool, string) Syra(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("syra 0").ToString();
+        if (er != "15")
+            return (false, er); 
+
+        er = interpretor.Interpret("syra 1").ToString();
+        if (er != "46")
+            return (false, er); 
+        
+        er = interpretor.Interpret("syra 4").ToString();
+        if (er != "35")
+            return (false, er); 
+        
+        er = interpretor.Interpret("syra 17").ToString();
+        if (er != "1")
+            return (false, er); 
+        
+        er = interpretor.Interpret("syra 18").ToString();
+        if (er != "4")
+            return (false, er); 
+
+        er = interpretor.Interpret("syra 19").ToString();
+        return (er == "2", er); 
+    }
+
 
     public (bool, string) Fibo(Interpretor interpretor)
     {
@@ -117,6 +116,56 @@ public class Puzzle : MonoBehaviour
         
         er = interpretor.Interpret("fibo 42").ToString();
         return (er == "267914296", er); 
+    }
+
+    public (bool, string) Search(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 0").ToString();
+        if (er != "True")
+            return (false, er); 
+
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 6").ToString();
+        if (er != "False")
+            return (false, er); 
+        
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 4").ToString();
+        if (er != "True")
+            return (false, er); 
+        
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5, 42) 42").ToString();
+        return (er == "True", er); 
+    }
+
+    public (bool, string) Sorted(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("sorted (0, 1, 2, 3, 4, 5)").ToString();
+        if (er != "true")
+            return (false, er); 
+
+        er = interpretor.Interpret("sorted  (5, 1, 2, 3, 4, 5)").ToString();
+        if (er != "false")
+            return (false, er);
+        
+        er = interpretor.Interpret("sorted (42, 42, 69)").ToString();
+        return (er == "true", er); 
+    }
+
+    public (bool, string) Delete(Interpretor interpretor)
+    {
+        string er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 0").ToString();
+        if (er != "(1, 2, 3, 4, 5)")
+            return (false, er); 
+
+        er = interpretor.Interpret("delete  (0, 1, 2, 3, 4, 5) 1").ToString();
+        if (er != "(0, 2, 3, 4, 5)")
+            return (false, er);
+        
+        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 4").ToString();
+        if (er != "(0, 1, 2, 3, 5)")
+            return (false, er); 
+        
+        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 5").ToString();
+        return (er == "(0, 1, 2, 3, 4)", er); 
     }
 
 

@@ -45,5 +45,22 @@ public class AudioManager : MonoBehaviour
    			return;
    		}
    		s.source.Play();
+        Debug.Log($"Playing {name}");
+   }
+
+   public void SetVolume(float volume)
+   {
+       Debug.Log($"Setting volume to {volume}");
+       foreach(Sound sound in sounds)
+       {
+           sound.SetVolume(volume);
+           //Debug.Log($"Set the volume of {sound.name} to {volume}");
+       }
+   }
+
+   public float GetVolume()
+   {
+       //Debug.Log($"Getting volume");
+       return sounds[0].volume;
    }
 }

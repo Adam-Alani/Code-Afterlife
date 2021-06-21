@@ -43,15 +43,15 @@ public class doors : MonoBehaviour
         
         if (isAuto)
             res = isInRange;
-        // else
-            // res = codeEditor.GetComponent<CodeEditor>().Solved;
+         else
+            res = codeEditor.GetComponent<CodeEditor>().Solved;
 
         if (res && !prevres)
         {
             animator.SetBool("Open", res);
             FindObjectOfType<AudioManager>().Play("DoorOpen");
             Debug.Log("Played DoorOpen");
-            if (!isAuto)
+            if (!isAuto && !(redWire is null) && !(greenWire is null))
             {
                 redWire.SetActive(false);
                 greenWire.SetActive(true);
