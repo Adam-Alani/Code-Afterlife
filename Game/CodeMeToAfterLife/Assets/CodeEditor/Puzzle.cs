@@ -190,7 +190,7 @@ public class Puzzle : MonoBehaviour
     public (bool, string) FinishGame(Interpretor interpretor)
     {
         string er = interpretor.Interpret("finishGame").ToString();
-        return (er == "true", er); 
+        return (er == "True", er); 
     }
 
 }

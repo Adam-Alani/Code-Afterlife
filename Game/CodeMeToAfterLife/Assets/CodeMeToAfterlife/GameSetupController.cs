@@ -45,37 +45,4 @@ public class GameSetupController : MonoBehaviour
         pc.SetPlayerSpawnPoints(spawnPoints);
         cameraPosition.SetCameraTarget(player.transform);
     }
-
-    /*
-    /// <summary>
-    /// Creates the player located in : Code-Afterlife\Game\CodeMeToAfterLife\Assets\Resources\Prefabs
-    /// (needs to be in the Resources folder in a folder named as the first parameter)
-    /// </summary>
-    private void CreatePlayer()
-    {
-        int playerNumber;
-        if (PhotonNetwork.IsMasterClient)
-        {
-            playerNumber = new System.Random().Next(2);
-        }
-        else
-        {
-            int OtherPlayerIndex = PhotonNetwork.masterClient().FindObjectOfType<PlayerController>().playerNumber;
-            playerNumber = changeIndex[OtherPlayerIndex];
-        }
-        
-        Debug.Log("Creating Player");
-        GameObject player = PhotonNetwork.Instantiate(Path.Combine("Prefabs", "Player"), spawnPoints[playerNumber], Quaternion.identity);
-        PlayerController pc = FindObjectOfType<PlayerController>();
-        pc.SetPlayerNumber(playerNumber);
-        pc.SetPlayerSpawnPoints(spawnPoints);
-        cameraPosition.SetCameraTarget(player.transform);
-    }*/
-/*
-    private void SetSpawnPoints()
-    {
-        Vector3 spawnPoint1 = new Vector3(30, 6, -36);
-        Vector3 spawnPoint2 = new Vector3(30, 6, -246);
-        spawnPoints = new Vector3[] {spawnPoint1, spawnPoint2};
-    }*/
 }

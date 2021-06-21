@@ -56,7 +56,7 @@ public class TerminalBehavior : MonoBehaviour
     // this methods requires a collider on each object that should interact, with one that has the option "is trigger" enabled, and at minimum one rigidbody on either of the objet
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerController>().PV.IsMine)
         {
             isInRange = true;
             Debug.Log("Player now in range");
@@ -67,7 +67,7 @@ public class TerminalBehavior : MonoBehaviour
     // this methods requires a collider on each object that should interact, with one that has the option "is trigger" enabled, and at minimum one rigidbody on either of the objet
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerController>().PV.IsMine)
         {
             isInRange = false;
             Debug.Log("Player now is no longer in range");

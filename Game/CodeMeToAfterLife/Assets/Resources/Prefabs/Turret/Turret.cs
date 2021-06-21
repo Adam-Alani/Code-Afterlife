@@ -28,6 +28,8 @@ public class Turret : MonoBehaviour
     public GameObject greenWire;
     private bool forceDisable;
 
+    public bool deactivate;
+
     
     // Start is called before the first frame update
     /// <summary>
@@ -102,10 +104,11 @@ public class Turret : MonoBehaviour
         greenWire.SetActive(true);
         forceDisable = true;
         off = true;
+        deactivate = true;
     }
 
 
-    [PunRPC]
+    // [PunRPC] // ----------------------------------------------------------------------------------------------------------------------------------
     void UpdateRpc()
     {
         off = codeEditor.GetComponent<CodeEditor>().Solved;
@@ -144,14 +147,16 @@ public class Turret : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(deactivate)
+            return;
         limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
 
         if (off)
             return;
 
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("UpdateRpc", RpcTarget.All);
-
+        //PhotonView photonView = PhotonView.Get(this); //--------------------------------------------------------------------------------------------------------------------------------
+        //photonView.RPC("UpdateRpc", RpcTarget.All); //--------------------------------------------------------------------------------------------------------------------------------
+        UpdateRpc();
     }
 
 

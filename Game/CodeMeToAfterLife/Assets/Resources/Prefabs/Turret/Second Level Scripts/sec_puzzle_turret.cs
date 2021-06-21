@@ -31,6 +31,7 @@ public class sec_puzzle_turret : MonoBehaviour
     
     private bool forceDisable;
 
+    public bool deactivate;
     
     // Start is called before the first frame update
     /// <summary>
@@ -111,10 +112,10 @@ public class sec_puzzle_turret : MonoBehaviour
     {
         forceDisable = true;
         off = true;
+        deactivate = true;
     }
 
-
-    [PunRPC]
+    //[PunRPC] // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void UpdateRpc()
     {
         // off = codeEditor_disables.GetComponent<CodeEditor>().Solved;
@@ -165,6 +166,9 @@ public class sec_puzzle_turret : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(deactivate)
+            return;
+
         limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
 
         if (off)
@@ -184,9 +188,9 @@ public class sec_puzzle_turret : MonoBehaviour
             return;
         }
         
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("UpdateRpc", RpcTarget.All);
-
+        //PhotonView photonView = PhotonView.Get(this); //--------------------------------------------------------------------------------------------------------------------------------
+        //photonView.RPC("UpdateRpc", RpcTarget.All); //--------------------------------------------------------------------------------------------------------------------------------
+        UpdateRpc();
     }
 
 

@@ -13,7 +13,13 @@ public class NetworkController : MonoBehaviourPunCallbacks
      * 
      *****************************************************/
     
-    
+    void Awake()
+    {
+        PhotonNetwork.SendRate = 10;
+        PhotonNetwork.SerializationRate = 10;
+    }
+
+
     // Start is called before the first frame update
     /// <summary>
     /// Connects the player to the servers

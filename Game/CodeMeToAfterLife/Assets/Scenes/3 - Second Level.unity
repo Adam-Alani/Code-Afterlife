@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 36112293}
   - component: {fileID: 36112292}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Easter eggs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905,
         type: 3}
@@ -338,7 +338,7 @@ PrefabInstance:
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4972167997025879799, guid: 22d2c44fed4ffa743aac7afe4d993905,
         type: 3}
@@ -619,6 +619,16 @@ PrefabInstance:
       propertyPath: m_text
       value: '## The value is assumed present'
       objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: PuzzleLevel
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233620645211, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Name
@@ -821,6 +831,26 @@ PrefabInstance:
 
         -----------------'
       objectReference: {fileID: 0}
+    - target: {fileID: 5817942232224549155, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232224549155, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232224549155, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942232427163291, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5817942232943034245, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_Text
@@ -829,6 +859,16 @@ PrefabInstance:
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: Solved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: PuzzleLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233620645211, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
@@ -1037,6 +1077,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: '## The element is assumed present'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: PuzzleLevel
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233620645211, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7513105447004600699, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -7979,6 +8029,7 @@ MonoBehaviour:
   isBehaviorChanged: 0
   speedChanged: 0
   isSpeedNormal: 0
+  deactivate: 0
 --- !u!1 &2043297241237146112
 GameObject:
   m_ObjectHideFlags: 0
@@ -8029,6 +8080,7 @@ MonoBehaviour:
   isBehaviorChanged: 0
   speedChanged: 0
   isSpeedNormal: 0
+  deactivate: 0
 --- !u!1 &2043297241469335538
 GameObject:
   m_ObjectHideFlags: 0
@@ -8079,6 +8131,7 @@ MonoBehaviour:
   isBehaviorChanged: 0
   speedChanged: 0
   isSpeedNormal: 0
+  deactivate: 0
 --- !u!1 &2043297241841936729
 GameObject:
   m_ObjectHideFlags: 0
@@ -8128,6 +8181,7 @@ MonoBehaviour:
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0
+  deactivate: 0
 --- !u!1 &2043297241863794751
 GameObject:
   m_ObjectHideFlags: 0
@@ -8177,6 +8231,7 @@ MonoBehaviour:
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0
+  deactivate: 0
 --- !u!1 &2043297241866383067
 GameObject:
   m_ObjectHideFlags: 0
@@ -8226,6 +8281,7 @@ MonoBehaviour:
   codeEditor_changeBehavior: {fileID: 505958171}
   isBehaviorChanged: 0
   speedChanged: 0
+  deactivate: 0
 --- !u!1 &2138873211509221605
 GameObject:
   m_ObjectHideFlags: 0

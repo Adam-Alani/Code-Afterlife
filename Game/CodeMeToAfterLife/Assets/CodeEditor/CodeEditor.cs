@@ -35,8 +35,6 @@ public class CodeEditor : MonoBehaviour
 
     public GameObject Terminal;
     
-
-
     // Start is called before the first frame update
     public void Start()
     {
@@ -297,10 +295,13 @@ public class CodeEditor : MonoBehaviour
 		else {
 			outputText.GetComponent<Text>().text = er.ToString();
 
+            string res;
+            (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
             
             PhotonView photonView = PhotonView.Get(this);
             photonView.RPC("CheckSolved", RpcTarget.All);
             
+
 
             //this.Puzzle.Evaluate(interpretor, PuzzleLevel);
             
@@ -314,15 +315,12 @@ public class CodeEditor : MonoBehaviour
     [PunRPC]
     void CheckSolved()
     {
-        string res;
-        (Solved, res) = Puzzles.GetComponent<Puzzle>().Evaluate(interpretor, PuzzleLevel);
-    
         if (Solved) {
             outputText.GetComponent<Text>().text = "Good answer bravo";
             Terminal.GetComponent<TerminalBehavior>().SetSolved();
         } else 
         {
-            outputText.GetComponent<Text>().text = "bad answer " + res;
+            outputText.GetComponent<Text>().text = "bad answer ";
         }
     }
 
@@ -332,9 +330,6 @@ public class CodeEditor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        
-
         HandleTextInput ();
         HandleSpecialInput ();
 

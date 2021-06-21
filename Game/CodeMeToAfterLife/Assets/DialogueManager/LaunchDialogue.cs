@@ -15,7 +15,6 @@ public class LaunchDialogue : MonoBehaviour
         {
             if (!isLaunched)
             {
-                Debug.Log("Show yourself, Ah Ah dialogue goes bruhh");
                 isLaunched = true;
                 FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
             }
@@ -26,7 +25,7 @@ public class LaunchDialogue : MonoBehaviour
     // this methods requires a collider on each object that should interact, with one that has the option "is trigger" enabled, and at minimum one rigidbody on either of the objet
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerController>().PV.IsMine)
         {
             isInRange = true;
         }
@@ -36,7 +35,7 @@ public class LaunchDialogue : MonoBehaviour
     // this methods requires a collider on each object that should interact, with one that has the option "is trigger" enabled, and at minimum one rigidbody on either of the objet
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerController>().PV.IsMine)
         {
             isInRange = false;
         }

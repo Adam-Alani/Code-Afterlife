@@ -27,10 +27,13 @@ public class WeirdTurret : MonoBehaviour
     public GameObject redWire;
     public GameObject greenWire;
     private bool forceDisable;
+
+    public bool deactivate;
     
     // ************ for this puzzle ***************** //
     public bool isTargetForced;
     public Transform forcedTarget;
+
 
     
     // Start is called before the first frame update
@@ -50,6 +53,7 @@ public class WeirdTurret : MonoBehaviour
         limitMid.SetActive(false);
         off = false;
         isTargetForced = false;
+        deactivate = false;
     }
 
 
@@ -109,10 +113,11 @@ public class WeirdTurret : MonoBehaviour
         redWire.SetActive(false);
         greenWire.SetActive(true);
         off = true;
+        deactivate = true;
     }
 
 
-    [PunRPC]
+    //[PunRPC]      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void UpdateRpc()
     {
         if (!isTargetForced)
@@ -143,6 +148,8 @@ public class WeirdTurret : MonoBehaviour
 
             off = false;
             Debug.Log("Target forced onto the turret");
+
+            
         }
         
         limitLeft.SetActive(limits);
@@ -169,10 +176,14 @@ public class WeirdTurret : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(deactivate)
+            return;
+
         limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
         
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("UpdateRpc", RpcTarget.All);
+        //PhotonView photonView = PhotonView.Get(this); //-------------------------------------------------------------------------------------------------------
+        ///photonView.RPC("UpdateRpc", RpcTarget.All); //------------------------------------------------------------------------------------------------------
+        UpdateRpc();
 
     }
 

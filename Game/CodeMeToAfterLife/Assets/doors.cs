@@ -32,32 +32,42 @@ public class doors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PhotonView photonView = PhotonView.Get(this);
-        photonView.RPC("UpdateRpc", RpcTarget.All);
-    }
-
-    [PunRPC]
-    void UpdateRpc()
-    {
         prevres = res;
         
         if (isAuto)
             res = isInRange;
-         else
+        else
             res = codeEditor.GetComponent<CodeEditor>().Solved;
+        
+        PhotonView photonView = PhotonView.Get(this);//-----------------------------------------------------------------------------------------
+        photonView.RPC("UpdateRpc", RpcTarget.All); //-----------------------------------------------------------------------------------------
+        //UpdateRpc();
 
+    }
+
+    [PunRPC] //-----------------------------------------------------------------------------------------
+    void UpdateRpc()
+    {
         if (res && !prevres)
         {
-            animator.SetBool("Open", res);
-            FindObjectOfType<AudioManager>().Play("DoorOpen");
-            Debug.Log("Played DoorOpen");
-            if (!isAuto && !(redWire is null || greenWire is null))
-            {
-                redWire.SetActive(false);
-                greenWire.SetActive(true);
-            }
+            OpenDoor();
         }
     }
+
+
+
+    void OpenDoor()
+    {
+        animator.SetBool("Open", res);
+        FindObjectOfType<AudioManager>().Play("DoorOpen");
+        Debug.Log("Played DoorOpen");
+        if (!isAuto && !(redWire is null || greenWire is null))
+        {
+            redWire.SetActive(false);
+            greenWire.SetActive(true);
+        }
+    }
+
 
     public void OnTriggerEnter(Collider collider)
     {
