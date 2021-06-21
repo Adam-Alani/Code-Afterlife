@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     public int playerNumber;
     public Vector3[] spawnPoints;
-    
+
     private Vector3 forward; // vertical axis in isometric system
     private Vector3 right; // horizontal axis in isometric system
     public PhotonView PV;
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         //DontDestroyOnLoad(gameObject);
         Setup();
     }
-        
+
     // Update is called once per frame
     void Update()
     {
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if (PV.IsMine && !(IsTerminalOpen() || EscapeMenu.active)) // Main Scene and Don't Destroy on Load Photon MOno
             Move();
     }
-    
+
     /// <summary>
     /// checks if the terminal is open or not
     /// </summary>
@@ -51,11 +51,11 @@ public class PlayerController : MonoBehaviour
     void Setup()
     {
         forward = Camera.main.transform.forward;
-        forward.y = 0; 
+        forward.y = 0;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
     }
-    
+
     /// <summary>
     ///  Perform the Movement
     /// </summary>
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             controller.Move(direction * speed * Time.deltaTime);
         }
     }
-    
+
     /// <summary>
     /// Use the key inputs to compute the direction of the player
     /// </summary>
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
         direction.y = 0f;
         direction = Vector3.Normalize(direction);
-    
+
         return direction;
     }
 
@@ -120,10 +120,10 @@ public class PlayerController : MonoBehaviour
 			controller.enabled = false;
             transform.localPosition = spawnPoints[playerNumber];
             Debug.Log("turret pew pew player");
-			controller.enabled = true; 
+			controller.enabled = true;
         }
     }
-    public void SpeedUpPlayer()
+  public void SpeedUpPlayer()
 	{
 		speed = 100;
 		Debug.Log("Player goes zoom");
@@ -135,4 +135,3 @@ public class PlayerController : MonoBehaviour
 		Debug.Log("Player goes rompiche");
 	}
 }
-

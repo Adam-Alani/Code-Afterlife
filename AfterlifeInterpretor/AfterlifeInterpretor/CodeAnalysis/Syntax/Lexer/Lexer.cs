@@ -62,6 +62,11 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
                 return LexDigit();
             }
 
+            if (Current == '#' && LookAhead == '#')
+            {
+                return LexComment();
+            }
+
             if (Current == '\n' || Current == ';')
             {
                 return LexEndStatement();
@@ -86,6 +91,20 @@ namespace AfterlifeInterpretor.CodeAnalysis.Syntax.Lexer
             if (token.Kind == SyntaxKind.ErrorToken) 
                 Errs.ReportUnknown(token.Text, start);
             return token;
+        }
+
+        private SyntaxToken LexComment()
+        {
+            int start = _position;
+            string text = "";
+
+            while (Current != '\n' && Current != ';' && Current != '\0')
+            {
+                text += Current;
+                _position++;
+            }
+
+            return new SyntaxToken(SyntaxKind.CommentToken, start, text);
         }
 
         private SyntaxToken LexWord()

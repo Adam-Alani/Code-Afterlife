@@ -31,6 +31,7 @@ public class sec_puzzle_turret : MonoBehaviour
     
     private bool forceDisable;
 
+    
     // Start is called before the first frame update
     /// <summary>
     /// Calls UpdateTarget every UpdateTime secondes

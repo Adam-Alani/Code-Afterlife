@@ -20,14 +20,9 @@
                     <p>Finished the first level, with it comes the terminal and an IDE with syntax highlighting autoindentation, and unit testing. The IDE uses our own interpreted language Babylon.  now contains the +=, -=, *= and /= operators, for loops, strings floats and lists, and functions.  For the first map, we used 2 terminals that activate/deactivate doors and turrets. We also now have our main character design, a bit more sound design (for the terminal, turret and background music). Finally, multiplayer is now 100% done.</p>
                 </div>
             </div>
-            <div class="mt-8"><h1 class="text-xl underline text-yellow-200">Update Log 3</h1>
+            <div class="mt-8"><h1 class="text-xl underline text-yellow-200">Update Log . . . : 23/6/2021</h1>
                 <div class="mt-2 mx-16">
-                    <p>Coming soon</p>
-                </div>
-            </div>
-            <div class="mt-8"><h1 class="text-xl underline text-blue-500">Update Log 4</h1>
-                <div class="mt-2 mx-16">
-                    <p>Coming soon</p>
+                    <p>Babylon is finished. Tutorial map is done, it includes all the necessary puzzles to become familiar with Babylon, and also included with the game is a poster on how to use babylon. Finally, we finished the last 2 maps, are working on adding walking animations, and more and more programming puzzles.</p>
                 </div>
             </div>
         </div>
