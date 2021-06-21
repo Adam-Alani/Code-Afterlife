@@ -22,7 +22,7 @@
             </div>
             <div class="mt-8"><h1 class="text-xl underline text-yellow-200">Update Log . . . : 23/6/2021</h1>
                 <div class="mt-2 mx-16">
-                    <p>Babylon is finished. Tutorial map is done, it includes all the necessary puzzles to become familiar with Babylon, and also included with the game is a poster on how to use babylon. Finally, we finished the last 2 maps, are working on adding walking animations, and more and more programming puzzles.</p>
+                    <p>Babylon is finished. Tutorial map is done, it includes all the necessary puzzles to become familiar with Babylon, and also included with the game is a poster on how to use babylon. Finally, we finished the last 2 maps, are working on adding walking animations, and more and more programming puzzles. </p>
                 </div>
             </div>
         </div>
