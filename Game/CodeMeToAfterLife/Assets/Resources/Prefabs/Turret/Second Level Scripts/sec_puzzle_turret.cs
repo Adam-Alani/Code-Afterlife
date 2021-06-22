@@ -117,7 +117,7 @@ public class sec_puzzle_turret : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject player in players)
         {
-            if (player.transform.position.y > -75)
+            if (player.transform.position.z > -78)
                 player.GetComponent<PlayerController>().ResetPlayerSpeed();
         }
 
@@ -133,14 +133,8 @@ public class sec_puzzle_turret : MonoBehaviour
 
         if (!speedChanged && isBehaviorChanged)
         {
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject player in players)
-            {
-                if (player.transform.position.y > -75)
-                    player.GetComponent<PlayerController>().SpeedUpPlayer();
-            }
-
-            speedChanged = true;
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("SpeedUpPlayer", RpcTarget.All);
         }
         
         if (off)
@@ -238,5 +232,18 @@ public class sec_puzzle_turret : MonoBehaviour
     {
         rotationSpeed /= 10;
         freeRotationSpeed /= 10;
+    }
+
+    [PunRPC]
+    public void SpeedUpPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (player.transform.position.z > -78)
+                player.GetComponent<PlayerController>().SpeedUpPlayer();
+        }
+
+        speedChanged = true;
     }
 }

@@ -124,7 +124,8 @@ public class first_puzzle_turret : MonoBehaviour
 
         if (!speedChanged && isBehaviorChanged)
         {
-            SlowDownTurret();
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("SlowDownTurret", RpcTarget.All);
             speedChanged = true;
         }
         
@@ -196,7 +197,6 @@ public class first_puzzle_turret : MonoBehaviour
 
     bool Shoot()
     {
-
         return target != null && Abs(Quaternion.LookRotation(target.position - transform.position).eulerAngles.y - partToRotate.transform.rotation.eulerAngles.y) < turretPrecision;
     }
 
@@ -221,7 +221,8 @@ public class first_puzzle_turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxRange);
     }
-
+    
+    [PunRPC]
     public void SlowDownTurret()
     {
         rotationSpeed = 5;

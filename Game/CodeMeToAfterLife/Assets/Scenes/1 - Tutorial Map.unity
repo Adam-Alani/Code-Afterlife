@@ -3003,6 +3003,7 @@ MonoBehaviour:
     - "TIPS : you can write \u201Cnumber = number + 1\u201D if you wanna increase
       the value of the number. Basic mathematic operations are implemented (+, -,
       /, *) in our language, so feel free to use them !"
+  displayRepeatableDialogue: 0
 --- !u!135 &277418881
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5232,7 +5233,12 @@ PrefabInstance:
     - target: {fileID: 5817942233083339197, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
       propertyPath: m_text
-      value: function facto int n = { return result}
+      value: 'function facto int n = {
+
+
+        return result
+
+        }'
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -5910,9 +5916,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "##fibo(0) = 0\n##fibo(1) = 1\n##fibo(n+1) = fibo(n) + fibo(n-1)\n\nfunction
-        fibo int n = {\r\n  int a, int b = ##complete that;\r\n  while (##complete
-        that;) {\r\n    a, b = ##complete that;\r\n    n = ##complete that;\r\n 
-        }\r\n  return a\r\n}"
+        fibo int n = {\r\n  int a, int b = ##complete that;\r\n  while () {\r\n   
+        a, b = ##complete that;\r\n    n = ##complete that;\r\n  }\r\n  return a\r\n}"
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -18584,8 +18589,8 @@ PrefabInstance:
       value: "##The syracuse sequence is defined as :\n##if un is even : un+1 = un
         / 2 \n##otherwise :     un+1 = 3 * un + 1 \n##The flight time is defined
         as the first n for which un = 1\n\nfunction syra int n = {\r\n  int i = ##complete
-        that;\r\n  while (##complete that;) {\r\n    n = ##complete that;\r\n   
-        i = ##complete that;\r\n  }\r\n  return i\r\n}\n\n\n\n"
+        that;\r\n  while () {\r\n    n = ##complete that;\r\n    i = ##complete that;\r\n 
+        }\r\n  return i\r\n}\n\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233083339198, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
@@ -23896,6 +23901,7 @@ MonoBehaviour:
       a variable, you have to put it\u2019s type, then name, then an equal sign and
       its value, all separated by a space. Try to put the range variable to zero.
       Like all integer, the type of this variable is int."
+  displayRepeatableDialogue: 0
 --- !u!135 &2078374097
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -24659,6 +24665,7 @@ MonoBehaviour:
     - "TIPS : you can write \u201Cnumber = number + 1\u201D if you wanna increase
       the value of the number. Basic mathematic operations are implemented (+, -,
       /, *) in our language, so feel free to use them !"
+  displayRepeatableDialogue: 0
 --- !u!135 &1508331235795813948
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25070,6 +25077,7 @@ MonoBehaviour:
       c\u201D."
     - You now have to write what the code that the function executes in between the
       curly braces !
+  displayRepeatableDialogue: 0
 --- !u!135 &4165831991632116312
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -25517,6 +25525,7 @@ MonoBehaviour:
       c\u201D."
     - You know have to write what the code that the function executes in between
       the curly braces !
+  displayRepeatableDialogue: 0
 --- !u!4 &8528010920237093266
 Transform:
   m_ObjectHideFlags: 0
@@ -25739,6 +25748,7 @@ MonoBehaviour:
       a variable, you have to put it\u2019s type, then name, then an equal sign and
       its value, all separated by a space. Try to put the range variable to zero.
       Like all integer, the type of this variable is int."
+  displayRepeatableDialogue: 0
 --- !u!1 &8816070677293773614
 GameObject:
   m_ObjectHideFlags: 0
