@@ -113,12 +113,22 @@ public class sec_puzzle_turret : MonoBehaviour
         forceDisable = true;
         off = true;
         deactivate = true;
+        
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            if (player.transform.position.y > -75)
+                player.GetComponent<PlayerController>().ResetPlayerSpeed();
+        }
+
+        isSpeedNormal = true;
+        limitMid.SetActive(false);
     }
 
     //[PunRPC] // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void UpdateRpc()
     {
-        // off = codeEditor_disables.GetComponent<CodeEditor>().Solved;
+        off = codeEditor_disables.GetComponent<CodeEditor>().Solved;
         isBehaviorChanged = codeEditor_changeBehavior.GetComponent<CodeEditor>().Solved;
 
         if (!speedChanged && isBehaviorChanged)
@@ -171,23 +181,6 @@ public class sec_puzzle_turret : MonoBehaviour
 
         limitMid.SetActive(!forceDisable && (Shoot() || ForceMidLaser));
 
-        if (off)
-        {
-            if (!isSpeedNormal)
-            {
-                GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-                foreach (GameObject player in players)
-                {
-                    if (player.transform.position.y > -75)
-                        player.GetComponent<PlayerController>().ResetPlayerSpeed();
-                }
-
-                isSpeedNormal = true;
-            }
-
-            return;
-        }
-        
         //PhotonView photonView = PhotonView.Get(this); //--------------------------------------------------------------------------------------------------------------------------------
         //photonView.RPC("UpdateRpc", RpcTarget.All); //--------------------------------------------------------------------------------------------------------------------------------
         UpdateRpc();

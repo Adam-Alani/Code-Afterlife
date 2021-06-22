@@ -30,7 +30,6 @@ public class Turret : MonoBehaviour
 
     public bool deactivate;
 
-    
     // Start is called before the first frame update
     /// <summary>
     /// Calls UpdateTarget every UpdateTime secondes
@@ -105,6 +104,7 @@ public class Turret : MonoBehaviour
         forceDisable = true;
         off = true;
         deactivate = true;
+        limitMid.SetActive(false);
     }
 
 

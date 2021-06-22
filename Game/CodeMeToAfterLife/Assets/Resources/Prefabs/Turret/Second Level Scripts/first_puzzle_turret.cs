@@ -112,6 +112,7 @@ public class first_puzzle_turret : MonoBehaviour
         forceDisable = true;
         off = true;
         deactivate = true;
+        limitMid.SetActive(false);
     }
 
 
@@ -119,7 +120,7 @@ public class first_puzzle_turret : MonoBehaviour
     void UpdateRpc()
     {
         off = codeEditor_disables.GetComponent<CodeEditor>().Solved;
-        // isBehaviorChanged = codeEditor_changeBehavior.GetComponent<CodeEditor>().Solved;
+        isBehaviorChanged = codeEditor_changeBehavior.GetComponent<CodeEditor>().Solved;
 
         if (!speedChanged && isBehaviorChanged)
         {

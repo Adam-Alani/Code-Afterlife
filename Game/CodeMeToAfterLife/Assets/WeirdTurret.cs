@@ -22,7 +22,9 @@ public class WeirdTurret : MonoBehaviour
     public bool limits; // disables the limits view
     public bool ForceMidLaser; // forces or not the mid laser
     public float turretPrecision;
-    public GameObject codeEditor;
+    public GameObject codeEditor_changeBehavior;
+    public GameObject codeEditor_disables;
+    
 
     public GameObject redWire;
     public GameObject greenWire;
@@ -33,6 +35,7 @@ public class WeirdTurret : MonoBehaviour
     // ************ for this puzzle ***************** //
     public bool isTargetForced;
     public Transform forcedTarget;
+    public bool changedBehavior;
 
 
     
@@ -54,6 +57,7 @@ public class WeirdTurret : MonoBehaviour
         off = false;
         isTargetForced = false;
         deactivate = false;
+        changedBehavior = false;
     }
 
 
@@ -114,19 +118,22 @@ public class WeirdTurret : MonoBehaviour
         greenWire.SetActive(true);
         off = true;
         deactivate = true;
+        limitMid.SetActive(false);
     }
 
 
     //[PunRPC]      ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     void UpdateRpc()
     {
+        off = codeEditor_disables.GetComponent<CodeEditor>().Solved;
+        
         if (!isTargetForced)
         {
             UpdateTarget();
-            off = codeEditor.GetComponent<CodeEditor>().Solved;
+            changedBehavior = codeEditor_changeBehavior.GetComponent<CodeEditor>().Solved;
         }
-        
-        if (off)
+
+        if (changedBehavior)
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -142,14 +149,16 @@ public class WeirdTurret : MonoBehaviour
             
             // force the target on the turret
             photonView.RPC("ForceTarget", RpcTarget.All);
-
-            // disable the turret
-            photonView.RPC("Disable", RpcTarget.All);
-
-            off = false;
             Debug.Log("Target forced onto the turret");
-
-            
+            changedBehavior = false;
+        }
+        
+        if (off)
+        {
+            // disable the turret
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("Disable", RpcTarget.All);
+            off = false;
         }
         
         limitLeft.SetActive(limits);
@@ -240,5 +249,7 @@ public class WeirdTurret : MonoBehaviour
     {
         target = forcedTarget;
         isTargetForced = true;
+        redWire.SetActive(false);
+        greenWire.SetActive(true);
     }
 }

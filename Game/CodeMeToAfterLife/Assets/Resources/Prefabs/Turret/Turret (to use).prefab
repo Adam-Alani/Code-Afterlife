@@ -152,6 +152,7 @@ GameObject:
   - component: {fileID: 1661987345630603156}
   - component: {fileID: 5078949380103936350}
   - component: {fileID: -4797445942402079244}
+  - component: {fileID: 7464077706786054947}
   m_Layer: 0
   m_Name: Turret (to use)
   m_TagString: Untagged
@@ -205,6 +206,7 @@ MonoBehaviour:
   codeEditor: {fileID: 0}
   redWire: {fileID: 0}
   greenWire: {fileID: 0}
+  deactivate: 0
 --- !u!114 &-4797445942402079244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,10 +225,28 @@ MonoBehaviour:
   observableSearch: 2
   Synchronization: 3
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 7464077706786054947}
+  - {fileID: 3861951402856879395}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &7464077706786054947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2043297241718979886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &2138873211800674873
 GameObject:
   m_ObjectHideFlags: 0

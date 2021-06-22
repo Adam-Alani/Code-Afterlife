@@ -7891,7 +7891,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297240539731961}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 125, y: 1, z: -39}
+  m_LocalPosition: {x: 125, y: 1, z: -40}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595636555562153}
@@ -7907,7 +7907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297241237146112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 1, z: -39}
+  m_LocalPosition: {x: 100, y: 1, z: -40}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595635858235728}
@@ -7923,7 +7923,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297241841936729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 100, y: 1, z: -114}
+  m_LocalPosition: {x: 100, y: 1, z: -117}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595635241026057}
@@ -7939,7 +7939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297241866383067}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 125, y: 1, z: -114}
+  m_LocalPosition: {x: 125, y: 1, z: -117}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595635262719371}
@@ -7955,7 +7955,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297241863794751}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: 1, z: -114}
+  m_LocalPosition: {x: 75, y: 1, z: -117}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595635261184879}
@@ -7971,7 +7971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297241469335538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75, y: 1, z: -39}
+  m_LocalPosition: {x: 75, y: 1, z: -40}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595635621829794}
@@ -8012,7 +8012,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595636555562153}
@@ -8063,7 +8063,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635858235728}
@@ -8114,7 +8114,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635621829794}
@@ -8165,7 +8165,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635241026057}
@@ -8215,7 +8215,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635261184879}
@@ -8265,7 +8265,7 @@ MonoBehaviour:
   target: {fileID: 0}
   Tag: Player
   UpdateTime: 0.5
-  maxRange: 36
+  maxRange: 38
   rotationSpeed: 15
   freeRotationSpeed: 5
   partToRotate: {fileID: 636595635262719371}

@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
     }
   public void SpeedUpPlayer()
 	{
-		speed = 100;
+		speed = 130;
 		Debug.Log("Player goes zoom");
 	}
 

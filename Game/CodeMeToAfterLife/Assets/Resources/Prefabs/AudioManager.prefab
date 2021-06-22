@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: DoorOpen
     clip: {fileID: 8300000, guid: fd61228b4dd4bd340bd48c60f6ec2e71, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: MainMusic
     clip: {fileID: 8300000, guid: 2864efcbeac37394a92d4eb760c6ae24, type: 3}
-    volume: 0.268
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}

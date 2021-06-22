@@ -12210,6 +12210,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
         type: 3}
+      propertyPath: Solved
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817942233133994162, guid: 3f68ffa8a34e7cc46b7ee2c986370d89,
+        type: 3}
       propertyPath: PuzzleLevel
       value: 5
       objectReference: {fileID: 0}
@@ -13747,7 +13752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043297239750395755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115, y: 2, z: -115}
+  m_LocalPosition: {x: 115, y: 1, z: -116}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 636595637374610491}
@@ -13800,11 +13805,14 @@ MonoBehaviour:
   limits: 0
   ForceMidLaser: 1
   turretPrecision: 10
-  codeEditor: {fileID: 883639624}
+  codeEditor_changeBehavior: {fileID: 883639624}
+  codeEditor_disables: {fileID: 107650310}
   redWire: {fileID: 5007691791903080113}
   greenWire: {fileID: 402556538}
+  deactivate: 0
   isTargetForced: 1
   forcedTarget: {fileID: 0}
+  changedBehavior: 0
 --- !u!1 &2138873213228177532
 GameObject:
   m_ObjectHideFlags: 0

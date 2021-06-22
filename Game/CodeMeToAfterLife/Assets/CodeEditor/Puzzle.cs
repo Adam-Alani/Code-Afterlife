@@ -46,7 +46,7 @@ public class Puzzle : MonoBehaviour
     public (bool, string) SetIsActivated(Interpretor interpretor)
     {
         AfterlifeInterpretor.EvaluationResults er = interpretor.Interpret("isActivated");
-        return ((bool)er.Value == false, er.ToString()); 
+        return (er.Value is bool && (bool)er.Value == false, er.ToString()); 
     }
 
     public (bool, string) SetRange(Interpretor interpretor)
@@ -76,23 +76,23 @@ public class Puzzle : MonoBehaviour
     public (bool, string) Syra(Interpretor interpretor)
     {
         string er = interpretor.Interpret("syra 1").ToString();
-        if (er != "46")
+        if (er != "0")
             return (false, er); 
         
         er = interpretor.Interpret("syra 4").ToString();
-        if (er != "35")
+        if (er != "2")
             return (false, er); 
         
         er = interpretor.Interpret("syra 17").ToString();
-        if (er != "1")
+        if (er != "12")
             return (false, er); 
         
         er = interpretor.Interpret("syra 18").ToString();
-        if (er != "4")
+        if (er != "20")
             return (false, er); 
 
         er = interpretor.Interpret("syra 19").ToString();
-        return (er == "2", er); 
+        return (er == "20", er); 
     }
 
 

@@ -51,6 +51,7 @@ public class doors : MonoBehaviour
         if (res && !prevres)
         {
             OpenDoor();
+            Debug.Log("Door is opened");
         }
     }
 

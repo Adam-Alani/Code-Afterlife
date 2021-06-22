@@ -16,7 +16,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
     void Awake()
     {
         PhotonNetwork.SendRate = 10;
-        PhotonNetwork.SerializationRate = 10;
+        PhotonNetwork.SerializationRate = 30;
     }
 
 
