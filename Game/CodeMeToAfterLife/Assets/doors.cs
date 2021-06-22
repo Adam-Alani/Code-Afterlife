@@ -12,7 +12,7 @@ public class doors : MonoBehaviour
     public GameObject greenWire;
     public GameObject redWire;
 
-    private bool prevres;
+    
     private bool res;
     private bool isInRange; // if the player is in range ofthe door 
     public bool isAuto; // if the door is automatic or not
@@ -32,34 +32,27 @@ public class doors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        prevres = res;
+        if (res)
+            return;
         
         if (isAuto)
             res = isInRange;
         else
             res = codeEditor.GetComponent<CodeEditor>().Solved;
         
-        PhotonView photonView = PhotonView.Get(this);//-----------------------------------------------------------------------------------------
-        photonView.RPC("UpdateRpc", RpcTarget.All); //-----------------------------------------------------------------------------------------
-        //UpdateRpc();
-
-    }
-
-    [PunRPC] //-----------------------------------------------------------------------------------------
-    void UpdateRpc()
-    {
-        if (res && !prevres)
+        if (res)
         {
-            OpenDoor();
-            Debug.Log("Door is opened");
+            PhotonView photonView = PhotonView.Get(this);
+            photonView.RPC("Disable", RpcTarget.All); 
         }
+
     }
 
-
-
-    void OpenDoor()
+    [PunRPC] 
+    void Disable()
     {
-        animator.SetBool("Open", res);
+        res = true;
+        animator.SetBool("Open", true);
         FindObjectOfType<AudioManager>().Play("DoorOpen");
         Debug.Log("Played DoorOpen");
         if (!isAuto && !(redWire is null || greenWire is null))
@@ -67,8 +60,9 @@ public class doors : MonoBehaviour
             redWire.SetActive(false);
             greenWire.SetActive(true);
         }
+        Debug.Log("Door is opened");
+    
     }
-
 
     public void OnTriggerEnter(Collider collider)
     {

@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            Debug.Log("Sound prepared " + s.name);
         }
    
    }
@@ -53,8 +54,8 @@ public class AudioManager : MonoBehaviour
        Debug.Log($"Setting volume to {volume}");
        foreach(Sound sound in sounds)
        {
+           Debug.Log($"Set the volume of {sound.name} to {volume}");
            sound.SetVolume(volume);
-           //Debug.Log($"Set the volume of {sound.name} to {volume}");
        }
    }
 

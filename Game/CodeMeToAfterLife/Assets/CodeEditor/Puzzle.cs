@@ -117,73 +117,73 @@ public class Puzzle : MonoBehaviour
     public (bool, string) Sorted(Interpretor interpretor)
     {
         string er = interpretor.Interpret("sorted (0, 1, 2, 3, 4, 5)").ToString();
-        if (er != "true")
+        if (er != "True")
             return (false, er); 
 
         er = interpretor.Interpret("sorted  (5, 1, 2, 3, 4, 5)").ToString();
-        if (er != "false")
+        if (er != "False")
             return (false, er);
         
         er = interpretor.Interpret("sorted (42, 42, 69)").ToString();
-        return (er == "true", er); 
+        return (er == "True", er); 
     }
 
     public (bool, string) Search(Interpretor interpretor)
     {
-        string er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 0").ToString();
+        string er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5), 0").ToString();
         if (er != "True")
             return (false, er); 
 
-        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 6").ToString();
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5), 6").ToString();
         if (er != "False")
             return (false, er); 
         
-        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5) 4").ToString();
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5), 4").ToString();
         if (er != "True")
             return (false, er); 
         
-        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5, 42) 42").ToString();
+        er = interpretor.Interpret("search (0, 1, 2, 3, 4, 5, 42), 42").ToString();
         return (er == "True", er); 
     }
     public (bool, string) SetTarget(Interpretor interpretor)
     {
         string er = interpretor.Interpret("target").ToString();
-        return (er == "me", er); 
+        return (er == "\"me\"", er); 
     }
 
     public (bool, string) Delete(Interpretor interpretor)
     {
-        string er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 0").ToString();
-        if (er != "(1, 2, 3, 4, 5)")
+        string er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5), 0").ToString();
+        if (er != interpretor.Interpret("1, 2, 3, 4, 5").ToString())
             return (false, er); 
 
-        er = interpretor.Interpret("delete  (0, 1, 2, 3, 4, 5) 1").ToString();
-        if (er != "(0, 2, 3, 4, 5)")
+        er = interpretor.Interpret("delete  (0, 1, 2, 3, 4, 5), 1").ToString();
+        if (er != interpretor.Interpret("0, 2, 3, 4, 5").ToString())
             return (false, er);
         
-        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 4").ToString();
-        if (er != "(0, 1, 2, 3, 5)")
+        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5), 4").ToString();
+        if (er != interpretor.Interpret("0, 1, 2, 3, 5").ToString())
             return (false, er); 
         
-        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5) 5").ToString();
-        return (er == "(0, 1, 2, 3, 4)", er); 
+        er = interpretor.Interpret("delete (0, 1, 2, 3, 4, 5), 5").ToString();
+        return (er == interpretor.Interpret("0, 1, 2, 3, 4").ToString(), er); 
     }
 
     public (bool, string) IndexOf(Interpretor interpretor)
     {
-        string er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 0").ToString();
-        if (er != "(1, 2, 3, 4, 5)")
+        string er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5), 0").ToString();
+        if (er != "0")
             return (false, er); 
 
-        er = interpretor.Interpret("indexof  (0, 1, 2, 3, 4, 5) 1").ToString();
+        er = interpretor.Interpret("indexof  (0, 1, 2, 3, 4, 5), 1").ToString();
         if (er != "1")
             return (false, er);
         
-        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 4").ToString();
+        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5), 4").ToString();
         if (er != "4")
             return (false, er); 
         
-        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5) 5").ToString();
+        er = interpretor.Interpret("indexof (0, 1, 2, 3, 4, 5), 5").ToString();
         return (er == "5", er); 
     }
 

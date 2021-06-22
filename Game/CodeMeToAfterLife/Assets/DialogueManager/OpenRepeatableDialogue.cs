@@ -10,7 +10,7 @@ public class OpenRepeatableDialogue : MonoBehaviour
 
     private bool isInRange;
     private bool isOpen;
-    private bool displayRepeatableDialogue;
+    public bool displayRepeatableDialogue;
 
     void Update()
     {

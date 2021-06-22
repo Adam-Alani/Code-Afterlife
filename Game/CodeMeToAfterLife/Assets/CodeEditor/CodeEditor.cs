@@ -40,14 +40,8 @@ public class CodeEditor : MonoBehaviour
     {
 
         outputButton.onClick.AddListener(executeCode);
-
-        if (code == null) {
-            code = codeUI.text;
-            formatLines();
-            string formattedCode = autoIndentation();
-            codeUI.text = textFormatter(formattedCode);
-        }
-        charIndex = code.Length;
+        code = codeUI.text;
+        charIndex = 0;
 
         CustomInput.instance.RegisterKey (KeyCode.Backspace);
         CustomInput.instance.RegisterKey (KeyCode.LeftArrow);
@@ -316,11 +310,11 @@ public class CodeEditor : MonoBehaviour
     void CheckSolved()
     {
         if (Solved) {
-            outputText.GetComponent<Text>().text = "Good answer bravo";
+            outputText.GetComponent<Text>().text = "Access Granted";
             Terminal.GetComponent<TerminalBehavior>().SetSolved();
         } else 
         {
-            outputText.GetComponent<Text>().text = "bad answer ";
+            outputText.GetComponent<Text>().text = "Access Denied";
         }
     }
 

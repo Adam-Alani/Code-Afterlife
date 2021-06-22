@@ -21,30 +21,11 @@ public class Escape : MonoBehaviour
 
     private bool ClosingTerm;
 
-    /// <summary>
-    /// Setup of the object
-    /// </summary>
-    void Awake()
-    {
-        GetVolume();
-        //SceneManager.sceneLoaded += OnSceneLoaded;
-        //DontDestroyOnLoad(gameObject);
-    }
-
-    /// <summary>
-    /// When we change scene
-    /// </summary>
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        GetVolume();
-        UpdateTerminals();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
-        GetVolume();
         UpdateTerminals();
+        GetVolume();
     }
 
     /// <summary>
@@ -55,12 +36,6 @@ public class Escape : MonoBehaviour
         Terminals = FindObjectsOfType<TerminalBehavior>();
         Debug.Log("Escape menu : Updated Terminals");
     }
-
-    void OnEnable()
-    {
-        GetVolume();
-    }
-
     
     // Update is called once per frame
     void Update()

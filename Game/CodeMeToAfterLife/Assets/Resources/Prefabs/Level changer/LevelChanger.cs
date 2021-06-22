@@ -15,7 +15,7 @@ public class LevelChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pad1.Is_in && pad2.Is_in /*&& PhotonNetwork.IsMasterClient*/ && !changing)
+        if (pad1.Is_in && pad2.Is_in && PhotonNetwork.IsMasterClient && !changing)
         {
             changing = true;
             ChangeLevel();

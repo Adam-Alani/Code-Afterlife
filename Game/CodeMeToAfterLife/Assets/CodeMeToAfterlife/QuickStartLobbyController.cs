@@ -26,6 +26,7 @@ public class QuickStartLobbyController : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnConnectedToMaster()
     {
+        Debug.Log("Connected To Master");
         PhotonNetwork.AutomaticallySyncScene = true;
     }
 
